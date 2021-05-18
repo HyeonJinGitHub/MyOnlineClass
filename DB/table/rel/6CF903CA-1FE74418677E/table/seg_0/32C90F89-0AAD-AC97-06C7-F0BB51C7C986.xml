@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="32C90F89-0AAD-AC97-06C7-F0BB51C7C986" name="comments">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:07:10 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<ordsAlias>table_10</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="member_id" id="C173AC9D-2ED4-45F2-691F-3C9B82288259">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:08:47 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AE4B1B2F-62B3-2789-5CC1-6BFEDC05B6A7" referredColumn="D3A1E04A-FDC3-14F0-970A-01755905AB88"/>
+</associations>
+</Column>
+<Column name="lecture_id" id="9AFA7147-A168-C23F-5AB4-3D5F5CA0ACD2">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:08:52 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BACE3A57-4AA2-E516-2355-B7DC163AAFA5" referredColumn="40A1C5CE-ADE0-BEB8-49CE-8097188C16C4"/>
+</associations>
+</Column>
+<Column name="content" id="3865FB97-DB28-586B-0F90-D10C322E10AB">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:08:42 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="regdate" id="58CF6FEF-5A16-B72B-0410-3889DD647C6B">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:09:34 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6CD434EB-2C66-5DA6-985C-E25703F60422" name="comment_PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:09:34 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C173AC9D-2ED4-45F2-691F-3C9B82288259"/>
+<colUsage columnID="9AFA7147-A168-C23F-5AB4-3D5F5CA0ACD2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9EA23F61-B165-DB0D-A281-B13513C680AF" name="comment_member_FK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:08:47 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C173AC9D-2ED4-45F2-691F-3C9B82288259"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AF83E899-A407-63C9-2EB9-A17E80F8208A" name="comment_lecture_FK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:08:52 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9AFA7147-A168-C23F-5AB4-3D5F5CA0ACD2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

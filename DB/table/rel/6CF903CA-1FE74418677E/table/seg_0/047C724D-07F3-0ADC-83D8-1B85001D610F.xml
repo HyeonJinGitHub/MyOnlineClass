@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="047C724D-07F3-0ADC-83D8-1B85001D610F" name="member">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>25F2A747-AA59-AD6A-ED33-619746CE69CF</importedID>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="D3A1E04A-FDC3-14F0-970A-01755905AB88">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>9468F687-1415-3F51-1646-1139072FDB9C</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="password" id="6ACDB987-1EBC-2870-7469-C1C26D2E5C0A">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>CB539FA3-44AD-50AE-D20B-1999EACFCC73</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="7004FDD3-8063-0182-A951-E34399231953">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>613B0B3E-7161-C10B-8240-417BD50DF521</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="8E2E297A-AA99-3DD8-054E-70452C30415A">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>CFFC32FF-C13E-BD23-BF41-D4983CA82D9A</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="phone" id="8063CDB6-1DC9-A2C2-D0B6-7BA23329B258">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>E27E5663-F15A-28DD-22CD-CAAE9ABAA9CC</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2F2263F7-78FD-CC78-D938-4382D096857C" name="member_PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>EE9C6A85-D914-64B0-5B7D-43006BE4FB38</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D3A1E04A-FDC3-14F0-970A-01755905AB88"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

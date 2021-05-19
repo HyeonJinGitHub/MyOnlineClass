@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3743FFFB-2FD6-5B4B-4A60-B3981F0E168C" name="comments">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>32C90F89-0AAD-AC97-06C7-F0BB51C7C986</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="member id" id="A75C3115-67D3-A06A-418A-84BA1DFC4A38">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>2EFC8F28-B636-601C-30BA-A0AE380FDA61</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<referedAttribute>C81A11C5-DD13-357A-0FE5-373EF412CFA4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="lecture id" id="85D8AE0D-8296-1ED7-DC9C-4FB1CC538079">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>5A76118D-82F3-CB2C-7F37-38E3ED2C3922</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<referedAttribute>A6045EA6-3912-F56C-8A3F-10DC12DBE764</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="content" id="3A4A5366-CBDE-816E-6CCF-9233D18E2F40">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>3865FB97-DB28-586B-0F90-D10C322E10AB</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="regdate" id="85F1D5D2-6187-5029-B5D8-E98CD8BAF7F7">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>58CF6FEF-5A16-B72B-0410-3889DD647C6B</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2D176451-B462-E736-8098-89482E0C419E" name="comment PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>6CD434EB-2C66-5DA6-985C-E25703F60422</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A75C3115-67D3-A06A-418A-84BA1DFC4A38</attributeRef>
+<attributeRef>85D8AE0D-8296-1ED7-DC9C-4FB1CC538079</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

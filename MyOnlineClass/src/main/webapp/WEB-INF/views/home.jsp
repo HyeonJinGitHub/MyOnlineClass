@@ -71,10 +71,10 @@ body {
 
 
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!--  Custom styles for this template-->
-<link href="${pageContext.request.contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
+<link href="${contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
 
 
 </head>
@@ -110,22 +110,42 @@ body {
 					</li>
 					<li class="nav-item">
 						<c:if test="${id==null }">
-							<a class="nav-link" href="${pageContext.request.contextPath}/move/login">로그인</a>
+							<a class="nav-link" href="${contextPath}/move/login">로그인</a>
 						</c:if>
 					</li>
 					<c:if test="${id!=null }">
 						<li class="nav-item">
-							<a class="nav-link" href="${pageContext.request.contextPath}/move/mypage">마이페이지 </a>
+							<a class="nav-link" href="${contextPath}/move/mypage">마이페이지 </a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃 </a>
+							<a class="nav-link" href="${contextPath}/member/logout">로그아웃 </a>
 						</li>
 					</c:if>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
+	<div class="container" style="padding-top:50px; padding-bottom: 20px;">
+		<div style="display: inline; padding-right: 25px;">
+			<a href="${contextPath}/move/popular/" style="color: black; text-decoration: none;">
+				<i class="far fa-bell"></i>
+					오픈알림
+			</a>
+		</div>
+		
+		<div style="display: inline; padding-right: 25px;">
+			<a href="${contextPath}/move/popular/" style="color: black; text-decoration: none;">
+				<i class="far fa-gem"></i>
+					기획전
+			</a>
+		</div>
+		<div style="display: inline; padding-right: 25px;">
+			<a href="${contextPath}/move/popular/" style="color: black; text-decoration: none;">
+				<i class="fas fa-hand-holding-usd"></i>
+					얼리버드 특가
+			</a>
+		</div>
+	</div>
 	<header>
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">
@@ -138,7 +158,7 @@ body {
 			<div class="carousel-inner" role="listbox">
 				<!-- Slide One - Set the background image for this slide in the line below -->
 				<div class="carousel-item active"
-					style="background-image: url('${pageContext.request.contextPath}/resources/image/photo1.jpg')">
+					style="background-image: url('${contextPath}/resources/image/photo1.jpg')">
 					<div class="carousel-caption d-none d-md-block">
 						<h3>색다른 화장품</h3>
 						<p>당신이 더욱 빛나도록</p>
@@ -146,7 +166,7 @@ body {
 				</div>
 				<!-- Slide Two - Set the background image for this slide in the line below -->
 				<div class="carousel-item"
-					style="background-image: url('${pageContext.request.contextPath}/resources/image/photo2.jpg')">
+					style="background-image: url('${contextPath}/resources/image/photo2.jpg')">
 					<div class="carousel-caption d-none d-md-block">
 						<h3>강한 지속력</h3>
 						<p>당신을 더욱 화려하게</p>
@@ -154,7 +174,7 @@ body {
 				</div>
 				<!-- Slide Three - Set the background image for this slide in the line below -->
 				<div class="carousel-item"
-					style="background-image: url('${pageContext.request.contextPath}/resources/image/photo3.jpg')">
+					style="background-image: url('${contextPath}/resources/image/photo3.jpg')">
 					<div class="carousel-caption d-none d-md-block">
 						<h3>생활의 필수품</h3>
 						<p>당신을 더욱 생기있게</p>

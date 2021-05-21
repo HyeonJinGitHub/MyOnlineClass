@@ -1,22 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/classtok_favi4fa9.png" />
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>현대 | Hyundai Cosmetic</title>
+<title> 클래스톡 :: 함께 배우는 온라인 클래스 강의, 수업, 강좌 - 클래스톡 </title>
 
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
+	
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	  $( "#searchKey" ).autocomplete({
+	    source: '${contextPath}/move/popular',
+	    delay: 200,
+	    select: function(event, ui) {
+	    	window.location.href = "detail?reserve=" + JSON.stringify(ui.item.value).replace(/\"/gi, "");
+	    }
+	  });
+});
+</script>
 
 <style>
 body {
@@ -37,6 +55,18 @@ body {
 	margin-bottom: 30px;
 }
 
+.logoImage {
+	width: 120px;
+	height: auto;
+	object-fit: cover;		
+}
+
+.ul {
+	list-style:none;	
+}
+
+}
+
 </style>
 
 
@@ -50,38 +80,47 @@ body {
 </head>
 
 <body>
-
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/move/home">Hyundai Cosmetic</a>
+			<a class="navbar-brand" href="${contextPath}/move/home">
+				<img src="${contextPath}/resources/image/ClassTok_logo.png" alt="클래스톡" class="logoImage">
+			</a>
+			<div class="ui-widget" style="padding-top: 15px;">
+			<form id="searchClass" method='GET' action="${contextPath}/move/popular">
+                    <label class="header__search-label" for="searchKey" >
+                        <input id="searchKey" name="searchKey" type="search" name="searchKey" placeholder="클래스나 코치를 검색해보세요" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 250px;">
+						<button type="submit" style="border:0; outline:0; background-color: white;">
+							<i class="fas fa-search" onclick="search"></i>
+						</button>
+                    </label>
+            </form>
+            </div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
+					data-target="#navbarResponsive" aria-controls="navbarResponsive"
+					aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/move/popular">인기
+					<li class="nav-item active">
+						<a class="nav-link" href="${contextPath}/move/popular">클래스 개설
 							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/move/new">신규</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/move/event">이벤트/혜택</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/move/exhibition">기획전</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/move/freeboard">커뮤니티</a></li>
-					<li class="nav-item"><c:if test="${id==null }">
+						</a>
+					</li>
+					<li class="nav-item">
+						<c:if test="${id==null }">
 							<a class="nav-link" href="${pageContext.request.contextPath}/move/login">로그인</a>
-						</c:if> <%-- <c:if test="${id!=null }">
-							<a class="nav-link" href="../member/update">${id }님 </a>
-						</c:if> --%>
-						</li>
+						</c:if>
+					</li>
 					<c:if test="${id!=null }">
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/move/mypage">마이페이지 </a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/member/logout">로그아웃 </a></li>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/move/mypage">마이페이지 </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃 </a>
+						</li>
 					</c:if>
-
 				</ul>
 			</div>
 		</div>
@@ -99,7 +138,7 @@ body {
 			<div class="carousel-inner" role="listbox">
 				<!-- Slide One - Set the background image for this slide in the line below -->
 				<div class="carousel-item active"
-					style="background-image: url('${pageContext.request.contextPath}/resources/resources/photo1.jpg')">
+					style="background-image: url('${pageContext.request.contextPath}/resources/image/photo1.jpg')">
 					<div class="carousel-caption d-none d-md-block">
 						<h3>색다른 화장품</h3>
 						<p>당신이 더욱 빛나도록</p>
@@ -107,7 +146,7 @@ body {
 				</div>
 				<!-- Slide Two - Set the background image for this slide in the line below -->
 				<div class="carousel-item"
-					style="background-image: url('${pageContext.request.contextPath}/resources/resources/photo2.jpg')">
+					style="background-image: url('${pageContext.request.contextPath}/resources/image/photo2.jpg')">
 					<div class="carousel-caption d-none d-md-block">
 						<h3>강한 지속력</h3>
 						<p>당신을 더욱 화려하게</p>
@@ -115,7 +154,7 @@ body {
 				</div>
 				<!-- Slide Three - Set the background image for this slide in the line below -->
 				<div class="carousel-item"
-					style="background-image: url('${pageContext.request.contextPath}/resources/resources/photo3.jpg')">
+					style="background-image: url('${pageContext.request.contextPath}/resources/image/photo3.jpg')">
 					<div class="carousel-caption d-none d-md-block">
 						<h3>생활의 필수품</h3>
 						<p>당신을 더욱 생기있게</p>
@@ -309,8 +348,7 @@ body {
 	</footer>
 
 	<!--  Bootstrap core JavaScript-->
-	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+<%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-	
 </body>
 </html>

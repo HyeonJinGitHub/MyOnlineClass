@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/move")
 public class MoveController {
-	
+		
 	@GetMapping("/login")
 	public ModelAndView login() throws Exception {
 		return new ModelAndView("login");
@@ -20,7 +20,8 @@ public class MoveController {
 	}
 	
 	@GetMapping("/popular")
-	public ModelAndView popular() throws Exception {
+	public ModelAndView popular(String term) throws Exception {
+		System.out.println(term);
 		return new ModelAndView("popular");
 	}
 	

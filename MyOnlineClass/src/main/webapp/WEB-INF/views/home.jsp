@@ -155,12 +155,19 @@ body {
 				<div class="carousel-item active" 
 					style="height: 250px; background-image: url('${pageContext.request.contextPath}/resources/image/background.png')">
 					<div style="color: #fff; text-align: center; padding-top: 65px;">
-					<h2 style="display: inline-block;">
-						원하시는 클래스를 찾아보세요
-					</h2>
-					<h2 style="display: inline-block; color: red;">
-						.
-					</h2>
+						<h3 style="display: inline-block;">
+							원하시는 클래스를 찾아보세요
+						</h3>
+						<h3 style="display: inline-block; color: red; padding-bottom: 30px;">
+							.
+						</h3>
+						<br>
+						<div>
+						<form method='GET' id="moveToSearch" class="search-form">
+							<span style="position: relative; left: 40px; color: gray;">#</span>
+							<input type="text" placeholder="무엇을 배우고 싶나요?" maxlength="20" autocomplete="off" style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
+						</form>
+						</div>
 					</div>
 				</div>
 			</div>

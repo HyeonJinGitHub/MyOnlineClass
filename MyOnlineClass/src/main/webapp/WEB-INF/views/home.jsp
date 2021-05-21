@@ -125,71 +125,45 @@ body {
 			</div>
 		</div>
 	</nav>
-	<div class="container" style="padding-top:50px; padding-bottom: 20px;">
-		<div style="display: inline; padding-right: 25px;">
+	<div class="container" style="padding-top:50px; padding-bottom: 30px;">
+		<div style="display: inline; padding-right: 28px;">
 			<a href="${contextPath}/move/popular/" style="color: black; text-decoration: none;">
 				<i class="far fa-bell"></i>
 					오픈알림
 			</a>
 		</div>
 		
-		<div style="display: inline; padding-right: 25px;">
+		<div style="display: inline; padding-right: 28px;">
 			<a href="${contextPath}/move/popular/" style="color: black; text-decoration: none;">
 				<i class="far fa-gem"></i>
 					기획전
 			</a>
 		</div>
-		<div style="display: inline; padding-right: 25px;">
+		<div style="display: inline; padding-right: 28px;">
 			<a href="${contextPath}/move/popular/" style="color: black; text-decoration: none;">
-				<i class="fas fa-hand-holding-usd"></i>
+				<i class="fas fa-hand-holding-usd" style="display: inline-block;"></i>
+				<div style="display: inline-block; border-bottom: 2px solid red; padding-bottom: 3px;">
 					얼리버드 특가
+				</div>
 			</a>
 		</div>
 	</div>
+	
 	<header>
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			</ol>
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner" role="listbox">
-				<!-- Slide One - Set the background image for this slide in the line below -->
-				<div class="carousel-item active"
-					style="background-image: url('${contextPath}/resources/image/photo1.jpg')">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>색다른 화장품</h3>
-						<p>당신이 더욱 빛나도록</p>
-					</div>
-				</div>
-				<!-- Slide Two - Set the background image for this slide in the line below -->
-				<div class="carousel-item"
-					style="background-image: url('${contextPath}/resources/image/photo2.jpg')">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>강한 지속력</h3>
-						<p>당신을 더욱 화려하게</p>
-					</div>
-				</div>
-				<!-- Slide Three - Set the background image for this slide in the line below -->
-				<div class="carousel-item"
-					style="background-image: url('${contextPath}/resources/image/photo3.jpg')">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>생활의 필수품</h3>
-						<p>당신을 더욱 생기있게</p>
+				<div class="carousel-item active" 
+					style="height: 250px; background-image: url('${pageContext.request.contextPath}/resources/image/background.png')">
+					<div style="color: #fff; text-align: center; padding-top: 65px;">
+					<h2 style="display: inline-block;">
+						원하시는 클래스를 찾아보세요
+					</h2>
+					<h2 style="display: inline-block; color: red;">
+						.
+					</h2>
 					</div>
 				</div>
 			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
 		</div>
 	</header>
 

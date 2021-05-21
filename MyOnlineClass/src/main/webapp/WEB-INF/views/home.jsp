@@ -26,7 +26,7 @@
 
 <script type="text/javascript">
 $(function() {
-	  $( "#searchKey" ).autocomplete({
+	  $( "#searchKeyNav, #searchKeyBody" ).autocomplete({
 	    source: '${contextPath}/move/popular',
 	    delay: 200,
 	    select: function(event, ui) {
@@ -89,7 +89,7 @@ body {
 			<div class="ui-widget" style="padding-top: 15px;">
 			<form id="searchClass" method='GET' action="${contextPath}/move/popular">
                     <label class="header__search-label" for="searchKey" >
-                        <input id="searchKey" name="searchKey" type="search" name="searchKey" placeholder="클래스나 코치를 검색해보세요" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 250px;">
+                        <input id="searchKeyNav" name="searchKey" type="search" placeholder="클래스나 코치를 검색해보세요" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 250px;">
 						<button type="submit" style="border:0; outline:0; background-color: white;">
 							<i class="fas fa-search" onclick="search"></i>
 						</button>
@@ -162,11 +162,14 @@ body {
 							.
 						</h3>
 						<br>
-						<div>
-						<form method='GET' id="moveToSearch" class="search-form">
-							<span style="position: relative; left: 40px; color: gray;">#</span>
-							<input type="text" placeholder="무엇을 배우고 싶나요?" maxlength="20" autocomplete="off" style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
-						</form>
+						<div class="ui-widget">
+							<form id="searchClass" method='GET' action="${contextPath}/move/popular">
+								<span style="position: relative; left: 40px; color: gray;">#</span>
+								<input type="text" id="searchKeyBody" name="searchKey" placeholder="무엇을 배우고 싶나요?" maxlength="20" autocomplete="off" style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
+								<button type="submit" style="border:0; outline:0; background-color: white; position: relative; right: 50px;">
+									<i class="fas fa-search" onclick="search"></i>
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>

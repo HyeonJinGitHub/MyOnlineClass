@@ -25,7 +25,7 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- 새로고침 시 페이지 상단으로 이동 -->
-<script>history.scrollRestoration = "manual"</script>
+<!-- <script>history.scrollRestoration = "manual"</script> -->
 
 <!-- Multiple Autocomplete -->
 <script type="text/javascript">
@@ -66,8 +66,18 @@ body {
 }
 
 .ul {
-	list-style:none;	
+	list-style:none;
+	
+		
 }
+
+.custom-card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 0.3rem;
+  font-size: 15px;
+ }
 
 }
 
@@ -93,7 +103,7 @@ body {
 			<div class="ui-widget" style="padding-top: 15px;">
 			<form id="searchClass" method='GET' action="${contextPath}/move/popular">
                     <label class="header__search-label" for="searchKey" >
-                        <input id="searchKeyNav" name="searchKey" type="search" placeholder="클래스나 코치를 검색해보세요" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 250px;">
+                        <input id="searchKeyNav" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; font-size: 13px;">
 						<button type="submit" style="border:0; outline:0; background-color: white;">
 							<i class="fas fa-search" onclick="search"></i>
 						</button>
@@ -129,7 +139,7 @@ body {
 			</div>
 		</div>
 	</nav>
-	<div class="container" style="padding-top:50px; padding-bottom: 30px;">
+	<div class="container" style="padding-top:50px; padding-bottom:30px; font-family:'맑은 고딕';">
 		<div style="display: inline; padding-right: 28px;">
 			<a href="${contextPath}/move/popular/" style="color: black; text-decoration: none;">
 				<i class="far fa-bell"></i>
@@ -175,6 +185,23 @@ body {
 								</button>
 							</form>
 						</div>
+						
+						<div style="padding-top: 30px;">
+							<% for (int i = 0; i < 10; i++) { 
+							   		if (i == 0) {
+							%>				
+
+							<input type="button" value="#전체" style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;" readonly>
+															
+							<% 		} else { %>
+							
+							<input type="button" value="#전체" style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;" readonly>
+<%-- 							<input type="button" value="${lecture.genre}" style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;" readonly> --%>
+							
+							<%		} %>
+							
+							<% } %>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -183,82 +210,160 @@ body {
 
 	<!-- Content section -->
 	<section class="py-5">
+		<div class="container">
+			<h5 style="display: inline-block; margin-top: 20px; font-size: 20px;">
+				지금 뜨고 있는 클래스
+			</h5>
+			<h5 style="display: inline-block; font-weight: bold; padding-bottom: 30px; font-size: 20px;">
+				TOP 5
+			</h5>
+		</div>
+		
 		<div class="container" align="center">
-			<h1>MD's PICK</h1>
-			<p class="lead">#찐추천 #꿀템모음</p>
-			<p>Si lloras pro no poder ver el sol, tus lagrimas te impediran
-				ver las estrellas</p>
-			
 			<div class="row">
+<%-- 				<% --%>
+<!-- // 					for (int i = 0; i < 5; i++) { -->
+<%-- 				%> --%>
+<!-- 				<div class="col-lg-4 mb-4"> -->
+<!-- 					<div class="card h-auto" style="width: 350px; height: 200px; box-shadow: 1.3px 1.8px lightgray;"> -->
+<%-- 						<img class="card-img-top" src="${contextPath}/resources/banner/${lecture.url}" alt="Card image" style="height: 200px;"> --%>
+<!-- 						<div class="custom-card-body" style="width: 350px; height: 50px;"> -->
+<%-- 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px;">${lecture.name}</p> --%>
+<%-- 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">${instructor.name}</p> --%>
+<!-- 						</div> -->
+<!-- 						<div class="custom-card-body" style="width: 350px; height: 40px; text-align: left;"> -->
+<%-- 							<p style="padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">${lecture.discount}</p> --%>
+<%-- 							<p style="padding-left: 203px; padding-top: 5px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">${lecture.participants}</p> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<%-- 				<% --%>
+<!-- // 					} -->
+<%-- 				%> --%>
 				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="https://img.clubclio.co.kr/uploadFolder/WT_PRODUCT/500/QPX2C3URVYSAQ8HNEK6H.jpg"
-								style="width: 100%;">
-							<p class="lead">프로 아이 팔레트</p>
+					<div class="card h-auto" style="width: 350px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
+						<img class="card-img-top" src="${contextPath}/resources/banner/BWYizTwRFWqwIygK95a5.png" alt="Card image" style="height: 200px;">
+						<div class="custom-card-body" style="width: 350px; height: 50px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px;">네이버 블로그 중급 (콘텐츠 디자인 완성반)</p>
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">임효주강사</p>
+						</div>
+						<div class="custom-card-body" style="width: 350px; height: 40px; text-align: left;">
+							<p style="padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">91%할인</p>
+							<p style="padding-left: 203px; padding-top: 5px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 14</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="https://static.mynunc.com/ext/images/goods/top/20/11/20/02/BO00107303/0000163204.jpg"
-								style="width: 100%;">
-							<p class="lead">풀샷 풀스톤 글리터</p>
+					<div class="card h-auto" style="width: 350px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
+						<img class="card-img-top" src="${contextPath}/resources/banner/jtr28ShMk7KC0hdU.png" alt="Card image" style="height: 200px;">
+						<div class="custom-card-body" style="width: 350px; height: 50px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px;">프랑스 자수로 수놓는 특별한 선물, 입체꽃 웨딩 액자</p>
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">수록</p>
+						</div>
+						<div class="custom-card-body" style="width: 350px; height: 40px; text-align: left;">
+							<p style="padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">61%할인</p>
+							<p style="padding-left: 203px; padding-top: 5px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 114</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="https://img.clubclio.co.kr/uploadFolder/WT_PRODUCT/500/MSNMNSC891IO7MT7TNYZ.gif"
-								style="width: 100%;">
-							<p class="lead">매드 벨벳 틴트</p>
+					<div class="card h-auto" style="width: 350px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
+						<img class="card-img-top" src="${contextPath}/resources/banner/wSJNkmZPeDedDRyC.png" alt="Card image" style="height: 200px;">
+						<div class="custom-card-body" style="width: 350px; height: 50px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px;">※전신 통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
 						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-
-				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="https://static.mynunc.com/ext/images/goods/top/20/09/07/11/BO00103107/0000044993.jpg"
-								style="width: 100%;">
-
-							<p class="lead">본투비 매드프루프 메이크업 픽서</p>
-
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="//amusemakeup.com/web/product/big/202011/c095191216c6763250bd3c6577046e46.jpg"
-								style="width: 100%;">
-							<p class="lead">듀 왓 유 러브</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="//amusemakeup.com/web/product/big/202104/9fad364148b67a33c341a7f9aae41a70.jpg"
-								style="width: 100%;">
-							<p class="lead">피톤시카 에코 세라마이드 크림</p>
+						<div class="custom-card-body" style="width: 350px; height: 40px; text-align: left;">
+							<p style="padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">64%할인</p>
+							<p style="padding-left: 203px; padding-top: 5px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 8937</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	
+	<!-- Content section -->
+	<section class="py-5">
+		<div class="container">
+			<h5 style="display: inline-block; font-weight: bold; padding-bottom: 30px; font-size: 20px;">
+				원하시는 관심사를 찾아보세요.
+			</h5>
+		</div>
+		
+		<div class="container" align="center">
+			<div class="row" style="margin-left: 50px;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/R1M0BHQbOWruXtgj.png" alt="Card image" style="width: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">운동/건강</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/2EA29I1A3zshSlKX.png" alt="Card image" style="width: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">라이프스타일</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/vyoeoLhzJ4N1jQmd.png" alt="Card image" style="width: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">음료/요리</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/ywzTGhQObpLfQ6lH.png" alt="Card image" style="width: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">미술</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/p4m7pzeWxon33Ifn.png" alt="Card image" style="width: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">커리어</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/s8yShBULMq85PLiZ.png" alt="Card image" style="width: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">공예</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/T6BTV6lavBmdgR3g.png" alt="Card image" style="width: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">사진/영상</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/E4CGKWC7PoNg1YyI.png" alt="Card image" style="width: 70px; height: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">음악</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/LXAYO1Hc4pXyYaOj.png" alt="Card image" style="width: 70px; height: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">외국어</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/9A2UrIdMXHc2rLxM.png" alt="Card image" style="width: 70px; height: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">교육</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+						<img class="card-img-top" src="${contextPath}/resources/genre/icon_search_all.png" alt="Card image" style="width: 70px; border-radius: 15px;">
+						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">전체보기</p>
+					</div>
+				</div>
+			</div>
+		</div>					
+	</section>
+	
+
 
 	<!-- Image element - set the background image for the header in the line below -->
 	<div class="py-5 bg-image-full"

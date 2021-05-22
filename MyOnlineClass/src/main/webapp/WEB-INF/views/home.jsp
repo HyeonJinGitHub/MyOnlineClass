@@ -24,6 +24,10 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
+<!-- 새로고침 시 페이지 상단으로 이동 -->
+<script>history.scrollRestoration = "manual"</script>
+
+<!-- Multiple Autocomplete -->
 <script type="text/javascript">
 $(function() {
 	  $( "#searchKeyNav, #searchKeyBody" ).autocomplete({

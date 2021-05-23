@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,8 +29,8 @@ public class StreamingController{
 		
 		String FOLDER_MOVIE =DIR_PATH.replace("/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MyOnlineClass/WEB-INF/classes/net/developia/online/controllers/",
 											  "/MyOnlineClass/MyOnlineClass/src/main/webapp/WEB-INF/video/");
-		System.out.println(StreamingController.class.getResource(".").getPath());
-		System.out.println(FOLDER_MOVIE + "현재 video 가져오는 경로");
+		//System.out.println(StreamingController.class.getResource(".").getPath());
+		//System.out.println(FOLDER_MOVIE + "현재 video 가져오는 경로");
 		//확장자 확인 //
 		String[] filename_seperate = video_name.split("\\.");
 		
@@ -111,11 +110,12 @@ public class StreamingController{
 		return null;
 	}
 	
-	@GetMapping(value="/vodMain")
+	@RequestMapping(value="/vodMain")
 	public ModelAndView crawler(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("vodMain");
 		
 		return mav;
 	}
+	
 			
 }

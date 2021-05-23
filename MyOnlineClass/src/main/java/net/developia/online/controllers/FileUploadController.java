@@ -14,7 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class FileUploadController {
-    //private static final String SAVE_PATH = System.getProperty("user.home")+ "";
+
+    private static final String DIR_PATH =  FileUploadController.class.getResource(".").getPath();
     
     @RequestMapping("upload")
     public ModelAndView upload(
@@ -22,20 +23,20 @@ public class FileUploadController {
     		
     		//String SAVE_PATH =  System.getProperty("user.dir");
     		
-    		String DIR_PATH =  FileUploadController.class.getResource(".").getPath();
+    		
     		//System.out.println(DIR_PATH);
             ModelAndView mav = new ModelAndView("vodMain");
             
             String SAVE_PATH =DIR_PATH.replace("/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MyOnlineClass/WEB-INF/classes/net/developia/online/controllers/",
             									"/MyOnlineClass/MyOnlineClass/src/main/webapp/WEB-INF/video/");
             
-            System.out.println(SAVE_PATH);
+            //System.out.println(SAVE_PATH);
             
             String originalFileName = mf.getOriginalFilename();
             //long fileSize = mf.getSize();
             String safeFile =  SAVE_PATH + originalFileName;
             //File safeFile =  new File(SAVE_PATH + System.currentTimeMillis() + originalFileName);
-            System.out.println(safeFile);
+            //System.out.println(safeFile);
             
             try {
                 mf.transferTo(new File(safeFile));

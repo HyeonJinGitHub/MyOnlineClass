@@ -47,6 +47,26 @@ $(function() {
 });
 </script>
 
+<!-- jquery 를 이용하여 화면 맨위로 자연스럽게 올라가는 TOP 버튼 만들기 -->
+<script>
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 0) {
+                $('#MOVE_TOP_BTN').fadeIn();
+            } else {
+                $('#MOVE_TOP_BTN').fadeOut();
+            }
+        });
+        
+        $("#MOVE_TOP_BTN").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
+</script>
+
 <style>
 body {
 	padding-top: 56px;
@@ -139,12 +159,26 @@ body {
       	background-repeat: no-repeat;
       	background-size: 100% auto;
       	background-position: center;
+      	-webkit-filter: opacity(.5) drop-shadow(0 0 0 gray);
+      	filter: opacity(.5) dropshadow(0 0 0 gray);
       }
       
       .swiper-button-next {
       	background-repeat: no-repeat;
       	background-size: 100% auto;
       	background-position: center;
+      	-webkit-filter: opacity(.5) drop-shadow(0 0 0 gray);
+      	filter: opacity(.5) dropshadow(0 0 0 gray);
+      }
+      
+      .swiper-button-prev:hover {
+      	-webkit-filter: opacity(.5) drop-shadow(0 0 0 black);
+      	filter: opacity(.5) dropshadow(0 0 0 black);
+      }
+      
+      .swiper-button-next:hover {
+      	-webkit-filter: opacity(.5) drop-shadow(0 0 0 black);
+      	filter: opacity(.5) dropshadow(0 0 0 black);
       }
       
       .swiper-button-prev::after {
@@ -164,6 +198,15 @@ body {
 }
 </style>
 
+<style>
+a#MOVE_TOP_BTN {
+    position: fixed;
+    right: 5%;
+    bottom: 80px;
+    display: none;
+    z-index: 999;
+}
+</style>
 
 <!-- Bootstrap core CSS -->
 <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -174,6 +217,11 @@ body {
 </head>
 
 <body>
+<!-- Move TOP Icon -->
+<a id="MOVE_TOP_BTN" href="#">
+	<img src="${contextPath}/resources/image/icon_move_top.png">
+</a>
+
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
@@ -204,7 +252,16 @@ body {
 					</li>
 					<li class="nav-item active">
 						<c:if test="${id==null }">
-							<a class="nav-link" href="${contextPath}/move/login">로그인</a>
+							<a class="nav-link" href="${contextPath}/move/login">
+								<i class="far fa-bell"></i>
+							</a>
+						</c:if>
+					</li>
+					<li class="nav-item active">
+						<c:if test="${id==null }">
+							<a class="nav-link" href="${contextPath}/move/login" style="padding-right: 30px;">
+								<i class="fas fa-user"></i>
+							</a>
 						</c:if>
 					</li>
 					<c:if test="${id!=null }">
@@ -248,10 +305,10 @@ body {
 			<div class="carousel-inner" role="listbox">
 				<div class="carousel-item active" 
 					style="height: 250px; background-image: url('${pageContext.request.contextPath}/resources/image/background.png')">
-					<div style="color: #fff; text-align: center; padding-top: 65px;">
-						<h3 style="display: inline-block;">
+					<div style="color: #fff; text-align: center; padding-top: 40px;">
+						<p style="display: inline-block; font-size: 29px; font-weight: 500;">
 							원하시는 클래스를 찾아보세요
-						</h3>
+						</p>
 						<h3 style="display: inline-block; color: red; padding-bottom: 30px;">
 							.
 						</h3>
@@ -291,10 +348,10 @@ body {
 	<!-- Content section -->
 	<section class="py-5">
 		<div class="container">
-			<h5 style="display: inline-block; margin-top: 20px; font-size: 20px;">
+			<h5 style="display: inline-block; margin-top: 20px; font-size: 20px; font-weight: 300;">
 				지금 뜨고 있는 클래스
 			</h5>
-			<h5 style="display: inline-block; font-weight: bold; padding-bottom: 30px; font-size: 20px;">
+			<h5 style="display: inline-block; padding-bottom: 30px; font-size: 20px; font-weight: 500;">
 				TOP 5
 			</h5>
 		</div>
@@ -327,9 +384,8 @@ body {
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">네이버 블로그 중급 (콘텐츠 디자인 완성반)</p>
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">임효주강사</p>
 						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
-							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">91%할인</p>
-							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 14</p>
+						<div class="custom-card-body" style="width: 300px; height: 40px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여 멤버 14</p>
 						</div>
 					</div>
 				</div>
@@ -340,9 +396,8 @@ body {
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">프랑스 자수로 수놓는 특별한 선물, 입체꽃 웨딩 액자</p>
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">수록</p>
 						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
-							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">61%할인</p>
-							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 114</p>
+						<div class="custom-card-body" style="width: 300px; height: 40px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여 멤버 114</p>
 						</div>
 					</div>
 				</div>
@@ -353,9 +408,8 @@ body {
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">※전신 통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
 						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
-							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">64%할인</p>
-							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 8937</p>
+						<div class="custom-card-body" style="width: 300px; height: 40px; ">
+							<p style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여 멤버 8937</p>
 						</div>
 					</div>
 				</div>
@@ -366,9 +420,8 @@ body {
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">※전신 통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
 						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
-							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">64%할인</p>
-							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 8937</p>
+						<div class="custom-card-body" style="width: 300px; height: 40px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여 멤버 8937</p>
 						</div>
 					</div>
 				</div>
@@ -379,9 +432,8 @@ body {
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">※전신 통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
 						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
-							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">64%할인</p>
-							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 8937</p>
+						<div class="custom-card-body" style="width: 300px; height: 40px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여 멤버 8937</p>
 						</div>
 					</div>
 				</div>
@@ -394,75 +446,76 @@ body {
 	<!-- Content section -->
 	<section class="py-5">
 		<div class="container">
-			<h5 style="display: inline-block; font-weight: bold; padding-bottom: 30px; font-size: 20px;">
+			<h5 style="display: inline-block; padding-bottom: 30px; font-size: 20px; font-weight: 500px;">
 				원하시는 관심사를 찾아보세요.
 			</h5>
 		</div>
 		
-		<div class="container" align="center">
-			<div class="row" style="margin-left: 50px;">
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+		<div class="container">
+			<div class="row" style="margin-left: 20px;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/R1M0BHQbOWruXtgj.png" alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">운동/건강</p>
+						
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/2EA29I1A3zshSlKX.png" alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">라이프스타일</p>
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/vyoeoLhzJ4N1jQmd.png" alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">음료/요리</p>
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/ywzTGhQObpLfQ6lH.png" alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">미술</p>
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/p4m7pzeWxon33Ifn.png" alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">커리어</p>
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/s8yShBULMq85PLiZ.png" alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">공예</p>
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/T6BTV6lavBmdgR3g.png" alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">사진/영상</p>
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/E4CGKWC7PoNg1YyI.png" alt="Card image" style="width: 70px; height: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">음악</p>
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/LXAYO1Hc4pXyYaOj.png" alt="Card image" style="width: 70px; height: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">외국어</p>
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/9A2UrIdMXHc2rLxM.png" alt="Card image" style="width: 70px; height: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">교육</p>
 					</div>
 				</div>
-				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 19px;">
-					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none;">
+				<div class="col-lg-1 mb-4" style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;">
+					<div class="card h-auto" align="center" style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;" onclick="location.href ='${contextPath}/move/popular/'">
 						<img class="card-img-top" src="${contextPath}/resources/genre/icon_search_all.png" alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p style="text-align:center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">전체보기</p>
 					</div>
@@ -474,10 +527,10 @@ body {
 	<!-- Content section -->
 	<section class="py-5">
 		<div class="container">
-			<h5 style="font-size: 20px;">
+			<h5 style="font-size: 20px; font-weight: 300;">
 				수강생, 평점 ★4 이상!
 			</h5>
-			<h5 style="font-weight: bold; padding-bottom: 30px; font-size: 20px;">
+			<h5 style="font-size: 20px; font-weight: 500; padding-bottom: 30px; ">
 				클래스톡 인기 코치
 			</h5>
 		</div>
@@ -486,12 +539,82 @@ body {
 			<div class="swiper-wrapper">
 				<div class="mb-2 swiper-slide">
 					<div class="card h-auto" style="width: 208px; height: 180px;">
-						<img class="card-img-top" src="${contextPath}/resources/instructor/sample11.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+						<img class="card-img-top" src="${contextPath}/resources/instructor/sample1.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
 						<div class="custom-card-body" style="width: 208px; height: 50px;">
 							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">석재원</p>
 							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">'오늘도 수고했어' 당신을 위한 힐링 캘리그라피</p>
 						</div>
-						<div class="custom-card-body" style="width: 208px; height: 40px; padding-top: 17px;" align="center">
+						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
+							<div class="my-box">
+								<p style="color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;">프로필보기</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mb-2 swiper-slide">
+					<div class="card h-auto" style="width: 208px; height: 180px;">
+						<img class="card-img-top" src="${contextPath}/resources/instructor/sample2.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+						<div class="custom-card-body" style="width: 208px; height: 50px;">
+							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">날큐</p>
+							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">방구석 아이패드 구출, 100% 활용하는 아이패드 튜토리얼</p>
+						</div>
+						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
+							<div class="my-box">
+								<p style="color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;">프로필보기</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mb-2 swiper-slide">
+					<div class="card h-auto" style="width: 208px; height: 180px;">
+						<img class="card-img-top" src="${contextPath}/resources/instructor/sample3.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+						<div class="custom-card-body" style="width: 208px; height: 50px;">
+							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">neo</p>
+							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">[남들보다 2배 빠른 초고속 승진] 현장 실무에 맞춘 파워포인트 실무 강좌</p>
+						</div>
+						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
+							<div class="my-box">
+								<p style="color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;">프로필보기</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mb-2 swiper-slide">
+					<div class="card h-auto" style="width: 208px; height: 180px;">
+						<img class="card-img-top" src="${contextPath}/resources/instructor/sample4.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+						<div class="custom-card-body" style="width: 208px; height: 50px;">
+							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">에디</p>
+							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">실전! 소액으로 시작하는 20, 30대 부동산 투자법!</p>
+						</div>
+						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
+							<div class="my-box">
+								<p style="color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;">프로필보기</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mb-2 swiper-slide">
+					<div class="card h-auto" style="width: 208px; height: 180px;">
+						<img class="card-img-top" src="${contextPath}/resources/instructor/sample5.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+						<div class="custom-card-body" style="width: 208px; height: 50px;">
+							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">감성식탁</p>
+							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">3가지 타르트반죽으로 만드는 미니 타르트&노오븐 타르트</p>
+						</div>
+						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
+							<div class="my-box">
+								<p style="color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;">프로필보기</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mb-2 swiper-slide">
+					<div class="card h-auto" style="width: 208px; height: 180px;">
+						<img class="card-img-top" src="${contextPath}/resources/instructor/sample6.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+						<div class="custom-card-body" style="width: 208px; height: 50px;">
+							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">한정혜</p>
+							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">슬기로운 유튜브 생활</p>
+						</div>
+						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
 							<div class="my-box">
 								<p style="color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;">프로필보기</p>
 							</div>
@@ -504,20 +627,10 @@ body {
 		</div>
 	</section>
 	
-	<!-- Image element - set the background image for the header in the line below -->
-<!-- 	<div class="py-5 bg-image-full" -->
-<!-- 		style="background-image: url('https://unsplash.it/1900/1080?image=1081');"> -->
-<!-- 		<!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-<!-- 		<div style="height: 200px;"></div> -->
-<!-- 	</div> -->
 
-	<!-- Footer -->
-<!-- 	<footer class="py-5 bg-light"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<p class="m-0 text-center text-dark">Copyright &copy; Hyundai -->
-<!-- 				Cosmetic</p> -->
-<!-- 		</div> -->
-<!-- 	</footer> -->
+	<div style="background-image: url('${contextPath}/resources/banner/Cct9EfMnw1iWUWC0.png'); background-repeat: no-repeat; background-position: center; margin-bottom: 100px;">
+		<div style="height: 200px;"></div>
+	</div>
 
 	<!--  Bootstrap core JavaScript-->
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
@@ -538,7 +651,7 @@ body {
       
       var swiper = new Swiper(".mySwiper2", {
           slidesPerView: 4,
-          spaceBetween: 30,
+          spaceBetween: 0,
           navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev"

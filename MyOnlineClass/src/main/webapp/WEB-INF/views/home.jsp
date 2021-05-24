@@ -13,6 +13,7 @@
 
 <title> 클래스톡 :: 함께 배우는 온라인 클래스 강의, 수업, 강좌 - 클래스톡 </title>
 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -73,8 +74,6 @@ body {
 
 .ul {
 	list-style:none;
-	
-		
 }
 
 .custom-card-body {
@@ -97,7 +96,7 @@ body {
 
       body {
         background: #eee;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-family: Noto Sans KR, sans-serif, Helvetica Neue, Helvetica, Arial !important;
         font-size: 14px;
         color: #000;
         margin: 0;
@@ -157,6 +156,14 @@ body {
       }
 </style>
 
+<style>
+.my-box {
+	border: 1px solid #ff5a5f;
+	width: 80px;
+	height: 25px;
+}
+</style>
+
 
 <!-- Bootstrap core CSS -->
 <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -170,7 +177,7 @@ body {
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="${contextPath}/move/home">
+			<a class="navbar-brand" href="${contextPath}/">
 				<img src="${contextPath}/resources/image/ClassTok_logo.png" alt="클래스톡" class="logoImage">
 			</a>
 			<div class="ui-widget" style="padding-top: 15px;">
@@ -212,7 +219,7 @@ body {
 			</div>
 		</div>
 	</nav>
-	<div class="container" style="padding-top:50px; padding-bottom:30px; font-family:'맑은 고딕';">
+	<div class="container" style="padding-top:50px; padding-bottom:30px;">
 		<div style="display: inline; padding-right: 28px;">
 			<a href="${contextPath}/move/popular/" style="color: black; text-decoration: none;">
 				<i class="far fa-bell"></i>
@@ -461,13 +468,46 @@ body {
 					</div>
 				</div>
 			</div>
-		</div>					
+		</div>			
+	</section>
+	
+	<!-- Content section -->
+	<section class="py-5">
+		<div class="container">
+			<h5 style="font-size: 20px;">
+				수강생, 평점 ★4 이상!
+			</h5>
+			<h5 style="font-weight: bold; padding-bottom: 30px; font-size: 20px;">
+				클래스톡 인기 코치
+			</h5>
+		</div>
+
+		<div class="container swiper-container mySwiper2" align="center">
+			<div class="swiper-wrapper">
+				<div class="mb-2 swiper-slide">
+					<div class="card h-auto" style="width: 208px; height: 180px;">
+						<img class="card-img-top" src="${contextPath}/resources/instructor/sample11.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+						<div class="custom-card-body" style="width: 208px; height: 50px;">
+							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">석재원</p>
+							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">'오늘도 수고했어' 당신을 위한 힐링 캘리그라피</p>
+						</div>
+						<div class="custom-card-body" style="width: 208px; height: 40px; padding-top: 17px;" align="center">
+							<div class="my-box">
+								<p style="color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;">프로필보기</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-button-prev" style="background-image: url('${contextPath}/resources/image/icon_card_arrow_left.png');"></div>
+		 	<div class="swiper-button-next" style="background-image: url('${contextPath}/resources/image/icon_card_arrow_right.png');"></div>
+		</div>
 	</section>
 	
 	<!-- Image element - set the background image for the header in the line below -->
 <!-- 	<div class="py-5 bg-image-full" -->
 <!-- 		style="background-image: url('https://unsplash.it/1900/1080?image=1081');"> -->
-<!-- 		<!-- Put anything you want here! There is just a spacer below for demo purposes! --> -->
+<!-- 		<!-- Put anything you want here! There is just a spacer below for demo purposes! -->
 <!-- 		<div style="height: 200px;"></div> -->
 <!-- 	</div> -->
 
@@ -495,6 +535,15 @@ body {
           prevEl: ".swiper-button-prev"
         }
       });
+      
+      var swiper = new Swiper(".mySwiper2", {
+          slidesPerView: 4,
+          spaceBetween: 30,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          }
+        });
 	</script>
 </body>
 </html>

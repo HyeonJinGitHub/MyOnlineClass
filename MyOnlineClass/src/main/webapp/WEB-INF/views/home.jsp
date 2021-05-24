@@ -24,6 +24,12 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
+<!-- Swiper API -->
+<link
+	rel="stylesheet"
+    href="https://unpkg.com/swiper/swiper-bundle.min.css" 
+    />
+
 <!-- 새로고침 시 페이지 상단으로 이동 -->
 <!-- <script>history.scrollRestoration = "manual"</script> -->
 
@@ -80,7 +86,75 @@ body {
  }
 
 }
+</style>
 
+<style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper-container {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .swiper-button-prev {
+      	background-repeat: no-repeat;
+      	background-size: 100% auto;
+      	background-position: center;
+      }
+      
+      .swiper-button-next {
+      	background-repeat: no-repeat;
+      	background-size: 100% auto;
+      	background-position: center;
+      }
+      
+      .swiper-button-prev::after {
+      	display: none;
+      }
+      
+      .swiper-button-next::after {
+      	display: none;
+      }
 </style>
 
 
@@ -89,7 +163,6 @@ body {
 
 <!--  Custom styles for this template-->
 <link href="${contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
-
 
 </head>
 
@@ -122,7 +195,7 @@ body {
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item active">
 						<c:if test="${id==null }">
 							<a class="nav-link" href="${contextPath}/move/login">로그인</a>
 						</c:if>
@@ -218,68 +291,96 @@ body {
 				TOP 5
 			</h5>
 		</div>
-		
-		<div class="container" align="center">
-			<div class="row">
+
+		<div class="container swiper-container mySwiper" align="center">
+			<div class="swiper-wrapper">
 <%-- 				<% --%>
 <!-- // 					for (int i = 0; i < 5; i++) { -->
 <%-- 				%> --%>
-<!-- 				<div class="col-lg-4 mb-4"> -->
-<!-- 					<div class="card h-auto" style="width: 350px; height: 200px; box-shadow: 1.3px 1.8px lightgray;"> -->
+<!-- 				<div class="mb-4 swiper-slide"> -->
+<!-- 					<div class="card h-auto" style="width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;"> -->
 <%-- 						<img class="card-img-top" src="${contextPath}/resources/banner/${lecture.url}" alt="Card image" style="height: 200px;"> --%>
 <!-- 						<div class="custom-card-body" style="width: 350px; height: 50px;"> -->
-<%-- 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px;">${lecture.name}</p> --%>
+<%-- 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">${lecture.name}</p> --%>
 <%-- 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">${instructor.name}</p> --%>
 <!-- 						</div> -->
-<!-- 						<div class="custom-card-body" style="width: 350px; height: 40px; text-align: left;"> -->
-<%-- 							<p style="padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">${lecture.discount}</p> --%>
-<%-- 							<p style="padding-left: 203px; padding-top: 5px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">${lecture.participants}</p> --%>
+<!-- 						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;"> -->
+<%-- 							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">${lecture.discount}</p> --%>
+<%-- 							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">${lecture.participants}</p> --%>
 <!-- 						</div> -->
 <!-- 					</div> -->
 <!-- 				</div> -->
 <%-- 				<% --%>
 <!-- // 					} -->
 <%-- 				%> --%>
-				<div class="col-lg-4 mb-4">
-					<div class="card h-auto" style="width: 350px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
+				<div class="mb-3 swiper-slide">
+					<div class="card h-auto" style="width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
 						<img class="card-img-top" src="${contextPath}/resources/banner/BWYizTwRFWqwIygK95a5.png" alt="Card image" style="height: 200px;">
-						<div class="custom-card-body" style="width: 350px; height: 50px;">
-							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px;">네이버 블로그 중급 (콘텐츠 디자인 완성반)</p>
+						<div class="custom-card-body" style="width: 300px; height: 50px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">네이버 블로그 중급 (콘텐츠 디자인 완성반)</p>
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">임효주강사</p>
 						</div>
-						<div class="custom-card-body" style="width: 350px; height: 40px; text-align: left;">
-							<p style="padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">91%할인</p>
-							<p style="padding-left: 203px; padding-top: 5px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 14</p>
+						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
+							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">91%할인</p>
+							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 14</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 mb-4">
-					<div class="card h-auto" style="width: 350px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
+				<div class="mb-3 swiper-slide">
+					<div class="card h-auto" style="width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
 						<img class="card-img-top" src="${contextPath}/resources/banner/jtr28ShMk7KC0hdU.png" alt="Card image" style="height: 200px;">
-						<div class="custom-card-body" style="width: 350px; height: 50px;">
-							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px;">프랑스 자수로 수놓는 특별한 선물, 입체꽃 웨딩 액자</p>
+						<div class="custom-card-body" style="width: 300px; height: 50px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">프랑스 자수로 수놓는 특별한 선물, 입체꽃 웨딩 액자</p>
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">수록</p>
 						</div>
-						<div class="custom-card-body" style="width: 350px; height: 40px; text-align: left;">
-							<p style="padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">61%할인</p>
-							<p style="padding-left: 203px; padding-top: 5px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 114</p>
+						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
+							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">61%할인</p>
+							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 114</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 mb-4">
-					<div class="card h-auto" style="width: 350px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
+				<div class="mb-3 swiper-slide">
+					<div class="card h-auto" style="width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
 						<img class="card-img-top" src="${contextPath}/resources/banner/wSJNkmZPeDedDRyC.png" alt="Card image" style="height: 200px;">
-						<div class="custom-card-body" style="width: 350px; height: 50px;">
-							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px;">※전신 통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
+						<div class="custom-card-body" style="width: 300px; height: 50px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">※전신 통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
 						</div>
-						<div class="custom-card-body" style="width: 350px; height: 40px; text-align: left;">
-							<p style="padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">64%할인</p>
-							<p style="padding-left: 203px; padding-top: 5px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 8937</p>
+						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
+							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">64%할인</p>
+							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 8937</p>
+						</div>
+					</div>
+				</div>
+				<div class="mb-3 swiper-slide">
+					<div class="card h-auto" style="width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
+						<img class="card-img-top" src="${contextPath}/resources/banner/wSJNkmZPeDedDRyC.png" alt="Card image" style="height: 200px;">
+						<div class="custom-card-body" style="width: 300px; height: 50px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">※전신 통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
+						</div>
+						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
+							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">64%할인</p>
+							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 8937</p>
+						</div>
+					</div>
+				</div>
+				<div class="mb-3 swiper-slide">
+					<div class="card h-auto" style="width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;">
+						<img class="card-img-top" src="${contextPath}/resources/banner/wSJNkmZPeDedDRyC.png" alt="Card image" style="height: 200px;">
+						<div class="custom-card-body" style="width: 300px; height: 50px;">
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">※전신 통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
+							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
+						</div>
+						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
+							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">64%할인</p>
+							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">참여 멤버 8937</p>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="swiper-button-prev" style="background-image: url('${contextPath}/resources/image/icon_card_arrow_left.png');"></div>
+		 	<div class="swiper-button-next" style="background-image: url('${contextPath}/resources/image/icon_card_arrow_right.png');"></div>
 		</div>
 	</section>
 	
@@ -363,105 +464,37 @@ body {
 		</div>					
 	</section>
 	
-
-
 	<!-- Image element - set the background image for the header in the line below -->
-	<div class="py-5 bg-image-full"
-		style="background-image: url('https://unsplash.it/1900/1080?image=1081');">
-		<!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-		<div style="height: 200px;"></div>
-	</div>
-
-	<!-- Content section -->
-	<section class="py-5">
-		<div class="container" align="center">
-			<h1>NEW & HOT</h1>
-			<p class="lead">#HOT모음 #이유 있는 HOT</p>
-			<p>Todo lo que puedes imaginar es real</p>
-		
-		
-		<div class="row">
-				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="//romand.co.kr/web/product/big/202104/90d8a3b7f098b1c6bcf6412fb09b87fe.jpg"
-								style="width: 100%;">
-							<p class="lead">제로 벨벳 틴트</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="//romand.co.kr/web/product/extra/big/202102/9ae073ba4dead0a0ed1d1187033aafe8.jpg"
-								style="width: 100%;">
-							<p class="lead">제로 매트 립스틱</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="//romand.co.kr/web/product/big/202102/bff74d92f685501865f2652d40f28dba.jpg"
-								style="width: 100%;">
-							<p class="lead">한올 플랫/샤프 브로우</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-
-				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="https://static.mynunc.com/ext/images/goods/top/21/04/19/04/BO00111973/0000219085.jpg"
-								style="width: 100%;">
-
-							<p class="lead">셀로니아 시그니처 바이오 아쿠아 카밍 젤 크림</p>
-
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="https://static.mynunc.com/ext/images/goods/top/21/04/22/09/BO00112011/0000220732.jpg"
-								style="width: 100%;">
-							<p class="lead">원데이즈유 시카밍 앰플 세럼</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 mb-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<img
-								src="//romand.co.kr/web/product/extra/big/20200312/b3d5ff64c73201aa06526513884b25ce.jpg"
-								style="width: 100%;">
-							<p class="lead">롬앤 베러 댄 치크</p>
-						</div>
-					</div>
-				</div>
-			</div>
-	</div>
-	</section>
+<!-- 	<div class="py-5 bg-image-full" -->
+<!-- 		style="background-image: url('https://unsplash.it/1900/1080?image=1081');"> -->
+<!-- 		<!-- Put anything you want here! There is just a spacer below for demo purposes! --> -->
+<!-- 		<div style="height: 200px;"></div> -->
+<!-- 	</div> -->
 
 	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Hyundai
-				Cosmetic</p>
-		</div>
-		<!-- /.container -->
-	</footer>
+<!-- 	<footer class="py-5 bg-light"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<p class="m-0 text-center text-dark">Copyright &copy; Hyundai -->
+<!-- 				Cosmetic</p> -->
+<!-- 		</div> -->
+<!-- 	</footer> -->
 
 	<!--  Bootstrap core JavaScript-->
-<%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+	
+	<!-- Swiper JS -->
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+	<!-- Initialize Swiper -->
+	  <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        }
+      });
+	</script>
 </body>
 </html>

@@ -29,7 +29,6 @@ public class MemberController {
 	
 	private static Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-	
 	@PostMapping(value="/loginAction")
 	@Transactional
 	public ModelAndView loginAction(HttpSession session, @RequestParam(required = true) String id, @RequestParam(required = true) String password ) {

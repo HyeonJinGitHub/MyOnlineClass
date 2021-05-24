@@ -13,7 +13,7 @@ import net.developia.online.dto.MemberDTO;
 
 @Slf4j
 @Service
-public class MeberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private MemberDAO memberDAO;
 	

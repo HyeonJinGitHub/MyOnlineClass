@@ -1,5 +1,44 @@
 ------------------------
+/* 계정 생성 */
+------------------------
+ alter session set container = XEPDB1;
+alter session set "_ORACLE_SCRIPT"=true;
+create user _ identified by _
+grant connect, resource, dba to hyundai;
+commit;
+
+------------------------
 
 /* SQL Sample Data */
-				ver.21.05.19
+				ver.21.05.21
 ------------------------
+
+drop sequence lecture_no_seq;
+
+create sequence lecture_no_seq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 100
+nocycle
+nocache;
+
+INSERT INTO member
+(id, password, name, email, phone)
+VALUES('member1', '11', '김소녀', 'kimsn@gmail.com', '010-1111-2222');
+
+INSERT INTO instructor
+(id, name, phone, introduce, image)
+VALUES ('instructor01', '요가소녀', '010-1111-2222', '요가 경력 10년', 'instructor01');
+
+INSERT INTO LECTURE
+(id, name, genre, image, duration, caution, introduce)
+VALUES (lecture_no_seq.NEXTVAL, 'Healing Yoga', 'exercise', 'lecture1', 0525, '준비물 : 요가복, 요가매트', ' 당신의 지친 마음을 테라피할 수 있는 힐링 요가입니다. 함께 몸을 풀면서 힐링해요.');
+
+INSERT INTO REGISTER
+(instructor_id, lecture_id)
+VALUES ('instructor01', 1);
+
+/-----------
+lecture 테이블 데이터 삽입 후 register 테이블에 임의로 id 넣었음...
+--------------/

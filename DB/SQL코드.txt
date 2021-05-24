@@ -1,3 +1,4 @@
+
 CREATE TABLE comments (
     member_id   VARCHAR2(30) NOT NULL,
     lecture_id  NUMBER(5) NOT NULL,

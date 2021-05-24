@@ -26,6 +26,7 @@ public class LectureDetailController {
 
 	private static Logger logger = LoggerFactory.getLogger(MemberController.class);
 
+	// URL 접근 예시 : http://localhost/online/lecture/lectureDetail?no=2
 	@GetMapping("/lectureDetail")
 	@Transactional
 	public ModelAndView detail(@RequestParam(required = true) long no, HttpSession session) {
@@ -33,15 +34,16 @@ public class LectureDetailController {
 		System.out.println("lecture no :" + no);
 		
 		try {
+			// 세션값 + comment 추가
 			LectureDTO lectureDTO = lectureService.getLecture(no);
 			InstructorDTO instructorDTO = lectureService.getInstructor(no);
 			
 			System.out.println("★★★"+lectureDTO.toString());
 			
 			mav.addObject("lectureDTO", lectureDTO);
-			mav.addObject("instructorDTO", lectureDTO);
-			mav.addObject("url", "/online/move/lecture");
-			mav.setViewName("/online/move/lecture");
+			mav.addObject("instructorDTO", instructorDTO);
+			mav.addObject("url", "/online/move/lectureDetail");
+			mav.setViewName("lectureDetail");
 		} catch (Exception e) {
 			e.printStackTrace();
 			mav.addObject("msg", e.getMessage());

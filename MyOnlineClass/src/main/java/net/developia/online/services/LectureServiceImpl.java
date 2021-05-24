@@ -15,8 +15,10 @@ import net.developia.online.dto.LectureDTO;
 public class LectureServiceImpl implements LectureService {
 	@Autowired
 	private LectureDAO lectureDAO;
-
+	
+	@Autowired
 	private InstructorDAO insturctorDAO;
+	
 	
 	@Override
 	public InstructorDTO getInstructor(long lectureNo) throws Exception {

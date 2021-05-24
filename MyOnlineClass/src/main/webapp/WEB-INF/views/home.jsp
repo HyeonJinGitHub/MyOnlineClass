@@ -80,7 +80,7 @@ body {
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/move/freeboard">커뮤니티</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/move/lecture">상세페이지</a></li>
+						href="${pageContext.request.contextPath}/move/lectureDetail">상세페이지</a></li>
 					<li class="nav-item"><c:if test="${id==null }">
 							<a class="nav-link"
 								href="${pageContext.request.contextPath}/move/login">로그인</a>

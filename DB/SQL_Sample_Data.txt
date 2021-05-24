@@ -10,7 +10,7 @@ commit;
 ------------------------
 
 /* SQL Sample Data */
-				ver.21.05.21
+				ver.21.05.24
 ------------------------
 
 drop sequence lecture_no_seq;
@@ -33,12 +33,15 @@ VALUES ('instructor01', '요가소녀', '010-1111-2222', '요가 경력 10년', 
 
 INSERT INTO LECTURE
 (id, name, genre, image, duration, caution, introduce)
-VALUES (lecture_no_seq.NEXTVAL, 'Healing Yoga', 'exercise', 'lecture1', 0525, '준비물 : 요가복, 요가매트', ' 당신의 지친 마음을 테라피할 수 있는 힐링 요가입니다. 함께 몸을 풀면서 힐링해요.');
+VALUES (1, 'Healing Yoga', 'exercise', 'lecture1', 0525, '준비물 : 요가복, 요가매트', ' 당신의 지친 마음을 테라피할 수 있는 힐링 요가입니다. 함께 몸을 풀면서 힐링해요.');
 
 INSERT INTO REGISTER
 (instructor_id, lecture_id)
 VALUES ('instructor01', 1);
 
 /-----------
-lecture 테이블 데이터 삽입 후 register 테이블에 임의로 id 넣었음...
+lecture id 값 시퀀스 적용 X 임의로 설정 
+instructor 로그인 할 수 있도록 Password 추가
+Lecture 썸네일 : [image] .jpg
+이외 세부 내용에 추가 이미지 사용 : [image] detail.jpg 로 이름 통일 
 --------------/

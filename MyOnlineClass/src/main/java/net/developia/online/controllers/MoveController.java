@@ -74,7 +74,7 @@ public class MoveController {
 		return new ModelAndView("join");
 	}
 
-	@GetMapping("/lecture")
+	@GetMapping("/lectureDetail")
 	public ModelAndView lectureDatail() throws Exception {
 		return new ModelAndView("lectureDetail");
 	}

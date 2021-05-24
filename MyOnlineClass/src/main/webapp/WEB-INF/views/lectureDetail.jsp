@@ -262,8 +262,8 @@
 									<span class="icon_star-half_alt"></span>
 								</div>
 							</div>
-							<div>Lecture.duration</div>
-							<p>Lecture.genre</p>
+							<div>수강 기간 : ${lecture.duration}</div>
+							<p>${lecture.genre}</p>
 						</div>
 					</div>
 				</div>
@@ -289,21 +289,31 @@
 							<div class="listing__details__gallery__pic">
 								<div class="listing__details__gallery__item">
 									<img class="listing__details__gallery__item__large"
-										src="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/listing-details-1.jpg"
+										src="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/lecture/${lecture.image}.jpg"
 										alt=""> <span><i class="fa fa-camera"></i>
-										lecture.image </span>
+										${lecture.image} </span>
 								</div>
 							</div>
 						</div>
 						<div class="listing__details__about">
 							<h4>Information</h4>
 							<p>강좌 소개</p>
-							<p>lecture.introduce</p>
+							<p>${lecture.introduce}</p>
+							<div class="listing__details__gallery">
+								<div class="listing__details__gallery__pic">
+									<div class="listing__details__gallery__item">
+										<img class="listing__details__gallery__item__large"
+											src="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/lecture/${lecture.image}detail.jpg"
+											alt=""> <span><i class="fa fa-camera"></i>
+											${lecture.image}detail </span>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="listing__details__about">
 							<h4>Caution</h4>
 							<p>주의 사항 | 조건 | 준비물</p>
-							<p>lecture.caution</p>
+							<p>${lecture.caution}</p>
 						</div>
 						<div class="listing__details__amenities">
 							<h4>Amenities</h4>
@@ -390,11 +400,12 @@
 								<h6>담당 강사</h6>
 								<h4>${instructor.name}</h4>
 								<ul>
-									<li><span class="icon_phone"></span>instructor.phone</li>
-									<li><span class="icon_mail_alt"></span>
-										instructor@gmail.com</li>
+									<li><span class="icon_phone"></span>${instructor.phone}</li>
+									<li><span class="icon_mail_alt"></span> ${instructor.name}
+										@ gmail.com</li>
 									<li><span class="icon_globe-2"></span> https://hyundai.com</li>
-									<li>instructor.introduce</li>
+									<li>────────────</li>
+									<li>${instructor.introduce}</li>
 								</ul>
 								<div class="listing__details__review">
 									<button type="submit" class="site-btn">수강신청</button>
@@ -404,9 +415,9 @@
 						<div class="listing__sidebar__working__hours">
 							<h4>Date</h4>
 							<ul>
-								<li>lecture.duration <span class="opening">Opening</span></li>
-								<li>lecture.duration+1months <span class="closed">Closed</span></li>
-								<li>lecture.duration+3months <span class="closed">Closed</span></li>
+								<li>${lecture.duration}<span class="opening">Opening</span></li>
+								<li>${lecture.duration}+1개월<span class="closed">Closed</span></li>
+								<li>${lecture.duration}+3개월<span class="closed">Closed</span></li>
 							</ul>
 						</div>
 					</div>

@@ -23,18 +23,6 @@ maxvalue 100
 nocycle
 nocache;
 
-INSERT INTO member
-(id, password, name, email, phone)
-VALUES('member1', '11', '김소녀', 'kimsn@gmail.com', '010-1111-2222');
-
-INSERT INTO member
-(id, password, name, email, phone)
-VALUES('member2', '22', '이구구', 'gugu@gmail.com', '010-1212-3434');
-
-INSERT INTO member
-(id, password, name, email, phone)
-VALUES('member3', '33', '최부자', 'choirich@gmail.com', '010-1234-5678');
-
 INSERT INTO instructor
 (member_id, nickname, introduce, image)
 VALUES ('member1', '요가소녀', '안녕하세요. 요가 경력 10년차 요가소녀입니다.', 'instructor01');

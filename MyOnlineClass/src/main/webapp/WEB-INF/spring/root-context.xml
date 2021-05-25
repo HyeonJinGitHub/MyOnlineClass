@@ -18,8 +18,7 @@
 		p:driverClassName="${driver}"
 		p:maximumPoolSize="20"
 		/>
- 	
-		
+
 	<!-- userDAO start -->
 	<bean id="MemberSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource"

@@ -127,7 +127,7 @@
 		}
    </style>
    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<<<<<<< HEAD
+
 	<script src="path/to/video.js/dist/video.js"></script>
 	<script src="path/to/videojs-playlist/dist/videojs-playlist.js"></script>
 	 <script>
@@ -265,15 +265,9 @@
         <div class="player-box">
             <!-- <div id="playerWrapper" > -->
 
-               
                  <video id=video class="video-js" controls autoplay>
                     <source id="lecturePlayerSource" src="video/Forest.mp4" type="video/mp4">
-
-            <div id="test">kkk</div>
-               
-                 <video id=video class="video-js" controls autoplay>
-                    <source id="sourceId" src="video/Forest.mp4" type="video/mp4">
-
+              
                         video tag not find.
                 </video>
     

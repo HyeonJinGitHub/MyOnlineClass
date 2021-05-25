@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1C5D571E-8CE7-A063-55A5-EF8F316DE7D9" name="member lecture">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:03 UTC</createdTime>
+<generatorID>3ABFA8C5-3F7E-3156-DF40-B01D6EDEA68A</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="lecture id" id="0DA532A9-512E-471D-4310-EEA5093E9A4C">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:03 UTC</createdTime>
+<generatorID>58D875DD-0023-AA60-9E81-2D38DB1C11E9</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<referedAttribute>A6045EA6-3912-F56C-8A3F-10DC12DBE764</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="member id" id="E6DA36A6-101E-96A1-6643-9CBCAB10D161">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:03 UTC</createdTime>
+<generatorID>666D7E47-01C7-2B90-D224-819E9EF2043C</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<referedAttribute>C81A11C5-DD13-357A-0FE5-373EF412CFA4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="registerDate" id="A7ED8CEA-97D1-35EC-DF72-94F8C892D298">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:03 UTC</createdTime>
+<generatorID>95F4F75F-1B41-341A-79B9-7344CFB73786</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C5889F77-64E3-8DF5-3AA2-FD5BC6CDDE4E" name="member lecture PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:03 UTC</createdTime>
+<generatorID>1330F293-6E2C-55A1-E857-F8AC2E74717A</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>E6DA36A6-101E-96A1-6643-9CBCAB10D161</attributeRef>
+<attributeRef>0DA532A9-512E-471D-4310-EEA5093E9A4C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

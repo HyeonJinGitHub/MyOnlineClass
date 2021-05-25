@@ -118,6 +118,7 @@ crossorigin="anonymous">
       <div class="col-lg-3 mb-4">
         <div class="list-group">
           <a href="${pageContext.request.contextPath}/move/home" class="list-group-item">홈</a>
+          <a href="${pageContext.request.contextPath}/move/mylecture" class="list-group-item">수강 정보</a>
           <a href="${pageContext.request.contextPath}/move/mypage" class="list-group-item">정보수정</a>
           <a href="${pageContext.request.contextPath}/move/changePassword" class="list-group-item">비밀번호 변경</a>
           <a href="${pageContext.request.contextPath}/move/delete" class="list-group-item">회원 탈퇴</a>
@@ -127,48 +128,14 @@ crossorigin="anonymous">
      
       <!-- Content Column -->
       <div class="col-lg-9 mb-4">
-        <h2>정보수정</h2>
+        <h2>수강정보</h2>
         <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="${pageContext.request.contextPath}/move/home">홈</a>
       </li>
-      <li class="breadcrumb-item active">정보수정</li>
+      <li class="breadcrumb-item active">수강정보</li>
     </ol>
 
-   <div class="jumbotron" style="height: 80%;overflow: hidden;">
-      <form action="${pageContext.request.contextPath}/member/updateAction" class="was-validated" method="post">
-          <div class="form-group" style="width: 70%;margin: 0 auto; overflow: hidden;">
-            <label for="uname" style="float: left;">아이디&nbsp; &nbsp; &nbsp;</label>
-            <input type="text" class="form-control" id="uname" style="width:58%; float: left;" name="uname" disabled="disabled" value="${id}">
-            <input type="hidden" name="uname"  value="${id}">
-          </div>
-          <br/>
-          <div class="form-group" style="width: 70%;margin: 0 auto;" >
-            <label for="uname" style="float: left; margin-top: 5px;">이메일&nbsp; &nbsp;&nbsp;&nbsp;</label>
-            <input type="email" class="form-control" id="uemail" style="width: 58%; float: left;" placeholder="이메일 입력" name="uemail" required value="${email }"/>
-            <input type="button" class="btn btn-primary" onclick="duplicationEmail();" style="width:20%; margin-left:10px; float:left; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
-           <div class="invalid-feedback" style="float:left; margin-left: 70px; margin-bottom: 20px;clear: both;">이메일을 입력해주세요.</div>
-          </div>
-          <br/>
-          <div class="form-group" style="width: 70%;margin: 0 auto; margin-top: 40px;">
-            <label for="uname" style="float: left; margin-top: 5px;">전화번호&nbsp;&nbsp;</label>
-            <input type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" class="form-control" id="uphone" style="width:58%; float: left;" placeholder="전화번호 입력(ex 010-1234-5678)" name="uphone" required value="${phone }">
-             <input type="button" class="btn btn-primary" onclick="duplicationPhone();" style="width:20%; margin-left:10px; float:left; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
-            <div class="invalid-feedback" style="float:left; margin-left: 70px; margin-bottom: 20px; clear: both;">전화번호를 입력해주세요.</div>
-          </div>
-          <br/>
-          <div class="form-group" style="width: 70%;margin: 0 auto; margin-top: 40px;">
-          <label for="uname" style="float: left; margin-top: 5px;">비밀번호&nbsp;&nbsp;</label>
-            <input type="password" style="width:58%; float: left;" class="form-control" id="pwd" placeholder="비밀번호 입력" name="pwd" required>
-            <div class="invalid-feedback" style="float:left; margin-left: 70px; margin-bottom: 20px; clear: both;">현재 비밀번호를 입력해주세요.</div>
-          </div>
-          <br/>
-          <div class="form-group" style="width: 50%;margin: 10px auto; margin-top: 40px;">
-             <button type="submit" class="btn btn-primary" style="width: 100%; border-color: #343a40; background-color: #343a40;" >수정</button>
-          </div>
-          <br/>
-      </form>
-   </div>
       </div>
     </div>
     <!-- /.row -->

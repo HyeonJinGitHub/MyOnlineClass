@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="739F86EA-2064-02C5-541E-22068F3EEAF3" name="lecture">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>2F646B41-16E6-567B-B69D-393438C8CCF1</importedID>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="40A1C5CE-ADE0-BEB8-49CE-8097188C16C4">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>0548E407-484A-EEFF-D0E4-A5EF2F68FBF3</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="229B2825-EB7E-50C6-1697-8D7D3D03A209">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>F0CC2FA2-59E9-B558-1CB7-BE0F6D58C8BA</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="genre" id="E5F48CD5-1611-9B2D-68B1-45343BAA64F3">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>76FCE924-35DB-A363-CA97-AD9AEA5F2769</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="image" id="50E80E12-5BFE-3D0D-B504-8204D3C77FAD">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>BD0B1ACA-C42B-F2D3-1683-0D65B81B7386</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="duration" id="EE3CC0C7-1D30-F71F-5C7B-79875E688EB4">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>B75F5E49-DE14-E023-EA1B-A6D2AD63BDE0</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="caution" id="22673046-62E5-C196-35FE-A76C3680D67C">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>D9B4C86B-C0D4-9D71-C08C-96A9C97397BA</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="introduce" id="E19D1D5E-E97C-3D6F-1C58-2D46FC6F0CF2">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>F2196E7A-EFE5-5521-F796-C68E50887A7F</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="35D87A41-F483-5097-50F8-5AC3CFD0FC74" name="lecture_PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>0ED2DE8E-E0D7-49C2-D879-EA40FCCF72DA</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="40A1C5CE-ADE0-BEB8-49CE-8097188C16C4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

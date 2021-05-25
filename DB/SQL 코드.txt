@@ -25,8 +25,7 @@ CREATE TABLE comments (
     regdate     VARCHAR2(50) NOT NULL
 );
 
-ALTER TABLE comments ADD CONSTRAINT comment_pk PRIMARY KEY ( member_id,
-                                                             lecture_id );
+ALTER TABLE comments ADD CONSTRAINT comment_pk PRIMARY KEY (member_id, lecture_id);
 
 CREATE TABLE enrollment (
     member_id   VARCHAR2(30) NOT NULL,

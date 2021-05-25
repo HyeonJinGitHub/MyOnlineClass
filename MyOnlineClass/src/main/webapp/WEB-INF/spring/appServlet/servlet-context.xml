@@ -21,15 +21,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- 들어오는 데이터를 처리해주는 multipartResolver 빈을 생성해주는 부분-->    
- 
-   <beans:bean id="multipartResolver"
-        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <beans:property name="maxUploadSize" value="-1" /> 
-        <beans:property name="defaultEncoding" value="utf-8" />    <!-- 인코딩 -->
-    </beans:bean>
-	
-	
 	<context:component-scan base-package="net.developia.online" />
 	
 	

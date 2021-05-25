@@ -59,7 +59,7 @@ public class StreamingController{
 		
 		File file = new File(FOLDER_MOVIE + video_name);
 
-		
+		System.out.println(video_name);
 		if(!file.exists()) throw new FileNotFoundException();
 		
 		//임의로 파일에 접근
@@ -125,7 +125,8 @@ public class StreamingController{
 		return null;
 	}
 	
-	@RequestMapping(value="/vodMain")
+	//@RequestMapping(value="/vodMain")
+	@RequestMapping(value="/vodTest")
 	public ModelAndView vodMain(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession(true);

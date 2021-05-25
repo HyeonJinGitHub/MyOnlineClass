@@ -1,20 +1,3 @@
-ALTER TABLE comments DROP CONSTRAINT comment_pk CASCADE;
-ALTER TABLE instructor DROP CONSTRAINT instructor_pk CASCADE;
-ALTER TABLE lecture  DROP CONSTRAINT lecture_pk CASCADE;
-ALTER TABLE lecture_video DROP CONSTRAINT lecture_video_pk CASCADE;
-ALTER TABLE member DROP CONSTRAINT member_pk CASCADE;
-ALTER TABLE member_lecture DROP CONSTRAINT member_lecture_pk CASCADE;
-ALTER TABLE video DROP CONSTRAINT video_pk CASCADE;
-ALTER TABLE register DROP CONSTRAINT register_pk CASCADE;
-
-DROP TABLE comments PURGE;
-DROP TABLE instructor PURGE;
-DROP TABLE lecture PURGE;
-DROP TABLE lecture_video PURGE;
-DROP TABLE member PURGE;
-DROP TABLE member_lecture PURGE;
-DROP TABLE video PURGE;
-DROP TABLE register PURGE;
 
 CREATE TABLE comments (
     member_id   VARCHAR2(30) NOT NULL,
@@ -124,15 +107,3 @@ ALTER TABLE register
 ALTER TABLE register
     ADD CONSTRAINT register_lecture_fk FOREIGN KEY ( lecture_id )
         REFERENCES lecture ( id );
-		
-		
-		
-CREATE TABLE lecture (
-    id         NUMBER(5) NOT NULL,
-    name       VARCHAR2(100) NOT NULL,
-    genre      VARCHAR2(50) NOT NULL,
-    image      VARCHAR2(300) NOT NULL,
-    duration   NUMBER(5) NOT NULL,
-    caution    VARCHAR2(300) NOT NULL,
-    introduce  VARCHAR2(300) NOT NULL
-);

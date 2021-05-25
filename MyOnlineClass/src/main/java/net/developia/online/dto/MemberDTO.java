@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

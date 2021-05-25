@@ -24,14 +24,10 @@
   <meta name="author" content="">
 
   <title>로그인 | Hyundai Cosmetic</title>
-
+	<c:import url="header.jsp"></c:import>
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <c:import url="header.jsp"></c:import>
-
 <div class="table-content">
 	<div class="item"></div>
 	

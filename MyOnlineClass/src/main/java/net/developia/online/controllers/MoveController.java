@@ -18,7 +18,10 @@ public class MoveController {
 	public ModelAndView home() throws Exception {
 		return new ModelAndView("home");
 	}
-	
+	@GetMapping("/mylecture")
+	public ModelAndView mylecture() throws Exception {
+		return new ModelAndView("mylecture");
+	}
 	@GetMapping("/popular")
 	public ModelAndView popular() throws Exception {
 		return new ModelAndView("popular");

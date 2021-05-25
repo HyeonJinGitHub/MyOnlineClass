@@ -23,13 +23,10 @@
   <meta name="author" content="">
 
   <title>회원가입 | Hyundai Cosmetic</title>
-
  <c:import url="header.jsp"></c:import>
-
 </head>
 
 <body>
- 
   <!-- Page Content -->
   <div class="container">
    

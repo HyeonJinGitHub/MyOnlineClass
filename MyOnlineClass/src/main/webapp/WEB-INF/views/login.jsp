@@ -28,10 +28,6 @@
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  
-
 <div class="table-content">
 	<div class="item"></div>
 	

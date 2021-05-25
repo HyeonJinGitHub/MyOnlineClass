@@ -7,4 +7,5 @@ import net.developia.online.dto.InstructorDTO;
 
 public interface InstructorDAO {
 	InstructorDTO getInstructor(long lectureNO) throws Exception;
+	List<InstructorDTO> getInstructorList() throws SQLException;
 }

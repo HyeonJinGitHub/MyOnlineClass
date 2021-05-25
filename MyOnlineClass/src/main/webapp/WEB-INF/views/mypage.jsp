@@ -12,7 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+<link href='${pageContext.request.contextPath}/resources/css/main.css' rel='stylesheet' />
+<script src='${pageContext.request.contextPath}/resources/js/main.js'></script>
   <title>마이페이지 | Hyundai Cosmetic</title>
 
      <link rel="stylesheet" 
@@ -46,7 +47,17 @@ crossorigin="anonymous">
 		}
 		 	
  	</style>
+   <script>
 
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
 </head>
 <body>
 	<c:set var="up" value=".."/>
@@ -113,6 +124,7 @@ crossorigin="anonymous">
 
         </div>
       </div>
+     
       <!-- Content Column -->
       <div class="col-lg-9 mb-4">
         <h2>정보수정</h2>
@@ -160,7 +172,7 @@ crossorigin="anonymous">
       </div>
     </div>
     <!-- /.row -->
-
+ <div id='calendar'></div>
   </div>
   <!-- /.container -->
 

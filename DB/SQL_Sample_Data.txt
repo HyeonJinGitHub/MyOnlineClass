@@ -3,14 +3,14 @@
 ------------------------
  alter session set container = XEPDB1;
 alter session set "_ORACLE_SCRIPT"=true;
-create user _ identified by _
+create user hyundai identified by hyundai
 grant connect, resource, dba to hyundai;
 commit;
 
 ------------------------
 
 /* SQL Sample Data */
-				ver.21.05.24
+				ver.21.05.25
 ------------------------
 
 drop sequence lecture_no_seq;

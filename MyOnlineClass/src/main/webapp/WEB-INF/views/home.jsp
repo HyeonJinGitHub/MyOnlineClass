@@ -77,7 +77,7 @@ body {
 						</li>
 					<c:if test="${id!=null }">
 						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/move/mypage">마이페이지 </a></li>
+							href="${pageContext.request.contextPath}/move/mylecture">마이페이지 </a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath}/member/logout">로그아웃 </a></li>
 					</c:if>

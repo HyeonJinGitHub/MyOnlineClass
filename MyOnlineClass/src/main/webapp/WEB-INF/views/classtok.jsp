@@ -226,7 +226,7 @@ a#MOVE_TOP_BTN {
 			<div class="ui-widget" style="padding-top: 15px;">
 				<form id="searchClass" method='GET' action="${contextPath}/search">
             		<label class="header__search-label" for="searchKey" >
-                		<input id="searchKeyNav" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; font-size: 13px; background-color: #f8f9fa; text-align: center; border-radius: 30px;">
+                		<input id="searchKeyNav" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; font-size: 13px; background-color: #f8f9fa; border-radius: 30px;">
 						<button type="submit" style="border:0; outline:0; background-color: white;">
 							<i class="fas fa-search" onclick="search"></i>
 						</button>

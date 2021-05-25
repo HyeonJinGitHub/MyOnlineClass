@@ -10,7 +10,7 @@ commit;
 ------------------------
 
 /* SQL Sample Data */
-				ver.21.05.24
+				ver.21.05.25
 ------------------------
 
 drop sequence lecture_no_seq;

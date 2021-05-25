@@ -24,7 +24,7 @@
 	
 	<select id="getInstructorList" resultType="InstructorDTO">
 	<![CDATA[
-		SELECT member_id, nickname, introduce, image
+		SELECT instructor.member_id as id, nickname, introduce, image
 		FROM instructor
 	]]>
 	</select>

@@ -15,10 +15,9 @@ public class ClassTokController {
 	@Autowired
 	private InstructorService instructorService;
 	
-	@RequestMapping(value="json", produces = "application/json; charset=UTF-8")
+	@RequestMapping(value="instructorJson", produces = "application/json; charset=UTF-8")
 	public List<InstructorDTO> getInstructor() throws Exception {
 		List<InstructorDTO> list = instructorService.getInstructorList();
-//		System.out.println(list.get(0).getId());
 		
 		return list;
 	}

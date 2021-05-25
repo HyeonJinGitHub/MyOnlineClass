@@ -135,11 +135,11 @@ crossorigin="anonymous">
       </li>
       <li class="breadcrumb-item active">수강정보</li>
     </ol>
-
+ <div id='calendar'></div>
       </div>
     </div>
     <!-- /.row -->
- <div id='calendar'></div>
+
   </div>
   <!-- /.container -->
 

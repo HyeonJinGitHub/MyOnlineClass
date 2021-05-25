@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BA0FA0EE-9149-A10A-AD56-DA97A6757F3A" name="lecture_video">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>0A430721-01E7-D6EC-5C9F-26617DBD31AF</importedID>
+<ordsAlias>table_9</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="lecture_id" id="9C6A179A-0607-E1A2-CFE8-5AD71E2FDC97">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>421AA836-66A5-B3DF-7431-EA48E6F4F16A</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B215AF4C-FB8A-678F-6B77-F5AF55FB89C3" referredColumn="27704D36-64AB-77B7-333C-91186A24B340"/>
+</associations>
+</Column>
+<Column name="video_id" id="58B6D79B-7EF2-CBB5-2A6E-CE8CCFB0EEFB">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>D291A3D5-7114-BFD7-C3EB-9B087C869F8C</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="54FC5077-A28E-6AFD-BF07-816D469F0FBE" referredColumn="7820B062-7A62-99B2-EFF2-009C0F7E30AC"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DBC03A17-E584-0896-88A5-7CB0186514AC" name="lecture_video_PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>D00954BB-7BAB-6C1B-2209-A50776EE7E8C</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C6A179A-0607-E1A2-CFE8-5AD71E2FDC97"/>
+<colUsage columnID="58B6D79B-7EF2-CBB5-2A6E-CE8CCFB0EEFB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D9155EAF-D35C-7517-DE54-2AFCAB568F69" name="lecture_video_lecture_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C6A179A-0607-E1A2-CFE8-5AD71E2FDC97"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C789E0F2-2979-2A1A-ECFA-AD3E95BE67CC" name="lecture_video_video_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="58B6D79B-7EF2-CBB5-2A6E-CE8CCFB0EEFB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

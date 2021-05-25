@@ -1,0 +1,122 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AD166395-A8B1-43DE-B4E2-E0B2FDEB13BF" name="lecture">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>739F86EA-2064-02C5-541E-22068F3EEAF3</importedID>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="27704D36-64AB-77B7-333C-91186A24B340">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>40A1C5CE-ADE0-BEB8-49CE-8097188C16C4</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="5B2A1B8E-7AAA-4D9F-859E-DF79B96FD2ED">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>229B2825-EB7E-50C6-1697-8D7D3D03A209</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="genre" id="A9403DBD-6B1E-6942-7EE9-CC225053AB51">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>E5F48CD5-1611-9B2D-68B1-45343BAA64F3</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="image" id="9F359EE0-E30D-4E8C-73FB-C1181ED53BE5">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>50E80E12-5BFE-3D0D-B504-8204D3C77FAD</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="duration" id="5D6BABF3-3F7A-AB0E-7DD2-C62D788A9CF7">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>EE3CC0C7-1D30-F71F-5C7B-79875E688EB4</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="caution" id="5EC3CDD0-D886-F4F1-B1D3-3E29EB67B646">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>22673046-62E5-C196-35FE-A76C3680D67C</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="introduce" id="216D9DA7-3523-A78E-F917-297BB443EA77">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>E19D1D5E-E97C-3D6F-1C58-2D46FC6F0CF2</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="thumbnail" id="5FE34D2B-B058-BBBD-F7D6-8AD2C94E4B79">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 01:54:24 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="822057E1-25D6-8F05-3C64-1102FF5DD196" name="lecture_PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>35D87A41-F483-5097-50F8-5AC3CFD0FC74</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="27704D36-64AB-77B7-333C-91186A24B340"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

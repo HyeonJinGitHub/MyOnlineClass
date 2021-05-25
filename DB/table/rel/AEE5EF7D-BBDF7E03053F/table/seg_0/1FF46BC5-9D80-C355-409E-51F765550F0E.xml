@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1FF46BC5-9D80-C355-409E-51F765550F0E" name="comments">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>32C90F89-0AAD-AC97-06C7-F0BB51C7C986</importedID>
+<ordsAlias>table_10</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="member_id" id="15F65D87-86D8-FBEC-4C44-B955460733D4">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>C173AC9D-2ED4-45F2-691F-3C9B82288259</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A01E2E1D-FB11-6786-1E2D-F9AEABDD2C1F" referredColumn="89477D9B-75AE-4067-35B1-05DE3B4BBF1B"/>
+</associations>
+</Column>
+<Column name="lecture_id" id="65D9F72E-4F96-A247-911A-D136471B4724">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>9AFA7147-A168-C23F-5AB4-3D5F5CA0ACD2</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="16AA4719-F28C-3F37-8849-E7A7ED9659CB" referredColumn="27704D36-64AB-77B7-333C-91186A24B340"/>
+</associations>
+</Column>
+<Column name="content" id="790180AD-88A4-8543-CC57-C68B86CD9F18">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>3865FB97-DB28-586B-0F90-D10C322E10AB</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="regdate" id="FE77E72A-470E-3C61-0C4C-CCE3D78D16E6">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>58CF6FEF-5A16-B72B-0410-3889DD647C6B</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="28396E09-95D6-5A8E-16FE-E86219FC66E6" name="comment_PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>6CD434EB-2C66-5DA6-985C-E25703F60422</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="15F65D87-86D8-FBEC-4C44-B955460733D4"/>
+<colUsage columnID="65D9F72E-4F96-A247-911A-D136471B4724"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6989BDE2-DC74-A913-B2F4-FB6337B49BE5" name="comment_member_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="15F65D87-86D8-FBEC-4C44-B955460733D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7F729FF0-7586-880B-7811-F0CBCBE422BE" name="comment_lecture_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="65D9F72E-4F96-A247-911A-D136471B4724"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

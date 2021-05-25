@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F7A4E71D-1F53-D2A7-BF9F-6D49939AFCC2" name="lecture video">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>0A430721-01E7-D6EC-5C9F-26617DBD31AF</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="lecture id" id="6A419673-1F63-FA3A-D306-C8A27DD1D503">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>D93137D3-EA72-5319-BD14-7AD0B137D58D</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<referedAttribute>A6045EA6-3912-F56C-8A3F-10DC12DBE764</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="video id" id="8B118857-D914-D127-FC3A-BEF84B9146E4">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>0957E66E-636A-60B8-10C6-859ED688377C</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<referedAttribute>172522F2-BDA2-77F7-9A2B-A0CAE0CA3161</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D57EB421-FC4A-4A91-0355-5D1C55B88E06" name="lecture video PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 10:12:02 UTC</createdTime>
+<generatorID>D00954BB-7BAB-6C1B-2209-A50776EE7E8C</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="6CF903CA-3709-7F82-BD13-1FE74418677E" value="true"/>
+<item key="5E632B16-1B6F-74BC-5768-02A0F2009C47" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>6A419673-1F63-FA3A-D306-C8A27DD1D503</attributeRef>
+<attributeRef>8B118857-D914-D127-FC3A-BEF84B9146E4</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

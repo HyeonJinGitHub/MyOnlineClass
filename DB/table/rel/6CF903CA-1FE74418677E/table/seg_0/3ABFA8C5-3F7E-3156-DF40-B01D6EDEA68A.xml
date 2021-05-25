@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3ABFA8C5-3F7E-3156-DF40-B01D6EDEA68A" name="member_lecture">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>385DAD54-AC37-D964-7D49-5C943D31905D</importedID>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="lecture_id" id="2A9C8346-7DCF-267D-8BAD-DFBDEB0839A3">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>8D80FFCA-42F8-5BF6-BEBA-B51C364E7883</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="46D314E6-B7A8-7FFF-94F7-94165E3B3C0E" referredColumn="40A1C5CE-ADE0-BEB8-49CE-8097188C16C4"/>
+</associations>
+</Column>
+<Column name="member_id" id="387444C3-E4F0-0546-7629-19F78EAE8E73">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>DA2DC9E0-8190-C123-DAA2-AD75E607A4A3</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8B5AB3B8-6B0E-DFC5-2D6D-CEDD90AFB6CE" referredColumn="D3A1E04A-FDC3-14F0-970A-01755905AB88"/>
+</associations>
+</Column>
+<Column name="registerDate" id="95F4F75F-1B41-341A-79B9-7344CFB73786">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>623D2591-79BE-FB30-B00C-3E62E0EB1F12</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1330F293-6E2C-55A1-E857-F8AC2E74717A" name="member_lecture_PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>5D1885E2-3FE1-8869-E82C-F5D6F6B5FD07</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="387444C3-E4F0-0546-7629-19F78EAE8E73"/>
+<colUsage columnID="2A9C8346-7DCF-267D-8BAD-DFBDEB0839A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="14915DB9-AA77-58F6-4E59-DBE4E84FFAD2" name="member_lecture_member_FK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="387444C3-E4F0-0546-7629-19F78EAE8E73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F2E21675-D541-B9F0-FFAB-266C19213546" name="member_lecture_lecture_FK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-18 08:40:26 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2A9C8346-7DCF-267D-8BAD-DFBDEB0839A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

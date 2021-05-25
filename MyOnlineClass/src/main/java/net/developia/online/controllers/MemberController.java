@@ -103,7 +103,7 @@ public class MemberController {
 			memberService.deleteMember(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "탈퇴되었습니다. 이용해 주셔서 감사합니다.");
-			mav.addObject("url", "/online/move/home");
+			mav.addObject("url", "/online/");
 			session.invalidate();
 			return mav;
 			
@@ -154,7 +154,7 @@ public class MemberController {
 			memberService.findId(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", uemail + "로 아이디를 전송하였습니다.");
-			mav.addObject("url", "/online/move/home");
+			mav.addObject("url", "/online/");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -174,7 +174,7 @@ public class MemberController {
 			memberService.findPw(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "계정에 등록된 이메일로 임시 비밀번호를 전송하였습니다.");
-			mav.addObject("url", "/online/move/home");
+			mav.addObject("url", "/online/");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -198,7 +198,7 @@ public class MemberController {
 			memberService.join(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "회원가입에 성공하였습니다.");
-			mav.addObject("url", "/online/move/login");
+			mav.addObject("url", "/online/login");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();

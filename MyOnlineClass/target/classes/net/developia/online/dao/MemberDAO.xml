@@ -182,6 +182,7 @@
 		id="insertParam">
 		<parameter property="ID" jdbcType="VARCHAR" mode="IN" />
 		<parameter property="PWD" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="NAME" jdbcType="VARCHAR" mode="IN" />
 		<parameter property="EMAIL" jdbcType="VARCHAR" mode="IN" />
 		<parameter property="PHONE" jdbcType="VARCHAR" mode="IN" />
 	</parameterMap>
@@ -191,7 +192,7 @@
 	<![CDATA[
           {
              call member_pkg.insert_member(
-				?, ?, ?, ?
+				?, ?, ?, ?, ?
 			)
           }
        ]]>

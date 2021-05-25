@@ -262,7 +262,7 @@
 									<span class="icon_star-half_alt"></span>
 								</div>
 							</div>
-							<div>수강 기간 : ${lecture.duration}</div>
+							<div>수강 일자 : ${lecture.duration}</div>
 							<p>${lecture.genre}</p>
 						</div>
 					</div>
@@ -398,10 +398,10 @@
 							</div>
 							<div class="listing__sidebar__contact__text">
 								<h6>담당 강사</h6>
-								<h4>${instructor.name}</h4>
+								<h4>${instructor.nickname}</h4>
 								<ul>
 									<li><span class="icon_phone"></span>${instructor.phone}</li>
-									<li><span class="icon_mail_alt"></span> ${instructor.name}
+									<li><span class="icon_mail_alt"></span> ${instructor.nickname}
 										@ gmail.com</li>
 									<li><span class="icon_globe-2"></span> https://hyundai.com</li>
 									<li>────────────</li>
@@ -413,11 +413,10 @@
 							</div>
 						</div>
 						<div class="listing__sidebar__working__hours">
-							<h4>Date</h4>
+							<h4>수강기간</h4>
 							<ul>
 								<li>${lecture.duration}<span class="opening">Opening</span></li>
-								<li>${lecture.duration}+1개월<span class="closed">Closed</span></li>
-								<li>${lecture.duration}+3개월<span class="closed">Closed</span></li>
+								<li>${lecture.duration}일 뒤<span class="closed">Closed</span></li>
 							</ul>
 						</div>
 					</div>

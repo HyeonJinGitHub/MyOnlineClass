@@ -36,18 +36,15 @@ body {
 .portfolio-item {
 	margin-bottom: 30px;
 }
+
 </style>
 
 
 <!-- Bootstrap core CSS -->
-<link
-	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!--  Custom styles for this template-->
-<link
-	href="${pageContext.request.contextPath}/resources/css/full-width-pics.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
 
 
 </head>
@@ -57,9 +54,7 @@ body {
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand"
-				href="${pageContext.request.contextPath}/move/home">Hyundai
-				Cosmetic</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/move/home">Hyundai Cosmetic</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -67,32 +62,24 @@ body {
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link"
-						href="${pageContext.request.contextPath}/move/popular">인기 <span
-							class="sr-only">(current)</span>
+					<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/move/popular">인기
+							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/move/new">신규</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/move/event">이벤트/혜택</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/move/exhibition">기획전</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/move/freeboard">커뮤니티</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/move/lectureDetail">상세페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/move/new">신규</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/move/event">이벤트/혜택</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/move/exhibition">기획전</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/move/freeboard">커뮤니티</a></li>
 					<li class="nav-item"><c:if test="${id==null }">
-							<a class="nav-link"
-								href="${pageContext.request.contextPath}/move/login">로그인</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/move/login">로그인</a>
 						</c:if> <%-- <c:if test="${id!=null }">
 							<a class="nav-link" href="../member/update">${id }님 </a>
-						</c:if> --%></li>
+						</c:if> --%>
+						</li>
 					<c:if test="${id!=null }">
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath}/move/mypage">마이페이지 </a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/member/logout">로그아웃
-						</a></li>
+							href="${pageContext.request.contextPath}/member/logout">로그아웃 </a></li>
 					</c:if>
 
 				</ul>
@@ -154,7 +141,7 @@ body {
 			<p class="lead">#찐추천 #꿀템모음</p>
 			<p>Si lloras pro no poder ver el sol, tus lagrimas te impediran
 				ver las estrellas</p>
-
+			
 			<div class="row">
 				<div class="col-lg-4 mb-4">
 					<div class="card h-100">
@@ -239,9 +226,9 @@ body {
 			<h1>NEW & HOT</h1>
 			<p class="lead">#HOT모음 #이유 있는 HOT</p>
 			<p>Todo lo que puedes imaginar es real</p>
-
-
-			<div class="row">
+		
+		
+		<div class="row">
 				<div class="col-lg-4 mb-4">
 					<div class="card h-100">
 						<div class="card-body">
@@ -309,7 +296,7 @@ body {
 					</div>
 				</div>
 			</div>
-		</div>
+	</div>
 	</section>
 
 	<!-- Footer -->
@@ -323,8 +310,7 @@ body {
 
 	<!--  Bootstrap core JavaScript-->
 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
-	<script
-		src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
+	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+	
 </body>
 </html>

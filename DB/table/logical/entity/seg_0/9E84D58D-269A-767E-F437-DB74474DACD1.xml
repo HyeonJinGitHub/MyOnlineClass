@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9E84D58D-269A-767E-F437-DB74474DACD1" name="video">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 03:15:23 UTC</createdTime>
+<generatorID>02AF7D8F-EB13-FDB8-5B53-1B2F78A2C057</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="ACCB5B46-4C7B-9932-65FD-DECB217B7792" value="true"/>
+<item key="06A940C2-A2F7-507B-FE3F-C6590AB70235" value="true"/>
+<item key="AEE5EF7D-0BAA-31F9-0ED9-BBDF7E03053F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="4A7AA22B-A5EB-81C2-2BF8-62F6F78780A2">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 03:15:23 UTC</createdTime>
+<generatorID>7820B062-7A62-99B2-EFF2-009C0F7E30AC</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="ACCB5B46-4C7B-9932-65FD-DECB217B7792" value="true"/>
+<item key="06A940C2-A2F7-507B-FE3F-C6590AB70235" value="true"/>
+<item key="AEE5EF7D-0BAA-31F9-0ED9-BBDF7E03053F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="title" id="60038107-87C6-2486-0FCF-F96028AF7FA0">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 03:15:23 UTC</createdTime>
+<generatorID>AF0B1102-9AF4-904B-DB4F-32CF99DA82B6</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="ACCB5B46-4C7B-9932-65FD-DECB217B7792" value="true"/>
+<item key="06A940C2-A2F7-507B-FE3F-C6590AB70235" value="true"/>
+<item key="AEE5EF7D-0BAA-31F9-0ED9-BBDF7E03053F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="information" id="53ADD0A9-5AAA-5B97-9BBE-EE60F9A31A17">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 03:15:23 UTC</createdTime>
+<generatorID>F9965B5C-51AE-66F2-796F-B58B894C827E</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="ACCB5B46-4C7B-9932-65FD-DECB217B7792" value="true"/>
+<item key="06A940C2-A2F7-507B-FE3F-C6590AB70235" value="true"/>
+<item key="AEE5EF7D-0BAA-31F9-0ED9-BBDF7E03053F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="path" id="80B357D8-9BB9-F7DB-755B-A264E96B490F">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 03:15:23 UTC</createdTime>
+<generatorID>3C48715D-AEC9-B321-D1F5-FE092235E2AD</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="ACCB5B46-4C7B-9932-65FD-DECB217B7792" value="true"/>
+<item key="06A940C2-A2F7-507B-FE3F-C6590AB70235" value="true"/>
+<item key="AEE5EF7D-0BAA-31F9-0ED9-BBDF7E03053F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5D8BDF0E-2803-B09A-1F40-248979FC52E5" name="video PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 03:15:23 UTC</createdTime>
+<generatorID>8EF5BB4C-8E50-2270-0444-652EAC699524</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="ACCB5B46-4C7B-9932-65FD-DECB217B7792" value="true"/>
+<item key="06A940C2-A2F7-507B-FE3F-C6590AB70235" value="true"/>
+<item key="AEE5EF7D-0BAA-31F9-0ED9-BBDF7E03053F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>4A7AA22B-A5EB-81C2-2BF8-62F6F78780A2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

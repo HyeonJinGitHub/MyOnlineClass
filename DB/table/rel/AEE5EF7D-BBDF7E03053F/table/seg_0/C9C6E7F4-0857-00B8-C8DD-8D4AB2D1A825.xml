@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C9C6E7F4-0857-00B8-C8DD-8D4AB2D1A825" name="instructor">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>A99D8F31-D796-2EA2-DCB9-F1993C5B2AB5</importedID>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="member_id" id="2F2C4128-49A2-E083-0C17-B27B676CE606">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 01:37:07 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="408198A6-E8D8-E133-8182-695FF45D800D" referredColumn="89477D9B-75AE-4067-35B1-05DE3B4BBF1B"/>
+</associations>
+</Column>
+<Column name="nickname" id="F7ACF659-045C-311F-BBB5-CF19D39B442F">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 01:38:32 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="introduce" id="E7ACAC18-5870-073C-7F44-F2C9B226DA0D">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>5C7F2830-85F0-265D-5652-C7142F832784</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="image" id="5E0078E9-B950-80FD-EA78-B54C1D743B09">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>BC5410C4-7338-0462-8ABC-E920836D9C07</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EB2AFA20-F56C-56D1-3F62-EC2490950C8F" name="instructor_PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:09:05 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>AEAD80A3-C7E4-929B-413E-6DC17FDC3019</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2F2C4128-49A2-E083-0C17-B27B676CE606"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CFA1773F-6020-5A87-B3D1-74749945CFE9" name="instructor_member_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 01:37:07 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2F2C4128-49A2-E083-0C17-B27B676CE606"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

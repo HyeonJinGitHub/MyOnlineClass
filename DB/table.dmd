@@ -1,13 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="table" id="E5EDAC7A-EC39-C627-F0C4-C82C49075E35" version="3.5">
-<createdBy>HyeonJin</createdBy>
-<createdTime>2021-05-18 08:39:33 UTC</createdTime>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="table" id="8C1109A6-8ABB-239A-C10E-EA77AB8AE261" version="3.5">
+<createdBy>COM</createdBy>
+<createdTime>2021-05-25 00:08:14 UTC</createdTime>
 <ownerDesignName>table</ownerDesignName>
 <capitalNames>false</capitalNames>
-<designId>E5EDAC7A-EC39-C627-F0C4-C82C49075E35</designId>
+<designId>8C1109A6-8ABB-239A-C10E-EA77AB8AE261</designId>
 <usedDesignStorageDescriptors>
 <designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="31F50B9E-DD0E-694B-482C-BC54FBACD16B">
 <designStoragePath>C:\Users\HyeonJin\Desktop\table</designStoragePath>
+</designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="E5EDAC7A-EC39-C627-F0C4-C82C49075E35">
+<designStoragePath>C:\Users\COM\Desktop\table</designStoragePath>
 </designDescr>
 </usedDesignStorageDescriptors>
 </OSDM_Design>

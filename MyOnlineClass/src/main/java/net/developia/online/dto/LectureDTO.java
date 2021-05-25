@@ -11,4 +11,5 @@ public class LectureDTO {
 	private long duration;
 	private String caution;
 	private String introduce;
+	private String thumbnail;
 }

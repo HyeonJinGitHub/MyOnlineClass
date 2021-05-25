@@ -29,6 +29,7 @@ public class MemberController {
 	
 	private static Logger logger = LoggerFactory.getLogger(MemberController.class);
 
+	
 	@PostMapping(value="/loginAction")
 	@Transactional
 	public ModelAndView loginAction(HttpSession session, @RequestParam(required = true) String id, @RequestParam(required = true) String password ) {
@@ -43,6 +44,7 @@ public class MemberController {
 			MemberDTO memberDTO = output.get(0);
 			ModelAndView mav = new ModelAndView("result");
 			session.setAttribute("id", memberDTO.getId()); 
+			session.setAttribute("name", memberDTO.getName());
 			session.setAttribute("email", memberDTO.getEmail()); 
 			session.setAttribute("phone", memberDTO.getPhoneNumber());
 			mav.setViewName("home");
@@ -77,7 +79,7 @@ public class MemberController {
 			memberService.updatePassword(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "비밀번호가 수정되었습니다.");
-			mav.addObject("url", "/springproject/move/changePassword");
+			mav.addObject("url", "/online/move/changePassword");
 			return mav;
 			
  		} catch (Exception e) {
@@ -101,7 +103,7 @@ public class MemberController {
 			memberService.deleteMember(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "탈퇴되었습니다. 이용해 주셔서 감사합니다.");
-			mav.addObject("url", "/springproject/move/home");
+			mav.addObject("url", "/online/move/home");
 			session.invalidate();
 			return mav;
 			
@@ -130,7 +132,7 @@ public class MemberController {
 			
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "회원정보가 수정되었습니다.");
-			mav.addObject("url", "/springproject/move/mypage");
+			mav.addObject("url", "/online/move/mypage");
 			return mav;
 
  		} catch (Exception e) {
@@ -152,7 +154,7 @@ public class MemberController {
 			memberService.findId(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", uemail + "로 아이디를 전송하였습니다.");
-			mav.addObject("url", "/springproject/move/home");
+			mav.addObject("url", "/online/move/home");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -172,7 +174,7 @@ public class MemberController {
 			memberService.findPw(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "계정에 등록된 이메일로 임시 비밀번호를 전송하였습니다.");
-			mav.addObject("url", "/springproject/move/home");
+			mav.addObject("url", "/online/move/home");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -185,17 +187,18 @@ public class MemberController {
 	
 	@PostMapping("/joinAction")
 	@Transactional
-	public ModelAndView joinAction(@RequestParam(required = true) String uid, @RequestParam(required = true) String uemail, @RequestParam(required = true) String uphone,@RequestParam(required = true) String pwd ) {
+	public ModelAndView joinAction(@RequestParam(required = true) String uid, @RequestParam(required = true) String uname, @RequestParam(required = true) String uemail, @RequestParam(required = true) String uphone,@RequestParam(required = true) String pwd ) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("ID", uid);
 		map.put("PWD", DigestUtils.sha512Hex(pwd));
+		map.put("NAME", uname);
 		map.put("EMAIL", uemail);
 		map.put("PHONE", uphone);
 		try {
 			memberService.join(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "회원가입에 성공하였습니다.");
-			mav.addObject("url", "/springproject/move/login");
+			mav.addObject("url", "/online/move/login");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();

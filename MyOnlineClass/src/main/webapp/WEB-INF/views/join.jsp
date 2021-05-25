@@ -98,6 +98,7 @@ crossorigin="anonymous">
               <div class="invalid-feedback" style="float:left;">아이디를 입력해주세요.</div>
           </div>
           <br/>
+        
           <div class="form-group" style="width: 50%;margin: 0 auto;">
             <input type="email" class="form-control" id="uemail" style="width:78%; float: left;" placeholder="이메일 입력(ex aaaa@naver.com)" name="uemail" required>
             <input type="button" class="btn btn-primary" onclick="duplicationEmail();" style="width:20%; margin-left:10px; float:left; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
@@ -108,6 +109,11 @@ crossorigin="anonymous">
             <input type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" class="form-control" id="uphone" style="width:78%; float: left;" placeholder="전화번호 입력(ex 010-1234-5678)" name="uphone" required>
             <input type="button" class="btn btn-primary" onclick="duplicationPhone();"  style="width:20%; margin-left:10px; float:left; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
             <div class="invalid-feedback" style="float:left; margin-bottom: 20px;clear: both;">전화번호를 입력해주세요.</div>
+          </div>
+          <br/>
+            <div class="form-group" style="width: 50%;margin: 0 auto; margin-top: 40px;">
+            <input type="text"  class="form-control" id="uname" style="width:78%; float: left;" placeholder="이름 입력" name="uname" required>
+            <div class="invalid-feedback" style="float:left; margin-bottom: 20px;clear: both;">이름을 입력해주세요.</div>
           </div>
           <br/>
           <div class="form-group" style="width: 50%;margin: 0 auto; margin-top: 40px;">
@@ -168,7 +174,7 @@ crossorigin="anonymous">
 				async: false,
 				type: 'POST',
 				data : {"id": userid },
-				url : '/springproject/check/idcheck',
+				url : '/online/check/idcheck',
 				success : function(data) {
 					if(data > 0) {
 	  					alert('아이디가 존재합니다. 다른 아이디를 입력해주세요.');
@@ -191,7 +197,7 @@ crossorigin="anonymous">
 				async: false,
 				type: 'POST',
 				data : {"email": useremail },
-				url : '/springproject/check/emailcheck',
+				url : '/online/check/emailcheck',
 				success : function(data) {
 					if(data > 0) {
 	  					alert('이미 사용 중인 이메일입니다. 다른 이메일을 입력해주세요.');
@@ -215,7 +221,7 @@ crossorigin="anonymous">
 				async: false,
 				type: 'POST',
 				data : {"phone": userphone },
-				url : '/springproject/check/phonecheck',
+				url : '/online/check/phonecheck',
 				success : function(data) {
 					if(data > 0) {
 	  					alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');

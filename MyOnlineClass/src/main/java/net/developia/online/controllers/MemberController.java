@@ -22,7 +22,7 @@ import net.developia.online.services.MemberService;
 
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/")
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
@@ -47,7 +47,7 @@ public class MemberController {
 			session.setAttribute("name", memberDTO.getName());
 			session.setAttribute("email", memberDTO.getEmail()); 
 			session.setAttribute("phone", memberDTO.getPhoneNumber());
-			mav.setViewName("home");
+			mav.setViewName("classtok");
 			return mav;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

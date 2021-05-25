@@ -95,7 +95,7 @@ crossorigin="anonymous">
    <div class="jumbotron">
 
       <h1 class="display-3" style="text-align: center;margin-top: -30px; ">로그인</h1>
-      <form action="${pageContext.request.contextPath}/member/loginAction" class="was-validated" method="post">
+      <form action="${pageContext.request.contextPath}/loginAction" class="was-validated" method="post">
           <div class="form-group" style="width: 50%;margin: 0 auto;">
             <label for="uname">아이디</label>
             <input type="text" class="form-control" id="id" placeholder="아이디 입력" name="id" required>

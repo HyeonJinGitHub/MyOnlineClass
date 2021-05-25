@@ -127,16 +127,52 @@
 		}
    </style>
    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
+	<script src="path/to/video.js/dist/video.js"></script>
+	<script src="path/to/videojs-playlist/dist/videojs-playlist.js"></script>
 	 <script>
 	 
 	 
+	 
 	 function button_event(vod_name){
-
-	  
+		 
+		 var player = videojs('video');
+		 player.playlist([{
+			  sources: [{
+			    src: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
+			    type: 'video/mp4'
+			  }],
+			  poster: 'http://media.w3.org/2010/05/sintel/poster.png'
+			}, {
+			  sources: [{
+			    src: 'http://media.w3.org/2010/05/bunny/trailer.mp4',
+			    type: 'video/mp4'
+			  }],
+			  poster: 'http://media.w3.org/2010/05/bunny/poster.png'
+			}, {
+			  sources: [{
+			    src: 'http://vjs.zencdn.net/v/oceans.mp4',
+			    type: 'video/mp4'
+			  }],
+			  poster: 'http://www.videojs.com/img/poster.jpg'
+			}, {
+			  sources: [{
+			    src: 'http://media.w3.org/2010/05/bunny/movie.mp4',
+			    type: 'video/mp4'
+			  }],
+			  poster: 'http://media.w3.org/2010/05/bunny/poster.png'
+			}, {
+			  sources: [{
+			    src: 'http://media.w3.org/2010/05/video/movie_300.mp4',
+			    type: 'video/mp4'
+			  }],
+			  poster: 'http://media.w3.org/2010/05/video/poster.png'
+			}]);
+		 
+		 player.playlist.autoadvance(0); // play all
 	  //따로 가져오고 싶으시면 event 넘기고 커런트 타겟으로 get value 해오는 방법도 있음.
+	  /*
+	  let LECTURE_PLAYER_SOURCE = document.getElementById('lecturePlayerSource');
 	  
-
 	  console.log('video/'+vod_name);
 	  
 	  let vod_id = 'video/'+vod_name ;
@@ -153,8 +189,26 @@
           url : vod_id,      // 컨트롤러에서 대기중인 URL 주소이다.
           data : params,            // Json 형식의 데이터이다.
           success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-      
-      	  		console.log(res);
+        	  var player = videojs('lecturePlayer', playerOptions, function onPlayerReady() {
+        			document.getElementsByClassName('player-wrapper')[0].classList.add('video-active');
+
+        			var playPromise = this.play();
+        			
+        			if (playPromise !== undefined) {
+        				playPromise.then(function() {
+        					amplifyMedia(document.getElementById('lecturePlayer'), 3);
+        				})
+        				.catch(function(error) {
+        				});
+        	        }
+        			
+        			document.getElementsByClassName('video-js')[0].classList.add('vjs-initialized-in-detail');
+        		});
+          
+        	  LECTURE_PLAYER_SOURCE.src = res;
+          
+          
+      	  	  //console.log(res);
       	  		//$('#test').text(res)
       	  		//document.getElementById('sourceId').setAttribute('src',res);
       	  		
@@ -164,6 +218,7 @@
 		      alert("통신 실패.")
 		  }
 		});
+		 */
 		}
 		
 
@@ -192,10 +247,9 @@
     <div id="lecture-detail">
         <div class="player-box">
             <!-- <div id="playerWrapper" > -->
-            <div id="test">kkk</div>
                
                  <video id=video class="video-js" controls autoplay>
-                    <source id="sourceId" src="video/Forest.mp4" type="video/mp4">
+                    <source id="lecturePlayerSource" src="video/Forest.mp4" type="video/mp4">
                         video tag not find.
                 </video>
     

@@ -257,7 +257,7 @@ String user = (String) session.getAttribute("login_id");
 									<img class="listing__details__gallery__item__large"
 										src="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/lecture/${lecture.image}.jpg"
 										alt=""> <span><i class="fa fa-camera"></i>
-										${lecture.image} </span>
+										${lecture.name}</span>
 								</div>
 							</div>
 						</div>
@@ -270,7 +270,7 @@ String user = (String) session.getAttribute("login_id");
 										<img class="listing__details__gallery__item__large"
 											src="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/lecture/${lecture.image}detail.jpg"
 											alt=""> <span><i class="fa fa-camera"></i>
-											${lecture.image}detail </span>
+											${lecture.name}</span>
 									</div>
 								</div>
 							</div>

@@ -17,11 +17,21 @@ commit;
 
 drop sequence lecture_no_seq;
 
+drop sequence comments_no_seq;
+
 create sequence lecture_no_seq
 increment by 1
 start with 1
 minvalue 1
 maxvalue 100
+nocycle
+nocache;
+
+create sequence comments_no_seq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 200
 nocycle
 nocache;
 
@@ -76,20 +86,20 @@ commit;
 -------------------------------------
 
 INSERT INTO comments
-(member_id, lecture_id, content, regdate)
+(no, member_id, lecture_id, content, regdate)
 VALUES
-('member1', 1, '강사님 대박 재밌음ㅋㅋ', '21년05월26일');
+(comments_no_seq.nextval, 'member1', 1, '강사님 대박 재밌음ㅋㅋ', '21/05/26');
 
 
 INSERT INTO comments
-(member_id, lecture_id, content, regdate)
+(no, member_id, lecture_id, content, regdate)
 VALUES
-('member2', 1, '강사님처럼 유연하게 안되네여; ㅜㅜ', '21년05월26일');
+(comments_no_seq.nextval, 'member2', 1, '강사님처럼 유연하게 안되네여; ㅜㅜ', '21/05/26');
 
 
 INSERT INTO comments
-(member_id, lecture_id, content, regdate)
+(no, member_id, lecture_id, content, regdate)
 VALUES
-('member3', 1, '저도 맨날 재밌게 보고있어요! 덕분에 실력 금방 늘은듯', '21년05월25일');
+(comments_no_seq.nextval, 'member3', 1, '저도 맨날 재밌게 보고있어요! 덕분에 실력 금방 늘은듯', '21/05/25');
 
 commit;

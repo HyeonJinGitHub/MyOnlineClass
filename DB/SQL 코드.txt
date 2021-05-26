@@ -28,6 +28,7 @@ CREATE TABLE comments (
 
 ALTER TABLE comments ADD CONSTRAINT comment_pk PRIMARY KEY ( no );
 
+
 CREATE TABLE enrollment (
     member_id   VARCHAR2(30) NOT NULL,
     lecture_id  NUMBER(5) NOT NULL

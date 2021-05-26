@@ -16,25 +16,6 @@ public class LectureServiceImpl implements LectureService {
 	@Autowired
 	private LectureDAO lectureDAO;
 	
-	@Autowired
-	private InstructorDAO insturctorDAO;
-	
-	
-	@Override
-	public InstructorDTO getInstructor(long lectureNo) throws Exception {
-		try {
-			System.out.println();
-			InstructorDTO instructorDTO = insturctorDAO.getInstructor(lectureNo);
-			if (instructorDTO == null) {
-				throw new RuntimeException("잘못된 클래스 번호입니다.");
-			}
-			return instructorDTO;
-		} catch (Exception e) {
-			log.info(e.getMessage());
-			throw e;
-		}
-	}
-	
 	@Override
 	public LectureDTO getLecture(long lectureNo) throws Exception {
 		try {

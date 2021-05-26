@@ -127,10 +127,8 @@
 		}
    </style>
    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-	<script src="path/to/video.js/dist/video.js"></script>
-	<script src="path/to/videojs-playlist/dist/videojs-playlist.js"></script>
-	 <script>
+	
+	<script>
 	 
 	 
 	 

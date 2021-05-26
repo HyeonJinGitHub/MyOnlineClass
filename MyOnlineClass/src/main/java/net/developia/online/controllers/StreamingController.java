@@ -125,8 +125,7 @@ public class StreamingController{
 		return null;
 	}
 	
-	//@RequestMapping(value="/vodMain")
-	@RequestMapping(value="/vodTest")
+	@RequestMapping(value="/vodMain")
 	public ModelAndView vodMain(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession(true);
@@ -184,5 +183,86 @@ public class StreamingController{
 		return mav;
 
 	}
+	
+	@RequestMapping(value="/vodTest")
+	public ModelAndView vodTest(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession(true);
+		String user_id = (String)session.getAttribute("user_id");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		//ModelAndView mav = new ModelAndView("vodMain");
+		try {
+
+			//List<MyWordDTO> list = wordService.getWordList(user_id);
+			// 임의로 진행
+			List<VodDTO> list = new ArrayList<>();
+			VodDTO vodDTO= new VodDTO();
+			
+			vodDTO.setId(1);
+			vodDTO.setLesson(1);
+			vodDTO.setTitle("재미있는 스프링 환경설정");
+			vodDTO.setInformation("21:42");
+			vodDTO.setUrl("Forest.mp4");
+			list.add(vodDTO);
+			
+			VodDTO vod1DTO= new VodDTO();
+			vod1DTO.setId(1);
+			vod1DTO.setLesson(1);
+			vod1DTO.setTitle("씬나게 배워볼까용? DI");
+			vod1DTO.setInformation("12:42");
+			vod1DTO.setUrl("sample.mp4");
+			list.add(vod1DTO);
+			
+			VodDTO vodDTO2= new VodDTO();
+			vodDTO2.setId(1);
+			vodDTO2.setLesson(1);
+			vodDTO2.setTitle("배워보자!!!! AOP");
+			vodDTO2.setInformation("52:12");
+			vodDTO2.setUrl("sample2.mp4");
+			list.add(vodDTO2);
+			
+			
+			
+			mav.setViewName("vodTest");
+			mav.addObject("list", list);
+			String viewName = mav.getViewName();
+			Map<String, Object> model = mav.getModel();
+			for(String key : model.keySet()) {
+				request.setAttribute(key, model.get(key));
+			}
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewName);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mav;
+
+	}
+	
+	@RequestMapping(value="/vodExample")
+	public ModelAndView vodExample(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession(true);
+		String user_id = (String)session.getAttribute("user_id");
+		
+		ModelAndView mav = new ModelAndView();
+		
+			
+		mav.setViewName("vodExample");
+		
+		String viewName = mav.getViewName();
+		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewName);
+
+		
+		return mav;
+
+	}
+	
 	
 }

@@ -8,11 +8,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>fileupload & vod Streaming</title>
+    
     <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
    <style>
    
@@ -122,52 +124,91 @@
 		.lecture-time{
 			float: right;
 			padding: 0px 15px;
-			
-		
+			}
+		.jump{
+			background-color: rgb(60, 82, 255);
+			color: white;
+			border-radius: 5px;
+			/*border: 0;*/
+			margin: 12px;
+			padding: 10px 50px;
+			width: 100%;
 		}
+		
    </style>
    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+   <!-- <script src="videojs.min.js"></script> -->
+   <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+   
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-playLists/0.2.0/videojs-playlists.js"></script>
+	
+	<!-- <script src="videojs-playlist-ui.min.js"></script> -->
 
-	<script src="path/to/video.js/dist/video.js"></script>
-	<script src="path/to/videojs-playlist/dist/videojs-playlist.js"></script>
+
+	
 	 <script>
 	 
+	 var player = videojs('player');
+	 console.log(player);
+	    //player.playlistUi();
+
+	    player.playlist([{
+	        sources: [{
+	            src: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
+	            type: 'video/mp4'
+	        }],
+	        poster: 'http://media.w3.org/2010/05/sintel/poster.png'
+	        }, {
+	        sources: [{
+	            src: 'http://media.w3.org/2010/05/bunny/trailer.mp4',
+	            type: 'video/mp4'
+	        }],
+	        poster: 'http://media.w3.org/2010/05/bunny/poster.png'
+	        }, {
+	        sources: [{
+	            src: 'http://vjs.zencdn.net/v/oceans.mp4',
+	            type: 'video/mp4'
+	        }],
+	        poster: 'http://www.videojs.com/img/poster.jpg'
+	        }, {
+	        sources: [{
+	            src: 'http://media.w3.org/2010/05/bunny/movie.mp4',
+	            type: 'video/mp4'
+	        }],
+	        poster: 'http://media.w3.org/2010/05/bunny/poster.png'
+	        }, {
+	        sources: [{
+	            src: 'http://media.w3.org/2010/05/video/movie_300.mp4',
+	            type: 'video/mp4'
+	        }],
+	        poster: 'http://media.w3.org/2010/05/video/poster.png'
+	    }]);
+
+	       // Play through the playlist automatically. 
+	       player.playlist.autoadvance(0);
+	 /*
+		var player = videojs(document.querySelector('video'), {
+		  inactivityTimeout: 0
+		});
+	 */
+	 	
+		
+		function jump_click(){
+				console.log('hi');
+			  player.playlist.currentItem(2); // play third 
+		 }
+		
+		/*
+		document.querySelector('.jump').addEventListener('click', function() {
+			console.log('hi');
+			  player.playlist.currentItem(2); // play third
+		});
+		*/
+		
+		player.playlist.autoadvance(0);
 	 
-		 var player = videojs('video');
-		 player.playlist([{
-			  sources: [{
-			    src: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
-			    type: 'video/mp4'
-			  }],
-			  poster: 'http://media.w3.org/2010/05/sintel/poster.png'
-			}, {
-			  sources: [{
-			    src: 'http://media.w3.org/2010/05/bunny/trailer.mp4',
-			    type: 'video/mp4'
-			  }],
-			  poster: 'http://media.w3.org/2010/05/bunny/poster.png'
-			}, {
-			  sources: [{
-			    src: 'http://vjs.zencdn.net/v/oceans.mp4',
-			    type: 'video/mp4'
-			  }],
-			  poster: 'http://www.videojs.com/img/poster.jpg'
-			}, {
-			  sources: [{
-			    src: 'http://media.w3.org/2010/05/bunny/movie.mp4',
-			    type: 'video/mp4'
-			  }],
-			  poster: 'http://media.w3.org/2010/05/bunny/poster.png'
-			}, {
-			  sources: [{
-			    src: 'http://media.w3.org/2010/05/video/movie_300.mp4',
-			    type: 'video/mp4'
-			  }],
-			  poster: 'http://media.w3.org/2010/05/video/poster.png'
-			}]);
+		
 		 
-		 player.playlist.autoadvance(0); // play all
-	
 	 function button_upload(element){
    		
    		alert("강의가 추가되었습니다.");
@@ -189,16 +230,21 @@
 <div id="videoContainer">
   <h2>재미있는 스프링 강의</h2>
   <p>윤권 교수님</p>
+  <button class="jump" id="jump1" onclick="jump_click();">Play Third</button>
+  
+  
     <div id="lecture-detail">
         <div class="player-box">
             <!-- <div id="playerWrapper" > -->
 
-                 <video id=video class="video-js" controls autoplay>
-                    
+                 <video id="player" class="video-js" controls autoplay>
+                    <source id="lecturePlayerSource" src="video/Forest.mp4" type="video/mp4">
+                        video tag not find.
                 </video>
     
             <div id="lecture_div">
             	<h2 class="lecture-info__total">총 강의 수 : 3 </h2>
+            	
             	<ul id="lectureList" class="lecture-list">
             	<c:forEach var="dto" items="${list}" varStatus="statusNum">
             		
@@ -217,6 +263,7 @@
                    
               	</c:forEach>
               	</ul>
+              	
             </div>
             
             <div class=lecturer_div>

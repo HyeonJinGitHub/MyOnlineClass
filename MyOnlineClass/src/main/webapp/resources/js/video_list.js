@@ -3,19 +3,11 @@
 var getVideoData = function () {
 	return new Promise(function (resolve, reject) {
 		var videoData = [
-			{"idx": 1, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://cdn2-www.dogtime.com/assets/uploads/2018/11/dogs-fall-season-pictures-1.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 2, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 3, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://www.rspcansw.org.au/wp-content/uploads/2017/08/50_a-feature_dogs-and-puppies_mobile.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 4, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://cdn-prod.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 5, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://cdn2-www.dogtime.com/assets/uploads/2018/11/dogs-fall-season-pictures-1.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 6, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 7, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://www.rspcansw.org.au/wp-content/uploads/2017/08/50_a-feature_dogs-and-puppies_mobile.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 8, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://cdn-prod.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 9, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://cdn2-www.dogtime.com/assets/uploads/2018/11/dogs-fall-season-pictures-1.jpg", "isCheck": false, "tit": "Introduction"},
-			{"idx": 10, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 11, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://www.rspcansw.org.au/wp-content/uploads/2017/08/50_a-feature_dogs-and-puppies_mobile.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-			{"idx": 12, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://cdn-prod.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg", "isCheck": false, "tit": "Introduction", "time": 0},
-
+			
+			{"idx": 1, "src": "video/sample.mp4", "poster": "https://i.ibb.co/dBLbrRV/bg1.jpg", "isCheck": false, "tit": "스프링이란?", "time": 0},			
+			{"idx": 2, "src": "video/Forest.mp4", "poster": "https://i.ibb.co/dBLbrRV/bg1.jpg", "isCheck": false, "tit": "DI, Ioc 란?", "time": 0},
+			{"idx": 3, "src": "https://vjs.zencdn.net/v/oceans.mp4", "poster": "https://www.rspcansw.org.au/wp-content/uploads/2017/08/50_a-feature_dogs-and-puppies_mobile.jpg", "isCheck": false, "tit": "프로젝트", "time": 0},
+			
 		]
 		resolve(videoData);
 	})

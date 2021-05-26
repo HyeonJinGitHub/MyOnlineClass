@@ -1,0 +1,122 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2DFAB79A-784D-0151-589A-C4F7DA060C87" name="instructor">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 09:20:23 UTC</createdTime>
+<generatorID>E01FC615-3349-9436-814F-8F721EB2272A</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="C7CAD0A4-8C6C-0D64-5366-6B9D192D76F8" value="true"/>
+<item key="8D6AE103-2FC4-5952-1B83-B9B371D61AAF" value="true"/>
+<item key="29EE231D-3FAE-3411-A843-FA9020C5E93A" value="true"/>
+<item key="520F72B5-87FD-5CFD-8F1E-533D15324A6D" value="true"/>
+<item key="5A3464B4-5CEF-46C8-003D-4BEBBBD4C454" value="true"/>
+<item key="031281FB-9C75-AEBF-A355-97E01D4E2173" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="member id" id="F7F1614A-903A-E7EB-7ADC-B8FDF4EE6D1E">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 09:20:23 UTC</createdTime>
+<generatorID>F11AA993-3F39-4836-39C6-BD2006ABFD68</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="C7CAD0A4-8C6C-0D64-5366-6B9D192D76F8" value="true"/>
+<item key="8D6AE103-2FC4-5952-1B83-B9B371D61AAF" value="true"/>
+<item key="29EE231D-3FAE-3411-A843-FA9020C5E93A" value="true"/>
+<item key="520F72B5-87FD-5CFD-8F1E-533D15324A6D" value="true"/>
+<item key="5A3464B4-5CEF-46C8-003D-4BEBBBD4C454" value="true"/>
+<item key="031281FB-9C75-AEBF-A355-97E01D4E2173" value="true"/>
+</engineerTo>
+<referedAttribute>4008AF72-32B8-D41A-04E0-269A104A2E15</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nickname" id="C01D67B1-2B1A-A4B8-39B4-1DDEF0E6712E">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 09:20:23 UTC</createdTime>
+<generatorID>BE01C093-737B-75F8-645D-3D230BDEDA39</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="C7CAD0A4-8C6C-0D64-5366-6B9D192D76F8" value="true"/>
+<item key="8D6AE103-2FC4-5952-1B83-B9B371D61AAF" value="true"/>
+<item key="29EE231D-3FAE-3411-A843-FA9020C5E93A" value="true"/>
+<item key="520F72B5-87FD-5CFD-8F1E-533D15324A6D" value="true"/>
+<item key="5A3464B4-5CEF-46C8-003D-4BEBBBD4C454" value="true"/>
+<item key="031281FB-9C75-AEBF-A355-97E01D4E2173" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="introduce" id="736A49F7-6CAF-11CB-FE5E-B10688D3252F">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 09:20:23 UTC</createdTime>
+<generatorID>3412E4EA-FF47-D082-49E0-15849825BE15</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="C7CAD0A4-8C6C-0D64-5366-6B9D192D76F8" value="true"/>
+<item key="8D6AE103-2FC4-5952-1B83-B9B371D61AAF" value="true"/>
+<item key="29EE231D-3FAE-3411-A843-FA9020C5E93A" value="true"/>
+<item key="520F72B5-87FD-5CFD-8F1E-533D15324A6D" value="true"/>
+<item key="5A3464B4-5CEF-46C8-003D-4BEBBBD4C454" value="true"/>
+<item key="031281FB-9C75-AEBF-A355-97E01D4E2173" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="image" id="4FA8DDD9-75DB-1B5B-72EE-FF40E65E6F27">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 09:20:23 UTC</createdTime>
+<generatorID>F28F1396-379B-D6C3-2B22-36DA03ADB21B</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="C7CAD0A4-8C6C-0D64-5366-6B9D192D76F8" value="true"/>
+<item key="8D6AE103-2FC4-5952-1B83-B9B371D61AAF" value="true"/>
+<item key="29EE231D-3FAE-3411-A843-FA9020C5E93A" value="true"/>
+<item key="520F72B5-87FD-5CFD-8F1E-533D15324A6D" value="true"/>
+<item key="5A3464B4-5CEF-46C8-003D-4BEBBBD4C454" value="true"/>
+<item key="031281FB-9C75-AEBF-A355-97E01D4E2173" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0CB0A54D-F517-24CB-B153-1DE4D17483F0" name="instructor PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 09:20:23 UTC</createdTime>
+<generatorID>D85C515A-6965-E908-E7B1-6C153F1791CB</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="C7CAD0A4-8C6C-0D64-5366-6B9D192D76F8" value="true"/>
+<item key="8D6AE103-2FC4-5952-1B83-B9B371D61AAF" value="true"/>
+<item key="29EE231D-3FAE-3411-A843-FA9020C5E93A" value="true"/>
+<item key="520F72B5-87FD-5CFD-8F1E-533D15324A6D" value="true"/>
+<item key="5A3464B4-5CEF-46C8-003D-4BEBBBD4C454" value="true"/>
+<item key="031281FB-9C75-AEBF-A355-97E01D4E2173" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F7F1614A-903A-E7EB-7ADC-B8FDF4EE6D1E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

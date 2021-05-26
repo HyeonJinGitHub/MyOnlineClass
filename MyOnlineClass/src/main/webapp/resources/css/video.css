@@ -1,0 +1,355 @@
+/*
+ * reset
+*/
+
+h2 {
+      	color:white;
+      	padding: 0px 5px;
+      	margin: 40px 200px 20px 200px;
+}
+
+p {
+		color:white;
+		font-size:15px;
+		padding: 0px 5px;
+		margin: 10px 200px 0px 200px;
+}
+
+
+body{
+	margin:0;
+	
+	/*background-color:black;*/
+	background-color: #484848;
+}
+
+ul{
+	padding:0;
+}
+
+/*
+ * video css
+ */
+
+.video__wrap{
+	position: relative;
+}
+
+.video__wrap::after{
+	content:"";
+	display: block;
+	clear:both;
+}
+
+.video__wrap > .video__contents{
+	float:left;
+	width:80%;
+}
+
+.video__wrap > .video__contents > .video__box{
+	position: relative;
+	padding: 2% 10%;
+	box-sizing: border-box;
+	margin: 0px 20px 30px 50px;
+	
+}
+
+.video__wrap > .video__contents > .video__box > .video__tit{
+	padding-bottom: 1rem;
+	font-size: 1.2857rem;
+	color:#fff;
+}
+
+.video__wrap > .video__contents > .video__box .video__inner-box{
+	position: relative;
+	height: 0;
+	overflow: hidden;
+	padding-bottom: 56%;
+	box-sizing: border-box;
+}
+
+.video__wrap > .video__contents > .video__box .video__inner-box iframe{
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height: 100%;
+}
+
+.video__wrap > .video__nav{
+	position: absolute;
+	/*top:0;*/
+	right: 0;
+	width:20%;
+    
+    margin: 20px 120px 30px 10px;
+    
+}
+
+.lecturer_div{
+     display: flex;
+     justify-content: space-between;        
+     margin: 10px 40px 10px 10px;
+}
+
+.vodSelect {
+	background-color: gray;
+	color: white !important;
+	border-radius: 5px !important;
+	/*border: 0;*/
+	margin: 12px !important;
+	padding: 10px 50px !important;
+	width: 100% !important;
+}
+		
+.vodUpload{
+	background-color: rgb(255, 80, 90) !important;
+	color: white !important;
+	border-radius: 5px !important;
+	/*border: 0;*/
+	margin: 12px !important;
+	width: 100% !important;
+	padding: 10px 50px !important;
+}
+
+
+
+/*
+Player Skin Designer for Video.js
+http://videojs.com
+
+To customize the player skin edit 
+the CSS below. Click "details" 
+below to add comments or questions.
+This file uses some SCSS. Learn more  
+at http://sass-lang.com/guide)
+
+This designer can be linked to at:
+https://codepen.io/heff/pen/EarCt/left/?editors=010
+*/
+.video-js {
+/* The base font size controls the size of everything, not just text.
+	All dimensions use em-based sizes so that the scale along with the font size.
+	Try increasing it to 15px and see what happens. */
+font-size: 10px;
+/* The main font color changes the ICON COLORS as well as the text */
+color: #fff;
+}
+
+/* The "Big Play Button" is the play button that shows before the video plays.
+To center it set the align values to center and middle. The typical location
+of the button is the center, but there is trend towards moving it to a corner
+where it gets out of the way of valuable content in the poster image.*/
+.vjs-default-skin .vjs-big-play-button {
+/* The font size is what makes the big play button...big. 
+	All width/height values use ems, which are a multiple of the font size.
+	If the .video-js font-size is 10px, then 3em equals 30px.*/
+font-size: 3em;
+/* We're using SCSS vars here because the values are used in multiple places.
+	Now that font size is set, the following em values will be a multiple of the
+	new font size. If the font-size is 3em (30px), then setting any of
+	the following values to 3em would equal 30px. 3 * font-size. */
+/* 1.5em = 45px default */
+line-height: 1.5em;
+height: 1.5em;
+width: 3em;
+/* 0.06666em = 2px default */
+border: 0.06666em solid #fff;
+/* 0.3em = 9px default */
+border-radius: 0.3em;
+/* Align top left. 0.5em = 15px default */
+left: 0.5em;
+top: 0.5em;
+}
+
+/* The default color of control backgrounds is mostly black but with a little
+bit of blue so it can still be seen on all-black video frames, which are common. */
+.video-js .vjs-control-bar,
+.video-js .vjs-big-play-button,
+.video-js .vjs-menu-button .vjs-menu-content {
+/* IE8 - has no alpha support */
+background-color: #2B333F;
+/* Opacity: 1.0 = 100%, 0.0 = 0% */
+background-color: rgba(43, 51, 63, 0.7);
+}
+
+/* Slider - used for Volume bar and Progress bar */
+.video-js .vjs-slider {
+background-color: #73859f;
+background-color: rgba(115, 133, 159, 0.5);
+}
+
+/* The slider bar color is used for the progress bar and the volume bar
+(the first two can be removed after a fix that's coming) */
+.video-js .vjs-volume-level,
+.video-js .vjs-play-progress,
+.video-js .vjs-slider-bar {
+background: #fff;
+}
+
+/* The main progress bar also has a bar that shows how much has been loaded. */
+.video-js .vjs-load-progress {
+/* For IE8 we'll lighten the color */
+background: #bfc7d3;
+/* Otherwise we'll rely on stacked opacities */
+background: rgba(115, 133, 159, 0.5);
+}
+
+/* The load progress bar also has internal divs that represent
+smaller disconnected loaded time ranges */
+.video-js .vjs-load-progress div {
+/* For IE8 we'll lighten the color */
+background: white;
+/* Otherwise we'll rely on stacked opacities */
+background: rgba(115, 133, 159, 0.75);
+}
+
+
+
+/*
+* video-list-nav
+*/
+
+.video__nav-top{
+	position: relative;
+}
+
+.video__nav-inner{
+	padding:10px 0;
+	max-height: 667px;
+	overflow: auto;
+	
+}
+
+.video__nav-tit{
+	font-size: 1.2857rem;
+	padding:10px;
+	/*추가된 부분*/
+	color:white;
+}
+
+.video__nav-top .video__nav-close{
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translate(0,-50%);
+	cursor:pointer;
+}
+
+.video__menu li{
+	position: relative;
+	padding: 10px;
+	border-bottom: 1px solid #d7d7d7;
+}
+
+.video__menu li:first-child{
+	border-top:1px solid #d7d7d7;
+}
+
+.video__menu li.complate{
+	/*background-color: #f3f3f3;*/
+	background-color:black;
+	
+	color:#999;
+}
+
+.video__menu li:hover{
+	/* 변경됨*/
+	/*background-color: #f3f3f3;*/
+	background-color:darkkhaki;
+
+}
+
+.video__items.active{
+	border-left: 4px solid #80b946;
+	/*변경된 부분*/
+	/*background-color: #f3f3f3;*/
+	background-color:gray;
+
+
+
+}
+
+.video__items-tit{
+	display: block;
+	/*추가된 부분 */
+	color:white;
+}
+
+.video__player-icon {
+	display: block;
+	margin-top: 8px;
+}
+
+
+.video__player-icon svg,.video__player-time{
+	display: inline-block;
+	vertical-align: middle;
+    
+    /*추가된 부분*/
+	color: white;
+}
+
+
+.video__player-icon svg path{
+	fill:#9f9f9f;
+}
+
+.video__player-icon svg.success path{
+	fill:#72a341;
+}
+
+.video__player-icon svg:hover path{
+	fill:#555;
+}
+
+.video__player-icon svg.success+.video__player-time{
+	color:#72a341;
+}
+
+.video__more-btn{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -40px;
+	width: 40px;
+	height: 40px;
+	background: #e00322;
+	color: #fff;
+}
+
+.video__more-btn.off{
+	display: none;
+}
+
+.vjs-icon-placeholder{
+	line-height: 46px;
+}
+
+.vidoe__btn-box{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+}
+
+/*.vidoe__btn-box button{*/
+.vidoe__btn-box button{
+	position: absolute;
+	display: block;
+	padding: 10px;
+	background-color: rgba(43, 51, 63, 0.75);
+	color: #fff;
+}
+
+.vidoe__btn-box button:hover{
+	opacity: .8;
+}
+
+.video__prev-btn{
+	left:0;
+}
+
+.video__next-btn{
+	right:0;
+}

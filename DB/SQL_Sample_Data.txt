@@ -10,10 +10,14 @@ commit;
 ------------------------
 
 /* SQL Sample Data */
-				ver.21.05.25
+				ver.21.05.26
+- 회원가입 아이디를 member1 또는 member2로 생성하면 샘플데이터 이용하기 좋음!
+- lecture id 값 시퀀스 적용 X 임의로 설정 
 ------------------------
 
 drop sequence lecture_no_seq;
+
+drop sequence comments_no_seq;
 
 create sequence lecture_no_seq
 increment by 1
@@ -23,33 +27,79 @@ maxvalue 100
 nocycle
 nocache;
 
-INSERT INTO instructor
-(member_id, nickname, introduce, image)
-VALUES ('member1', '요가소녀', '안녕하세요. 요가 경력 10년차 요가소녀입니다.', 'instructor01');
+create sequence comments_no_seq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 200
+nocycle
+nocache;
+
+INSERT INTO member
+(id, password, name, email, phone)
+VALUES('member1', '11', '김소녀', 'kimsn@gmail.com', '010-1111-2222');
+
+INSERT INTO member
+(id, password, name, email, phone)
+VALUES('member2', '22', '이구구', 'gugu@gmail.com', '010-1212-3434');
+
+INSERT INTO member
+(id, password, name, email, phone)
+VALUES('member3', '33', '최말랭', 'mal3@gmail.com', '010-1222-3874');
+
+
 
 INSERT INTO instructor
 (member_id, nickname, introduce, image)
-VALUES ('member2', '이그림', '유화 전문 이그림입니다. 온라인 수업으로 함께 만나요!', 'instructor02');
+VALUES ('member1', '요가소녀', '안녕하세요. <br> 요가 경력 10년차 요가소녀입니다.', 'instructor01');
 
-INSERT INTO LECTURE
+INSERT INTO instructor
+(member_id, nickname, introduce, image)
+VALUES ('member2', '이그림', '유화 전문 이그림입니다. <br>온라인 수업으로 함께 만나요!', 'instructor02');
+
+
+
+INSERT INTO lecture
 (id, name, genre, image, duration, caution, introduce, thumbnail)
-VALUES (1, 'Healing Yoga', '운동', 'lecture1', 30, '준비물 : 요가복, 요가매트', ' 당신의 지친 마음을 테라피할 수 있는 힐링 요가입니다. 함께 몸을 풀면서 힐링해요. 초보자도 참여 가능합니다.', 'lecture1detail');
+VALUES (1, 'Healing Yoga', '운동', 'lecture1', 30, '준비물 : 요가복, 요가매트', ' 지친 몸과 마음을 테라피할 수 있는 힐링 요가입니다. <br> 함께 몸을 풀면서 힐링해요. <br> 초보자도 참여 가능합니다.', 'lecture1detail');
 
-INSERT INTO LECTURE
+INSERT INTO lecture
 (id, name, genre, image, duration, caution, introduce, thumbnail)
-VALUES (2, '이그림과 함께하는 유화 클래스', '예술', 'lecture2', 90, '유화 클래스에 필요한 재료는 별도 구매입니다.', ' 수년간 전문 강사로 활동해 온 이그림입니다. 저를 믿고 함께 유화 클래스에 도전해봅시다.', 'lecture2detail');
+VALUES (2, '이그림과 함께하는 유화 클래스', '예술', 'lecture2', 90, '유화 클래스에 필요한 재료는 별도 구매입니다.', ' 수년간 전문 강사로 활동해 온 이그림입니다. <br> 저를 믿고 함께 유화 클래스에 도전해봅시다.', 'lecture2detail');
 
-INSERT INTO ENROLLMENT
+
+
+INSERT INTO enrollment
 (member_id, lecture_id)
 VALUES ('member1', 1);
 
-INSERT INTO ENROLLMENT
+INSERT INTO enrollment
 (member_id, lecture_id)
 VALUES ('member2', 2);
 
-/-----------
-lecture id 값 시퀀스 적용 X 임의로 설정 
-instructor 로그인 할 수 있도록 Password 추가
-Lecture 썸네일 : [image] .jpg
-이외 세부 내용에 추가 이미지 사용 : [image] detail.jpg 로 이름 통일 
---------------/
+
+commit;
+
+-------------------------------------
+/* Comments Table */
+- REGDATE format 'yy/MM/dd'
+-------------------------------------
+
+INSERT INTO comments
+(no, member_id, lecture_id, content, regdate)
+VALUES
+(comments_no_seq.nextval, 'member1', 1, '강사님 대박 재밌음ㅋㅋ', '21/05/26');
+
+
+INSERT INTO comments
+(no, member_id, lecture_id, content, regdate)
+VALUES
+(comments_no_seq.nextval, 'member2', 1, '강사님처럼 유연하게 안되네여; ㅜㅜ', '21/05/26');
+
+
+INSERT INTO comments
+(no, member_id, lecture_id, content, regdate)
+VALUES
+(comments_no_seq.nextval, 'member3', 1, '저도 맨날 재밌게 보고있어요! 덕분에 실력 금방 늘은듯', '21/05/25');
+
+commit;

@@ -1,3 +1,4 @@
+drop package member_pkg;
 create or replace package member_pkg
 is
     procedure insert_member(input_id in varchar2,
@@ -39,7 +40,15 @@ is
 
     procedure find_pw(input_id in varchar2,
     res out number);
+    
+    procedure get_member_lecture(input_id in varchar2,
+    res_cur out sys_refcursor);
+    
+    procedure get_member_lecture_date(input_memberid in varchar2,
+    input_lectureid in varchar2,
+    res_cur out sys_refcursor);
 end member_pkg;
+
 create or replace package body member_pkg
 is
     procedure insert_member(input_id in varchar2,
@@ -177,4 +186,27 @@ is
         from member
         where id = input_id;
     end find_pw;
+    
+    procedure get_member_lecture(input_id in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select * from lecture
+        where id = 
+        (select lecture_id from member_lecture
+        where member_id = input_id);
+    end get_member_lecture;
+    
+    procedure get_member_lecture_date(input_memberid in varchar2,
+    input_lectureid in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select start_date, end_date
+        from member_lecture
+        where lecture_id = input_lectureid and 
+        member_id = input_memberid;
+    end get_member_lecture_date;
 end member_pkg;

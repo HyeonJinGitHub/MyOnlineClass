@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+String user = (String) session.getAttribute("login_id");
+%>
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
 <!DOCTYPE html>
@@ -192,7 +195,6 @@
 	}
 </script>
 
-</script>
 </head>
 
 <body>
@@ -200,47 +202,11 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
+	<div>
+		<!-- Header Section Begin -->
 
-	<!-- Header Section Begin 
-    <header class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-9">
-                    <div class="header__nav">
-                        <nav class="header__menu mobile-menu">
-                            <ul>
-                                <li><a href="./index.html">Home</a></li>
-                                <li class="active"><a href="./listing.html">Listing</a></li>
-                                <li><a href="#">Categories</a></li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./about.html">About</a></li>
-                                        <li><a href="./listing-details.html">Listing Details</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./contact.html">Contact</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="#">Shop</a></li>
-                            </ul>
-                        </nav>
-                        <div class="header__menu__right">
-                            <a href="#" class="primary-btn"><i class="fa fa-plus"></i>Add Listing</a>
-                            <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
-    </header>
-    <!-- Header Section End -->
-
+		<!-- Header Section End -->
+	</div>
 	<!-- Listing Section Begin -->
 	<section class="listing-hero set-bg"
 		data-setbg="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/listing-hero.jpg">
@@ -262,14 +228,14 @@
 									<span class="icon_star-half_alt"></span>
 								</div>
 							</div>
-							<div>수강 일자 : ${lecture.duration}</div>
+							<div>${lecture.duration}일과정</div>
 							<p>${lecture.genre}</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="listing__hero__btns">
-						<a href="#" class="primary-btn share-btn"><i
+						<a href="javascript:history.back()" class="primary-btn share-btn"><i
 							class="fa fa-mail-reply"></i> 뒤로가기</a> <a href="#"
 							class="primary-btn"><i class="fa fa-bookmark"></i> 수강신청</a>
 					</div>
@@ -297,8 +263,7 @@
 						</div>
 						<div class="listing__details__about">
 							<h4>Information</h4>
-							<p>강좌 소개</p>
-							<p>${lecture.introduce}</p>
+							<p>${lecture.introduce}</p><br>
 							<div class="listing__details__gallery">
 								<div class="listing__details__gallery__pic">
 									<div class="listing__details__gallery__item">
@@ -312,8 +277,7 @@
 						</div>
 						<div class="listing__details__about">
 							<h4>Caution</h4>
-							<p>주의 사항 | 조건 | 준비물</p>
-							<p>${lecture.caution}</p>
+							<p>${lecture.caution}</p><br>
 						</div>
 						<div class="listing__details__amenities">
 							<h4>Amenities</h4>
@@ -397,17 +361,18 @@
 									alt="" height="100px">
 							</div>
 							<div class="listing__sidebar__contact__text">
-								<h6>담당 강사</h6>
+								<h6> 강사</h6>
 								<h4>${instructor.nickname}</h4>
 								<ul>
+									<li><br></li>
 									<li><span class="icon_phone"></span>${instructor.phone}</li>
-									<li><span class="icon_mail_alt"></span> ${instructor.nickname}
-										@ gmail.com</li>
+									<li><span class="icon_mail_alt"></span>
+										${instructor.email}</li>
 									<li><span class="icon_globe-2"></span> https://hyundai.com</li>
-									<li>────────────</li>
+									<li><br></li>
 									<li>${instructor.introduce}</li>
 								</ul>
-								<div class="listing__details__review">
+								<div class="listing__details__review" style="text-align: center;">
 									<button type="submit" class="site-btn">수강신청</button>
 								</div>
 							</div>
@@ -415,8 +380,8 @@
 						<div class="listing__sidebar__working__hours">
 							<h4>수강기간</h4>
 							<ul>
-								<li>${lecture.duration}<span class="opening">Opening</span></li>
-								<li>${lecture.duration}일 뒤<span class="closed">Closed</span></li>
+								<li>NOW<span class="opening">Opening</span></li>
+								<li>+ ${lecture.duration} Days<span class="closed">Closed</span></li>
 							</ul>
 						</div>
 					</div>

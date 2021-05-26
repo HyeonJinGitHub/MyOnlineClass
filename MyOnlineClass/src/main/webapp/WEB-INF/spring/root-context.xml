@@ -15,7 +15,7 @@
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		p:username="${username}" p:password="${password}" p:jdbcUrl="${url}"
 		p:driverClassName="${driver}" p:maximumPoolSize="20" />
-		
+
 	<!-- userDAO start -->
 	<bean id="MemberSqlSession"
 		class="org.mybatis.spring.SqlSessionFactoryBean"
@@ -49,4 +49,16 @@
 		class="org.mybatis.spring.mapper.MapperFactoryBean"
 		p:sqlSessionFactory-ref="InstructorSqlSession"
 		p:mapperInterface="net.developia.online.dao.InstructorDAO" />
+
+
+	<!-- CommentDAO -->
+	<bean id="CommentSqlSession"
+		class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="net.developia.online.dto" />
+
+	<bean id="CommentDAO"
+		class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:sqlSessionFactory-ref="CommentSqlSession"
+		p:mapperInterface="net.developia.online.dao.CommentDAO" />
 </beans>

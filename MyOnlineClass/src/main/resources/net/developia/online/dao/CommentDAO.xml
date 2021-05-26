@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.online.dao.CommentDAO">
+
+	<select id="getCommentList" parameterType="long"
+		resultType="CommentDTO">
+		<![CDATA[
+		SELECT comments.no, comments.member_id, member.name, comments.lecture_id, comments.content, comments.regdate 
+		FROM comments JOIN member ON comments.member_id = member.id
+		WHERE comments.lecture_id = #{lectureNo}
+		ORDER BY comments.no DESC;
+	]]>
+	</select>
+
+	<insert id="insertComment" parameterType="CommentDTO">
+		INSERT into
+		comments(no, member_id, lecture_id, content, comments.regdate)
+		VALUES(comments_no_seq.nextval, #{member_id}, #{lecture_id}, #{content}, #{regdate})
+	</insert>
+
+	<delete id="deleteComment" parameterType="CommentDTO">
+		DELETE FROM comments
+		WHERE no = #{no} and member_id = #{member_id}
+	</delete>
+
+	<update id="updateComment" parameterType="CommentDTO">
+		UPDATE comments SET
+		content = #{content}
+		where no = #{no} and member_id = #{member_id}
+	</update>
+</mapper>

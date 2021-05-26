@@ -3,10 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-String user = (String) session.getAttribute("login_id");
+String user = (String) session.getAttribute("member_id");
 %>
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
+<c:set var="comment" value="${commentDTO}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,28 +142,40 @@ String user = (String) session.getAttribute("login_id");
 	}
 
 	function displayCommentList(data) {
-		var mytable = "<table border='0'><tr><td>";
-		$
-				.each(
-						data,
-						function(key, val) {
-							mytable += "<table border='0'><tr><td>"
-									+ val['com_no'] + ","
-									+ val['userDTO']['usr_id'];
-							mytable += "(" + val['userDTO']['usr_name'] + ")"
-									+ "</td></tr>";
-							if (val['userDTO']['usr_id'] == '${sessionScope.userInfo.usr_id}') {
-								mytable += "<tr><td><span class='ui-icon ui-icon-closethick btnDeleteOk' myval='" + val['com_no'] + "' style='cursor:pointer' /></td></tr>";
-								mytable += "<tr><td><span class='ui-icon ui-icon-pencil     btnUpdateOk' myval='" + val['com_no'] + "' style='cursor:pointer' /></td></tr>";
-							}
-							mytable += "<tr><td><span id='com_" + val['com_no']+ "'>"
-									+ val['com_content']
-									+ "</span></td></tr></table><br/>";
-						});
-		mytable += "</td></tr></table>";
-
-		$('#commentDisplay').html(mytable);
-		myCommentEvent();
+		var commentSection;
+		$.each(
+				data,
+				function(key, val){
+					commentSection = "<div class='listing__details__comment__item'>"
+						+ "<div class='listing__details__comment__item__pic'>"
+						+ "<img src='${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png' alt=''>"
+						+ "</div>"
+						+ "<div class='listing__details__comment__item__text'>"
+						+ "<div class='listing__details__comment__item__rating'>"
+						+ "<i class='fa fa-star'></i>"
+						+ "<i class='fa fa-star'></i>"
+						+ "<i class='fa fa-star'></i>"
+						+ "<i class='fa fa-star'></i>"
+						+ "<i class='fa fa-star'></i>"
+						+ "</div>";
+					commentSection += "<span>"
+								   + val['regdate']
+								   + "</span>"
+								   + "<h5>"
+								   + val['member_name']
+								   + "</h5>"
+								   + "<p>"
+								   + val['content']
+								   + "</p>";
+					commentSection += "<ul>"
+								   + "<li><i class='fa fa-hand-o-right'></i> Like</li>"
+								   + "<li><i class='fa fa-share-square-o'></i> Reply</li>"
+								   + "</ul>"
+								   + "</div>"
+								   + "</div>";
+					});
+			$('#commentDisplay').html(commentSection);
+			CommentEvent();
 	}
 
 	$(document).ready(function() {
@@ -263,7 +276,8 @@ String user = (String) session.getAttribute("login_id");
 						</div>
 						<div class="listing__details__about">
 							<h4>Information</h4>
-							<p>${lecture.introduce}</p><br>
+							<p>${lecture.introduce}</p>
+							<br>
 							<div class="listing__details__gallery">
 								<div class="listing__details__gallery__pic">
 									<div class="listing__details__gallery__item">
@@ -277,7 +291,8 @@ String user = (String) session.getAttribute("login_id");
 						</div>
 						<div class="listing__details__about">
 							<h4>Caution</h4>
-							<p>${lecture.caution}</p><br>
+							<p>${lecture.caution}</p>
+							<br>
 						</div>
 						<div class="listing__details__amenities">
 							<h4>Amenities</h4>
@@ -319,6 +334,7 @@ String user = (String) session.getAttribute("login_id");
 
 						<div class="listing__details__comment">
 							<h4>Comment</h4>
+							<div id="commentDisplay"></div>
 							<div class="listing__details__comment__item">
 								<div class="listing__details__comment__item__pic">
 									<img
@@ -352,6 +368,7 @@ String user = (String) session.getAttribute("login_id");
 						</div>
 					</div>
 				</div>
+	<!-- Instructor Section Begin -->
 				<div class="col-lg-4">
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
@@ -361,7 +378,7 @@ String user = (String) session.getAttribute("login_id");
 									alt="" height="100px">
 							</div>
 							<div class="listing__sidebar__contact__text">
-								<h6> 강사</h6>
+								<h6>강사</h6>
 								<h4>${instructor.nickname}</h4>
 								<ul>
 									<li><br></li>
@@ -372,7 +389,8 @@ String user = (String) session.getAttribute("login_id");
 									<li><br></li>
 									<li>${instructor.introduce}</li>
 								</ul>
-								<div class="listing__details__review" style="text-align: center;">
+								<div class="listing__details__review"
+									style="text-align: center;">
 									<button type="submit" class="site-btn">수강신청</button>
 								</div>
 							</div>
@@ -389,7 +407,7 @@ String user = (String) session.getAttribute("login_id");
 			</div>
 		</div>
 	</section>
-	<!-- Listing Details Section End -->
+	<!-- Instructor Section End -->
 
 	<!-- Footer Section Begin-->
 	<footer class="footer">

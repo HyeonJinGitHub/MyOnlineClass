@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="80B8110C-F4A5-6D41-A1B1-EE40F3F6DD4A" name="comments">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 05:36:17 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>32C90F89-0AAD-AC97-06C7-F0BB51C7C986</importedID>
+<ordsAlias>table_10</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="member_id" id="84755DB7-D7EE-2549-4BC4-C59FDB4A9B43">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 05:36:17 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>C173AC9D-2ED4-45F2-691F-3C9B82288259</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="300160FB-A019-9453-E97B-68042E15F32B" referredColumn="FD3A50AF-80BB-E89E-BF97-60B6FE3F94EC"/>
+</associations>
+</Column>
+<Column name="lecture_id" id="D8676EE4-D91E-3BEF-950D-8082FE9E0937">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 05:36:17 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>9AFA7147-A168-C23F-5AB4-3D5F5CA0ACD2</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1F3776A9-340D-6FA5-71E6-8E35C1E01E66" referredColumn="CD563F81-0437-BDF0-578B-EA39E434DB73"/>
+</associations>
+</Column>
+<Column name="content" id="40364E8C-71EA-6035-CFC8-AFBAE3B88F5C">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 05:36:17 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>3865FB97-DB28-586B-0F90-D10C322E10AB</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="regdate" id="8DA3DE51-DFC0-5F83-121D-DAA9CE89A5B5">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 05:36:17 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>58CF6FEF-5A16-B72B-0410-3889DD647C6B</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D0592236-EF2B-BA82-365A-872258DC4D57" name="comment_PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 05:36:17 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>6CD434EB-2C66-5DA6-985C-E25703F60422</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="84755DB7-D7EE-2549-4BC4-C59FDB4A9B43"/>
+<colUsage columnID="D8676EE4-D91E-3BEF-950D-8082FE9E0937"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A853DB4D-5EC3-8393-15F7-F3B4475B2A3F" name="comment_member_FK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 05:36:17 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="84755DB7-D7EE-2549-4BC4-C59FDB4A9B43"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C28EA3D4-4126-486A-39D2-09B0C94C270B" name="comment_lecture_FK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 05:36:17 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D8676EE4-D91E-3BEF-950D-8082FE9E0937"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

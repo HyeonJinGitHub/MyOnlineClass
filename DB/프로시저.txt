@@ -1,0 +1,212 @@
+drop package member_pkg;
+create or replace package member_pkg
+is
+    procedure insert_member(input_id in varchar2,
+        input_password in varchar2,
+        input_name in varchar2,
+        input_email in varchar2,
+        input_phoneNumber in varchar2);
+
+    procedure select_memberById(input_id in varchar2,
+    res_cur out sys_refcursor);
+
+    procedure select_memberByEmail(input_email in varchar2,
+    res_cur out sys_refcursor);
+
+    procedure select_memberByPhone(input_phone in varchar2,
+    res_cur out sys_refcursor);
+
+    procedure login_member(input_id in varchar2,
+    input_pw in varchar2,
+    res_cur out sys_refcursor);
+
+    procedure update_member(input_id in varchar2,
+    input_password in varchar2,
+    input_email in varchar2,
+    input_phoneNumber in varchar2,
+    res out number);
+
+    procedure update_password(input_id in varchar2,
+    prev_password in varchar2,
+    new_password in varchar2,
+    res out number);
+
+    procedure delete_member(input_id in varchar2,
+    input_password in varchar2,
+    res out number);
+
+    procedure find_id(input_email in varchar2,
+    res out number);
+
+    procedure find_pw(input_id in varchar2,
+    res out number);
+    
+    procedure get_member_lecture(input_id in varchar2,
+    res_cur out sys_refcursor);
+    
+    procedure get_member_lecture_date(input_memberid in varchar2,
+    input_lectureid in varchar2,
+    res_cur out sys_refcursor);
+end member_pkg;
+
+create or replace package body member_pkg
+is
+    procedure insert_member(input_id in varchar2,
+        input_password in varchar2,
+        input_name in varchar2,
+        input_email in varchar2,
+        input_phoneNumber in varchar2)
+    as
+    begin  
+        insert into member(id, password, name, email, phone)
+        values(input_id, input_password, input_name, input_email,
+        input_phoneNumber);
+        commit;
+    end insert_member;
+
+    procedure select_memberById(input_id in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select * from member
+        where id = input_id;
+    end select_memberById;
+
+    procedure select_memberByEmail(input_email in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select * from member
+        where email = input_email;
+    end select_memberByEmail;
+
+    procedure select_memberByPhone(input_phone in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select * from member
+        where phone = input_phone;
+    end select_memberByPhone;
+
+    procedure login_member(input_id in varchar2,
+    input_pw in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select * from member
+        where id = input_id and password = input_pw;
+    end login_member;
+
+    procedure update_member(input_id in varchar2,
+    input_password in varchar2,
+    input_email in varchar2,
+    input_phoneNumber in varchar2,
+    res out number)
+    as
+        cnt number(5);
+    begin
+        select count(*) into cnt
+        from member
+        where id = input_id
+        and password = input_password;
+
+        if cnt > 0  then
+            res := 1;
+            update member
+            set email = input_email,
+            phone = input_phoneNumber
+            where id = input_id and password = input_password;
+            commit;
+        else
+            res := 0;
+        end if;
+    end update_member;  
+
+    procedure update_password(input_id in varchar2,
+    prev_password in varchar2,
+    new_password in varchar2,
+    res out number)
+    as
+    prev_pwd varchar2(200);
+    begin
+        select password into prev_pwd
+        from member
+        where id = input_id;
+
+        if prev_password = prev_pwd then
+            update member
+            set password = new_password
+            where id = input_id;
+            res := 1;
+            commit;
+        else
+            res := 0;
+        end if;
+    end update_password;
+
+    procedure delete_member(input_id in varchar2,
+    input_password in varchar2,
+    res out number)
+    as
+        cnt number(5);
+    begin
+        select count(*) into cnt
+        from member
+        where id = input_id and
+        password = input_password;
+
+        if cnt > 0 then
+            delete from member
+            where id = input_id;
+            commit;
+            res := 1;
+        else
+            res := 0;
+        end if;
+    end delete_member;
+
+    procedure find_id(input_email in varchar2,
+    res out number)
+    as
+    begin
+        select count(*) into res
+        from member
+        where email = input_email;
+    end find_id;
+
+    procedure find_pw(input_id in varchar2,
+    res out number)
+    as
+    begin
+        select count(*) into res
+        from member
+        where id = input_id;
+    end find_pw;
+    
+    procedure get_member_lecture(input_id in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select * from lecture
+        where id = 
+        (select lecture_id from member_lecture
+        where member_id = input_id);
+    end get_member_lecture;
+    
+    procedure get_member_lecture_date(input_memberid in varchar2,
+    input_lectureid in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select start_date, end_date
+        from member_lecture
+        where lecture_id = input_lectureid and 
+        member_id = input_memberid;
+    end get_member_lecture_date;
+end member_pkg;

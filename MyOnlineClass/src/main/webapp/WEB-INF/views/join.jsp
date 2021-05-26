@@ -23,57 +23,10 @@
   <meta name="author" content="">
 
   <title>회원가입 | Hyundai Cosmetic</title>
-
-     <link rel="stylesheet" 
-href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
-crossorigin="anonymous">
-
-<!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!--  Custom styles for this template-->
-<link href="${pageContext.request.contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
-
+ <c:import url="header.jsp"></c:import>
 </head>
 
 <body>
- 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/move/home">Hyundai Cosmetic</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/move/popular">인기
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/move/new">신규</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/move/event">이벤트/혜택</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/move/exhibition">기획전</a>
-          </li>
-           <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/move/freeboard">커뮤니티</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/move/login">로그인</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-	
-
   <!-- Page Content -->
   <div class="container">
    
@@ -91,7 +44,7 @@ crossorigin="anonymous">
 
    <div class="jumbotron" style="height: 100%">
       <h1 class="display-3" style="text-align: center;margin-top: -30px;margin-bottom: 50px;">회원가입</h1>
-      <form action="${pageContext.request.contextPath}/member/joinAction" class="was-validated" method="post" onsubmit="return validate()">
+      <form action="${pageContext.request.contextPath}/joinAction" class="was-validated" method="post" onsubmit="return validate()">
           <div class="form-group" style="width: 50%;margin: 0 auto; overflow: hidden;">
             <input type="text" class="form-control" id="uid" style="width:78%; float: left;" placeholder="아이디 입력" name="uid" required>
             <input id="idck" type="button"  onclick="duplicationId();" class="btn btn-primary" style="width:20%; margin-left:10px; float:left; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
@@ -139,16 +92,9 @@ crossorigin="anonymous">
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Hyundai Cosmetic</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+ <c:import url="footer.jsp"></c:import>
 
-	<!--  Bootstrap core JavaScript-->
-	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
-	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+	
   <script>
   	$("#pwd").keyup(function(){
   		$("#registerButton").attr("disabled", true);

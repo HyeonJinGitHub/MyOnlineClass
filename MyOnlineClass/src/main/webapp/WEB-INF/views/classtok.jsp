@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String id = (String)session.getAttribute("id");
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -62,28 +65,43 @@
                 scrollTop : 0
             }, 400);
             return false;
-        });
-        
-        
+        }); 
     });
 </script>
-<%
-	
-%>
+
+<!-- 클래스톡 인기 코치 -->
 <script>
 	window.onload = function() {
-		$.getJSON( "json", function( data ) {
-// 			alert("data: " + data[0].introduce);
-			  var items = [];
-			  $.each( data, function( key, val ) {
-// 			    items.push( data[key]['nickName'] + "," );
-			    $('.change_greeting').text(data[key]['nickName']);
-			    $('.change_greeting2').text(data[key]['introduce']);
+		$.getJSON( "instructorJson", function( data ) {
+			let imageInt = 		0;
+			let nicknameInt = 	100;	
+			let introduceInt = 	10000;
+			let profileInt = 	1000000;
+			
+			$.each( data, function( key, val ) {
+				let img = '${contextPath}/resources/instructor/'
+				img += data[key]['image'];
+				img += '.png';
+				
+				let pro = "location.href='profile?";
+				pro += data[key]['id'] + "'";
+				
+				let image = '.'.concat(imageInt);
+				let nickname = '.'.concat(nicknameInt);
+				let introduce = '.'.concat(introduceInt);
+				let profile = '.'.concat(profileInt);
+				
+				$(image).attr("src", img);
+			    $(nickname).text(data[key]['nickname']);
+			    $(introduce).text(data[key]['introduce']);
+			    $(profile).attr("onclick", pro);
+			    
+			    imageInt += 1;
+			    nicknameInt += 1;
+			    introduceInt += 1;
+			    profileInt += 1;
 			  });
-			 
-			  $("#test").append(items);
 			});
-// 		$('.change_greeting').text('konnichiha');
 	}
 </script>
 
@@ -235,7 +253,7 @@ a#MOVE_TOP_BTN {
 <a id="MOVE_TOP_BTN" href="#">
 	<img src="${contextPath}/resources/image/icon_move_top.png">
 </a>
-
+<div id="images"></div>
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #ffffff;">
 		<div class="container">
@@ -263,25 +281,25 @@ a#MOVE_TOP_BTN {
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-						<c:if test="${member.id == null || instructor.id == null}">
-							<a class="nav-link" href="${contextPath}/open">클래스 개설
-								<span class="sr-only">(current)</span>
-							</a>
-						</c:if>
+						<a class="nav-link" href="${contextPath}/open">클래스 개설
+							<span class="sr-only">(current)</span>
+						</a>
 					</li>
 					<li class="nav-item active">
-						<c:if test="${member.id == null || instructor.id == null}">
-							<a class="nav-link" href="${contextPath}/alarm">
-								<i class="far fa-bell"></i>
-							</a>
-						</c:if>
+						<a class="nav-link" href="${contextPath}/alarm">
+							<i class="far fa-bell"></i>
+						</a>
 					</li>
 					<li class="nav-item active">
-						<c:if test="${member.id == null || instructor.id == null}">
-							<a class="nav-link" href="${contextPath}/login" style="padding-right: 30px;">
-								<i class="fas fa-user"></i>
-							</a>
-						</c:if>
+						<% if (id == null || id == "") { %>
+						<a class="nav-link" href="${contextPath}/login" style="padding-right: 40px;">
+							<i class="fas fa-user"></i>
+						</a>
+						<% } else { %>
+						<a class="nav-link" href="${contextPath}/mylecture" style="padding-right: 40px;">
+							<i class="fas fa-user"></i>
+						</a>
+						<% } %>
 					</li>
 				</ul>
 			</div>
@@ -546,92 +564,22 @@ a#MOVE_TOP_BTN {
 
 		<div class="container swiper-container mySwiper2" align="center">
 			<div class="swiper-wrapper">
-				<% for (int i = 0; i < 5; i++) { %>
+				<% for (int i = 0; i < 10; i++) { %>
 				<div class="mb-2 swiper-slide">
 					<div class="card h-auto" style="width: 208px; height: 180px;">
-						<img class="card-img-top" src="${contextPath}/resources/instructor/sample1.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+						<img class="card-img-top <%=i %>" src="${contextPath}/resources/instructor/icon_user_profile.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
 						<div class="custom-card-body" style="width: 208px; height: 50px;">
-							<p class="change_greeting" style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">석재원</p>
-							<p class="change_greeting2" style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">'오늘도 수고했어' 당신을 위한 힐링 캘리그라피</p>
+							<p class="<%=i + 100 %>" style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">데이터가 없습니다.</p>
+							<p class="<%=i + 10000 %>" style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">데이터가 없습니다.</p>
 						</div>
 						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
 							<div class="my-box">
-								<p style="cursor: pointer; color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;" onclick="location.href='profile?${instructor.id}'">프로필보기</p>
+								<p class="<%=i + 1000000 %>"  style="cursor: pointer; color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;">프로필보기</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<% } %>
-				<div class="mb-2 swiper-slide">
-					<div class="card h-auto" style="width: 208px; height: 180px;">
-						<img class="card-img-top" src="${contextPath}/resources/instructor/sample2.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
-						<div class="custom-card-body" style="width: 208px; height: 50px;">
-							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">날큐</p>
-							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">방구석 아이패드 구출, 100% 활용하는 아이패드 튜토리얼</p>
-						</div>
-						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
-							<div class="my-box">
-								<p style="cursor: pointer; color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;" onclick="location.href='profile?${instructor.id}'">프로필보기</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mb-2 swiper-slide">
-					<div class="card h-auto" style="width: 208px; height: 180px;">
-						<img class="card-img-top" src="${contextPath}/resources/instructor/sample3.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
-						<div class="custom-card-body" style="width: 208px; height: 50px;">
-							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">neo</p>
-							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">[남들보다 2배 빠른 초고속 승진] 현장 실무에 맞춘 파워포인트 실무 강좌</p>
-						</div>
-						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
-							<div class="my-box">
-								<p style="cursor: pointer; color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;" onclick="location.href='profile?${instructor.id}'">프로필보기</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mb-2 swiper-slide">
-					<div class="card h-auto" style="width: 208px; height: 180px;">
-						<img class="card-img-top" src="${contextPath}/resources/instructor/sample4.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
-						<div class="custom-card-body" style="width: 208px; height: 50px;">
-							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">에디</p>
-							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">실전! 소액으로 시작하는 20, 30대 부동산 투자법!</p>
-						</div>
-						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
-							<div class="my-box">
-								<p style="cursor: pointer; color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;" onclick="location.href='profile?${instructor.id}'">프로필보기</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mb-2 swiper-slide">
-					<div class="card h-auto" style="width: 208px; height: 180px;">
-						<img class="card-img-top" src="${contextPath}/resources/instructor/sample5.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
-						<div class="custom-card-body" style="width: 208px; height: 50px;">
-							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">감성식탁</p>
-							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">3가지 타르트반죽으로 만드는 미니 타르트&노오븐 타르트</p>
-						</div>
-						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
-							<div class="my-box">
-								<p style="cursor: pointer; color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;" onclick="location.href='profile?${instructor.id}'">프로필보기</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mb-2 swiper-slide">
-					<div class="card h-auto" style="width: 208px; height: 180px;">
-						<img class="card-img-top" src="${contextPath}/resources/instructor/sample6.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
-						<div class="custom-card-body" style="width: 208px; height: 50px;">
-							<p style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">한정혜</p>
-							<p style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">슬기로운 유튜브 생활</p>
-						</div>
-						<div class="custom-card-body" style="width: 208px; height: 50px; padding-top: 17px;" align="center">
-							<div class="my-box">
-								<p style="cursor: pointer; color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;" onclick="location.href='profile?${instructor.id}'">프로필보기</p>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 			<div class="swiper-button-prev" style="background-image: url('${contextPath}/resources/image/icon_card_arrow_left.png');"></div>
 		 	<div class="swiper-button-next" style="background-image: url('${contextPath}/resources/image/icon_card_arrow_right.png');"></div>

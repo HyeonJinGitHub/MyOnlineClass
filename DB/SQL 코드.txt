@@ -78,8 +78,8 @@ CREATE TABLE member (
 ALTER TABLE member ADD CONSTRAINT member_pk PRIMARY KEY ( id );
 
 CREATE TABLE member_lecture (
-    lecture_id    NUMBER(5) NOT NULL,
     member_id     VARCHAR2(30) NOT NULL,
+    lecture_id    NUMBER(5) NOT NULL,
     registerdate  VARCHAR2(50) NOT NULL
 );
 
@@ -130,4 +130,3 @@ ALTER TABLE member_lecture
 ALTER TABLE member_lecture
     ADD CONSTRAINT member_lecture_member_fk FOREIGN KEY ( member_id )
         REFERENCES member ( id );
-

@@ -257,14 +257,13 @@ String user = (String) session.getAttribute("login_id");
 									<img class="listing__details__gallery__item__large"
 										src="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/lecture/${lecture.image}.jpg"
 										alt=""> <span><i class="fa fa-camera"></i>
-										${lecture.name} </span>
+										${lecture.name}</span>
 								</div>
 							</div>
 						</div>
 						<div class="listing__details__about">
 							<h4>Information</h4>
-							<p>${lecture.introduce}</p>
-							<br>
+							<p>${lecture.introduce}</p><br>
 							<div class="listing__details__gallery">
 								<div class="listing__details__gallery__pic">
 									<div class="listing__details__gallery__item">
@@ -277,8 +276,8 @@ String user = (String) session.getAttribute("login_id");
 							</div>
 						</div>
 						<div class="listing__details__about">
-							<h4>Caution</h4><br>
-							<p>${lecture.caution}</p>
+							<h4>Caution</h4>
+							<p>${lecture.caution}</p><br>
 						</div>
 						<div class="listing__details__amenities">
 							<h4>Amenities</h4>
@@ -362,7 +361,7 @@ String user = (String) session.getAttribute("login_id");
 									alt="" height="100px">
 							</div>
 							<div class="listing__sidebar__contact__text">
-								<h6>강사</h6>
+								<h6> 강사</h6>
 								<h4>${instructor.nickname}</h4>
 								<ul>
 									<li><br></li>
@@ -373,8 +372,7 @@ String user = (String) session.getAttribute("login_id");
 									<li><br></li>
 									<li>${instructor.introduce}</li>
 								</ul>
-								<div class="listing__details__review"
-									style="text-align: center;">
+								<div class="listing__details__review" style="text-align: center;">
 									<button type="submit" class="site-btn">수강신청</button>
 								</div>
 							</div>
@@ -383,7 +381,7 @@ String user = (String) session.getAttribute("login_id");
 							<h4>수강기간</h4>
 							<ul>
 								<li>NOW<span class="opening">Opening</span></li>
-								<li>+ ${lecture.duration} DAYS<span class="closed">Closed</span></li>
+								<li>+ ${lecture.duration} Days<span class="closed">Closed</span></li>
 							</ul>
 						</div>
 					</div>

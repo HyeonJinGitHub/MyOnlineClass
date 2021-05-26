@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="DC34E2AF-5268-C3A0-BE74-51790B1E932C" containerWithKeyObject="3FB480D5-01E5-25E3-BFAD-34819ECA15B7" localFKIndex="585265E9-C988-D116-C83A-4B38E4491CB6" name="lecture_video_video_FK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-26 05:36:17 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>E38D6726-32A4-F860-1C2B-B70F37277E88</importedID>
+<referredTableLongName>video</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>5E966D78-99CA-95F5-E54D-D0F0949AAEEB</referredTableID>
+<keyObject>70FBB5F0-E5E1-D281-9387-E6BA32D0C624</keyObject>
+<referredKeyID>70FBB5F0-E5E1-D281-9387-E6BA32D0C624</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

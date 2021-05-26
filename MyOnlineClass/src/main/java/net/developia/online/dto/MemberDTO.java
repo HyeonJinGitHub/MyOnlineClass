@@ -17,7 +17,7 @@ public class MemberDTO implements Serializable{
 	private String password;
 	private String name;
 	private String email;
-	private String phoneNumber;
+	private String phone;
 	
 	public void setPassword(String password) {
 		this.password = DigestUtils.sha512Hex(password);

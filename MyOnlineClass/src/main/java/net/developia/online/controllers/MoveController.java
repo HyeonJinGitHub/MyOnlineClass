@@ -77,4 +77,5 @@ public class MoveController {
 	public ModelAndView join() throws Exception {
 		return new ModelAndView("join");
 	}
+
 }

@@ -29,7 +29,20 @@ public class LectureServiceImpl implements LectureService {
 			throw e;
 		}
 	}
+
 	
+	@Override
+	public void enrollLecture(HashMap<String, Object> map) throws Exception {
+		try {
+			lectureDAO.enroll(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+		
+	}
+	
+
 	@Override
 	public void MemberLectureRegister(HashMap<String, Object> map) throws Exception {
 		try {
@@ -39,5 +52,4 @@ public class LectureServiceImpl implements LectureService {
 			throw e;
 		}
 	}
-	
 }

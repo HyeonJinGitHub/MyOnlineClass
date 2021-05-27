@@ -36,7 +36,6 @@ public class MemberLectureController {
 		ModelAndView mav = new ModelAndView("result");
 		try {
 			LectureDTO lectureDTO = lectureService.getLecture(no);
-			System.out.println("★★★" + lectureDTO.toString());
 			session.setAttribute("lecture_duration", lectureDTO.getDuration());
 			mav.addObject("lectureDTO", lectureDTO);
 			mav.addObject("url", "/online/memberLecture");

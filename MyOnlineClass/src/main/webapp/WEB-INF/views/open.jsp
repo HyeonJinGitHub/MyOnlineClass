@@ -45,11 +45,11 @@ $(document).ready(function() {
 	});
 	
 	$('#introduce').on('keyup', function() {
-		$('#introduceCount').html("(" + $(this).val().length + " / 50)");
+		$('#introduceCount').html("(" + $(this).val().length + " / 30)");
 		
-		if ($(this).val().length > 50) {
-			$(this).val($(this).val().substring(0, 25));
-			$('#introduceCount').html("(0 / 50)");
+		if ($(this).val().length > 30) {
+			$(this).val($(this).val().substring(0, 30));
+			$('#introduceCount').html("(0 / 30)");
 		}
 	});
 });
@@ -164,7 +164,7 @@ a#MOVE_TOP_BTN {
 									   maxlength="50" autocomplete="off" required="required"
 									   style="width: 500px; height: 50px; border-radius: 30px; 
 									   border: 0; outline: 0; padding-left: 40px;"> 
-							    <div id="introduceCount" style="display: inline; padding-left: 10px;">(0 / 50)</div> 
+							    <div id="introduceCount" style="display: inline; padding-left: 10px;">(0 / 30)</div> 
 							</div> <br>
 							
 							<div style="margin-left: 250px;">

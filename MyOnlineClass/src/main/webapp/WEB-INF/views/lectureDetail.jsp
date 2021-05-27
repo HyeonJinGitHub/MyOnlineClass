@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-String user = (String) session.getAttribute("member_id");
+String user = (String) session.getAttribute("id");
 %>
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
@@ -249,7 +249,7 @@ String user = (String) session.getAttribute("member_id");
 				<div class="col-lg-4">
 					<div class="listing__hero__btns">
 						<a href="javascript:history.back()" class="primary-btn share-btn"><i
-							class="fa fa-mail-reply"></i> 뒤로가기</a> <a href="#"
+							class="fa fa-mail-reply"></i> 뒤로가기</a> <a href="/online/memberLecture/${lecture.id}"
 							class="primary-btn"><i class="fa fa-bookmark"></i> 수강신청</a>
 					</div>
 				</div>
@@ -388,7 +388,7 @@ String user = (String) session.getAttribute("member_id");
 									<li>${instructor.introduce}</li>
 								</ul>
 								<div class="listing__details__review" style="text-align: center;">
-									<button type="submit" class="site-btn">수강신청</button>
+									<button type="button" class="site-btn" onclick="location.href='/online/memberLecture/${lecture.id}'"><i class="fa fa-bookmark"></i> 수강신청</button>
 								</div>
 							</div>
 						</div>

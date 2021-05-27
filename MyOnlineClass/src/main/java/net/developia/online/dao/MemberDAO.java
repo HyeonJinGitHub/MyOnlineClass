@@ -28,4 +28,8 @@ public interface MemberDAO {
 	List<MemberDTO> searchMember(String id) throws SQLException;
 
 	void findPw(HashMap<String, Object> map) throws SQLException;
+	
+	void getMemberLecture(HashMap<String, Object> map) throws SQLException;
+
+	void getMemberLectureDate(HashMap<String, Object> new_map) throws SQLException;
 }

@@ -22,26 +22,23 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>회원가입 | Hyundai Cosmetic</title>
+  <title>회원가입 | Hyundai ClassTok</title>
+
  <c:import url="header.jsp"></c:import>
 </head>
-
 <body>
   <!-- Page Content -->
   <div class="container">
-   
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">Join Page
       <small>Join us!</small>
     </h1>
-
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="${pageContext.request.contextPath}/move/home">홈</a>
+        <a href="${pageContext.request.contextPath}/">홈</a>
       </li>
       <li class="breadcrumb-item active">회원가입</li>
     </ol>
-
    <div class="jumbotron" style="height: 100%">
       <h1 class="display-3" style="text-align: center;margin-top: -30px;margin-bottom: 50px;">회원가입</h1>
       <form action="${pageContext.request.contextPath}/joinAction" class="was-validated" method="post" onsubmit="return validate()">
@@ -84,17 +81,14 @@
           </div>
           <br/>
           <div class="form-group" style="width: 50%;margin: 20px auto 0px;text-align: center;">
-             이미 가입하셨다면?&nbsp;<a href="${pageContext.request.contextPath}/move/login">로그인</a>
+             이미 가입하셨다면?&nbsp;<a href="${pageContext.request.contextPath}/login">로그인</a>
           </div>
       </form>
    </div>
   </div>
   <!-- /.container -->
-
   <!-- Footer -->
  <c:import url="footer.jsp"></c:import>
-
-	
   <script>
   	$("#pwd").keyup(function(){
   		$("#registerButton").attr("disabled", true);
@@ -111,7 +105,6 @@
   		}
   	});
   </script>
-  
   <script type="text/javascript">
   	var idck = 0;
  	function duplicationId() {
@@ -184,7 +177,5 @@
 			});
  	}
   </script>
-
 </body>
-
 </html>

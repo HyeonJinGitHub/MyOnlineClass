@@ -1,8 +1,11 @@
 package net.developia.online.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.developia.online.dto.LectureDTO;
 import net.developia.online.dto.MemberDTO;
 import net.developia.online.services.MemberService;
 
@@ -41,12 +45,13 @@ public class MemberController {
 		try {
 			memberService.login(map);
 			List<MemberDTO> output = (List)map.get("MemberList");
+			System.out.println(output);
 			MemberDTO memberDTO = output.get(0);
 			ModelAndView mav = new ModelAndView("result");
 			session.setAttribute("id", memberDTO.getId()); 
 			session.setAttribute("name", memberDTO.getName());
 			session.setAttribute("email", memberDTO.getEmail()); 
-			session.setAttribute("phone", memberDTO.getPhoneNumber());
+			session.setAttribute("phone", memberDTO.getPhone());
 			mav.setViewName("classtok");
 			return mav;
 		} catch (Exception e) {
@@ -63,7 +68,7 @@ public class MemberController {
 	@Transactional
 	public ModelAndView logout(HttpSession session) {
 		session.invalidate();
-		return new ModelAndView("home");
+		return new ModelAndView("classtok");
 	}
 	
 	@PostMapping("/changePasswordAction")
@@ -207,5 +212,39 @@ public class MemberController {
 			mav.addObject("url", "javascript:history.back();");
 			return mav;
 		}
+	}
+	
+	@GetMapping("/mylecture")
+	@Transactional
+	public ModelAndView mylecture(HttpSession session) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("ID", session.getAttribute("id"));
+		ModelAndView mav = new ModelAndView("mylecture");
+		try {
+			HashMap<String, Object> lecture_map = new HashMap<String, Object>();
+			memberService.getMemberLecture(map);
+			List<LectureDTO> data = (List) map.get("MemberLectureList");
+			for(LectureDTO dto : data) {
+				long lecture_id = dto.getId();
+				HashMap<String, Object> new_map = new HashMap<String, Object>();
+				List<String> list = new ArrayList<String>();
+				new_map.put("MEMBER_ID", session.getAttribute("id"));
+				new_map.put("LECTURE_ID", lecture_id);
+				memberService.getMemberLectureDate(new_map);
+				List tmp_list = (List)new_map.get("MemberLectureDateList");
+				HashMap<String, Object> memberLectureDate = (HashMap<String, Object>) tmp_list.get(0);
+				list.add(memberLectureDate.get("START_DATE").toString());
+				list.add(memberLectureDate.get("END_DATE").toString());
+				lecture_map.put(dto.getName(), list);
+			}
+			// 여기 수정해야함!! 인덱스를 이용해서 lecture_map에 데이터 넣어야함
+			System.out.println("lecture_map : " + lecture_map);
+			mav.addObject("data", lecture_map);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.addObject("msg", e.getMessage());
+		}
+		return mav;
 	}
 }

@@ -36,13 +36,27 @@
  	</style>
    <script>
       document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      });
-
+    	  var calendarEl = document.getElementById('calendar');
+    	  var calendar = new FullCalendar.Calendar(calendarEl, {
+    	    initialView: 'dayGridMonth',
+    	    initialDate: '2021-05-07',
+    	    headerToolbar: {
+    	      left: 'prev,next today',
+    	      center: 'title',
+    	      right: 'dayGridMonth'
+    	    },
+    	    events: [
+    	    	<c:forEach items="${data}" var="dataMap" >
+    	      {
+    	    	    title : "${dataMap.key}",
+    	    	    start: "${dataMap.value[0]}",
+    	    	    end: "${dataMap.value[1]}"
+    	      },
+    	      </c:forEach>
+    	    ]
+    	  });
+    	  calendar.render();
+    	});
     </script>
     <c:import url="header.jsp"></c:import>
 </head>
@@ -147,7 +161,7 @@
 			return false;
 		}
 	}
-	$('#calendar').fullCalendar({
+/* 	$('#calendar').fullCalendar({
 		alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');
 		var name = '${data.key}';
 		var start_date = '${data.value[0]}';
@@ -159,7 +173,7 @@
 		        end    : '2021-05-29'
 		    }
 		  ]
-		});
+		}); */
    </script>
 </body>
 </html>

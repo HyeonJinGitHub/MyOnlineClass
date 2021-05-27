@@ -183,9 +183,7 @@ public class MeberServiceImpl implements MemberService{
 	public void getMemberLecture(HashMap<String, Object> map) throws Exception {
 		try {
 			memberDAO.getMemberLecture(map);
-			System.out.println(map);
 			List<LectureDTO> output = (List) map.get("MemberLectureList");
-			System.out.println(output);
 			if (output.size() == 0) {
 				throw new RuntimeException("등록된 과목이 없습니다.");
 			} 

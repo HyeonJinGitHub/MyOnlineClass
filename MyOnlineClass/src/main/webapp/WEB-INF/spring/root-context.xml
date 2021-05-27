@@ -49,4 +49,15 @@
 		class="org.mybatis.spring.mapper.MapperFactoryBean"
 		p:sqlSessionFactory-ref="InstructorSqlSession"
 		p:mapperInterface="net.developia.online.dao.InstructorDAO" />
+		
+		  <!-- CommentDAO -->
+   <bean id="CommentSqlSession"
+      class="org.mybatis.spring.SqlSessionFactoryBean"
+      p:dataSource-ref="dataSource"
+      p:typeAliasesPackage="net.developia.online.dto" />
+
+   <bean id="CommentDAO"
+      class="org.mybatis.spring.mapper.MapperFactoryBean"
+      p:sqlSessionFactory-ref="CommentSqlSession"
+      p:mapperInterface="net.developia.online.dao.CommentDAO" />
 </beans>

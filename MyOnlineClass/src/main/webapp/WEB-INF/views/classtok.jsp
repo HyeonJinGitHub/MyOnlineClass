@@ -79,9 +79,26 @@
 			let profileInt = 	1000000;
 			
 			$.each( data, function( key, val ) {
-				let img = '${contextPath}/resources/instructor/'
-				img += data[key]['image'];
-				img += '.png';
+// 				let img = '${contextPath}/resources/instructor/'
+				
+// 				img += data[key]['image'];
+				img = data[key]['image'];
+// 				img += '.png';
+				alert(img);
+				$.ajax({
+					type: "GET",
+					url: "imageDownload",
+					data: "fileName=" + img,
+					success : function(data) {
+						alert("성공");
+					},
+					error : function() {
+						alert("에러");
+					}
+				});
+				
+				let link = '/online/imageDownload?fileName=';
+				link += img;
 				
 				let pro = "location.href='profile?";
 				pro += data[key]['id'] + "'";
@@ -91,7 +108,7 @@
 				let introduce = '.'.concat(introduceInt);
 				let profile = '.'.concat(profileInt);
 				
-				$(image).attr("src", img);
+				$(image).attr("src", link);
 			    $(nickname).text(data[key]['nickname']);
 			    $(introduce).text(data[key]['introduce']);
 			    $(profile).attr("onclick", pro);
@@ -567,7 +584,7 @@ a#MOVE_TOP_BTN {
 				<% for (int i = 0; i < 10; i++) { %>
 				<div class="mb-2 swiper-slide">
 					<div class="card h-auto" style="width: 208px; height: 180px;">
-						<img class="card-img-top <%=i %>" src="${contextPath}/resources/instructor/icon_user_profile.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+						<img class="card-img-top <%=i %>" src="${contextPath}/resources/image/icon_user_profile.png" alt="Profile image" style="width:96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
 						<div class="custom-card-body" style="width: 208px; height: 50px;">
 							<p class="<%=i + 100 %>" style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">데이터가 없습니다.</p>
 							<p class="<%=i + 10000 %>" style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">데이터가 없습니다.</p>

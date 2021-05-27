@@ -237,8 +237,6 @@ public class MemberController {
 				list.add(memberLectureDate.get("END_DATE").toString());
 				lecture_map.put(dto.getName(), list);
 			}
-			// 여기 수정해야함!! 인덱스를 이용해서 lecture_map에 데이터 넣어야함
-			System.out.println("lecture_map : " + lecture_map);
 			mav.addObject("data", lecture_map);
 			
 		} catch (Exception e) {

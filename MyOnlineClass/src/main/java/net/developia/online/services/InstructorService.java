@@ -9,5 +9,8 @@ public interface InstructorService {
 	public InstructorDTO getInstructor(long lectureNo) throws Exception;
 	
 	List<InstructorDTO> getInstructorList() throws Exception;
+	
 	void registerInstructor(InstructorDTO instructorDTO) throws Exception;
+	
+	public InstructorDTO getInstFlag(String id) throws Exception;
 }

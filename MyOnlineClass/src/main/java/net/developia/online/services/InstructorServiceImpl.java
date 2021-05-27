@@ -42,4 +42,9 @@ public class InstructorServiceImpl implements InstructorService {
 	public void registerInstructor(InstructorDTO instructorDTO) throws Exception {
 		instructorDAO.registerInstructor(instructorDTO);
 	}
+
+	@Override
+	public InstructorDTO getInstFlag(String id) throws Exception {
+		return instructorDAO.getInstFlag(id);
+	}
 }

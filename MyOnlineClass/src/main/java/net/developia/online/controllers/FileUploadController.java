@@ -15,8 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FileUploadController {
 
-    private static final String DIR_PATH =  FileUploadController.class.getResource(".").getPath();
-    
+    //private static final String DIR_PATH =  FileUploadController.class.getResource(".").getPath();
+	private static final String SAVE_PATH = "C:/online/resources/video/";
     @RequestMapping("upload")
     public ModelAndView upload(
             @RequestParam(value="file1", required = false) MultipartFile mf, HttpServletRequest request, HttpServletResponse response) {
@@ -24,13 +24,14 @@ public class FileUploadController {
     		//String SAVE_PATH =  System.getProperty("user.dir");
     		
     		
+    	
     		//System.out.println(DIR_PATH);
             ModelAndView mav = new ModelAndView("vodMain");
             
-            String SAVE_PATH =DIR_PATH.replace("/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MyOnlineClass/WEB-INF/classes/net/developia/online/controllers/",
-            									"/MyOnlineClass/MyOnlineClass/src/main/webapp/WEB-INF/video/");
+            //String SAVE_PATH =DIR_PATH.replace("/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MyOnlineClass/WEB-INF/classes/net/developia/online/controllers/",
+//            									"/MyOnlineClass/MyOnlineClass/src/main/webapp/WEB-INF/video/");
             
-            //System.out.println(SAVE_PATH);
+            System.out.println(SAVE_PATH);
             
             String originalFileName = mf.getOriginalFilename();
             //long fileSize = mf.getSize();

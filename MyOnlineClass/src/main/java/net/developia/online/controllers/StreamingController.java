@@ -30,15 +30,20 @@ import net.developia.online.dto.VodDTO;
 public class StreamingController{
 	
 	//private final String FOLDER_MOVIE = "../../../../../video/"; 
-	String DIR_PATH =  StreamingController.class.getResource(".").getPath();
+	//String DIR_PATH =  StreamingController.class.getResource(".").getPath();
+	String FOLDER_MOVIE = "C:/online/resources/video/";
 	//<source src="video/sample.mp4" type="video/mp4">
 	
 	@RequestMapping(value="/video/{video_name:.+}", method = RequestMethod.GET)
 	public String stream(@PathVariable("video_name") String video_name, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
 		
+		///video/sample.mp4
 		
-		String FOLDER_MOVIE =DIR_PATH.replace("/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MyOnlineClass/WEB-INF/classes/net/developia/online/controllers/",
-											  "/MyOnlineClass/MyOnlineClass/src/main/webapp/WEB-INF/video/");
+		//String FOLDER_MOVIE =DIR_PATH.replace("/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MyOnlineClass/WEB-INF/classes/net/developia/online/controllers/",
+											  //"/MyOnlineClass/MyOnlineClass/src/main/webapp/WEB-INF/video/");
+		
+		
+		
 		//System.out.println(StreamingController.class.getResource(".").getPath());
 		//System.out.println(FOLDER_MOVIE + "현재 video 가져오는 경로");
 		//확장자 확인 //
@@ -119,8 +124,6 @@ public class StreamingController{
 		}finally {
 			randomFile.close();
 		}
-		
-		
 		
 		return null;
 	}

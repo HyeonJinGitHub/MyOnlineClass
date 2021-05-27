@@ -276,8 +276,7 @@ String user = (String) session.getAttribute("member_id");
 						</div>
 						<div class="listing__details__about">
 							<h4>Information</h4>
-							<p>${lecture.introduce}</p>
-							<br>
+							<p>${lecture.introduce}</p><br>
 							<div class="listing__details__gallery">
 								<div class="listing__details__gallery__pic">
 									<div class="listing__details__gallery__item">
@@ -291,8 +290,7 @@ String user = (String) session.getAttribute("member_id");
 						</div>
 						<div class="listing__details__about">
 							<h4>Caution</h4>
-							<p>${lecture.caution}</p>
-							<br>
+							<p>${lecture.caution}</p><br>
 						</div>
 						<div class="listing__details__amenities">
 							<h4>Amenities</h4>
@@ -378,7 +376,7 @@ String user = (String) session.getAttribute("member_id");
 									alt="" height="100px">
 							</div>
 							<div class="listing__sidebar__contact__text">
-								<h6>강사</h6>
+								<h6> 강사</h6>
 								<h4>${instructor.nickname}</h4>
 								<ul>
 									<li><br></li>
@@ -389,8 +387,7 @@ String user = (String) session.getAttribute("member_id");
 									<li><br></li>
 									<li>${instructor.introduce}</li>
 								</ul>
-								<div class="listing__details__review"
-									style="text-align: center;">
+								<div class="listing__details__review" style="text-align: center;">
 									<button type="submit" class="site-btn">수강신청</button>
 								</div>
 							</div>

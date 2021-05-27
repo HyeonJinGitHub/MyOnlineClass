@@ -59,7 +59,7 @@ public class StreamingController{
 		
 		File file = new File(FOLDER_MOVIE + video_name);
 
-		
+		System.out.println(video_name);
 		if(!file.exists()) throw new FileNotFoundException();
 		
 		//임의로 파일에 접근
@@ -140,7 +140,7 @@ public class StreamingController{
 			// 임의로 진행
 			List<VodDTO> list = new ArrayList<>();
 			VodDTO vodDTO= new VodDTO();
-			
+			/*
 			vodDTO.setId(1);
 			vodDTO.setLesson(1);
 			vodDTO.setTitle("재미있는 스프링 환경설정");
@@ -166,8 +166,10 @@ public class StreamingController{
 			
 			
 			
-			mav.setViewName("vodMain");
+			
 			mav.addObject("list", list);
+			*/
+			mav.setViewName("vodMain");
 			String viewName = mav.getViewName();
 			Map<String, Object> model = mav.getModel();
 			for(String key : model.keySet()) {
@@ -183,5 +185,8 @@ public class StreamingController{
 		return mav;
 
 	}
+	
+	
+	
 	
 }

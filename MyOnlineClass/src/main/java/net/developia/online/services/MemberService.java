@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import net.developia.online.dto.LectureDTO;
 import net.developia.online.dto.MemberDTO;
 
 public interface MemberService {
@@ -31,4 +32,8 @@ public interface MemberService {
 	public void findId(HashMap<String, Object> map) throws Exception;
 
 	public void findPw(HashMap<String, Object> map) throws Exception;
+
+	public void getMemberLecture(HashMap<String, Object> map) throws Exception;
+
+	public void getMemberLectureDate(HashMap<String, Object> new_map) throws Exception;
 }

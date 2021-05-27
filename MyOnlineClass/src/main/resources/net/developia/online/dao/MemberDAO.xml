@@ -198,4 +198,43 @@
        ]]>
 	</select>
 
+	<parameterMap type="java.util.HashMap" id="MemberLectureParam">
+		<parameter property="ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="MemberLectureList" jdbcType="CURSOR"
+			mode="OUT" resultMap="MemberLectureResultMap" />
+	</parameterMap>
+	<resultMap type="LectureDTO" id="MemberLectureResultMap">
+		<result property="id" column="ID" />
+	</resultMap>
+	<select id="getMemberLecture" statementType="CALLABLE"
+		parameterMap="MemberLectureParam" resultMap="MemberLectureResultMap">
+	<![CDATA[
+          {
+             call member_pkg.get_member_lecture(
+				?, ?
+			)
+          }
+       ]]>
+	</select>
+	
+	<parameterMap type="java.util.HashMap"
+		id="LectureDateParam">
+		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="LECTURE_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="MemberLectureDateList" jdbcType="CURSOR"
+			mode="OUT" resultMap="MemberLectureDateResultMap" />
+	</parameterMap>
+	<resultMap type="hashmap" id="MemberLectureDateResultMap">
+	</resultMap>
+	<select id="getMemberLectureDate" statementType="CALLABLE"
+		parameterMap="LectureDateParam" resultMap="MemberLectureDateResultMap">
+	<![CDATA[
+          {
+             call member_pkg.get_member_lecture_date(
+				?, ?, ?
+			)
+          }
+       ]]>
+	</select>
+
 </mapper>

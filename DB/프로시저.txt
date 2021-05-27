@@ -1,3 +1,4 @@
+
 drop package member_pkg;
 create or replace package member_pkg
 is
@@ -48,6 +49,7 @@ is
     input_lectureid in varchar2,
     res_cur out sys_refcursor);
 end member_pkg;
+
 
 create or replace package body member_pkg
 is
@@ -192,10 +194,9 @@ is
     as
     begin
         open res_cur for
-        select * from lecture
-        where id = 
-        (select lecture_id from member_lecture
-        where member_id = input_id);
+        select id, name, genre,image, duration, caution, introduce, thumbnail
+        from ((select * from member_lecture where member_id = input_id) A
+        inner join lecture B on (A.lecture_id = B.id));
     end get_member_lecture;
     
     procedure get_member_lecture_date(input_memberid in varchar2,
@@ -210,3 +211,34 @@ is
         member_id = input_memberid;
     end get_member_lecture_date;
 end member_pkg;
+
+create or replace package lecture_pkg
+is
+    procedure enroll_lecture(
+    input_name in varchar2,
+    input_genre in varchar2,
+    input_duration in number,
+    input_caution in varchar2,
+    input_introduce in varchar2,
+    input_thumbnail in varchar2,
+    input_image in varchar2);
+end lecture_pkg;
+
+create or replace package body lecture_pkg
+is
+    procedure enroll_lecture(
+    input_name in varchar2,
+    input_genre in varchar2,
+    input_duration in number,
+    input_caution in varchar2,
+    input_introduce in varchar2,
+    input_thumbnail in varchar2,
+    input_image in varchar2)
+    as
+    begin
+        insert into lecture
+        values(lecture_no_seq.nextval, input_name, input_genre, input_image,
+        input_duration, input_caution, input_introduce, input_thumbnail);
+        commit;
+    end enroll_lecture;
+end lecture_pkg;

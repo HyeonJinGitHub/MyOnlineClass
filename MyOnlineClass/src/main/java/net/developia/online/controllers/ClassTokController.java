@@ -14,14 +14,18 @@ import java.util.List;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,7 +51,7 @@ public class ClassTokController {
 	}
 
 	@PostMapping(value = "/registerAction")
-	public ModelAndView registerAction(HttpServletRequest request, @RequestParam(required = true) String id,
+	public ModelAndView registerAction(HttpSession session,HttpServletRequest request, @RequestParam(required = true) String id,
 			@RequestParam(required = true) String name, @RequestParam(required = true) String email,
 			@RequestParam(required = true) String phone, @RequestParam(required = true) String nickname,
 			@RequestParam(required = true) String introduce, @RequestParam("image") MultipartFile file)
@@ -79,8 +83,8 @@ public class ClassTokController {
 		instructorDTO.setImage(image);
 
 		instructorService.registerInstructor(instructorDTO);
-
-//	  String contextPath = request.getContextPath();
+		
+		session.setAttribute("nickname", instructorDTO.getNickname());
 		return new ModelAndView("classtok");
 	}
 
@@ -92,7 +96,7 @@ public class ClassTokController {
 
 		String downFile = file_repo + "/" + fileName;
 //		String downFile = fileName;
-		System.out.println("downFile = " + downFile);
+//		System.out.println("downFile = " + downFile);
 		File f = new File(downFile);
 		response.setHeader("Cache-Control", "no-cache");
 		response.addHeader("Content-disposition", "attachment; fileName=" + URLEncoder.encode(fileName, "UTF-8"));
@@ -104,6 +108,24 @@ public class ClassTokController {
 					break;
 				out.write(buffer, 0, count);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+	
+	@RequestMapping(value = "getInstFlag")
+	@ResponseBody
+	public void getInstFlag(HttpSession session) throws Exception {
+		String id = (String)session.getAttribute("id");
+		if (id == null) {
+			id = "";
+		}
+		
+		try {
+			InstructorDTO instructorDTO = instructorService.getInstFlag(id);
+			if (instructorDTO != null) {
+				session.setAttribute("nickname", instructorDTO.getNickname());
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -50,7 +50,8 @@
     	      {
     	    	    title : "${dataMap.key}",
     	    	    start: "${dataMap.value[0]}",
-    	    	    end: "${dataMap.value[1]}"
+    	    	    end: "${dataMap.value[1]}",
+    	    	    url: "/online/video/${dataMap.value[2]}"
     	      },
     	      </c:forEach>
     	    ]

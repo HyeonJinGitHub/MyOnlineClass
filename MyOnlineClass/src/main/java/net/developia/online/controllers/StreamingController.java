@@ -129,7 +129,9 @@ public class StreamingController{
 	public ModelAndView vodMain(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession(true);
-		String user_id = (String)session.getAttribute("user_id");
+		String id = (String)session.getAttribute("id");
+		
+		
 		
 		ModelAndView mav = new ModelAndView();
 		

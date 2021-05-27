@@ -3,7 +3,9 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="header3.jsp" %>
-
+<%
+	String id = (String)session.getAttribute("id");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +23,7 @@
 <body>
 	<!-- edu video s -->
 	<h2>재미있는 스프링 강의</h2>
-	<p>윤권 교수님</p>
+	<p><%=id %></p>
 	<div class="video__wrap">
 		<div class="video__contents">
 			<div class="video__box">
@@ -63,8 +65,6 @@
   				</form>
   
             </div>
-
-
 
 
 		</div>

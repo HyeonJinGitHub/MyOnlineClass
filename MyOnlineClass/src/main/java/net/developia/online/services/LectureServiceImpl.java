@@ -30,7 +30,7 @@ public class LectureServiceImpl implements LectureService {
 		}
 	}
 
-	
+
 	@Override
 	public void enrollLecture(HashMap<String, Object> map) throws Exception {
 		try {

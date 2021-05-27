@@ -2,18 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.developia.online.dao.LectureDAO">
-	<!-- <parameterMap type="java.util.HashMap" id="LectureParam"> <parameter 
-		property="ID" jdbcType="INT" mode="IN" /> <parameter property="NAME" jdbcType="VARCHAR" 
-		mode="IN" /> <parameter property="GENRE" jdbcType="VARCHAR" mode="IN" /> 
-		<parameter property="IMAGE" jdbcType="VARCHAR" mode="IN" /> <parameter property="DURATION" 
-		jdbcType="INT" mode="IN" /> <parameter property="CAUTION" jdbcType="VARCHAR" 
-		mode="IN" /> <parameter property="INTRODUCE" jdbcType="VARCHAR" mode="IN" 
-		/> <parameter property="LectureList" jdbcType="CURSOR" mode="OUT" resultMap="LectureResultMap" 
-		/> </parameterMap> <resultMap type="LectureDTO" id="LectureResultMap"> <result 
-		property="id" column="ID" /> <result property="name" column="NAME" /> <result 
-		property="genre" column="GENRE" /> <result property="image" column="IMAGE" 
-		/> <result property="duration" column="DURATION" /> <result property="caution" 
-		column="CAUTION" /> <result property="introduce" column="INTRODUCE" /> </resultMap> -->
 
 	<select id="getLecture" parameterType="long"
 		resultType="LectureDTO">
@@ -41,8 +29,7 @@
           }
        ]]>
 	</select>
-	
-	
+		
 	<parameterMap type="java.util.HashMap"
 		id="registerMap">
 		<parameter property="LECTURE_ID" jdbcType="INTEGER" mode="IN" />
@@ -54,5 +41,5 @@
 		INSERT INTO MEMBER_LECTURE(lecture_id, member_id, start_date, end_date)
 		VALUES(#{lecture_id}, #{member_id}, #{start_date}, #{end_date})
 	</insert>
-	
+
 </mapper>

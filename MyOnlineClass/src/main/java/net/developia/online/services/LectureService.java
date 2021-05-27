@@ -1,11 +1,11 @@
 package net.developia.online.services;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.util.HashMap;
 
-import net.developia.online.dto.InstructorDTO;
 import net.developia.online.dto.LectureDTO;
 
 public interface LectureService {
 	public LectureDTO getLecture(long lectureNo) throws Exception;
+	
+	public void enrollLecture(HashMap<String, Object> map) throws Exception;
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import net.developia.online.dao.MemberDAO;
+import net.developia.online.dto.LectureDTO;
 import net.developia.online.dto.MemberDTO;
 
 @Slf4j
@@ -177,5 +178,29 @@ public class MeberServiceImpl implements MemberService{
 		}
 
 	}
-	
+
+	@Override
+	public void getMemberLecture(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.getMemberLecture(map);
+			List<LectureDTO> output = (List) map.get("MemberLectureList");
+			if (output.size() == 0) {
+				throw new RuntimeException("등록된 과목이 없습니다.");
+			} 
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
+	@Override
+	public void getMemberLectureDate(HashMap<String, Object> new_map) throws Exception {
+		try {
+			memberDAO.getMemberLectureDate(new_map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
 }

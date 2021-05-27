@@ -23,18 +23,15 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>로그인 | Hyundai Cosmetic</title>
+  <title>로그인 | Hyundai ClassTok</title>
 	<c:import url="header.jsp"></c:import>
 </head>
-
 <body>
 <div class="table-content">
 	<div class="item"></div>
-	
 </div>
   <!-- Content section -->
  <div class="container">
-   
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">Login Page
       <small>Join us!</small>
@@ -42,7 +39,7 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="${pageContext.request.contextPath}/move/home">홈</a>
+        <a href="${pageContext.request.contextPath}/">홈</a>
       </li>
       <li class="breadcrumb-item active">로그인</li>
     </ol>
@@ -79,11 +76,8 @@
   </div>
 	<div class="table-content">
 	<div class="item"></div>
-	
 </div>
   <!-- Footer -->
   <c:import url="footer.jsp"></c:import>
-	
-
 </body>
 </html>

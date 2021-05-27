@@ -19,4 +19,27 @@
 		resultType="LectureDTO">
 		select * from Lecture where id = #{lectureNo}
 	</select>
+	
+	<parameterMap type="java.util.HashMap"
+		id="enrollParam">
+		<parameter property="LECTURENAME" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="GENRE" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="DURATION" jdbcType="NUMERIC" mode="IN" />
+		<parameter property="CAUTION" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="INTRODUCE" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="THUMBNAIL" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="IMAGE" jdbcType="VARCHAR" mode="IN" />
+	</parameterMap>
+
+	<select id="enroll" statementType="CALLABLE"
+		parameterMap="enrollParam" >
+	<![CDATA[
+          {
+             call lecture_pkg.enroll_lecture(
+				?, ?, ?, ?, ?, ?, ?
+			)
+          }
+       ]]>
+	</select>
+	
 </mapper>

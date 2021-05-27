@@ -1,12 +1,13 @@
 package net.developia.online.services;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import net.developia.online.dao.InstructorDAO;
 import net.developia.online.dao.LectureDAO;
-import net.developia.online.dto.InstructorDTO;
 import net.developia.online.dto.LectureDTO;
 
 
@@ -28,6 +29,17 @@ public class LectureServiceImpl implements LectureService {
 			log.info(e.getMessage());
 			throw e;
 		}
+	}
+
+	@Override
+	public void enrollLecture(HashMap<String, Object> map) throws Exception {
+		try {
+			lectureDAO.enroll(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+		
 	}
 	
 }

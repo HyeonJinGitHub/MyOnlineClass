@@ -28,4 +28,11 @@
 		FROM instructor
 	]]>
 	</select>
+	
+	<insert id="registerInstructor">
+	<![CDATA[
+		INSERT INTO instructor values
+		(#{id}, #{nickname}, #{introduce}, #{image})
+	]]>
+	</insert>
 </mapper>

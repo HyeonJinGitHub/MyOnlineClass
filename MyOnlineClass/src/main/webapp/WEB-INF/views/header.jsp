@@ -4,7 +4,8 @@
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-   String id = (String)session.getAttribute("id");
+	String id = (String)session.getAttribute("id");
+	String nickname = (String) session.getAttribute("nickname");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -46,6 +47,16 @@
         }
       });
    });
+</script>
+
+<!-- 로그인 한 회원이 강사인지 확인 -->
+<script>
+	$(document).ready(function() {
+		$.ajax({
+			url: "getInstFlag",
+			type: "POST"
+		});
+	});
 </script>
 
 <style>
@@ -217,12 +228,19 @@ a#MOVE_TOP_BTN {
          
          <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-               <li class="nav-item active">
-                  <a class="nav-link" href="${contextPath}/open">클래스 개설
-                     <span class="sr-only">(current)</span>
-                  </a>
-               </li>
-               <li class="nav-item active">
+           	   <li class="nav-item active">
+              	   <% if (id == null || id == "") { %>
+					
+				   <% } else if (id != null && nickname == null) { %>
+				   <a class="nav-link" href="${contextPath}/open">
+				       <span>강사 신청</span>
+				   </a>
+				   <% } else if (id != null && nickname != null){ %>
+				   <a class="nav-link" href="${contextPath}/enroll">
+				       <span>클래스 개설</span>
+				   </a>
+			       <% } %>
+               		<li class="nav-item active">
                   <a class="nav-link" href="${contextPath}/alarm">
                      <i class="far fa-bell"></i>
                   </a>

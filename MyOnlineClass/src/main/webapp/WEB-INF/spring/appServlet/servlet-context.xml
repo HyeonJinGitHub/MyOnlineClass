@@ -23,6 +23,6 @@
 	
 	<context:component-scan base-package="net.developia.online" />
 	
-	
-	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
 </beans:beans>

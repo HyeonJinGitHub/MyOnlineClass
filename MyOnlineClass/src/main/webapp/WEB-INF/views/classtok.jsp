@@ -79,21 +79,14 @@
 			let profileInt = 	1000000;
 			
 			$.each( data, function( key, val ) {
-// 				let img = '${contextPath}/resources/instructor/'
-				
-// 				img += data[key]['image'];
 				img = data[key]['image'];
-// 				img += '.png';
-				alert(img);
 				$.ajax({
 					type: "GET",
 					url: "imageDownload",
 					data: "fileName=" + img,
 					success : function(data) {
-						alert("성공");
 					},
 					error : function() {
-						alert("에러");
 					}
 				});
 				
@@ -298,7 +291,7 @@ a#MOVE_TOP_BTN {
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="${contextPath}/open">클래스 개설
+						<a class="nav-link" href="${contextPath}/open">강사 신청
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>

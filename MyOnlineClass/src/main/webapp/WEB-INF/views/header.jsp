@@ -3,6 +3,9 @@
     isELIgnored="false" 
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String id = (String)session.getAttribute("id");
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -226,9 +229,15 @@ a#MOVE_TOP_BTN {
 						</a>
 					</li>
 					<li class="nav-item active">
+						<% if (id == null || id == "") { %>
 						<a class="nav-link" href="${contextPath}/login" style="padding-right: 40px;">
 							<i class="fas fa-user"></i>
 						</a>
+						<% } else { %>
+						<a class="nav-link" href="${contextPath}/mylecture" style="padding-right: 40px;">
+							<i class="fas fa-user"></i>
+						</a>
+						<% } %>
 					</li>
 				</ul>
 			</div>

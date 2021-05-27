@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.online.dao.VodDAO">
+
+	<select id="getVodList" parameterType="long"
+		resultType="VodDTO">
+		<![CDATA[
+		
+		select *
+		from video
+		where id IN (select video_id
+					from lecture_video
+					where lecture_id = #{lectureNo})
+		]]>
+	</select>
+	
+</mapper>

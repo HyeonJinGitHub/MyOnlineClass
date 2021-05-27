@@ -60,4 +60,15 @@
       class="org.mybatis.spring.mapper.MapperFactoryBean"
       p:sqlSessionFactory-ref="CommentSqlSession"
       p:mapperInterface="net.developia.online.dao.CommentDAO" />
+      
+    		  <!-- VodDAO -->
+   <bean id="VodSqlSession"
+      class="org.mybatis.spring.SqlSessionFactoryBean"
+      p:dataSource-ref="dataSource"
+      p:typeAliasesPackage="net.developia.online.dto" />
+
+   <bean id="VodDAO"
+      class="org.mybatis.spring.mapper.MapperFactoryBean"
+      p:sqlSessionFactory-ref="VodSqlSession"
+      p:mapperInterface="net.developia.online.dao.VodDAO" />
 </beans>

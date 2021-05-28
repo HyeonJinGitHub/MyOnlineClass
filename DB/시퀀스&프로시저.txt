@@ -1,3 +1,23 @@
+drop sequence lecture_no_seq;
+
+drop sequence comments_no_seq;
+
+create sequence lecture_no_seq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 100
+nocycle
+nocache;
+
+create sequence comments_no_seq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 200
+nocycle
+nocache;
+
 
 drop package member_pkg;
 create or replace package member_pkg
@@ -212,9 +232,11 @@ is
     end get_member_lecture_date;
 end member_pkg;
 
+drop package lecture_pkg;
 create or replace package lecture_pkg
 is
     procedure enroll_lecture(
+    input_member_id in varchar2,
     input_name in varchar2,
     input_genre in varchar2,
     input_duration in number,
@@ -227,6 +249,7 @@ end lecture_pkg;
 create or replace package body lecture_pkg
 is
     procedure enroll_lecture(
+    input_member_id in varchar2,
     input_name in varchar2,
     input_genre in varchar2,
     input_duration in number,
@@ -235,10 +258,14 @@ is
     input_thumbnail in varchar2,
     input_image in varchar2)
     as
+        lecture_id number(5);
     begin
+        lecture_id := lecture_no_seq.nextval;
         insert into lecture
-        values(lecture_no_seq.nextval, input_name, input_genre, input_image,
+        values(lecture_id, input_name, input_genre, input_image,
         input_duration, input_caution, input_introduce, input_thumbnail);
+        insert into enrollment
+        values(input_member_id, lecture_id);
         commit;
     end enroll_lecture;
 end lecture_pkg;

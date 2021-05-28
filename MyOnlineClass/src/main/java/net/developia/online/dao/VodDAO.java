@@ -9,4 +9,6 @@ public interface VodDAO {
 	//List<VodDTO> searchVod(String id) throws SQLException;
 
 	List<VodDTO> getVodList(long vodNo) throws SQLException;
+
+	void insertDTO(VodDTO vodDTO) throws SQLException;
 }

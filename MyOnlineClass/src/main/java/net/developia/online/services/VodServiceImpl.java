@@ -20,4 +20,12 @@ public class VodServiceImpl implements VodService {
 		return vodDAO.getVodList(lectureNo);
 	}
 	
+	
+	@Override
+	public void registerVod(VodDTO vodDTO) throws SQLException{
+		vodDAO.insertDTO(vodDTO);	
+		
+	}
+	
+	
 }

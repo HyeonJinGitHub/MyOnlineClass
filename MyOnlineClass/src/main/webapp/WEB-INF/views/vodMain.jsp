@@ -31,6 +31,7 @@
 		
 		function doPopUpOpen(){
 			window.open("tempfile","popup01","width=1000, height=1300");
+			
 		}
 		
 	</script>
@@ -84,7 +85,14 @@
 			         
   				</form>
    				-->
-   				<input type="submit" value="강의 업로드" class="vodUpload" onclick="doPopUpOpen();">
+   					<!-- 
+   					<form method="post" action="tempfile">
+   						<input type="text" type="text" name="lecture_name" style= "display:none" value="${lecture.name}"/>
+   						
+ 					</form>
+ 					 -->
+ 					 
+ 					 <input type="submit" value="강의 업로드" class="vodUpload" onclick="doPopUpOpen();">
    				
             </div>
 

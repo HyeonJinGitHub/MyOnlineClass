@@ -15,4 +15,11 @@
 		]]>
 	</select>
 	
+	<insert id="insertDTO">
+	<![CDATA[
+		INSERT INTO video values
+		(video_no_seq.nextval, #{title}, #{time}, #{src})
+	]]>
+	</insert>
+	
 </mapper>

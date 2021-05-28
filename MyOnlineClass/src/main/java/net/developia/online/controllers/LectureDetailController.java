@@ -1,7 +1,10 @@
 package net.developia.online.controllers;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,9 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,10 +44,10 @@ public class LectureDetailController {
 
 	private static Logger logger = LoggerFactory.getLogger(LectureDetailController.class);
 
-	// URL 예시 : http://localhost/online/classDetail?no=1
-	@GetMapping("/classDetail")
+	// URL 예시 : http://localhost/online/classDetail/1
+	@GetMapping("/classDetail/{no}")
 	@Transactional
-	public ModelAndView detail(@RequestParam(required = true) long no, HttpSession session) {
+	public ModelAndView detail(@PathVariable(required = true) long no, HttpSession session) {
 		ModelAndView mav = new ModelAndView("result");
 
 		try {
@@ -98,5 +104,52 @@ public class LectureDetailController {
 		boardService.deleteComment(commentDTO);
 		return boardService.getCommentList(commentDTO);
 	}*/
+	
+	
+	@GetMapping("/enroll")
+	public ModelAndView enroll() throws Exception {
+		return new ModelAndView("enroll");
+	}
+	
+	@PostMapping(value = "/enrollAction")
+	public ModelAndView enrollAction(HttpServletRequest request, @RequestParam(required = true) String lecturename,
+			@RequestParam(required = true) String genre, @RequestParam(required = true) long duration,
+			@RequestParam(required = true) String caution, @RequestParam(required = true) String introduce,
+			@RequestParam("thumbnail") MultipartFile file1, @RequestParam("image") MultipartFile file2)
+			throws Exception {
+		/* 파일 경로 */
+		String path = "C:/online/resources/lecture";
+
+		/* 이미지 업로드 */
+		String image1 = file1.getOriginalFilename();
+		if (!file1.getOriginalFilename().isEmpty()) {
+			file1.transferTo(new File(path, image1));
+		}
+
+		String image2 = file2.getOriginalFilename();
+		if (!file2.getOriginalFilename().isEmpty()) {
+			file2.transferTo(new File(path, image2));
+		}
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("LECTURENAME", lecturename);
+		map.put("GENRE", genre);
+		map.put("DURATION", duration);
+		map.put("CAUTION", caution);
+		map.put("INTRODUCE", introduce);
+		map.put("THUMBNAIL", image1);
+		map.put("IMAGE", image2);
+		try {
+			lectureService.enrollLecture(map);
+			ModelAndView mav = new ModelAndView("result");
+			mav.addObject("msg", "강의 등록에 성공하였습니다.");
+			mav.addObject("url", "/online/");
+			return mav;
+		} catch (Exception e) {
+			ModelAndView mav = new ModelAndView("result");
+			mav.addObject("msg", e.getMessage());
+			mav.addObject("url", "javascript:history.back();");
+			return mav;
+		}
+	}
 
 }

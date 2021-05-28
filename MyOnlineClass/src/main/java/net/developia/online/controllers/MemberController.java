@@ -235,6 +235,7 @@ public class MemberController {
 				HashMap<String, Object> memberLectureDate = (HashMap<String, Object>) tmp_list.get(0);
 				list.add(memberLectureDate.get("START_DATE").toString());
 				list.add(memberLectureDate.get("END_DATE").toString());
+				list.add(Long.toString(lecture_id));
 				lecture_map.put(dto.getName(), list);
 			}
 			mav.addObject("data", lecture_map);

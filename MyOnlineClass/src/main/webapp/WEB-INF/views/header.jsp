@@ -3,6 +3,10 @@
     isELIgnored="false" 
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String id = (String)session.getAttribute("id");
+	String nickname = (String) session.getAttribute("nickname");
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -16,9 +20,9 @@
 
 <!-- 부트 스트랩 스타일 시트 -->
 <link rel="stylesheet"
-	  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	  crossorigin="anonymous">
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+     crossorigin="anonymous">
 
 
   <!-- Bootstrap core CSS -->
@@ -34,53 +38,62 @@
 
 <!-- 다중 Autocomplete -->
 <script type="text/javascript">
-	$(function() {
-		$( "#searchKeyNav, #searchKeyBody" ).autocomplete({
-		  source: '${contextPath}/move/popular',
-		  delay: 200,
-		  select: function(event, ui) {
-		  	window.location.href = "detail?reserve=" + JSON.stringify(ui.item.value).replace(/\"/gi, "");
-		  }
+   $(function() {
+      $( "#searchKeyNav, #searchKeyBody" ).autocomplete({
+        source: '${contextPath}/move/popular',
+        delay: 200,
+        select: function(event, ui) {
+           window.location.href = "detail?reserve=" + JSON.stringify(ui.item.value).replace(/\"/gi, "");
+        }
+      });
+   });
+</script>
+
+<!-- 로그인 한 회원이 강사인지 확인 -->
+<script>
+	$(document).ready(function() {
+		$.ajax({
+			url: "getInstFlag",
+			type: "POST"
 		});
 	});
 </script>
 
-
 <style>
 body {
-	padding-top: 56px;
+   padding-top: 56px;
 }
 
 .carousel-item {
-	height: 65vh;
-	min-height: 300px;
-	background: no-repeat center center scroll;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+   height: 65vh;
+   min-height: 300px;
+   background: no-repeat center center scroll;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
 }
 
 .portfolio-item {
-	margin-bottom: 30px;
+   margin-bottom: 30px;
 }
 
 .logoImage {
-	width: 120px;
-	height: auto;
-	object-fit: cover;		
+   width: 120px;
+   height: auto;
+   object-fit: cover;      
 }
 
 .ul {
-	list-style:none;
+   list-style:none;
 }
 
 .custom-card-body {
-	-ms-flex: 1 1 auto;
-  	flex: 1 1 auto;
-  	min-height: 1px;
-  	padding: 0.3rem;
-  	font-size: 15px;
+   -ms-flex: 1 1 auto;
+     flex: 1 1 auto;
+     min-height: 1px;
+     padding: 0.3rem;
+     font-size: 15px;
 }
 
 }
@@ -89,91 +102,91 @@ body {
 <style>
 html,
 body {
-	position: relative;
-  	height: 100%;
+   position: relative;
+     height: 100%;
 }
 
 body {
-	background: #eee;
-  	font-family: Noto Sans KR, sans-serif, Helvetica Neue, Helvetica, Arial !important;
-  	font-size: 14px;
-  	color: #000;
-  	margin: 0;
-  	padding: 0;
+   background: #eee;
+     font-family: Noto Sans KR, sans-serif, Helvetica Neue, Helvetica, Arial !important;
+     font-size: 14px;
+     color: #000;
+     margin: 0;
+     padding: 0;
 }
 
 .swiper-container {
-	width: 100%;
-	height: 100%;
+   width: 100%;
+   height: 100%;
 }
 
 .swiper-slide {
-	text-align: center;
-  	font-size: 18px;
-  	background: #fff;
+   text-align: center;
+     font-size: 18px;
+     background: #fff;
 
   /* Center slide text vertically */
- 	display: -webkit-box;
-  	display: -ms-flexbox;
- 	display: -webkit-flex;
- 	display: flex;
-  	-webkit-box-pack: center;
-  	-ms-flex-pack: center;
-  	-webkit-justify-content: center;
-  	justify-content: center;
-  	-webkit-box-align: center;
-  	-ms-flex-align: center;
-  	-webkit-align-items: center;
-  	align-items: center;
+    display: -webkit-box;
+     display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+     -webkit-box-pack: center;
+     -ms-flex-pack: center;
+     -webkit-justify-content: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     -ms-flex-align: center;
+     -webkit-align-items: center;
+     align-items: center;
 }
 
 .swiper-slide img {
-	display: block;
-  	width: 100%;
-  	height: 100%;
-  	object-fit: cover;
+   display: block;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
 }
 
 .swiper-button-prev {
-	background-repeat: no-repeat;
-	background-size: 100% auto;
-	background-position: center;
-	-webkit-filter: opacity(.5) drop-shadow(0 0 0 gray);
-	filter: opacity(.5) dropshadow(0 0 0 gray);
+   background-repeat: no-repeat;
+   background-size: 100% auto;
+   background-position: center;
+   -webkit-filter: opacity(.5) drop-shadow(0 0 0 gray);
+   filter: opacity(.5) dropshadow(0 0 0 gray);
 }
 
 .swiper-button-next {
-	background-repeat: no-repeat;
-	background-size: 100% auto;
-	background-position: center;
-	-webkit-filter: opacity(.5) drop-shadow(0 0 0 gray);
-	filter: opacity(.5) dropshadow(0 0 0 gray);
+   background-repeat: no-repeat;
+   background-size: 100% auto;
+   background-position: center;
+   -webkit-filter: opacity(.5) drop-shadow(0 0 0 gray);
+   filter: opacity(.5) dropshadow(0 0 0 gray);
 }
 
 .swiper-button-prev:hover {
-	-webkit-filter: opacity(.5) drop-shadow(0 0 0 black);
-	filter: opacity(.5) dropshadow(0 0 0 black);
+   -webkit-filter: opacity(.5) drop-shadow(0 0 0 black);
+   filter: opacity(.5) dropshadow(0 0 0 black);
 }
 
 .swiper-button-next:hover {
-	-webkit-filter: opacity(.5) drop-shadow(0 0 0 black);
-	filter: opacity(.5) dropshadow(0 0 0 black);
+   -webkit-filter: opacity(.5) drop-shadow(0 0 0 black);
+   filter: opacity(.5) dropshadow(0 0 0 black);
 }
 
 .swiper-button-prev::after {
-	display: none;
+   display: none;
 }
 
 .swiper-button-next::after {
-	display: none;
+   display: none;
 }
 </style>
 
 <style>
 .my-box {
-	border: 1px solid #ff5a5f;
-	width: 80px;
-	height: 25px;
+   border: 1px solid #ff5a5f;
+   width: 80px;
+   height: 25px;
 }
 
 a#MOVE_TOP_BTN {
@@ -190,62 +203,75 @@ a#MOVE_TOP_BTN {
 </head>
 <body>
 <!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #ffffff;">
-		<div class="container">
-			<a class="navbar-brand" href="${contextPath}/">
-				<img src="${contextPath}/resources/image/ClassTok_logo.png" alt="클래스톡" class="logoImage">
-			</a>
-			
-			<div class="ui-widget" style="padding-top: 15px;">
-				<form id="searchClass" method='GET' action="${contextPath}/search">
-            		<label class="header__search-label" for="searchKey" >
-                		<input id="searchKeyNav" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; font-size: 13px; background-color: #f8f9fa; border-radius: 30px;">
-						<button type="submit" style="border:0; outline:0; background-color: white;">
-							<i class="fas fa-search" onclick="search"></i>
-						</button>
-            		</label>
-            	</form>
+   <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #ffffff;">
+      <div class="container">
+         <a class="navbar-brand" href="${contextPath}/">
+            <img src="${contextPath}/resources/image/ClassTok_logo.png" alt="클래스톡" class="logoImage">
+         </a>
+         
+         <div class="ui-widget" style="padding-top: 15px;">
+            <form id="searchClass" method='GET' action="${contextPath}/search">
+                  <label class="header__search-label" for="searchKey" >
+                      <input id="searchKeyNav" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; font-size: 13px; background-color: #f8f9fa; border-radius: 30px;">
+                  <button type="submit" style="border:0; outline:0; background-color: white;">
+                     <i class="fas fa-search" onclick="search"></i>
+                  </button>
+                  </label>
+               </form>
             </div>
             
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarResponsive" aria-controls="navbarResponsive"
-					aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="${contextPath}/open">클래스 개설
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link" href="${contextPath}/alarm">
-							<i class="far fa-bell"></i>
-						</a>
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link" href="${contextPath}/login" style="padding-right: 40px;">
-							<i class="fas fa-user"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	
-	
-	<!-- Bootstrap core JavaScript-->
-	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+         <button class="navbar-toggler" type="button" data-toggle="collapse"
+               data-target="#navbarResponsive" aria-controls="navbarResponsive"
+               aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         
+         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+           	   <li class="nav-item active">
+              	   <% if (id == null || id == "") { %>
+					
+				   <% } else if (id != null && nickname == null) { %>
+				   <a class="nav-link" href="${contextPath}/open">
+				       <span>강사 신청</span>
+				   </a>
+				   <% } else if (id != null && nickname != null){ %>
+				   <a class="nav-link" href="${contextPath}/enroll">
+				       <span>클래스 개설</span>
+				   </a>
+			       <% } %>
+               		<li class="nav-item active">
+                  <a class="nav-link" href="${contextPath}/alarm">
+                     <i class="far fa-bell"></i>
+                  </a>
+               </li>
+               <li class="nav-item active">
+                  <% if (id == null || id == "") { %>
+                  <a class="nav-link" href="${contextPath}/login" style="padding-right: 40px;">
+                     <i class="fas fa-user"></i>
+                  </a>
+                  <% } else { %>
+                  <a class="nav-link" href="${contextPath}/mylecture" style="padding-right: 40px;">
+                     <i class="fas fa-user"></i>
+                  </a>
+                  <% } %>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </nav>
+   
+   
+   <!-- Bootstrap core JavaScript-->
+   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
 
-	<!-- Bootstrap core CSS -->
-	<link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	
-	<!--  Custom styles for this template-->
-	<link href="${contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
-	
-	
+   <!-- Bootstrap core CSS -->
+   <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   
+   <!--  Custom styles for this template-->
+   <link href="${contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
+   
+   
 </body>
 </html>

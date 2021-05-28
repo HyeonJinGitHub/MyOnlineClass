@@ -24,8 +24,25 @@
 	
 	<select id="getInstructorList" resultType="InstructorDTO">
 	<![CDATA[
-		SELECT instructor.member_id as id, nickname, introduce, image
-		FROM instructor
+		SELECT	instructor.member_id as id, nickname, introduce, image
+		FROM	instructor
+	]]>
+	</select>
+	
+	<insert id="registerInstructor">
+	<![CDATA[
+		INSERT INTO instructor values
+		(#{id}, #{nickname}, #{introduce}, #{image})
+	]]>
+	</insert>
+	
+	<select id="getInstFlag" resultType="InstructorDTO">
+	<![CDATA[
+		SELECT	instructor.nickname
+		FROM	instructor
+		WHERE	instructor.member_id = (SELECT	id
+										FROM	member
+										WHERE	member.id = #{id})
 	]]>
 	</select>
 </mapper>

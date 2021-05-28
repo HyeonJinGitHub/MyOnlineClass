@@ -23,6 +23,7 @@
 	
 	<context:component-scan base-package="net.developia.online" />
 	
+
 	<!-- 들어오는 데이터를 처리해주는 multipartResolver 빈을 생성해주는 부분 -->    
  
    <beans:bean id="multipartResolver"
@@ -33,5 +34,5 @@
     
 	<context:component-scan base-package="com.developia.upload" />
 	
-	
+
 </beans:beans>

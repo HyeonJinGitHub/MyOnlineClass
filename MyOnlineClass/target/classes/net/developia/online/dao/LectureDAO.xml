@@ -10,6 +10,7 @@
 	
 	<parameterMap type="java.util.HashMap"
 		id="enrollParam">
+		<parameter property="MEMBERID" jdbcType="VARCHAR" mode="IN" />
 		<parameter property="LECTURENAME" jdbcType="VARCHAR" mode="IN" />
 		<parameter property="GENRE" jdbcType="VARCHAR" mode="IN" />
 		<parameter property="DURATION" jdbcType="NUMERIC" mode="IN" />
@@ -24,7 +25,7 @@
 	<![CDATA[
           {
              call lecture_pkg.enroll_lecture(
-				?, ?, ?, ?, ?, ?, ?
+				?, ?, ?, ?, ?, ?, ?, ?
 			)
           }
        ]]>

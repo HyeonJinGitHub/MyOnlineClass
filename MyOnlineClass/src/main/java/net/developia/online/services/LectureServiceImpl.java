@@ -46,6 +46,8 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public void MemberLectureRegister(HashMap<String, Object> map) throws Exception {
 		try {
+			//이미 수강중인 멤버인 경우 -> 동영상 페이지로 이동
+			//본인 강의에 수강하려는 경우 -> 불가!
 			lectureDAO.MemberLectureRegister(map);
 		} catch (Exception e) {
 			log.info(e.getMessage());

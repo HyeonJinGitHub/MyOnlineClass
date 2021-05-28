@@ -44,8 +44,8 @@ public class LectureDetailController {
 
 	private static Logger logger = LoggerFactory.getLogger(LectureDetailController.class);
 
-	// URL 예시 : http://localhost/online/classDetail/1
-	@GetMapping("/classDetail/{no}")
+	// URL 예시 : http://localhost/online/classdetail/1
+	@GetMapping("/classdetail/{no}")
 	@Transactional
 	public ModelAndView detail(@PathVariable(required = true) long no, HttpSession session) {
 		ModelAndView mav = new ModelAndView("result");
@@ -59,7 +59,7 @@ public class LectureDetailController {
 
 			mav.addObject("lectureDTO", lectureDTO);
 			mav.addObject("instructorDTO", instructorDTO);
-			mav.addObject("url", "/online/lectureDetail");
+			mav.addObject("url", "/online/lecturedetail");
 			mav.setViewName("lectureDetail");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,13 +69,6 @@ public class LectureDetailController {
 		return mav;
 	}
 
-	@GetMapping(value = "/classDetail", produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public List<CommentDTO> comment_list(@RequestParam(required = true) long no) throws Exception {
-		System.out.println("comment list 수집");
-		List<CommentDTO> list = commentService.getCommentList(no);
-		return list;
-	}
 /*
 	@PostMapping(value = "/{cno}", produces = "application/json; charset=UTF-8")
 	@ResponseBody

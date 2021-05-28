@@ -59,10 +59,33 @@ String user = (String) session.getAttribute("id");
 	type="text/css">
 
 <script type="text/javascript">
-	//이벤트 X 실행
 	$(function() {
-
+		printCommentList();
 	});
+	
+	function printCommentList() {
+
+		var uri = "/online/classDetail/"+${lecture.id};
+
+		$.get(uri, function(response) {
+			if (isEmpty(response) == false) {
+				var commentsHtml = "";
+
+				$(response.commentList).each(function(idx, comment) {
+					commentsHtml += `
+						<li>
+							<span class="name">${commentlist.name}</span>
+							<span class="content">${commentlist.content}</span>
+							<button type="button" class="btn btn-xs btn-circle"><i class="fa fa-close" aria-hidden="true"></i></button>
+						</li>
+					`;
+				});
+
+				$(".commentDisplay").html(commentsHtml);
+			}
+		}, "json");
+	}
+	
 	function selectComment() {
 		$.ajax({
 			method : 'GET',
@@ -246,7 +269,7 @@ String user = (String) session.getAttribute("id");
 					<div class="listing__hero__btns">
 						<a href="javascript:history.back()" class="primary-btn share-btn"><i
 							class="fa fa-mail-reply"></i> 뒤로가기</a> <a
-							href="/online/memberLecture/${lecture.id}" class="primary-btn"><i
+							href="/online/memberlecture/${lecture.id}" class="primary-btn"><i
 							class="fa fa-bookmark"></i> 수강신청</a>
 					</div>
 				</div>
@@ -357,8 +380,7 @@ String user = (String) session.getAttribute("id");
 						<div class="listing__details__review">
 							<h4>Add Comment</h4>
 							<form action="#">
-								<input type="text" placeholder="name"> <input
-									type="text" placeholder="password">
+								<input type="text" placeholder="name">
 								<textarea placeholder="content"></textarea>
 								<button type="submit" class="site-btn">댓글쓰기</button>
 							</form>
@@ -369,10 +391,11 @@ String user = (String) session.getAttribute("id");
 				<div class="col-lg-4">
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
-							<div style="width: 100%; height:100%; text-align: center;">
+							<div style="width: 100%; height: 100%; text-align: center;">
 								<img
 									src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
-									alt="Profile" style="width: 100%; max-width:300px; margin: 2px auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; vertical-align: middle;">
+									alt="Profile"
+									style="width: 100%; max-width: 300px; margin: 2px auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; vertical-align: middle;">
 							</div>
 							<div class="listing__sidebar__contact__text">
 								<h6>강사</h6>
@@ -389,7 +412,7 @@ String user = (String) session.getAttribute("id");
 								<div class="listing__details__review"
 									style="text-align: center;">
 									<button type="button" class="site-btn"
-										onclick="location.href='/online/memberLecture/${lecture.id}'">
+										onclick="location.href='/online/memberlecture/${lecture.id}'">
 										<i class="fa fa-bookmark"></i> 수강신청
 									</button>
 								</div>

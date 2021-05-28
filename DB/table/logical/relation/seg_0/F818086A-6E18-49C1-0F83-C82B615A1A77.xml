@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="enrollment_member_FK" directorySegmentName="seg_0" id="F818086A-6E18-49C1-0F83-C82B615A1A77">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 07:55:08 UTC</createdTime>
+<generatorID>3AB7871C-144F-4C5F-F92D-370ADB6ADB8B</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="FBDB4A41-21DD-3776-D6BC-AA58030174D0" value="true"/>
+<item key="BB612EB0-6A04-E525-CE53-2DDB02B5FB10" value="true"/>
+</engineerTo>
+<sourcePk>189E3929-0263-E349-337D-FCEB48C11129</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>8100C00E-2E19-DF63-7EB0-B237830C725E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FC951D63-6FE0-7DBB-B6C5-458B5DF7DDAB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

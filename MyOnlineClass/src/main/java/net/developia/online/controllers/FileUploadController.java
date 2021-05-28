@@ -88,11 +88,12 @@ public class FileUploadController {
 			
 		
 			try {
+				
 				vodService.registerLectureVod(map);
 
 				System.out.println("성공");
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			
@@ -101,8 +102,6 @@ public class FileUploadController {
                 mf.transferTo(new File(safeFile));
                 
                
-                //response.sendRedirect(mav.getViewName());
-            	//mf.transferTo(safeFile);
                } catch (IllegalStateException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -110,6 +109,10 @@ public class FileUploadController {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+            
+            
+            
+            
         
         return null;
         

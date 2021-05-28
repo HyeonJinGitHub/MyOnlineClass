@@ -22,15 +22,15 @@
 	<!-- 샘플 -->
 	<script>
 	
-		//var getVideoData = function () {
+		var getVideoData = function () {
 			
-//0		return new Promise(function (resolve, reject) {
+		return new Promise(function (resolve, reject) {
 			
-	//		console.log(${jsonList});
-		//	var videoData = ${jsonList};
-			//resolve(videoData);
-		//})
-		//}
+	    console.log(${jsonList});
+		var videoData = ${jsonList};
+		resolve(videoData);
+		})
+		}
 		
 		
 		

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isELIgnored="false" 
-    %>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String id = (String)session.getAttribute("id");
@@ -23,13 +21,6 @@
      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
      crossorigin="anonymous">
-
-
-  <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="${pageContext.request.contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -235,10 +226,6 @@ a#MOVE_TOP_BTN {
 				   <a class="nav-link" href="${contextPath}/open">
 				       <span>강사 신청</span>
 				   </a>
-				   <% } else if (id != null && nickname != null){ %>
-				   <a class="nav-link" href="${contextPath}/enroll">
-				       <span>클래스 개설</span>
-				   </a>
 			       <% } %>
                		<li class="nav-item active">
                   <a class="nav-link" href="${contextPath}/alarm">
@@ -263,13 +250,13 @@ a#MOVE_TOP_BTN {
    
    
    <!-- Bootstrap core JavaScript-->
-   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+<%--    <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script> --%>
+<%--    <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 
    <!-- Bootstrap core CSS -->
    <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    
-   <!--  Custom styles for this template-->
+   <!--  Custom styles for this template -->
    <link href="${contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
    
    

@@ -29,7 +29,7 @@
           }
        ]]>
 	</select>
-	
+		
 	<parameterMap type="java.util.HashMap"
 		id="registerMap">
 		<parameter property="LECTURE_ID" jdbcType="INTEGER" mode="IN" />

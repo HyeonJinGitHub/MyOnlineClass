@@ -22,4 +22,23 @@
 	]]>
 	</insert>
 	
+	<parameterMap type="java.util.HashMap"
+		id="reg_param">
+		<parameter property="lecutre_id" jdbcType="NUMERIC" mode="IN" />
+		<parameter property="title" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="time" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="src" jdbcType="VARCHAR" mode="IN" />
+	</parameterMap>
+
+	<select id="register_lecture_video" statementType="CALLABLE"
+		parameterMap="reg_param" >
+	<![CDATA[
+          {
+             call lecture_pkg.lecture_video_proc(
+				?, ?, ?, ?
+			)
+          }
+       ]]>
+	</select>
+	
 </mapper>

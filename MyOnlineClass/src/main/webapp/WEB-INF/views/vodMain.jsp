@@ -4,6 +4,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  <c:import url="header3.jsp"></c:import>
 
+<c:set var="lecture" value="${lectureDTO}" />
+<c:set var="instructor" value="${instructorDTO}" />
   
 <!DOCTYPE html>
 <html lang="en">
@@ -19,20 +21,27 @@
 	
 	<!-- 샘플 -->
 	<script>
-		var getVideoData = function () {
+	
+		//var getVideoData = function () {
 			
-		return new Promise(function (resolve, reject) {
+//0		return new Promise(function (resolve, reject) {
 			
-			console.log(${jsonList});
-			var videoData = ${jsonList};
-			resolve(videoData);
-		})
-		}
+	//		console.log(${jsonList});
+		//	var videoData = ${jsonList};
+			//resolve(videoData);
+		//})
+		//}
 		
-		function doPopUpOpen(){
-			window.open("tempfile","popup01","width=1000, height=1300");
+		
+		
+			//"height=400,width=377,top=100,left=200,scrollbars=yes,resizable=yes"
+			//window.open("/tempfile","vodEnroll","width=1000, height=1300");
 			
-		}
+			
+			//var windowObj = window.open("temp","vodEnroll","width=1000, height=1300");
+			//windowObj.document.getElementById("lecture_no").value = document.getElementById('lecture_id').value;
+			//console.log(document.getElementById('lecture_id').value);
+		
 		
 	</script>
 	
@@ -40,8 +49,7 @@
 </head>
 <body>
 	<!-- edu video s -->
-	<c:set var="lecture" value="${lectureDTO}" />
-	<c:set var="instructor" value="${instructorDTO}" />
+	
 	<h2>${lecture.name}</h2>
 	<p>${instructor.nickname} 강사님</p>
 	<div class="video__wrap">
@@ -85,14 +93,18 @@
 			         
   				</form>
    				-->
-   					<!-- 
+   					 
    					<form method="post" action="tempfile">
-   						<input type="text" type="text" name="lecture_name" style= "display:none" value="${lecture.name}"/>
-   						
+   						<input type="text" name="lecture_name" style= "display:none" value="${lecture.name}"/>
+   						<input type="text" name="lecture_id" style= "display:none" value="${lecture.id}"/>
+   						<input type="submit" value="강의 업로드" class="vodUpload" >	
  					</form>
- 					 -->
  					 
- 					 <input type="submit" value="강의 업로드" class="vodUpload" onclick="doPopUpOpen();">
+ 					 <!-- <input type="text" id="lecture_id" name="lecture_id" style= "display:none" /> -->
+ 					 <!-- <input type="text" id="lecture_id" name="lecture_id" value="${lecture.id}"/> -->
+ 					 
+ 					 
+ 					 
    				
             </div>
 

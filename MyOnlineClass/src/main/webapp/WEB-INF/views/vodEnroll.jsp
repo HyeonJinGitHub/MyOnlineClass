@@ -9,6 +9,7 @@ String email = (String) session.getAttribute("email");
 String phone = (String) session.getAttribute("phone");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="lecture_id" value="${lecture_id}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +29,9 @@ String phone = (String) session.getAttribute("phone");
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <script type="text/javascript">
+	
+	
+
 
 	btn_upload = function(){
 		opener.location.reload();
@@ -159,7 +163,8 @@ body {
 
 </head>
 <body>
-	<c:set var="lecture" value="${lecture_name}" />
+	
+	
 
 	<%
 	if (id == null || id == "") {
@@ -179,7 +184,7 @@ body {
 				<h3 style="display: inline-block; color: red; padding-bottom: 30px;">
 					.</h3>
 				<br>
-
+				
 				<form method="post" action="upload" enctype="multipart/form-data" >
 				
 				<!-- 
@@ -215,7 +220,8 @@ body {
 					<br><br>
 					
 				         <input multiple="multiple" type="file" name="file1" style= "display:none"/>
-				         <input multiple="multiple" type="text" name="lecture_no" style= "display:none" value="${lecture.id}"/>
+				         
+				         <input type="text" id="lecture_no" name="lecture_no" value="${lecture_id}"/>
 				         <button type="button" class="vodSelect" onclick="onclick=document.all.file1.click()">동영상 선택</button>
 				         <input type="submit" value="강의 업로드" class="vodUpload">
 				         

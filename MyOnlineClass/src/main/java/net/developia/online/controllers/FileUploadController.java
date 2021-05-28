@@ -3,6 +3,7 @@ package net.developia.online.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.developia.online.dto.VodDTO;
 import net.developia.online.services.LectureService;
 import net.developia.online.services.VodService;
 
@@ -73,18 +73,23 @@ public class FileUploadController {
 
             String safeFile =  My_SAVE_PATH + originalFileName;
 
+            String src = "video/"+id+"/"+originalFileName;
             
+            HashMap<String, Object> map = new HashMap<String, Object>();
             
-            VodDTO vodDTO = new VodDTO();
-    		vodDTO.setTitle(title);
-    		vodDTO.setTime(time);
-    		
-    		vodDTO.setSrc("video/"+id+"/"+originalFileName);
-    		
-    		
-    		
+            map.put("lecutre_id", lecture_no);
+            map.put("title", title);
+			map.put("time", time);
+			map.put("src", src);
+			System.out.println(lecture_no);
+			System.out.println(title);
+			System.out.println(time);
+			System.out.println(src);
+			
+		
 			try {
-				vodService.registerVod(vodDTO);
+				vodService.registerLectureVod(map);
+
 				System.out.println("성공");
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -113,15 +118,17 @@ public class FileUploadController {
     
 
     @RequestMapping("tempfile")
-    //public ModelAndView tempfile(@RequestParam(value="lecture_name") String lecture_name, HttpServletRequest request, HttpServletResponse response) throws Exception {
-    public ModelAndView tempfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView tempfile(@RequestParam(required=true) String lecture_name,
+    		@RequestParam(required=true) long lecture_id,
+    		HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	
     	ModelAndView mav = new ModelAndView();
     	
+    	System.out.println(lecture_id);
     	mav.setViewName("vodEnroll");
+    	mav.addObject("lecture_id",lecture_id);
     	//mav.addObject(lecture_name);
 		return mav;
 	}
-    
-    
 
 }

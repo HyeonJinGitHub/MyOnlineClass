@@ -112,25 +112,26 @@ public class LectureDetailController {
 	}
 	
 	@PostMapping(value = "/enrollAction")
-	public ModelAndView enrollAction(HttpServletRequest request, @RequestParam(required = true) String lecturename,
+	public ModelAndView enrollAction(HttpSession session, HttpServletRequest request, @RequestParam(required = true) String lecturename,
 			@RequestParam(required = true) String genre, @RequestParam(required = true) long duration,
 			@RequestParam(required = true) String caution, @RequestParam(required = true) String introduce,
 			@RequestParam("thumbnail") MultipartFile file1, @RequestParam("image") MultipartFile file2)
 			throws Exception {
-		/* 파일 경로 */
-		String path = "C:/online/resources/lecture";
 
 		/* 이미지 업로드 */
 		String image1 = file1.getOriginalFilename();
+		String path1 = "C:/online/resources/lecture/" + lecturename + "/thumbnail";
 		if (!file1.getOriginalFilename().isEmpty()) {
-			file1.transferTo(new File(path, image1));
+			file1.transferTo(new File(path1, image1));
 		}
 
 		String image2 = file2.getOriginalFilename();
+		String path2 = "C:/online/resources/lecture/" + lecturename + "/image";
 		if (!file2.getOriginalFilename().isEmpty()) {
-			file2.transferTo(new File(path, image2));
+			file2.transferTo(new File(path2, image2));
 		}
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("MEMBERID", session.getAttribute("id"));
 		map.put("LECTURENAME", lecturename);
 		map.put("GENRE", genre);
 		map.put("DURATION", duration);

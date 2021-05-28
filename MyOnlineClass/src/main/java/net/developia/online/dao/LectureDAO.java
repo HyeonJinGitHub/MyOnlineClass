@@ -12,6 +12,7 @@ public interface LectureDAO {
 	void enrollLecture(HashMap<String, Object> map) throws SQLException;
 	
 	void enroll(HashMap<String, Object> map) throws Exception;
-	
+
 	void MemberLectureRegister(HashMap<String, Object> map) throws Exception; // 강의 수강신청
+
 }

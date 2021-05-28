@@ -59,8 +59,10 @@ String user = (String) session.getAttribute("id");
 	type="text/css">
 
 <script type="text/javascript">
-	<script>
+	//이벤트 X 실행
+	$(function() {
 
+	});
 	function selectComment() {
 		$.ajax({
 			method : 'GET',
@@ -70,6 +72,7 @@ String user = (String) session.getAttribute("id");
 		});
 	}
 
+	/*
 	function myCommentEvent() {
 		$('.btnDeleteOk').click(function() {
 			if (confirm('댓글을 정말로 삭제 하시겠습니까?')) {
@@ -140,42 +143,35 @@ String user = (String) session.getAttribute("id");
 							});
 						});
 	}
+	 */
 
 	function displayCommentList(data) {
 		var commentSection;
-		$.each(
-				data,
-				function(key, val){
-					commentSection = "<div class='listing__details__comment__item'>"
-						+ "<div class='listing__details__comment__item__pic'>"
-						+ "<img src='${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png' alt=''>"
-						+ "</div>"
-						+ "<div class='listing__details__comment__item__text'>"
-						+ "<div class='listing__details__comment__item__rating'>"
-						+ "<i class='fa fa-star'></i>"
-						+ "<i class='fa fa-star'></i>"
-						+ "<i class='fa fa-star'></i>"
-						+ "<i class='fa fa-star'></i>"
-						+ "<i class='fa fa-star'></i>"
-						+ "</div>";
-					commentSection += "<span>"
-								   + val['regdate']
-								   + "</span>"
-								   + "<h5>"
-								   + val['member_name']
-								   + "</h5>"
-								   + "<p>"
-								   + val['content']
-								   + "</p>";
-					commentSection += "<ul>"
-								   + "<li><i class='fa fa-hand-o-right'></i> Like</li>"
-								   + "<li><i class='fa fa-share-square-o'></i> Reply</li>"
-								   + "</ul>"
-								   + "</div>"
-								   + "</div>";
-					});
-			$('#commentDisplay').html(commentSection);
-			CommentEvent();
+		$
+				.each(
+						data,
+						function(key, val) {
+							commentSection = "<div class='listing__details__comment__item'>"
+									+ "<div class='listing__details__comment__item__pic'>"
+									+ "<img src='${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png' alt=''>"
+									+ "</div>"
+									+ "<div class='listing__details__comment__item__text'>"
+									+ "<div class='listing__details__comment__item__rating'>"
+									+ "<i class='fa fa-star'></i>"
+									+ "<i class='fa fa-star'></i>"
+									+ "<i class='fa fa-star'></i>"
+									+ "<i class='fa fa-star'></i>"
+									+ "<i class='fa fa-star'></i>" + "</div>";
+							commentSection += "<span>" + val['regdate']
+									+ "</span>" + "<h5>" + val['member_name']
+									+ "</h5>" + "<p>" + val['content'] + "</p>";
+							commentSection += "<ul>"
+									+ "<li><i class='fa fa-hand-o-right'></i> Like</li>"
+									+ "<li><i class='fa fa-share-square-o'></i> Reply</li>"
+									+ "</ul>" + "</div>" + "</div>";
+						});
+		$('#commentDisplay').html(commentSection);
+		CommentEvent();
 	}
 
 	$(document).ready(function() {
@@ -249,8 +245,9 @@ String user = (String) session.getAttribute("id");
 				<div class="col-lg-4">
 					<div class="listing__hero__btns">
 						<a href="javascript:history.back()" class="primary-btn share-btn"><i
-							class="fa fa-mail-reply"></i> 뒤로가기</a> <a href="/online/memberLecture/${lecture.id}"
-							class="primary-btn"><i class="fa fa-bookmark"></i> 수강신청</a>
+							class="fa fa-mail-reply"></i> 뒤로가기</a> <a
+							href="/online/memberLecture/${lecture.id}" class="primary-btn"><i
+							class="fa fa-bookmark"></i> 수강신청</a>
 					</div>
 				</div>
 			</div>
@@ -268,7 +265,7 @@ String user = (String) session.getAttribute("id");
 							<div class="listing__details__gallery__pic">
 								<div class="listing__details__gallery__item">
 									<img class="listing__details__gallery__item__large"
-										src="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/lecture/${lecture.image}.jpg"
+										src="${pageContext.request.contextPath}/lectureThumbnail?name=${lecture.name}&thumbnail=${lecture.thumbnail}"
 										alt=""> <span><i class="fa fa-camera"></i>
 										${lecture.name}</span>
 								</div>
@@ -276,12 +273,13 @@ String user = (String) session.getAttribute("id");
 						</div>
 						<div class="listing__details__about">
 							<h4>Information</h4>
-							<p>${lecture.introduce}</p><br>
+							<p>${lecture.introduce}</p>
+							<br>
 							<div class="listing__details__gallery">
 								<div class="listing__details__gallery__pic">
 									<div class="listing__details__gallery__item">
 										<img class="listing__details__gallery__item__large"
-											src="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/lecture/${lecture.image}detail.jpg"
+											src="${pageContext.request.contextPath}/lectureImage?name=${lecture.name}&image=${lecture.image}"
 											alt=""> <span><i class="fa fa-camera"></i>
 											${lecture.name}</span>
 									</div>
@@ -290,7 +288,8 @@ String user = (String) session.getAttribute("id");
 						</div>
 						<div class="listing__details__about">
 							<h4>Caution</h4>
-							<p>${lecture.caution}</p><br>
+							<p>${lecture.caution}</p>
+							<br>
 						</div>
 						<div class="listing__details__amenities">
 							<h4>Amenities</h4>
@@ -366,17 +365,17 @@ String user = (String) session.getAttribute("id");
 						</div>
 					</div>
 				</div>
-	<!-- Instructor Section Begin -->
+				<!-- Instructor Section Begin -->
 				<div class="col-lg-4">
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
-							<div class="listing__sidebar__contact__map">
+							<div style="width: 100%; height:100%; text-align: center;">
 								<img
-									src="https://media.istockphoto.com/vectors/vector-realistic-blank-photo-frame-vector-id1143475054?b=1&k=6&m=1143475054&s=170x170&h=UXtqQrMb3iqNNm1eOQevmWmN91uISK2ZImZvgLOzvlA="
-									alt="" height="100px">
+									src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
+									alt="Profile" style="width: 100%; max-width:300px; margin: 2px auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; vertical-align: middle;">
 							</div>
 							<div class="listing__sidebar__contact__text">
-								<h6> 강사</h6>
+								<h6>강사</h6>
 								<h4>${instructor.nickname}</h4>
 								<ul>
 									<li><br></li>
@@ -387,8 +386,12 @@ String user = (String) session.getAttribute("id");
 									<li><br></li>
 									<li>${instructor.introduce}</li>
 								</ul>
-								<div class="listing__details__review" style="text-align: center;">
-									<button type="button" class="site-btn" onclick="location.href='/online/memberLecture/${lecture.id}'"><i class="fa fa-bookmark"></i> 수강신청</button>
+								<div class="listing__details__review"
+									style="text-align: center;">
+									<button type="button" class="site-btn"
+										onclick="location.href='/online/memberLecture/${lecture.id}'">
+										<i class="fa fa-bookmark"></i> 수강신청
+									</button>
 								</div>
 							</div>
 						</div>
@@ -413,13 +416,14 @@ String user = (String) session.getAttribute("id");
 				<div class="col-lg-3 col-md-6">
 					<div class="footer__address">
 						<ul>
-							<li><span>Connect Us:</span>
+							<li>
 								<div class="footer__social">
 									<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
 										class="fa fa-instagram"></i></a> <a href="#"><i
 										class="fa fa-twitter"></i></a> <a href="#"><i
 										class="fa fa-skype"></i></a>
-								</div></li>
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -427,6 +431,7 @@ String user = (String) session.getAttribute("id");
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="footer__copyright">
+
 						<div class="footer__copyright__text">
 							<p>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -437,6 +442,7 @@ String user = (String) session.getAttribute("id");
 								All rights reserved <a href="#" target="_blank">MyOnlineClass</a>
 							</p>
 						</div>
+
 						<div class="footer__copyright__links">
 							<a href="#">Terms</a> <a href="#">Privacy Policy</a> <a href="#">Cookie
 								Policy</a>

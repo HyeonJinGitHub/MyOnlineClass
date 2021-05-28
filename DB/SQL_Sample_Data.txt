@@ -35,6 +35,14 @@ maxvalue 200
 nocycle
 nocache;
 
+create sequence video_no_seq;
+increment by 1
+start with 1
+minvalue 1
+maxvalue 100
+nocycle
+nocache;
+
 INSERT INTO member
 (id, password, name, email, phone)
 VALUES('member1', '11', '김소녀', 'kimsn@gmail.com', '010-1111-2222');

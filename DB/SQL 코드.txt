@@ -14,16 +14,24 @@ DROP TABLE member_lecture CASCADE CONSTRAINTS;
 
 DROP TABLE video CASCADE CONSTRAINTS;
 
+DROP TABLE lecture_video CASCADE CONSTRAINTS;
+
+-- predefined type, no DDL - MDSYS.SDO_GEOMETRY
+
+-- predefined type, no DDL - XMLTYPE
 
 CREATE TABLE comments (
-    no	      NUMBER(5) NOT NULL,
+    no          NUMBER(5) NOT NULL,
     member_id   VARCHAR2(30) NOT NULL,
     lecture_id  NUMBER(5) NOT NULL,
     content     CLOB NOT NULL,
     regdate     VARCHAR2(50) NOT NULL
 );
 
-ALTER TABLE comments ADD CONSTRAINT comment_pk PRIMARY KEY ( no );
+ALTER TABLE comments
+    ADD CONSTRAINT comment_pk PRIMARY KEY ( no,
+                                            lecture_id,
+                                            member_id );
 
 CREATE TABLE enrollment (
     member_id   VARCHAR2(30) NOT NULL,
@@ -84,10 +92,11 @@ ALTER TABLE member_lecture ADD CONSTRAINT member_lecture_pk PRIMARY KEY ( member
                                                                           lecture_id );
 
 CREATE TABLE video (
-    id           NUMBER(5) NOT NULL,
-    title        VARCHAR2(100) NOT NULL,
-    information  VARCHAR2(300) NOT NULL,
-    src         VARCHAR2(300) NOT NULL
+
+    id     NUMBER(5) NOT NULL,
+    title  VARCHAR2(100) NOT NULL,
+    time   VARCHAR2(300) NOT NULL,
+    src    VARCHAR2(300) NOT NULL
 );
 
 ALTER TABLE video ADD CONSTRAINT video_pk PRIMARY KEY ( id );

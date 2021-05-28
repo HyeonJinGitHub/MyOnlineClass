@@ -1,7 +1,6 @@
 package net.developia.online.services;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +30,7 @@ public class LectureServiceImpl implements LectureService {
 		}
 	}
 
+
 	@Override
 	public void enrollLecture(HashMap<String, Object> map) throws Exception {
 		try {
@@ -42,4 +42,14 @@ public class LectureServiceImpl implements LectureService {
 		
 	}
 	
+
+	@Override
+	public void MemberLectureRegister(HashMap<String, Object> map) throws Exception {
+		try {
+			lectureDAO.MemberLectureRegister(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
 }

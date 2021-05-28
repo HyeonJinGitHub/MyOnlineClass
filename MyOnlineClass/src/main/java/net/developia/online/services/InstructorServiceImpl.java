@@ -29,7 +29,7 @@ public class InstructorServiceImpl implements InstructorService {
 			System.out.println();
 			InstructorDTO instructorDTO = instructorDAO.getInstructor(lectureNo);
 			if (instructorDTO == null) {
-				throw new RuntimeException("잘못된 클래스 번호입니다.");
+				throw new RuntimeException("강사 정보를 받아올 수 없습니다.");
 			}
 			return instructorDTO;
 		} catch (Exception e) {

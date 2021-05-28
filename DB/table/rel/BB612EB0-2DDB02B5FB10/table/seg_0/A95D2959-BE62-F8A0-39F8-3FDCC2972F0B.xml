@@ -1,0 +1,123 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A95D2959-BE62-F8A0-39F8-3FDCC2972F0B" name="lecture">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>F43400B7-201E-989D-BAFB-29859D4E631A</importedID>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="1C5669E8-2FEF-B549-B727-FCF82C326BF9">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>BCBC6EF1-DC66-8F67-4686-404616A09EA5</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="E4143751-B70A-955C-7542-E94ECEAB7D4E">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>BC673092-2482-D97C-916B-3BFBAED54C74</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="genre" id="D8F5F3FA-58AF-7D79-043A-821198C5C126">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>9CAB2258-F3B9-6F99-246B-F02ABF3D9E58</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="image" id="5F9A6E47-1BC9-855D-3CDD-F5FD5E089F01">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>BC26CD18-8A00-42A7-9C3D-153D5A21BB9E</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="duration" id="C43CEB61-0922-7CE6-1390-FBA66EC1D93B">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>87F3257C-1C03-998A-0878-9650247A25F8</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="caution" id="B4B527BF-AAA7-2727-0A4F-873BCF070117">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>0824111C-AE46-0AC0-1B85-EF80B6692651</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="introduce" id="950C3487-CFB3-EBB0-1F29-FFDCA8D9BFE1">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>2064C460-B12C-F375-2392-36868B4046D4</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="thumbnail" id="948BC7F2-CBA0-31F2-69AC-6A860AF7E243">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>998809B6-E1CE-1352-C81F-C1E7C7441BA7</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5AFF131E-442C-029E-C283-2A4AD163D429" name="lecture_PK">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 06:44:35 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>C299C575-1291-2C9E-BF90-4B01F491EB3E</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1C5669E8-2FEF-B549-B727-FCF82C326BF9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

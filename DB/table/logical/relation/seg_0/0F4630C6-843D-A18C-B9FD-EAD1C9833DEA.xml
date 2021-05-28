@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="lecture_video_video_FK" directorySegmentName="seg_0" id="0F4630C6-843D-A18C-B9FD-EAD1C9833DEA">
+<createdBy>HyeonJin</createdBy>
+<createdTime>2021-05-28 07:55:08 UTC</createdTime>
+<generatorID>CC4AD4C6-4FBF-3085-9075-C23E93BB9536</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="FBDB4A41-21DD-3776-D6BC-AA58030174D0" value="true"/>
+<item key="BB612EB0-6A04-E525-CE53-2DDB02B5FB10" value="true"/>
+</engineerTo>
+<sourcePk>CFB1CCD6-BFBF-516C-7C37-703944B0ECAE</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C10371F8-C9F1-45AC-4F4C-B87B26F6EAC9</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>56C208C7-8339-E09F-E753-B852B9AB5FB3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

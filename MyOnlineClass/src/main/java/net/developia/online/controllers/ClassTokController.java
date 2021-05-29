@@ -1,29 +1,19 @@
 package net.developia.online.controllers;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -74,7 +64,7 @@ public class ClassTokController {
 		System.out.println("image : " + image);
 
 		InstructorDTO instructorDTO = new InstructorDTO();
-		instructorDTO.setId(id);
+		instructorDTO.setMember_id(id);
 		instructorDTO.setName(name);
 		instructorDTO.setEmail(email);
 		instructorDTO.setPhone(phone);

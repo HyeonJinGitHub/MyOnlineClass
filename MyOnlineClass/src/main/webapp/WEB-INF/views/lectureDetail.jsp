@@ -76,7 +76,6 @@ else {
 	$(document).on("click", "#commentbtn", function() {
 		var content_text = $("#comment_text");
 		var content_textVal = content_text.val();
-		alert(content_textVal); 
 		$.ajax({ 
 			type : "post", 
 			url : "<c:url value='/classdetail/${lecture.id}/insert'/>", 
@@ -88,9 +87,6 @@ else {
 				}
 				getCommentList(); // 댓글 목록 출력 함수 호출 
 				content_text.val(""); // 댓글 내용 초기화 
-			},
-			error:function(request,status,error){
-			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			},
 			dataType: "json",
 			contentType: "application/json"

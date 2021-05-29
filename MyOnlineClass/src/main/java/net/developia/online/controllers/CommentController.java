@@ -1,11 +1,11 @@
 package net.developia.online.controllers;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,16 +37,17 @@ public class CommentController {
 
 	@PostMapping(value = "/classdetail/{no}/insert", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public ResponseEntity<String> comment_insert(@PathVariable("no") long no, @RequestBody List<Map<String, Object>> list,
-		HttpServletRequest request, HttpSession session, @ModelAttribute("comments") CommentDTO comments) throws Exception {
+	public ResponseEntity<String> comment_insert(@PathVariable("no") long no, @RequestBody String content_textVal,
+			HttpServletRequest request, HttpSession session) throws Exception {
 		ResponseEntity<String> entity = null;
 		
-		for(Map<String, Object> m : list) {
-			comments.setContent(m.get("content_textVal)".toString());
-		}
+		JSONObject jObject = new JSONObject(content_textVal);
+	    String content = jObject.getString("content_textVal");
+	    
+		CommentDTO comments = new CommentDTO();
+		comments.setContent(content);
 		comments.setLecture_id(no);
 		comments.setMember_id((String) session.getAttribute("id"));
-		comments.setContent(content_textVal);
 		comments.setName((String) session.getAttribute("name"));
 		comments.setRegdate(DateFormatClass.strDateNow());
 		System.out.println(comments.toString());
@@ -60,6 +61,8 @@ public class CommentController {
 		}
 
 	}
+
+	// 수강중인 회원만 댓글 가능하도록 수정해야함
 
 	/*
 	 * @PostMapping(value = "/classdetail/{no}/{cno}", produces =

@@ -32,7 +32,7 @@
 	<insert id="registerInstructor">
 	<![CDATA[
 		INSERT INTO instructor values
-		(#{id}, #{nickname}, #{introduce}, #{image})
+		(#{member_id}, #{nickname}, #{introduce}, #{image})
 	]]>
 	</insert>
 	
@@ -42,7 +42,7 @@
 		FROM	instructor
 		WHERE	instructor.member_id = (SELECT	id
 										FROM	member
-										WHERE	member.id = #{id})
+										WHERE	member.id = #{member_id})
 	]]>
 	</select>
 </mapper>

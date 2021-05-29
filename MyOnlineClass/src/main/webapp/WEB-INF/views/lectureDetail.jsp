@@ -4,6 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 String user = (String) session.getAttribute("id");
+String user_name;
+if(session.getAttribute("id") == null){
+	user_name = "로그인후이용해주세요.";
+}
+else {
+	user_name = (String) session.getAttribute("name");
+}
 %>
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
@@ -66,6 +73,31 @@ String user = (String) session.getAttribute("id");
 		getCommentList();
 	});
 
+	$(document).on("click", "#commentbtn", function() {
+		var content_text = $("#comment_text");
+		var content_textVal = content_text.val();
+		alert(content_textVal); 
+		$.ajax({ 
+			type : "post", 
+			url : "<c:url value='/classdetail/${lecture.id}/insert'/>", 
+			headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
+			data : JSON.stringify({ content_textVal : content_textVal }), 
+			success : function (result) { 
+				if (result == "Success") {
+					alert("댓글이 등록되었습니다."); 
+				}
+				getCommentList(); // 댓글 목록 출력 함수 호출 
+				content_text.val(""); // 댓글 내용 초기화 
+			},
+			error:function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			},
+			dataType: "json",
+			contentType: "application/json"
+		});
+	});
+
+	
 	function getCommentList() {
 		$.ajax({
 					type : 'GET',
@@ -118,26 +150,6 @@ String user = (String) session.getAttribute("id");
 				});
 	}
 	
-	$(#commentbtn).on("click",function() {
-		var content_text = $("#newReplyText");
-		var content_textVal = content_text.val();
-		$.ajax({ 
-			type : "post", 
-			url : "${path}/replies", 
-			headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
-			dataType : "text", 
-			data : JSON.stringify({ article_no : article_no, reply_text : reply_textVal, reply_writer : reply_writerrVal }), 
-			success : function (result) { 
-				// 성공적인 댓글 등록 처리 알림 
-				if (result == "regSuccess") {
-					alert("댓글 등록 완료!"); 
-				}
-				getReplies(); // 댓글 목록 출력 함수 호출 
-				reply_text.val(""); // 댓글 내용 초기화 
-				reply_writer.val(""); // 댓글 작성자 초기화 
-			} 
-		});
-	});
 </script>
 
 </head>
@@ -146,11 +158,6 @@ String user = (String) session.getAttribute("id");
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
-	</div>
-	<div>
-		<!-- Header Section Begin -->
-
-		<!-- Header Section End -->
 	</div>
 	<!-- Listing Section Begin -->
 	<section class="listing-hero set-bg"
@@ -273,9 +280,9 @@ String user = (String) session.getAttribute("id");
 						<div class="listing__details__review">
 							<h4>Add Comment</h4>
 							<form action="#">
-								<input type="text" placeholder="name">
-								<textarea placeholder="content"></textarea>
-								<button type="button" id="commentbtn" class="site-btn">댓글쓰기</button>
+								<input type="text" placeholder=<%=user_name%> id ="userName" readonly/>
+								<textarea placeholder="댓글을 작성하세요." id = "comment_text"></textarea>
+								<button type="button" name ="commentbtn" id="commentbtn" class="site-btn commentbtn">댓글쓰기</button>
 							</form>
 						</div>
 					</div>
@@ -285,11 +292,12 @@ String user = (String) session.getAttribute("id");
 				<div class="col-lg-4">
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
-							<div style="width: 100%; height: 100%; text-align: center;">
+							<div style="position:absoulte; text-align: center; border-radius: 70%; overflow: hidden;">
+								<br>
 								<img
 									src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
 									alt="Profile"
-									style="width: 100%; max-width: 300px; margin: 2px auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; vertical-align: middle;">
+									style="width: 90%; max-width: 300px; height: 90%; margin: 2 auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; object-fit: cover; vertical-align: middle;">
 							</div>
 							<div class="listing__sidebar__contact__text">
 								<h6>강사</h6>

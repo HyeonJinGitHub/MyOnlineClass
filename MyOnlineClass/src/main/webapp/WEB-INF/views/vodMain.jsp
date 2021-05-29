@@ -2,11 +2,18 @@
     pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<<<<<<< HEAD
  <c:import url="header3.jsp"></c:import>
 
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
   
+=======
+<%@include file="header3.jsp" %>
+<%
+	String id = (String)session.getAttribute("id");
+%>
+>>>>>>> e56edf7dc1902d54018601124d17480603e2aca2
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,9 +56,14 @@
 </head>
 <body>
 	<!-- edu video s -->
+
 	
 	<h2>${lecture.name}</h2>
 	<p>${instructor.nickname} 강사님</p>
+
+	<h2>재미있는 스프링 강의</h2>
+
+
 	<div class="video__wrap">
 		<div class="video__contents">
 			<div class="video__box">

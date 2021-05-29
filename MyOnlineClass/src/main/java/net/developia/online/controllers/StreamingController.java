@@ -152,7 +152,11 @@ public class StreamingController{
 		//HttpSession session = request.getSession(true);
 		//String user_id = (String)session.getAttribute("user_id");
 		
+
 		ModelAndView mav = new ModelAndView();		
+		
+		
+		String id = (String)session.getAttribute("id");
 		
 		
 		try {

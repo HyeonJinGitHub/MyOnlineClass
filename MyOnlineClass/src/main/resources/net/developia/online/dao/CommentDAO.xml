@@ -9,13 +9,13 @@
 		SELECT comments.no, comments.member_id, member.name, comments.lecture_id, comments.content, comments.regdate 
 		FROM comments JOIN member ON comments.member_id = member.id
 		WHERE comments.lecture_id = #{lectureNo}
-		ORDER BY comments.no DESC;
+		ORDER BY comments.no DESC
 	]]>
 	</select>
 
 	<insert id="insertComment" parameterType="CommentDTO">
 		INSERT into
-		comments(no, member_id, lecture_id, content, comments.regdate)
+		comments(no, member_id, lecture_id, content, regdate)
 		VALUES(comments_no_seq.nextval, #{member_id}, #{lecture_id}, #{content}, #{regdate})
 	</insert>
 

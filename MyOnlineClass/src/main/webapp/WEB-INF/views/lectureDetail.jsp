@@ -4,6 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 String user = (String) session.getAttribute("id");
+String user_name;
+if(session.getAttribute("id") == null){
+	user_name = "로그인후이용해주세요.";
+}
+else {
+	user_name = (String) session.getAttribute("name");
+}
 %>
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
@@ -58,150 +65,87 @@ String user = (String) session.getAttribute("id");
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/style.css"
 	type="text/css">
 
-<script type="text/javascript">
-	//이벤트 X 실행
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
 	$(function() {
-
+		getCommentList();
 	});
-	function selectComment() {
-		$.ajax({
-			method : 'GET',
-			url : "1/",
-		}).done(function(data) {
-			displayCommentList(data);
-		});
-	}
 
-	/*
-	function myCommentEvent() {
-		$('.btnDeleteOk').click(function() {
-			if (confirm('댓글을 정말로 삭제 하시겠습니까?')) {
-				let my_com_val = '1/' + $(this).attr('myval');
-				$.ajax({
-					method : 'DELETE',
-					url : my_com_val,
-				}).done(function(data) {
-					displayCommentList(data);
-				});
-			}
-		});
-
-		$('.btnUpdateOk')
-				.click(
-						function() {
-							$('.btnDeleteOk').off('click');
-							$('.btnUpdateOk').off('click');
-
-							let com_id = 'com_' + $(this).attr('myval');
-							let com_id_content = $('#' + com_id).html();
-							$('#' + com_id)
-									.html(
-											'<textarea rows="3" cols="40" id="' + 
-				com_id + '_content">'
-													+ com_id_content
-													+ '</textarea><br/>'
-													+ '<input type="button" id="goUpdate_'
-													+ com_id
-													+ '" value="수정완료" myval="'
-													+ $(this).attr('myval')
-													+ '" />'
-													+ '<input type="button" id="cancleUpdate_' + com_id + '" value="수정취소" />');
-							$('#goUpdate_' + com_id)
-									.click(
-											function() {
-												if ($('#' + com_id + '_content')
-														.val() == "") {
-													alert('수정한 내용이 없습니다.');
-													$('#' + com_id + '_content')
-															.focus();
-													return;
-												}
-												let my_com_val = '1/'
-														+ $(this).attr('myval');
-												$
-														.ajax(
-																{
-																	method : 'POST', //PUT방식은 data를 전송 할 수 없음
-																	url : my_com_val,
-																	data : {
-																		com_content : $(
-																				'#'
-																						+ com_id
-																						+ '_content')
-																				.val()
-																	}
-																})
-														.done(
-																function(data) {
-																	displayCommentList(data);
-																});
-											});
-							$('#cancleUpdate_' + com_id).click(function() {
-								$('#' + com_id).html(com_id_content);
-								myCommentEvent();
-								$('.btnUpdateOk').attr('disabled', false);
-							});
-						});
-	}
-	 */
-
-	function displayCommentList(data) {
-		var commentSection;
-		$
-				.each(
-						data,
-						function(key, val) {
-							commentSection = "<div class='listing__details__comment__item'>"
-									+ "<div class='listing__details__comment__item__pic'>"
-									+ "<img src='${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png' alt=''>"
-									+ "</div>"
-									+ "<div class='listing__details__comment__item__text'>"
-									+ "<div class='listing__details__comment__item__rating'>"
-									+ "<i class='fa fa-star'></i>"
-									+ "<i class='fa fa-star'></i>"
-									+ "<i class='fa fa-star'></i>"
-									+ "<i class='fa fa-star'></i>"
-									+ "<i class='fa fa-star'></i>" + "</div>";
-							commentSection += "<span>" + val['regdate']
-									+ "</span>" + "<h5>" + val['member_name']
-									+ "</h5>" + "<p>" + val['content'] + "</p>";
-							commentSection += "<ul>"
-									+ "<li><i class='fa fa-hand-o-right'></i> Like</li>"
-									+ "<li><i class='fa fa-share-square-o'></i> Reply</li>"
-									+ "</ul>" + "</div>" + "</div>";
-						});
-		$('#commentDisplay').html(commentSection);
-		CommentEvent();
-	}
-
-	$(document).ready(function() {
-		selectComment();
-
-		$('#btnCommentOk').click(function() {
-			let com_content = $('#com_content').val();
-			if (com_content == "") {
-				alert('먼저 댓글을 입력하세요');
-				$('#com_content').focus();
-				return;
-			}
-			$.ajax({
-				method : 'POST',
-				url : "1/",
-				data : {
-					com_content : $('#com_content').val()
+	$(document).on("click", "#commentbtn", function() {
+		var content_text = $("#comment_text");
+		var content_textVal = content_text.val();
+		$.ajax({ 
+			type : "post", 
+			url : "<c:url value='/classdetail/${lecture.id}/insert'/>", 
+			headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
+			data : JSON.stringify({ content_textVal : content_textVal }), 
+			success : function (result) { 
+				if (result == "Success") {
+					alert("댓글이 등록되었습니다."); 
 				}
-			}).done(function(data) {
-				displayCommentList(data);
-				$('#com_content').val('');
-			});
+				getCommentList(); // 댓글 목록 출력 함수 호출 
+				content_text.val(""); // 댓글 내용 초기화 
+			},
+			dataType: "json",
+			contentType: "application/json"
 		});
 	});
 
-	function confirm_delete() {
-		if (confirm('정말로 삭제하시겠습니꺄?')) {
-			location.href = 'delete';
-		}
+	
+	function getCommentList() {
+		$.ajax({
+					type : 'GET',
+					url : "<c:url value='/classdetail/${lecture.id}/1'/>",
+					dataType : "json",
+					data : $("#commentlist").serialize(),
+					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					success : function(data) {
+
+						var html = "";
+
+						if (data.length > 0) {
+
+							for (i = 0; i < data.length; i++) {
+								var member = data[i].member_id;
+								html += "<div class='listing__details__comment__item'>";
+								html += "<div class='listing__details__comment__item__pic'>";
+								html += "<img src='${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png' alt=''>";
+								html += "</div>";
+								html += "<div class='listing__details__comment__item__text'>";
+								html +=	"<div class='listing__details__comment__item__rating'>";
+								html +=	"<i class='fa fa-star'></i> ";
+								html +=	"<i class='fa fa-star'></i> ";
+								html +=	"<i class='fa fa-star'></i> ";
+								html +=	"<i class='fa fa-star'></i> ";
+								html +=	"<i class='fa fa-star'></i> ";
+								html += "</div>";
+								html += "<span>" + data[i].regdate + "</span>";
+								html += "<h5>" + data[i].name + " (" + member.substring(0,3) + "**) </h5>";
+								html += "<p>" + data[i].content + "</p>";
+								html += "<ul>";
+								html += "<li><i class='fa fa-hand-o-right'></i> Like</li>";
+								html += "<li><i class='fa fa-share-square-o'></i> Reply</li>";
+								html += "</ul>" + "</div>" + "</div>";
+							}
+						} else {
+							html += "<div class='listing__details__comment__item'>";
+							html += "<div class='listing__details__comment__item__pic'>";
+							html += "<img src='${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png' alt=''>";
+							html += "</div>";
+							html += "<div class='listing__details__comment__item__text'>";
+							html += "<h6></h6>";
+							html += "<p>등록된 댓글이 없습니다.</p>";
+							html += "</div>";
+						}
+						$("#commentList").html(html);
+					},
+					error : function(request, status, error) {
+					}
+				});
 	}
+	
 </script>
 
 </head>
@@ -210,11 +154,6 @@ String user = (String) session.getAttribute("id");
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
-	</div>
-	<div>
-		<!-- Header Section Begin -->
-
-		<!-- Header Section End -->
 	</div>
 	<!-- Listing Section Begin -->
 	<section class="listing-hero set-bg"
@@ -237,7 +176,7 @@ String user = (String) session.getAttribute("id");
 									<span class="icon_star-half_alt"></span>
 								</div>
 							</div>
-							<div>${lecture.duration}일과정</div>
+							<div>${lecture.duration}일 과정</div>
 							<p>${lecture.genre}</p>
 						</div>
 					</div>
@@ -246,7 +185,7 @@ String user = (String) session.getAttribute("id");
 					<div class="listing__hero__btns">
 						<a href="javascript:history.back()" class="primary-btn share-btn"><i
 							class="fa fa-mail-reply"></i> 뒤로가기</a> <a
-							href="/online/memberLecture/${lecture.id}" class="primary-btn"><i
+							href="/online/memberlecture/${lecture.id}" class="primary-btn"><i
 							class="fa fa-bookmark"></i> 수강신청</a>
 					</div>
 				</div>
@@ -331,48 +270,30 @@ String user = (String) session.getAttribute("id");
 
 						<div class="listing__details__comment">
 							<h4>Comment</h4>
-							<div id="commentDisplay"></div>
-							<div class="listing__details__comment__item">
-								<div class="listing__details__comment__item__pic">
-									<img
-										src="${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png"
-										alt="">
-								</div>
-								<div class="listing__details__comment__item__text">
-									<div class="listing__details__comment__item__rating">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<span>Comments.regdate(lecture_id 같을때)</span>
-									<h5>Comments.member_Id.name</h5>
-									<p>Comments.content</p>
-									<ul>
-										<li><i class="fa fa-hand-o-right"></i> Like</li>
-										<li><i class="fa fa-share-square-o"></i> Reply</li>
-									</ul>
-								</div>
-							</div>
+
+							<div id="commentList"></div>
 						</div>
 						<div class="listing__details__review">
 							<h4>Add Comment</h4>
 							<form action="#">
-								<input type="text" placeholder="name"> <input
-									type="text" placeholder="password">
-								<textarea placeholder="content"></textarea>
-								<button type="submit" class="site-btn">댓글쓰기</button>
+								<input type="text" placeholder=<%=user_name%> id ="userName" readonly/>
+								<textarea placeholder="댓글을 작성하세요." id = "comment_text"></textarea>
+								<button type="button" name ="commentbtn" id="commentbtn" class="site-btn commentbtn">댓글쓰기</button>
 							</form>
 						</div>
 					</div>
 				</div>
+
 				<!-- Instructor Section Begin -->
 				<div class="col-lg-4">
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
-							<div style="width: 100%; height:100%; text-align: center;">
+							<div style="position:absoulte; text-align: center; border-radius: 70%; overflow: hidden;">
+								<br>
 								<img
 									src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
-									alt="Profile" style="width: 100%; max-width:300px; margin: 2px auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; vertical-align: middle;">
+									alt="Profile"
+									style="width: 90%; max-width: 300px; height: 90%; margin: 2 auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; object-fit: cover; vertical-align: middle;">
 							</div>
 							<div class="listing__sidebar__contact__text">
 								<h6>강사</h6>
@@ -389,7 +310,7 @@ String user = (String) session.getAttribute("id");
 								<div class="listing__details__review"
 									style="text-align: center;">
 									<button type="button" class="site-btn"
-										onclick="location.href='/online/memberLecture/${lecture.id}'">
+										onclick="location.href='/online/memberlecture/${lecture.id}'">
 										<i class="fa fa-bookmark"></i> 수강신청
 									</button>
 								</div>

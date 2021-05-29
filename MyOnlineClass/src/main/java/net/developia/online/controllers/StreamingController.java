@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -147,7 +146,7 @@ public class StreamingController{
 	
 	// URL 예시 : http://localhost/online/vodStreaming?no=1
 	
-	@GetMapping(value="/vodStreaming", produces = "application/json; charset=UTF-8") //강의에 대한 정보 반환
+	@RequestMapping(value="vodStreaming", produces = "application/json; charset=UTF-8") //강의에 대한 정보 반환
 	public ModelAndView vodStreaming(@RequestParam(required = true) long no, HttpSession session) {
 		
 		//HttpSession session = request.getSession(true);

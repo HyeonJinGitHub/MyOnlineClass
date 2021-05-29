@@ -30,16 +30,29 @@ String phone = (String) session.getAttribute("phone");
 
 <script type="text/javascript">
 	
+	/*
+	$(document).on("click", "#vodUpload", function () {
+		   console.log("입력됨");
+		   alert('클릭했다구');
+		   var queryString = $("form[name=testForm]").serialize();
+			
+			$.ajax({
+				type : 'post',
+				url : '/upload'
+				data : queryString,
+				error: function(xhr, status, error){
+					alert(error);
+				},
+				success : function(json){
+					alert(json);
+				}
+			});
+	});
+	
+	*/
 	
 
-
-	btn_upload = function(){
-		opener.location.reload();
-		window.close();
-	}
-
-
-
+	
 	$(document).ready(function() {
 		$('#lecturename').on('keyup', function() {
 			$('#lecturenameCount').html("(" + $(this).val().length + " / 50)");
@@ -85,10 +98,20 @@ String phone = (String) session.getAttribute("phone");
 				$('#durationCount').html("(0 / 3)");
 			}
 		});
+		
+		
+			
+		
 	});
+	
+	
+	
 </script>
 
 <style>
+
+	
+
 body {
 	padding-top: 56px;
 }
@@ -146,8 +169,19 @@ body {
 	padding: 10px 50px !important;
 	width: 60% !important;
 }
-		
+
+/*
 .vodUpload{
+	background-color: rgb(255, 80, 90) !important;
+	color: white !important;
+	border-radius: 5px !important;
+	margin: 12px !important;
+	width: 60% !important;
+	padding: 10px 50px !important;
+}
+*/
+
+#vodUpload{
 	background-color: rgb(255, 80, 90) !important;
 	color: white !important;
 	border-radius: 5px !important;
@@ -185,6 +219,7 @@ body {
 					.</h3>
 				<br>
 				
+ 				<!-- <form name="testForm" id="testForm" method="post" enctype="multipart/form-data"> -->
 				<form method="post" action="upload" enctype="multipart/form-data" >
 				
 				<!-- 
@@ -221,9 +256,22 @@ body {
 					
 				         <input multiple="multiple" type="file" name="file1" style= "display:none"/>
 				         
-				         <input type="text" id="lecture_no" name="lecture_no" value="${lecture_id}"/>
+				         <input type="text" id="lecture_no" name="lecture_no" value="${lecture_id}" style= "display:none"/>
+				         
 				         <button type="button" class="vodSelect" onclick="onclick=document.all.file1.click()">동영상 선택</button>
-				         <input type="submit" value="강의 업로드" class="vodUpload">
+				         <input type="submit" id="vodUpload" value="강의 업로드">
+						
+						
+						<!-- 둘다 가능 ajax--> 
+				        
+				        <!-- 
+				        <input type="button" id="vodUpload" value="강의 업로드">		    	
+				    	<input type="button" id="vodUpload" value="강의 업로드" onclick="javascript:clicks();">
+				    	-->
+				    
+				         <!-- <button type="button" id ="vodUpload1" name="vodUpload1" class="vodUpload">강의 업로드</button> -->
+				         
+				         <!-- <button type="button" id ="vodUpload" >강의 업로드</button> -->
 				         
   					</form>
 					<!-- 

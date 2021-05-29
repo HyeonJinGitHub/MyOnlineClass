@@ -51,7 +51,6 @@ public class LectureDetailController {
 		ModelAndView mav = new ModelAndView("result");
 
 		try {
-			// 세션값 + comment 추가
 			LectureDTO lectureDTO = lectureService.getLecture(no);
 			InstructorDTO instructorDTO = instructorService.getInstructor(no);
 
@@ -68,36 +67,6 @@ public class LectureDetailController {
 		}
 		return mav;
 	}
-
-/*
-	@PostMapping(value = "/{cno}", produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public List<CommentDTO> comment_update(@ModelAttribute CommentDTO commentDTO, HttpServletRequest request,
-			HttpSession session) throws Exception {
-		commentDTO.setCom_ip(request.getRemoteAddr());
-		commentDTO.setUserDTO((UserDTO) session.getAttribute("userInfo"));
-
-		log.info("comment_update() 메소드 수행");
-		log.info(commentDTO.toString());
-
-		boardService.updateComment(commentDTO);
-		return boardService.getCommentList(commentDTO);
-	}
-
-	@DeleteMapping(value = "/{com_no}", produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public List<CommentDTO> comment_delete(@ModelAttribute CommentDTO commentDTO, HttpServletRequest request,
-			HttpSession session) throws Exception {
-		commentDTO.setCom_ip(request.getRemoteAddr());
-		commentDTO.setUserDTO((UserDTO) session.getAttribute("userInfo"));
-
-		log.info("comment_delete() 메소드 수행");
-		log.info(commentDTO.toString());
-
-		boardService.deleteComment(commentDTO);
-		return boardService.getCommentList(commentDTO);
-	}*/
-	
 	
 	@GetMapping("/enroll")
 	public ModelAndView enroll() throws Exception {

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.online.dao.VodDAO">
+
+	<select id="getVodList" parameterType="long"
+		resultType="VodDTO">
+		<![CDATA[
+		
+		select *
+		from video
+		where id IN (select video_id
+					from lecture_video
+					where lecture_id = #{lectureNo})
+		]]>
+	</select>
+	
+	<insert id="insertDTO">
+	<![CDATA[
+		INSERT INTO video values
+		(video_no_seq.nextval, #{title}, #{time}, #{src})
+	]]>
+	</insert>
+	
+	<parameterMap type="java.util.HashMap"
+		id="reg_param">
+		<parameter property="lecutre_id" jdbcType="NUMERIC" mode="IN" />
+		<parameter property="title" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="time" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="src" jdbcType="VARCHAR" mode="IN" />
+	</parameterMap>
+
+	<select id="register_lecture_video" statementType="CALLABLE"
+		parameterMap="reg_param" >
+	<![CDATA[
+          {
+             call lecture_pkg.lecture_video_proc(
+				?, ?, ?, ?
+			)
+          }
+       ]]>
+	</select>
+	
+</mapper>

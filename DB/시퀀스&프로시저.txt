@@ -1,5 +1,5 @@
 drop sequence lecture_no_seq;
-
+drop sequence video_no_seq;
 drop sequence comments_no_seq;
 
 create sequence lecture_no_seq
@@ -15,6 +15,14 @@ increment by 1
 start with 1
 minvalue 1
 maxvalue 200
+nocycle
+nocache;
+
+create sequence video_no_seq;
+increment by 1
+start with 1
+minvalue 1
+maxvalue 100
 nocycle
 nocache;
 
@@ -244,7 +252,16 @@ is
     input_introduce in varchar2,
     input_thumbnail in varchar2,
     input_image in varchar2);
+
+    procedure lecture_video_proc(
+    input_lecture_id in number,
+    input_title in varchar2,
+    input_time in varchar2,
+    input_src in varchar2);
+
 end lecture_pkg;
+
+
 
 create or replace package body lecture_pkg
 is
@@ -268,4 +285,27 @@ is
         values(input_member_id, lecture_id);
         commit;
     end enroll_lecture;
+
+    procedure lecture_video_proc(
+    input_lecture_id in number,
+    input_title in varchar2,
+    input_time in varchar2,
+    input_src in varchar2
+    )
+
+    as
+    video_id number(5);
+    
+    begin
+    
+    video_id := video_no_seq.nextval;
+    insert into video
+    values(video_id, input_title, input_time, input_src);
+    
+    insert into lecture_video
+    values(input_lecture_id, video_id);
+    commit;
+    
+    end lecture_video_proc;
+
 end lecture_pkg;

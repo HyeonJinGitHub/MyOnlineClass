@@ -33,6 +33,7 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- 다중 Autocomplete -->
+<!-- 
 <script type="text/javascript">
 	$(function() {
 		$( "#searchKeyNav, #searchKeyBody" ).autocomplete({
@@ -44,7 +45,7 @@
 		});
 	});
 </script>
-
+ -->
 
 <style>
 body {

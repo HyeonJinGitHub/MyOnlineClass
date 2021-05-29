@@ -1,16 +1,16 @@
 package net.developia.online.dto;
 
-import java.io.Serializable;
-
 import lombok.Data;
 
 @Data
-public class VodDTO implements Serializable {
+public class VodDTO{
 	
 	private long id;
-	private long lesson;
 	private String title;
-	private String information;
-	private String url;
+	private String time;
+	private String src;
 	
+	//임의로 추가
+	private int isCheck= 0;
+	private String poster="https://i.ibb.co/dBLbrRV/bg1.jpg";
 }

@@ -14,6 +14,8 @@ DROP TABLE member_lecture CASCADE CONSTRAINTS;
 
 DROP TABLE video CASCADE CONSTRAINTS;
 
+DROP TABLE lecture_video CASCADE CONSTRAINTS;
+
 -- predefined type, no DDL - MDSYS.SDO_GEOMETRY
 
 -- predefined type, no DDL - XMLTYPE
@@ -90,6 +92,7 @@ ALTER TABLE member_lecture ADD CONSTRAINT member_lecture_pk PRIMARY KEY ( member
                                                                           lecture_id );
 
 CREATE TABLE video (
+
     id     NUMBER(5) NOT NULL,
     title  VARCHAR2(100) NOT NULL,
     time   VARCHAR2(300) NOT NULL,

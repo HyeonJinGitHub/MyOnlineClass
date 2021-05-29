@@ -6,22 +6,27 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.developia.online.dto.InstructorDTO;
+import net.developia.online.dto.LectureDTO;
 import net.developia.online.dto.VodDTO;
+import net.developia.online.services.InstructorService;
+import net.developia.online.services.LectureService;
+import net.developia.online.services.VodService;
+import net.sf.json.JSONArray;
 
 
 
@@ -29,20 +34,35 @@ import net.developia.online.dto.VodDTO;
 @Controller
 public class StreamingController{
 	
+	@Autowired
+	private LectureService lectureService;
+	
+	@Autowired
+	private VodService vodService;
+	
+	@Autowired
+	private InstructorService instructorService;
+	
 	//private final String FOLDER_MOVIE = "../../../../../video/"; 
-	String DIR_PATH =  StreamingController.class.getResource(".").getPath();
+	//String DIR_PATH =  StreamingController.class.getResource(".").getPath();
+	String FOLDER_MOVIE = "C:/online/resources/video/";
 	//<source src="video/sample.mp4" type="video/mp4">
 	
-	@RequestMapping(value="/video/{video_name:.+}", method = RequestMethod.GET)
-	public String stream(@PathVariable("video_name") String video_name, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+	@RequestMapping(value="/video/{lecture_id}/{video_name:.+}", method = RequestMethod.GET)
+	public String stream(@PathVariable("lecture_id") String lecture_id,
+						 @PathVariable("video_name") String video_name, 
+						 HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+		
+		//String id = (String)session.getAttribute("id");
 		
 		
-		String FOLDER_MOVIE =DIR_PATH.replace("/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MyOnlineClass/WEB-INF/classes/net/developia/online/controllers/",
-											  "/MyOnlineClass/MyOnlineClass/src/main/webapp/WEB-INF/video/");
-		//System.out.println(StreamingController.class.getResource(".").getPath());
-		//System.out.println(FOLDER_MOVIE + "현재 video 가져오는 경로");
+		String My_FOLDER_MOVIE = FOLDER_MOVIE+lecture_id+"/";
+		//String My_FOLDER_MOVIE = FOLDER_MOVIE+id+"/";
+		System.out.println(My_FOLDER_MOVIE);
+		
+		
 		//확장자 확인 //
-		System.out.println(video_name);
+		//System.out.println(video_name);
 		String[] filename_seperate = video_name.split("\\.");
 		
 		//ModelAndView mav = new ModelAndView();
@@ -57,7 +77,7 @@ public class StreamingController{
 		}
 		
 		
-		File file = new File(FOLDER_MOVIE + video_name);
+		File file = new File(My_FOLDER_MOVIE + video_name);
 
 		System.out.println(video_name);
 		if(!file.exists()) throw new FileNotFoundException();
@@ -120,73 +140,63 @@ public class StreamingController{
 			randomFile.close();
 		}
 		
-		
-		
 		return null;
 	}
+
 	
-	@RequestMapping(value="/vodMain")
-	public ModelAndView vodMain(HttpServletRequest request, HttpServletResponse response) {
+	// URL 예시 : http://localhost/online/vodStreaming?no=1
+	
+	@RequestMapping(value="vodStreaming", produces = "application/json; charset=UTF-8") //강의에 대한 정보 반환
+	public ModelAndView vodStreaming(@RequestParam(required = true) long no, HttpSession session) {
 		
-		HttpSession session = request.getSession(true);
-		String user_id = (String)session.getAttribute("user_id");
+		//HttpSession session = request.getSession(true);
+		//String user_id = (String)session.getAttribute("user_id");
 		
-		ModelAndView mav = new ModelAndView();
 		
-		//ModelAndView mav = new ModelAndView("vodMain");
+		ModelAndView mav = new ModelAndView();		
+		
+		
+		String id = (String)session.getAttribute("id");
+		
+		
 		try {
 
-			//List<MyWordDTO> list = wordService.getWordList(user_id);
-			// 임의로 진행
-			List<VodDTO> list = new ArrayList<>();
-			VodDTO vodDTO= new VodDTO();
-			/*
-			vodDTO.setId(1);
-			vodDTO.setLesson(1);
-			vodDTO.setTitle("재미있는 스프링 환경설정");
-			vodDTO.setInformation("21:42");
-			vodDTO.setUrl("Forest.mp4");
-			list.add(vodDTO);
 			
-			VodDTO vod1DTO= new VodDTO();
-			vod1DTO.setId(1);
-			vod1DTO.setLesson(1);
-			vod1DTO.setTitle("씬나게 배워볼까용? DI");
-			vod1DTO.setInformation("12:42");
-			vod1DTO.setUrl("sample.mp4");
-			list.add(vod1DTO);
+			LectureDTO lectureDTO = lectureService.getLecture(no);
+			InstructorDTO instructorDTO = instructorService.getInstructor(no);
+			System.out.println(instructorDTO);
+			boolean isInstructor = false; 
+						
+			System.out.println("id, getid 확인");
+			System.out.println(id);
+			System.out.println(instructorDTO.getMember_id());
 			
-			VodDTO vodDTO2= new VodDTO();
-			vodDTO2.setId(1);
-			vodDTO2.setLesson(1);
-			vodDTO2.setTitle("배워보자!!!! AOP");
-			vodDTO2.setInformation("52:12");
-			vodDTO2.setUrl("sample2.mp4");
-			list.add(vodDTO2);
-			
-			
-			
-			
-			mav.addObject("list", list);
-			*/
-			mav.setViewName("vodMain");
-			String viewName = mav.getViewName();
-			Map<String, Object> model = mav.getModel();
-			for(String key : model.keySet()) {
-				request.setAttribute(key, model.get(key));
+			if(id.equals(instructorDTO.getMember_id())) {
+				isInstructor = true;
 			}
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher(viewName);
+			System.out.println(isInstructor);
+			List<VodDTO> list = vodService.getVodList(no);
+			System.out.println(list);
+			mav.setViewName("vodMain");
+			
+			JSONArray jsonArray = new JSONArray();
 
+			mav.addObject("jsonList",jsonArray.fromObject(list));
+			
+			mav.addObject("lectureDTO", lectureDTO);
+			
+			mav.addObject("instructorDTO", instructorDTO);
+			
+			mav.addObject("isInstructor", isInstructor);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			mav.addObject("msg", e.getMessage());
+			mav.addObject("url", "../");
 		}
-		
 		return mav;
-
-	}
 	
-	
-	
-	
+	}	
 }

@@ -16,29 +16,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
+import net.developia.online.dto.InstructorDTO;
 import net.developia.online.dto.LectureDTO;
+import net.developia.online.services.InstructorService;
 import net.developia.online.services.LectureService;
 import net.developia.online.util.DateFormatClass;
 
 @Slf4j
 @Controller
-@RequestMapping("/memberLecture")
+@RequestMapping("/memberlecture")
 public class MemberLectureController {
 	@Autowired
 	private LectureService lectureService;
-
+	
+	@Autowired
+	private InstructorService instructorService;
 	private static Logger logger = LoggerFactory.getLogger(LectureDetailController.class);
 	// 수강신청 컨트롤러!
-	// URL 예시 : http://localhost/online/memberLecture/{no}
+	// URL 예시 : http://localhost/online/memberlecture/{no}
 	@GetMapping("/{no}")
 	@Transactional
-	public ModelAndView memberLecture(@PathVariable(required = true) long no, HttpSession session) {
+	public ModelAndView memberLecture(@PathVariable(required = true) long no, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView("result");
 		try {
 			LectureDTO lectureDTO = lectureService.getLecture(no);
+			InstructorDTO instructorDTO = instructorService.getInstructor(no);
+			System.out.println("ins id"+instructorDTO.getMember_id());
+			if(instructorDTO.getMember_id().equals(session.getAttribute("id"))) {
+				throw new RuntimeException("나의 강의는 수강할 수 없습니다!");
+			}
 			session.setAttribute("lecture_duration", lectureDTO.getDuration());
 			mav.addObject("lectureDTO", lectureDTO);
-			mav.addObject("url", "/online/memberLecture");
+			mav.addObject("url", "/online/memberlecture");
 			mav.setViewName("memberLecture");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,18 +57,13 @@ public class MemberLectureController {
 		return mav;
 	}
 
-	// URL 예시 : http://localhost/online/memberLectureAction/{no}
-	@GetMapping("/Action/{no}")
+	// URL 예시 : http://localhost/online/memberlecture/action/{no}
+	@GetMapping("/action/{no}")
 	@Transactional
 	public ModelAndView memberLectureAction(@PathVariable(required = true) long no, HttpSession session) {
 		ModelAndView mav = new ModelAndView("result");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String member_id = (String) session.getAttribute("id");
-		if(member_id == null) {
-			mav.addObject("msg", "로그인이 필요합니다.");
-			mav.addObject("url", "/online/login");
-			return mav;
-		}
 		System.out.println("action");
 		try {
 			LectureDTO lectureDTO = lectureService.getLecture(no);

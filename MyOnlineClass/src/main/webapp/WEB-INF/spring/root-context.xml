@@ -50,6 +50,7 @@
 		p:sqlSessionFactory-ref="InstructorSqlSession"
 		p:mapperInterface="net.developia.online.dao.InstructorDAO" />
 		
+
 		  <!-- CommentDAO -->
    <bean id="CommentSqlSession"
       class="org.mybatis.spring.SqlSessionFactoryBean"
@@ -71,4 +72,26 @@
       class="org.mybatis.spring.mapper.MapperFactoryBean"
       p:sqlSessionFactory-ref="VodSqlSession"
       p:mapperInterface="net.developia.online.dao.VodDAO" />
+
+	<!-- CommentDAO -->
+    <bean id="CommentSqlSession"
+    	class="org.mybatis.spring.SqlSessionFactoryBean"
+    	p:dataSource-ref="dataSource"
+    	p:typeAliasesPackage="net.developia.online.dto" />
+
+   	<bean id="CommentDAO"
+      	class="org.mybatis.spring.mapper.MapperFactoryBean"
+      	p:sqlSessionFactory-ref="CommentSqlSession"
+      	p:mapperInterface="net.developia.online.dao.CommentDAO" />
+      	
+    <!-- CardDAO -->
+    <bean id="CardSqlSession"
+    	class="org.mybatis.spring.SqlSessionFactoryBean"
+    	p:dataSource-ref="dataSource"
+    	p:typeAliasesPackage="net.developia.online.dto" />
+
+   	<bean id="CardDAO"
+      	class="org.mybatis.spring.mapper.MapperFactoryBean"
+      	p:sqlSessionFactory-ref="CardSqlSession"
+      	p:mapperInterface="net.developia.online.dao.CardDAO" />
 </beans>

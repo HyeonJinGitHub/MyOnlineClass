@@ -45,15 +45,15 @@
 
 <!-- 다중 Autocomplete -->
 <script type="text/javascript">
-	$(function() {
-		$( "#searchKeyNav, #searchKeyBody" ).autocomplete({
-		  source: '${contextPath}/move/popular',
-		  delay: 200,
-		  select: function(event, ui) {
-		  	window.location.href = "detail?reserve=" + JSON.stringify(ui.item.value).replace(/\"/gi, "");
-		  }
-		});
-	});
+   $(function() {
+      $( "#searchKeyNav, #searchKeyBody" ).autocomplete({
+        source: '${contextPath}/autoComplete',
+        delay: 200,
+        select: function(event, ui) {
+           window.location.href = "detail?reserve=" + JSON.stringify(ui.item.value).replace(/\"/gi, "");
+        }
+      });
+   });
 </script>
 
 <!-- jquery 를 이용하여 화면 맨위로 자연스럽게 올라가는 TOP 버튼 만들기 -->
@@ -76,14 +76,55 @@
     });
 </script>
 
-<!-- 클래스톡 인기 코치 -->
 <script>
 	$(document).ready(function() {
+		
+		<!-- 지금 뜨고 있는 클래스 TOP 5 -->
+		$.getJSON( "cardJson", function( data ) {
+			let refInt = 0;
+			
+			$.each( data, function( key, val ) {
+				id = data[key]['id'];
+				thumbnail = data[key]['thumbnail'];
+				lectureName = data[key]['lectureName'];
+				$.ajax({
+					type: "GET",
+					url: "thumbnailDownload",
+					data: {fileName : thumbnail, lectureName : lectureName},
+					success : function(data) {
+					},
+					error : function() {
+					}
+				});
+				
+				let link = '/online/thumbnailDownload?fileName=';
+				link += thumbnail;
+				link += '&';
+				link += 'lectureName=';
+				link += lectureName;
+				
+				let pro = "location.href='classDetail/";
+				pro += data[key]['id'] + "'";
+				
+				let idRef = 			'.id'.concat(refInt);
+				let thumbnailRef = 		'.thumbnail'.concat(refInt);
+				let lectureNameRef =	'.lecture'.concat(refInt);
+				let nicknameRef = 		'.nickname'.concat(refInt);
+				let participantsRef = 	'.participants'.concat(refInt);
+				
+				$(idRef).attr("onclick", pro);
+				$(thumbnailRef).attr("src", link);
+				$(lectureNameRef).text(data[key]['lectureName']);
+				$(nicknameRef).text(data[key]['nickname']);
+				$(participantsRef).text("참여 멤버 " + data[key]['participants']);
+				
+				refInt += 1;
+			});
+		});
+		
+		<!-- 클래스톡 인기 코치 -->
 		$.getJSON( "instructorJson", function( data ) {
-			let imageInt = 		0;
-			let nicknameInt = 	100;	
-			let introduceInt = 	10000;
-			let profileInt = 	1000000;
+			let refInt = 0;
 			
 			$.each( data, function( key, val ) {
 				img = data[key]['image'];
@@ -103,23 +144,19 @@
 				let pro = "location.href='profile?";
 				pro += data[key]['id'] + "'";
 				
-				let image = '.'.concat(imageInt);
-				let nickname = '.'.concat(nicknameInt);
-				let introduce = '.'.concat(introduceInt);
-				let profile = '.'.concat(profileInt);
+				let imageRef = 			'.image'.concat(refInt);
+				let instNicknameRef = 	'.instNickname'.concat(refInt);
+				let introduceRef = 		'.introduce'.concat(refInt);
+				let profileRef = 		'.profile'.concat(refInt);
 				
-				$(image).attr("src", link);
-			    $(nickname).text(data[key]['nickname']);
-			    $(introduce).text(data[key]['introduce']);
-			    $(profile).attr("onclick", pro);
+				$(imageRef).attr("src", link);
+			    $(instNicknameRef).text(data[key]['nickname']);
+			    $(introduceRef).text(data[key]['introduce']);
+			    $(profileRef).attr("onclick", pro);
 			    
-			    imageInt += 1;
-			    nicknameInt += 1;
-			    introduceInt += 1;
-			    profileInt += 1;
-			  });
+			    refInt += 1;
 			});
-		
+		});
 	});
 </script>
 
@@ -131,10 +168,10 @@
 			type: "POST"
 		});
 
-		if (self.name != 'reload') {
-			self.name = 'reload';
-			self.location.reload(true);
-		} else self.name = ''; 
+// 		if (self.name != 'reload') {
+// 			self.name = 'reload';
+// 			self.location.reload(true);
+// 		} else self.name = ''; 
 	});
 </script>
 
@@ -314,7 +351,7 @@ a#MOVE_TOP_BTN {
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
            	   <li class="nav-item active">
               	   <% if (id == null || id == "") { %>
@@ -456,130 +493,24 @@ a#MOVE_TOP_BTN {
 
 		<div class="container swiper-container mySwiper" align="center">
 			<div class="swiper-wrapper">
-				<%-- 				<% --%>
-				<!-- // 					for (int i = 0; i < 5; i++) { -->
-				<%-- 				%> --%>
-				<!-- 				<div class="mb-4 swiper-slide"> -->
-				<!-- 					<div class="card h-auto" style="width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;"> -->
-				<%-- 						<img class="card-img-top" src="${contextPath}/resources/banner/${lecture.url}" alt="Card image" style="height: 200px;"> --%>
-				<!-- 						<div class="custom-card-body" style="width: 350px; height: 50px;"> -->
-				<%-- 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">${lecture.name}</p> --%>
-				<%-- 							<p style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">${instructor.name}</p> --%>
-				<!-- 						</div> -->
-				<!-- 						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;"> -->
-				<%-- 							<p style="padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: red; display: inline-block;">${lecture.discount}</p> --%>
-				<%-- 							<p style="padding-left: 150px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray; display: inline-block;">${lecture.participants}</p> --%>
-				<!-- 						</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-				<%-- 				<% --%>
-				<!-- // 					} -->
-				<%-- 				%> --%>
-				<div class="mb-3 swiper-slide">
-					<div class="card h-auto"
-						style="cursor: pointer; width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;"
-						onclick="location.href='classdetail/${lecture.id}'">
-						<img class="card-img-top"
-							src="${contextPath}/resources/banner/BWYizTwRFWqwIygK95a5.png"
-							alt="Card image" style="height: 200px;">
+				<%
+ 					for (int i = 0; i < 5; i++) {
+ 				%> 
+				<div class="mb-4 swiper-slide">
+					<div class="card h-auto id<%=i %>" style="width: 300px; height: 200px; box-shadow: 2.3px 2.3px lightgray; cursor: pointer">
+						<img class="card-img-top thumbnail<%=i %>" src="${contextPath}/resources/image/background2.png" alt="Card image" style="height: 200px;">
 						<div class="custom-card-body" style="width: 300px; height: 50px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">네이버
-								블로그 중급 (콘텐츠 디자인 완성반)</p>
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">임효주강사</p>
+							<p class="lecture<%=i %>" style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">NO DATA</p>
+							<p class="nickname<%=i %>" style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">NO DATA</p>
 						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여
-								멤버 14</p>
+						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
+ 							<p class="participants<%=i %>" style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">NO DATA</p>
 						</div>
 					</div>
 				</div>
-				<div class="mb-3 swiper-slide">
-					<div class="card h-auto"
-						style="cursor: pointer; width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;"
-						onclick="location.href='classdetail/${lecture.id}'">
-						<img class="card-img-top"
-							src="${contextPath}/resources/banner/jtr28ShMk7KC0hdU.png"
-							alt="Card image" style="height: 200px;">
-						<div class="custom-card-body" style="width: 300px; height: 50px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">프랑스
-								자수로 수놓는 특별한 선물, 입체꽃 웨딩 액자</p>
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">수록</p>
-						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여
-								멤버 114</p>
-						</div>
-					</div>
-				</div>
-				<div class="mb-3 swiper-slide">
-					<div class="card h-auto"
-						style="cursor: pointer; width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;"
-						onclick="location.href='classdetail/${lecture.id}'">
-						<img class="card-img-top"
-							src="${contextPath}/resources/banner/wSJNkmZPeDedDRyC.png"
-							alt="Card image" style="height: 200px;">
-						<div class="custom-card-body" style="width: 300px; height: 50px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">※전신
-								통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
-						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여
-								멤버 8937</p>
-						</div>
-					</div>
-				</div>
-				<div class="mb-3 swiper-slide">
-					<div class="card h-auto"
-						style="cursor: pointer; width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;"
-						onclick="location.href='classdetail/${lecture.id}'">
-						<img class="card-img-top"
-							src="${contextPath}/resources/banner/wSJNkmZPeDedDRyC.png"
-							alt="Card image" style="height: 200px;">
-						<div class="custom-card-body" style="width: 300px; height: 50px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">※전신
-								통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
-						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여
-								멤버 8937</p>
-						</div>
-					</div>
-				</div>
-				<div class="mb-3 swiper-slide">
-					<div class="card h-auto"
-						style="cursor: pointer; width: 300px; height: 200px; box-shadow: 1.3px 1.8px lightgray;"
-						onclick="location.href='classdetail/${lecture.id}'">
-						<img class="card-img-top"
-							src="${contextPath}/resources/banner/wSJNkmZPeDedDRyC.png"
-							alt="Card image" style="height: 200px;">
-						<div class="custom-card-body" style="width: 300px; height: 50px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">※전신
-								통증완화※ 엄마의 몸이 개운해지는 임산부 요가</p>
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">모나요가</p>
-						</div>
-						<div class="custom-card-body" style="width: 300px; height: 40px;">
-							<p
-								style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">참여
-								멤버 8937</p>
-						</div>
-					</div>
-				</div>
+				<%
+ 					} 
+ 				%> 
 			</div>
 			<div class="swiper-button-prev"
 				style="background-image: url('${contextPath}/resources/image/icon_card_arrow_left.png');"></div>
@@ -760,19 +691,19 @@ a#MOVE_TOP_BTN {
 		<div class="container swiper-container mySwiper2" align="center">
 			<div class="swiper-wrapper">
 				<%
-				for (int i = 0; i < 10; i++) {
+					for (int i = 0; i < 10; i++) {
 				%>
 				<div class="mb-2 swiper-slide">
 					<div class="card h-auto" style="width: 208px; height: 180px;">
-						<img class="card-img-top <%=i %>"
+						<img class="card-img-top image<%=i%>"
 							src="${contextPath}/resources/image/icon_user_profile.png"
 							alt="Profile image"
 							style="width: 96px; height: 96px; margin: 15px auto 0; border: 1px solid #efefef; border-radius: 50%; background-repeat: no-repeat; background-size: cover; background-position: center;">
 						<div class="custom-card-body" style="width: 208px; height: 50px;">
-							<p class="<%=i + 100%>"
+							<p class="instNickname<%=i%>"
 								style="text-align: center; font-weight: bold; font-size: 13px; color: #5a5858; margin-bottom: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">데이터가
 								없습니다.</p>
-							<p class="<%=i + 10000%>"
+							<p class="introduce<%=i%>"
 								style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px; color: darkgray;">데이터가
 								없습니다.</p>
 						</div>
@@ -780,7 +711,7 @@ a#MOVE_TOP_BTN {
 							style="width: 208px; height: 50px; padding-top: 17px;"
 							align="center">
 							<div class="my-box">
-								<p class="<%=i + 1000000%>"
+								<p class="profile<%=i%>"
 									style="cursor: pointer; color: #ff5a5f; font-weight: 400; font-size: 12px; padding-top: 2px;">프로필보기</p>
 							</div>
 						</div>

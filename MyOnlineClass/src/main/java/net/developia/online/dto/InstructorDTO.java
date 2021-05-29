@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class InstructorDTO {
-	private String id;
+	private String member_id;
 	private String name; // member table
 	private String nickname;
 	private String introduce;

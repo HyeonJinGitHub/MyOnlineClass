@@ -44,14 +44,13 @@ public class LectureDetailController {
 
 	private static Logger logger = LoggerFactory.getLogger(LectureDetailController.class);
 
-	// URL 예시 : http://localhost/online/classDetail/1
-	@GetMapping("/classDetail/{no}")
+	// URL 예시 : http://localhost/online/classdetail/1
+	@GetMapping("/classdetail/{no}")
 	@Transactional
 	public ModelAndView detail(@PathVariable(required = true) long no, HttpSession session) {
 		ModelAndView mav = new ModelAndView("result");
 
 		try {
-			// 세션값 + comment 추가
 			LectureDTO lectureDTO = lectureService.getLecture(no);
 			InstructorDTO instructorDTO = instructorService.getInstructor(no);
 
@@ -59,7 +58,7 @@ public class LectureDetailController {
 
 			mav.addObject("lectureDTO", lectureDTO);
 			mav.addObject("instructorDTO", instructorDTO);
-			mav.addObject("url", "/online/lectureDetail");
+			mav.addObject("url", "/online/lecturedetail");
 			mav.setViewName("lectureDetail");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,43 +67,6 @@ public class LectureDetailController {
 		}
 		return mav;
 	}
-
-	@GetMapping(value = "/classDetail", produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public List<CommentDTO> comment_list(@RequestParam(required = true) long no) throws Exception {
-		System.out.println("comment list 수집");
-		List<CommentDTO> list = commentService.getCommentList(no);
-		return list;
-	}
-/*
-	@PostMapping(value = "/{cno}", produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public List<CommentDTO> comment_update(@ModelAttribute CommentDTO commentDTO, HttpServletRequest request,
-			HttpSession session) throws Exception {
-		commentDTO.setCom_ip(request.getRemoteAddr());
-		commentDTO.setUserDTO((UserDTO) session.getAttribute("userInfo"));
-
-		log.info("comment_update() 메소드 수행");
-		log.info(commentDTO.toString());
-
-		boardService.updateComment(commentDTO);
-		return boardService.getCommentList(commentDTO);
-	}
-
-	@DeleteMapping(value = "/{com_no}", produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public List<CommentDTO> comment_delete(@ModelAttribute CommentDTO commentDTO, HttpServletRequest request,
-			HttpSession session) throws Exception {
-		commentDTO.setCom_ip(request.getRemoteAddr());
-		commentDTO.setUserDTO((UserDTO) session.getAttribute("userInfo"));
-
-		log.info("comment_delete() 메소드 수행");
-		log.info(commentDTO.toString());
-
-		boardService.deleteComment(commentDTO);
-		return boardService.getCommentList(commentDTO);
-	}*/
-	
 	
 	@GetMapping("/enroll")
 	public ModelAndView enroll() throws Exception {

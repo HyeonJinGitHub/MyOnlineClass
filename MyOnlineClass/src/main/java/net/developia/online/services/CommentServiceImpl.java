@@ -45,9 +45,7 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public void updateComment(CommentDTO commentDTO) throws SQLException {
 		try {
-			if (commentDAO.updateComment(commentDTO) == 0) {
-				throw new RuntimeException("댓글 수정 실패");
-			}
+			commentDAO.updateComment(commentDTO);
 		} catch (Exception e) {
 			log.info(e.toString());
 			throw e;

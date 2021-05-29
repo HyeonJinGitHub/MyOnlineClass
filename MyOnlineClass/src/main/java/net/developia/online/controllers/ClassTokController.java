@@ -74,7 +74,7 @@ public class ClassTokController {
 		System.out.println("image : " + image);
 
 		InstructorDTO instructorDTO = new InstructorDTO();
-		instructorDTO.setId(id);
+		instructorDTO.setMember_id(id);
 		instructorDTO.setName(name);
 		instructorDTO.setEmail(email);
 		instructorDTO.setPhone(phone);

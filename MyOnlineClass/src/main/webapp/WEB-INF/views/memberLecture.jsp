@@ -111,7 +111,7 @@ resultTime = dateForm.format(result_date);
 		<button type="button" class="myButton2"
 			onclick="location.href='javascript:history.back()'">취소</button>
 		<button type="button" class="myButton"
-			onclick="location.href='/online/memberLecture/Action/${lecture.id}'">
+			onclick="location.href='/online/memberlecture/action/${lecture.id}'">
 			수강신청하기</button>
 	</div>
 </body>

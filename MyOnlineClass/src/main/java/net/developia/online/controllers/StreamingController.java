@@ -152,7 +152,7 @@ public class StreamingController{
 		//HttpSession session = request.getSession(true);
 		//String user_id = (String)session.getAttribute("user_id");
 		
-
+		
 		ModelAndView mav = new ModelAndView();		
 		
 		
@@ -164,8 +164,18 @@ public class StreamingController{
 			
 			LectureDTO lectureDTO = lectureService.getLecture(no);
 			InstructorDTO instructorDTO = instructorService.getInstructor(no);
+			System.out.println(instructorDTO);
+			boolean isInstructor = false; 
+						
+			System.out.println("id, getid 확인");
+			System.out.println(id);
+			System.out.println(instructorDTO.getMember_id());
 			
+			if(id.equals(instructorDTO.getMember_id())) {
+				isInstructor = true;
+			}
 			
+			System.out.println(isInstructor);
 			List<VodDTO> list = vodService.getVodList(no);
 			System.out.println(list);
 			mav.setViewName("vodMain");
@@ -177,6 +187,8 @@ public class StreamingController{
 			mav.addObject("lectureDTO", lectureDTO);
 			
 			mav.addObject("instructorDTO", instructorDTO);
+			
+			mav.addObject("isInstructor", isInstructor);
 			
 			
 		} catch (Exception e) {

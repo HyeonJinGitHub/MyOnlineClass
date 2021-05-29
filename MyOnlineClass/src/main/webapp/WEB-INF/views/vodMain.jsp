@@ -2,18 +2,17 @@
     pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<<<<<<< HEAD
+
  <c:import url="header3.jsp"></c:import>
 
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
-  
-=======
+<c:set var="isInstructor" value="${isInstructor}" />
 <%@include file="header3.jsp" %>
 <%
 	String id = (String)session.getAttribute("id");
 %>
->>>>>>> e56edf7dc1902d54018601124d17480603e2aca2
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,12 +105,13 @@
   				</form>
    				-->
    					 
-   					<form method="post" action="tempfile">
-   						<input type="text" name="lecture_name" style= "display:none" value="${lecture.name}"/>
-   						<input type="text" name="lecture_id" style= "display:none" value="${lecture.id}"/>
-   						<input type="submit" value="강의 업로드" class="vodUpload" >	
- 					</form>
- 					 
+   					 <c:if test="${isInstructor eq true}">
+	   					<form method="post" action="tempfile">
+	   						<input type="text" name="lecture_name" style= "display:none" value="${lecture.name}"/>
+	   						<input type="text" name="lecture_id" style= "display:none" value="${lecture.id}"/>
+	   						<input type="submit" value="강의 업로드" class="vodUpload" >	
+	 					</form>
+ 					 </c:if>
  					 <!-- <input type="text" id="lecture_id" name="lecture_id" style= "display:none" /> -->
  					 <!-- <input type="text" id="lecture_id" name="lecture_id" value="${lecture.id}"/> -->
  					 

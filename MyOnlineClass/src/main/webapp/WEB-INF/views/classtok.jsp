@@ -3,42 +3,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String id = (String) session.getAttribute("id");
-	String nickname = (String) session.getAttribute("nickname");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" type="image/png" sizes="64x64"
-	href="${contextPath}/resources/image/classtok_favi4fa9.png" />
+<link rel="icon" 
+	  type="image/png" 
+	  sizes="64x64" 
+	  href="${contextPath}/resources/image/classtok_favi4fa9.png" />
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
+<meta name="viewport" 
+	  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" 
+	  content="">
+<meta name="author" 
+	  content="">
 
 <title>클래스톡 :: 함께 배우는 온라인 클래스 강의, 수업, 강좌 - 클래스톡</title>
 
 <!-- 폰트 스타일 시트 -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet">
 
 <!-- 부트 스트랩 스타일 시트 -->
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	  crossorigin="anonymous">
 
 <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	  href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- Swiper API -->
 <link rel="stylesheet"
-	href="https://unpkg.com/swiper/swiper-bundle.min.css">
+	  href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
 <!-- 새로고침 시 페이지 상단으로 이동 -->
 <!-- <script>history.scrollRestoration = "manual"</script> -->
@@ -124,7 +126,7 @@
 				link += 'lectureName=';
 				link += lectureName;
 				
-				let pro = "location.href='classDetail/";
+				let pro = "location.href='classdetail/";
 				pro += data[key]['id'] + "'";
 				
 				let idRef = 			'.id'.concat(refInt);
@@ -162,8 +164,8 @@
 				let link = '/online/imageDownload?fileName=';
 				link += img;
 				
-				let pro = "location.href='profile?";
-				pro += data[key]['id'] + "'";
+				let pro = "location.href='profile/";
+				pro += data[key]['member_id'] + "'";
 				
 				let imageRef = 			'.image'.concat(refInt);
 				let instNicknameRef = 	'.instNickname'.concat(refInt);
@@ -184,15 +186,33 @@
 <!-- 로그인 한 회원이 강사인지 확인 -->
 <script>
 	$(document).ready(function() {
+		var id = "${id}";
 		$.ajax({
+			type: "POST",
 			url: "getInstFlag",
-			type: "POST"
+			data: {id : id},
+			success: function(data) {
+				nickname = data['nickname'];
+				
+				if (!id) {
+					$('.textSwitch').text('');
+				}
+				else {
+					if (!nickname) {
+						$('.textSwitch').text('강사 신청');
+						$('.linkSwitch').attr("href", 'open');
+					} else {
+						$('.textSwitch').text('클래스 개설');
+						$('.linkSwitch').attr("href", 'enroll');
+					}
+				}
+				
+			},
+			error: function(request, status, error) {
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				console.log("실패");
+			}
 		});
-
-// 		if (self.name != 'reload') {
-// 			self.name = 'reload';
-// 			self.location.reload(true);
-// 		} else self.name = ''; 
 	});
 </script>
 
@@ -368,24 +388,16 @@ a#MOVE_TOP_BTN {
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-           	   <li class="nav-item active">
-              	   <% if (id == null || id == "") { %>
-					
-				   <% } else if (id != null && nickname == null) { %>
-				   <a class="nav-link instructor" href="${contextPath}/open">
-				       <span class="test">강사 신청</span>
-				   </a>
-				   <% } else if (id != null && nickname != null){ %>
-				   <a class="nav-link instructor" href="${contextPath}/enroll">
-				       <span>클래스 개설</span>
-				   </a>
-			       <% } %>
-               		<li class="nav-item active">
-                  <a class="nav-link" href="${contextPath}/alarm">
-                     <i class="far fa-bell"></i>
-                  </a>
-               </li>
-               <li class="nav-item active">
+            	<li class="nav-item active">
+            		<a class="nav-link linkSwitch" href="${contextPath}/open" >
+            			<span class="textSwitch"></span>
+            		</a>
+           		<li class="nav-item active">
+           			<a class="nav-link" href="${contextPath}/alarm">
+           				<i class="far fa-bell"></i>
+           			</a>
+           		</li>
+           		<li class="nav-item active">
                   <% if (id == null || id == "") { %>
                   <a class="nav-link" href="${contextPath}/login" style="padding-right: 40px;">
                      <i class="fas fa-user"></i>

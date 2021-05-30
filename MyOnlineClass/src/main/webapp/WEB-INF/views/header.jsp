@@ -55,9 +55,32 @@
 <!-- 로그인 한 회원이 강사인지 확인 -->
 <script>
 	$(document).ready(function() {
+		var id = "${id}";
 		$.ajax({
+			type: "POST",
 			url: "getInstFlag",
-			type: "POST"
+			data: {id : id},
+			success: function(data) {
+				nickname = data['nickname'];
+				
+				if (!id) {
+					$('.textSwitch').text('');
+				}
+				else {
+					if (!nickname) {
+						$('.textSwitch').text('강사 신청');
+						$('.linkSwitch').attr("href", 'open');
+					} else {
+						$('.textSwitch').text('클래스 개설');
+						$('.linkSwitch').attr("href", 'enroll');
+					}
+				}
+				
+			},
+			error: function(request, status, error) {
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				console.log("실패");
+			}
 		});
 	});
 </script>
@@ -280,20 +303,16 @@ a#MOVE_TOP_BTN {
          </button>
          
          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-           	   <li class="nav-item active">
-              	   <% if (id == null || id == "") { %>
-					
-				   <% } else if (id != null && nickname == null) { %>
-				   <a class="nav-link" href="${contextPath}/open">
-				       <span>강사 신청</span>
-				   </a>
-			       <% } %>
-               		<li class="nav-item active">
-                  <a class="nav-link" href="${contextPath}/alarm">
-                     <i class="far fa-bell"></i>
-                  </a>
-               </li>
+         	<ul class="navbar-nav ml-auto">
+         		<li class="nav-item active">
+         			<a class="nav-link linkSwitch" href="${contextPath}/open" >
+         				<span class="textSwitch"></span>
+            		</a>
+            	<li class="nav-item active">
+            		<a class="nav-link" href="${contextPath}/alarm">
+            			<i class="far fa-bell"></i>
+            		</a>
+            	</li>
                <li class="nav-item active">
                   <% if (id == null || id == "") { %>
                   <a class="nav-link" href="${contextPath}/login" style="padding-right: 40px;">

@@ -32,20 +32,21 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
-<!-- 다중 Autocomplete -->
-<!-- 
+<!-- Autocomplete -->
 <script type="text/javascript">
-	$(function() {
-		$( "#searchKeyNav, #searchKeyBody" ).autocomplete({
-		  source: '${contextPath}/move/popular',
-		  delay: 200,
-		  select: function(event, ui) {
-		  	window.location.href = "detail?reserve=" + JSON.stringify(ui.item.value).replace(/\"/gi, "");
-		  }
-		});
-	});
+/*   
+   $(function() {
+      $( "#searchKey" ).autocomplete({
+        source: '${contextPath}/autoComplete',
+        delay: 200,
+        select: function(event, ui) {
+        	var url = '${contextPath}/search/'
+        	window.location.href = url + JSON.stringify(ui.item.value).replace(/\"/gi, "");
+        }
+      });
+   }); 
+*/
 </script>
- -->
 
 <style>
 body {

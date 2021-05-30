@@ -4,26 +4,27 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.sql.SQLException;
-import java.util.HashMap;
+import java.net.http.HttpRequest;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import net.developia.online.dto.CardDTO;
 import net.developia.online.dto.InstructorDTO;
@@ -38,19 +39,35 @@ public class ClassTokController {
 	private InstructorService instructorService;
 	
 	@Autowired
+	private LectureService lectureService;
+	
+	@Autowired
 	private CardService cardService;
 
 	@RequestMapping(value = "instructorJson", produces = "application/json; charset=UTF-8")
 	public List<InstructorDTO> getInstructor() throws Exception {
 		List<InstructorDTO> list = instructorService.getInstructorList();
-
 		return list;
 	}
 	
 	@GetMapping(value = "cardJson", produces = "application/json; charset=UTF-8")
-	public List<CardDTO> getLecture(HttpSession session) throws Exception {
+	public List<CardDTO> getLecture() throws Exception {
 		List<CardDTO> list = cardService.getCardList();
-		System.out.println(list);
+		return list;
+	}
+	
+	@GetMapping(value = "cardJsonWithKeyword", produces = "application/json; charset=UTF-8")
+	public List<CardDTO> getLectureWithKeyword(HttpServletRequest request, HttpSession session) throws Exception {
+		List<CardDTO> list;
+		String keyword = request.getParameter("keyword");
+		if (keyword.equals("all")) {
+			list = cardService.getCardList();
+		} else {
+			list = cardService.getCardListWithKeyword(keyword);
+		}
+//		System.out.println("리턴 행 갯수 : " + list.size());
+		
+		session.setAttribute("numberOfReturnRows", list.size());
 		return list;
 	}
 
@@ -147,7 +164,7 @@ public class ClassTokController {
 		} 
 	}
 	
-	@RequestMapping(value = "getInstFlag")
+	@RequestMapping(value = "getInstFlag", method = {RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
 	public void getInstFlag(HttpSession session) throws Exception {
 		String id = (String)session.getAttribute("id");
@@ -166,8 +183,39 @@ public class ClassTokController {
 		}
 	}
 	
-	@RequestMapping(value = "/autoComplete")
-	public void autoComplete() throws Exception {
+	@RequestMapping(value = "autoComplete")
+	public Set<String> autoComplete(String term) throws Exception {
+		Set<String> keyword = new HashSet<String>();
 		
+		List<InstructorDTO> instructorDTO = instructorService.getNickname(term);
+		List<LectureDTO> lectureDTO = lectureService.getLectureName(term);
+		
+		for (int i = 0; i < instructorDTO.size(); i++) {
+			keyword.add(instructorDTO.get(i).getNickname());
+		}
+		
+		for (int i = 0; i < lectureDTO.size(); i++) {
+			keyword.add(lectureDTO.get(i).getName());
+		}
+		
+		return keyword;
+	}
+	
+	@RequestMapping(value = "/search/{keyword}", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView search(@PathVariable(required = true) String keyword) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("keyword", keyword);
+		mav.setViewName("search");
+		return mav;
+//		return new ModelAndView("search");
+	}
+	
+	@RequestMapping(value = "/search", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView searchAll() throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("keyword", "all");
+		mav.setViewName("search");
+		return mav;
+//		return new ModelAndView("search");
 	}
 }

@@ -50,10 +50,32 @@
         source: '${contextPath}/autoComplete',
         delay: 200,
         select: function(event, ui) {
-           window.location.href = "detail?reserve=" + JSON.stringify(ui.item.value).replace(/\"/gi, "");
+        	var url = '${contextPath}/search/'
+        	window.location.href = url + JSON.stringify(ui.item.value).replace(/\"/gi, "");
         }
       });
    });
+</script>
+
+<script>
+	function searchNav() {
+		var searchKeyNav = document.getElementById("searchKeyNav").value;
+		var url = '${contextPath}/search/';
+		location.href = url + searchKeyNav;
+	}
+	
+	function searchBody() {
+		var searchKeyBody = document.getElementById("searchKeyBody").value;
+		var url = '${contextPath}/search/';
+		location.href = url + searchKeyBody;
+	}
+</script>
+
+<script>
+	function categorySearch(category) {
+		var url = '${contextPath}/search/';
+		location.href = url + category;
+	}
 </script>
 
 <!-- jquery 를 이용하여 화면 맨위로 자연스럽게 올라가는 TOP 버튼 만들기 -->
@@ -78,9 +100,8 @@
 
 <script>
 	$(document).ready(function() {
-		
 		<!-- 지금 뜨고 있는 클래스 TOP 5 -->
-		$.getJSON( "cardJson", function( data ) {
+		$.getJSON( "${contextPath}/cardJson", function( data ) {
 			let refInt = 0;
 			
 			$.each( data, function( key, val ) {
@@ -331,18 +352,12 @@ a#MOVE_TOP_BTN {
 			</a>
 
 			<div class="ui-widget" style="padding-top: 15px;">
-				<form id="searchClass" method='GET' action="${contextPath}/search">
-					<label class="header__search-label" for="searchKey"> <input
-						id="searchKeyNav" name="searchKey" type="text"
-						placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off"
-						onfocus="this.value=''"
-						style="border: 0; outline: 0; width: 200px; padding-left: 12px; font-size: 13px; background-color: #f8f9fa; border-radius: 30px;">
-						<button type="submit"
-							style="border: 0; outline: 0; background-color: white;">
-							<i class="fas fa-search" onclick="search"></i>
-						</button>
-					</label>
-				</form>
+				<label class="header__search-label" for="searchKeyNav"> 
+					<input id="searchKeyNav" name="searchKeyNav" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border: 0; outline: 0; width: 200px; padding-left: 12px; font-size: 13px; background-color: #f8f9fa; border-radius: 30px;">
+					<button type="submit" style="border: 0; outline: 0; background-color: white;">
+						<i class="fas fa-search" onclick="searchNav()"></i>
+					</button>
+				</label>
 			</div>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -426,53 +441,50 @@ a#MOVE_TOP_BTN {
 							.</h3>
 						<br>
 						<div class="ui-widget">
-							<form id="searchClass" method='GET'
-								action="${contextPath}/search">
 								<span style="position: relative; left: 40px; color: gray;">#</span>
-								<input type="text" id="searchKeyBody" name="searchKey"
+								<input type="text" id="searchKeyBody" name="searchKeyBody"
 									placeholder="무엇을 배우고 싶나요?" maxlength="20" autocomplete="off"
 									style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
 								<button type="submit"
 									style="border: 0; outline: 0; background-color: white; position: relative; right: 50px;">
-									<i class="fas fa-search" onclick="search"></i>
+									<i class="fas fa-search" onclick="searchBody()"></i>
 								</button>
-							</form>
 						</div>
 
 						<div style="padding-top: 30px;">
 							<input type="button" value="#전체"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey='"> <input
+								readonly onclick="categorySearch('')"> <input
 								type="button" value="#다이어트"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 68px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=다이어트'">
+								readonly onclick="categorySearch('다이어트')">
 							<input type="button" value="#교육"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=교육'">
+								readonly onclick="categorySearch('교육')">
 							<input type="button" value="#외국어"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 60px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=외국어'">
+								readonly onclick="categorySearch('외국어')">
 							<input type="button" value="#음악"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=음악'">
+								readonly onclick="categorySearch('음악')">
 							<input type="button" value="#커리어"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 60px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=커리어'">
+								readonly onclick="categorySearch('커리어')">
 							<input type="button" value="#필라테스"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 68px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=필라테스'">
+								readonly onclick="categorySearch('필라테스')">
 							<input type="button" value="#창업"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=창업'">
+								readonly onclick="categorySearch('창업')">
 							<input type="button" value="#손글씨"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 60px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=손글씨'">
+								readonly onclick="categorySearch('손글씨')">
 							<input type="button" value="#블로그"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 60px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=블로그'">
+								readonly onclick="categorySearch('블로그')">
 							<input type="button" value="#육아"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;"
-								readonly onclick="location.href='search?searchKey=육아'">
+								readonly onclick="categorySearch('육아')">
 						</div>
 					</div>
 				</div>
@@ -530,25 +542,25 @@ a#MOVE_TOP_BTN {
 		<div class="container">
 			<div class="row" style="margin-left: 20px;">
 				<div class="col-lg-1 mb-4"
-					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=운동/건강'">
+					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;" onclick="categorySearch('운동')"
+					>
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/R1M0BHQbOWruXtgj.png"
 							alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p
-							style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">운동/건강</p>
+							style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">운동</p>
 
 					</div>
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=라이프스타일'">
+					onclick="categorySearch('라이프스타일')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/2EA29I1A3zshSlKX.png"
 							alt="Card image" style="width: 70px; border-radius: 15px;">
@@ -558,23 +570,23 @@ a#MOVE_TOP_BTN {
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=음료/요리'">
+					onclick="categorySearch('요리')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/vyoeoLhzJ4N1jQmd.png"
 							alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p
-							style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">음료/요리</p>
+							style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">요리</p>
 					</div>
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=미술'">
+					onclick="categorySearch('미술')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/ywzTGhQObpLfQ6lH.png"
 							alt="Card image" style="width: 70px; border-radius: 15px;">
@@ -584,10 +596,10 @@ a#MOVE_TOP_BTN {
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=커리어'">
+					onclick="categorySearch('커리어')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/p4m7pzeWxon33Ifn.png"
 							alt="Card image" style="width: 70px; border-radius: 15px;">
@@ -597,10 +609,10 @@ a#MOVE_TOP_BTN {
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=공예'">
+					onclick="categorySearch('공예')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/s8yShBULMq85PLiZ.png"
 							alt="Card image" style="width: 70px; border-radius: 15px;">
@@ -610,23 +622,23 @@ a#MOVE_TOP_BTN {
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=사진/영상'">
+					onclick="categorySearch('사진')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/T6BTV6lavBmdgR3g.png"
 							alt="Card image" style="width: 70px; border-radius: 15px;">
 						<p
-							style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">사진/영상</p>
+							style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">사진</p>
 					</div>
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=음악'">
+					onclick="categorySearch('음악')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/E4CGKWC7PoNg1YyI.png"
 							alt="Card image"
@@ -637,10 +649,10 @@ a#MOVE_TOP_BTN {
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=외국어'">
+					onclick="categorySearch('외국어')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/LXAYO1Hc4pXyYaOj.png"
 							alt="Card image"
@@ -651,10 +663,10 @@ a#MOVE_TOP_BTN {
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey=교육'">
+					onclick="categorySearch('교육')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
-						onclick="location.href ='${contextPath}/move/popular/'">
+						>
 						<img class="card-img-top"
 							src="${contextPath}/resources/genre/9A2UrIdMXHc2rLxM.png"
 							alt="Card image"
@@ -665,7 +677,7 @@ a#MOVE_TOP_BTN {
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
-					onclick="location.href='search?searchKey='">
+					onclick="categorySearch('')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
 						onclick="location.href ='${contextPath}/move/popular/'">

@@ -42,5 +42,12 @@
 		INSERT INTO MEMBER_LECTURE(lecture_id, member_id, start_date, end_date)
 		VALUES(#{lecture_id}, #{member_id}, #{start_date}, #{end_date})
 	</insert>
-
+	
+	<select id="getLectureName" resultType="LectureDTO">
+	<![CDATA[
+		SELECT	name
+		FROM	lecture
+		WHERE	name like '%' || #{term} || '%'
+	]]>
+	</select>
 </mapper>

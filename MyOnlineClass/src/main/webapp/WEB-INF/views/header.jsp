@@ -30,14 +30,26 @@
 <!-- 다중 Autocomplete -->
 <script type="text/javascript">
    $(function() {
-      $( "#searchKeyNav, #searchKeyBody" ).autocomplete({
-        source: '${contextPath}/move/popular',
+      $( "#searchKey" ).autocomplete({
+        source: '${contextPath}/autoComplete',
         delay: 200,
         select: function(event, ui) {
-           window.location.href = "detail?reserve=" + JSON.stringify(ui.item.value).replace(/\"/gi, "");
+        	var url = '${contextPath}/search/'
+        	window.location.href = url + JSON.stringify(ui.item.value).replace(/\"/gi, "");
         }
       });
    });
+</script>
+
+<script>
+	function search() {
+		var searchKey = document.getElementById("searchKey").value;
+		if (searchKeyNav == "") {
+			searchKeyNav = "blank";
+		}
+		var url = '${contextPath}/search/';
+		location.href = url + searchKey;
+	}
 </script>
 
 <!-- 로그인 한 회원이 강사인지 확인 -->
@@ -191,6 +203,58 @@ a#MOVE_TOP_BTN {
 }
 </style>
 
+<style>
+.ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;   
+    padding: 4px 0;
+    margin: 0 0 10px 25px;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+}
+
+.ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.ui-state-hover, .ui-state-active {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0088cc;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    background-image: none;
+}
+</style>
+
 </head>
 <body>
 <!-- Navigation -->
@@ -201,15 +265,13 @@ a#MOVE_TOP_BTN {
          </a>
          
          <div class="ui-widget" style="padding-top: 15px;">
-            <form id="searchClass" method='GET' action="${contextPath}/search">
-                  <label class="header__search-label" for="searchKey" >
-                      <input id="searchKeyNav" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; font-size: 13px; background-color: #f8f9fa; border-radius: 30px;">
-                  <button type="submit" style="border:0; outline:0; background-color: white;">
-                     <i class="fas fa-search" onclick="search"></i>
-                  </button>
-                  </label>
-               </form>
-            </div>
+            <label class="header__search-label" for="searchKey" >
+                <input id="searchKey" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; font-size: 13px; background-color: #f8f9fa; border-radius: 30px;">
+            	<button type="submit" style="border:0; outline:0; background-color: white;">
+               		<i class="fas fa-search" onclick="search()"></i>
+            	</button>
+            </label>
+         </div>
             
          <button class="navbar-toggler" type="button" data-toggle="collapse"
                data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -249,7 +311,7 @@ a#MOVE_TOP_BTN {
    </nav>
    
    
-   <!-- Bootstrap core JavaScript-->
+   <!-- Bootstrap core JavaScript -->
 <%--    <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script> --%>
 <%--    <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 
@@ -258,7 +320,6 @@ a#MOVE_TOP_BTN {
    
    <!--  Custom styles for this template -->
    <link href="${contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
-   
-   
+
 </body>
 </html>

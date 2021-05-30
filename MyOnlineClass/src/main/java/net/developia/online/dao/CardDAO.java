@@ -7,4 +7,5 @@ import net.developia.online.dto.CardDTO;
 
 public interface CardDAO {
 	List<CardDTO> getCardList() throws SQLException;
+	List<CardDTO> getCardListWithKeyword(String keyword) throws SQLException;
 }

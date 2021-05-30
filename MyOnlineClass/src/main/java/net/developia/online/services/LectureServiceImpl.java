@@ -1,6 +1,7 @@
 package net.developia.online.services;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,5 +53,11 @@ public class LectureServiceImpl implements LectureService {
 			log.info(e.getMessage());
 			throw e;
 		}
+	}
+
+
+	@Override
+	public List<LectureDTO> getLectureName(String term) throws Exception {
+		return lectureDAO.getLectureName(term);
 	}
 }

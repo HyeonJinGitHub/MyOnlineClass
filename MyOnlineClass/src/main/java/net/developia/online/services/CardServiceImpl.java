@@ -19,4 +19,8 @@ public class CardServiceImpl implements CardService {
 		return cardDAO.getCardList();
 	}
 
+	@Override
+	public List<CardDTO> getCardListWithKeyword(String keyword) throws SQLException {
+		return cardDAO.getCardListWithKeyword(keyword);
+	}
 }

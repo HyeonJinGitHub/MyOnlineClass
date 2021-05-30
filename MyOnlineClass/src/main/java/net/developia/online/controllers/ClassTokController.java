@@ -3,8 +3,8 @@ package net.developia.online.controllers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
-import java.net.http.HttpRequest;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import net.developia.online.dto.CardDTO;
 import net.developia.online.dto.InstructorDTO;
@@ -65,7 +64,7 @@ public class ClassTokController {
 		} else {
 			list = cardService.getCardListWithKeyword(keyword);
 		}
-//		System.out.println("리턴 행 갯수 : " + list.size());
+		System.out.println("리턴 행 갯수 : " + list.size());
 		
 		session.setAttribute("numberOfReturnRows", list.size());
 		return list;
@@ -164,23 +163,13 @@ public class ClassTokController {
 		} 
 	}
 	
-	@RequestMapping(value = "getInstFlag", method = {RequestMethod.POST, RequestMethod.GET})
+	@PostMapping(value = "getInstFlag", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public void getInstFlag(HttpSession session) throws Exception {
-		String id = (String)session.getAttribute("id");
-		if (id == null) {
-			id = "";
-		}
+	public InstructorDTO getInstFlag(HttpServletRequest request) throws Exception {
+		String id = (String)request.getParameter("id");
+		InstructorDTO instructorDTO = instructorService.getInstFlag(id);
 		
-		try {
-			InstructorDTO instructorDTO = instructorService.getInstFlag(id);
-			if (instructorDTO != null) {
-				session.setAttribute("nickname", instructorDTO.getNickname());
-				
-			} 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		return instructorDTO;
 	}
 	
 	@RequestMapping(value = "autoComplete")

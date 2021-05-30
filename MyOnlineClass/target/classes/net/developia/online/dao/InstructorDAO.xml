@@ -24,14 +24,14 @@
 	
 	<select id="getInstructorList" resultType="InstructorDTO">
 	<![CDATA[
-		SELECT	instructor.member_id as id, nickname, introduce, image
+		SELECT	member_id, nickname, introduce, image
 		FROM	instructor
 	]]>
 	</select>
 	
 	<insert id="registerInstructor">
 	<![CDATA[
-		INSERT INTO instructor values
+		INSERT INTO instructor VALUES
 		(#{member_id}, #{nickname}, #{introduce}, #{image})
 	]]>
 	</insert>
@@ -43,6 +43,14 @@
 		WHERE	instructor.member_id = (SELECT	id
 										FROM	member
 										WHERE	member.id = #{member_id})
+	]]>
+	</select>
+	
+	<select id="getNickname" resultType="InstructorDTO">
+	<![CDATA[
+		SELECT	nickname
+		FROM	instructor
+		WHERE	nickname like '%' || #{term} || '%'
 	]]>
 	</select>
 </mapper>

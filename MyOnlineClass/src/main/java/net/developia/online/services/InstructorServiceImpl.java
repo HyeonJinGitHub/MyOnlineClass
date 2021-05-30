@@ -2,6 +2,7 @@ package net.developia.online.services;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +47,10 @@ public class InstructorServiceImpl implements InstructorService {
 	@Override
 	public InstructorDTO getInstFlag(String id) throws Exception {
 		return instructorDAO.getInstFlag(id);
+	}
+
+	@Override
+	public List<InstructorDTO> getNickname(String term) throws Exception {
+		return instructorDAO.getNickname(term);
 	}
 }

@@ -45,4 +45,12 @@
 										WHERE	member.id = #{member_id})
 	]]>
 	</select>
+	
+	<select id="getNickname" resultType="InstructorDTO">
+	<![CDATA[
+		SELECT	nickname
+		FROM	instructor
+		WHERE	nickname like '%' || #{term} || '%'
+	]]>
+	</select>
 </mapper>

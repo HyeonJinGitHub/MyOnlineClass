@@ -10,4 +10,5 @@ public interface InstructorDAO {
 	List<InstructorDTO> getInstructorList() throws SQLException;
 	void registerInstructor(InstructorDTO instructorDTO) throws Exception;
 	InstructorDTO getInstFlag(String id) throws Exception;
+	List<InstructorDTO> getNickname(String term) throws Exception;
 }

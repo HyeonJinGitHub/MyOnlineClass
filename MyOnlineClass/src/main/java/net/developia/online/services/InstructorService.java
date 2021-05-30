@@ -2,6 +2,7 @@ package net.developia.online.services;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 
 import net.developia.online.dto.InstructorDTO;
 
@@ -13,4 +14,6 @@ public interface InstructorService {
 	void registerInstructor(InstructorDTO instructorDTO) throws Exception;
 	
 	public InstructorDTO getInstFlag(String id) throws Exception;
+
+	public List<InstructorDTO> getNickname(String term) throws Exception;
 }

@@ -321,7 +321,6 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("후후" + instructorDTO.toString());
 		return instructorDTO;
 	}
 }

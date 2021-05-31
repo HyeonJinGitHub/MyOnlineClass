@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String id = (String)session.getAttribute("id");
-	String nickname = (String) session.getAttribute("nickname");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -44,9 +43,6 @@
 <script>
 	function search() {
 		var searchKey = document.getElementById("searchKey").value;
-		if (searchKeyNav == "") {
-			searchKeyNav = "blank";
-		}
 		var url = '${contextPath}/search/';
 		location.href = url + searchKey;
 	}

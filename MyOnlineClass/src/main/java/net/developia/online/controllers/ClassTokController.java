@@ -214,4 +214,10 @@ public class ClassTokController {
 		return mav;
 //		return new ModelAndView("search");
 	}
+	
+	@GetMapping(value = "earlybird")
+	public ModelAndView earlybird() throws Exception {
+		return new ModelAndView("earlybird");
+	}
+
 }

@@ -87,6 +87,10 @@ is
     procedure get_lecture_count(
     input_lecture_id in varchar2,
     cnt out number);
+    
+    procedure get_lecture_instructor(input_member_id in varchar2,
+    input_lecture_id in varchar2,
+    res_cur out sys_refcursor);
 end member_pkg;
 
 
@@ -281,6 +285,17 @@ is
         where input_lecture_id = lecture_id;
     end get_lecture_count;
     
+    procedure get_lecture_instructor(input_member_id in varchar2,
+    input_lecture_id in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select A.*
+        from instructor A, enrollment B
+        where B.lecture_id = input_lecture_id and
+        A.member_id = input_member_id;
+    end get_lecture_instructor;
 end member_pkg;
 
 drop package lecture_pkg;

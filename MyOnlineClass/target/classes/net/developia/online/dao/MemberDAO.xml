@@ -291,5 +291,25 @@
           }
        ]]>
 	</select>
+	
+	<parameterMap type="java.util.HashMap"
+		id="LectureInstructorParam">
+		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="LECTURE_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="LectureInstructorList" jdbcType="CURSOR"
+			mode="OUT" resultMap="LectureInstructorResultMap" />
+	</parameterMap>
+	<resultMap type="hashmap" id="LectureInstructorResultMap">
+	</resultMap>
+	<select id="getLectureInstructorInfo" statementType="CALLABLE"
+		parameterMap="LectureInstructorParam" resultMap="LectureInstructorResultMap">
+	<![CDATA[
+          {
+             call member_pkg.get_lecture_instructor(
+				?, ?, ?
+			)
+          }
+       ]]>
+	</select>
 
 </mapper>

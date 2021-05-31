@@ -62,7 +62,6 @@ body {
 	text-decoration: none;
 }
 </style>
-</style>
 
 <c:import url="header2.jsp"></c:import>
 
@@ -100,6 +99,7 @@ body {
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/style.css"
 	type="text/css">
+	
 </head>
 <body>
 	<c:set var="up" value=".." />
@@ -144,7 +144,7 @@ body {
 				<div class="row">
 					<c:forEach items="${lecture}" var="lectureVar">
 						<div class="card h-auto id"
-							style="width: 300px; height: 200px; box-shadow: 2.3px 2.3px lightgray; cursor: pointer; margin:20px" onclick="location.href='classdetail/${lectureVar.value[0]}';">
+							style="width: 300px; height: 200px; box-shadow: 2.3px 2.3px lightgray; cursor: pointer; margin:20px" onclick="return check_instructor(${lectureVar.value[0]})">
 							<img class="card-img-top thumbnail"
 								src="${contextPath}/lectureThumbnail?name=${lectureVar.value[1]}&thumbnail=${lectureVar.value[7]}"
 								alt="Card image" style="height: 200px;">
@@ -171,11 +171,33 @@ body {
 		<!-- Instructor Section End -->
 	</div>
 
-
+	<script>
+	function check_instructor(no) {
+		var id = "${id}";
+		$.ajax({
+				type: 'POST',
+				data : {id: id,
+					lecture_id: no	
+				},
+				url : "getLectureInstructorInfo",
+				success : function(data) {
+					nickname = data['nickname'];
+					if(nickname) {
+						location.href="vodStreaming?no=" + no;
+	  				} else {
+	  					location.href="classdetail/" + no;
+	  				}
+				},
+				error : function(error) {
+					alert('error : ' + error);
+				}
+			});
+	}
+	</script>
 	<!-- /.row -->
 	<!-- /.container -->
 	<!--  Bootstrap core JavaScript-->
-	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+<%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script
 		src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 </body>

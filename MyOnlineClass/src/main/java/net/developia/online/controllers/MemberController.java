@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.developia.online.dto.InstructorDTO;
 import net.developia.online.dto.LectureDTO;
 import net.developia.online.dto.MemberDTO;
 import net.developia.online.services.MemberService;
@@ -295,5 +297,30 @@ public class MemberController {
 		return mav;
 	}
 	
-	
+	@PostMapping("/getLectureInstructorInfo")
+	@Transactional
+	@ResponseBody
+	public InstructorDTO getLectureInstructorInfo(HttpSession session, @RequestParam(required = true) String id, @RequestParam(required = true) String lecture_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("MEMBER_ID", id);
+		map.put("LECTURE_ID", lecture_id);
+		InstructorDTO instructorDTO = new InstructorDTO();
+		
+		try {
+			memberService.getLectureInstructorInfo(map);
+			System.out.println("여기" + map.toString());
+			List tmp_list = (List)map.get("LectureInstructorList");
+			HashMap<String, Object> instructor = (HashMap<String, Object>) tmp_list.get(0);
+			instructorDTO.setMember_id(id);
+			instructorDTO.setEmail(session.getAttribute("email").toString());
+			instructorDTO.setImage(instructor.get("IMAGE").toString());
+			instructorDTO.setIntroduce(instructor.get("INTRODUCE").toString());
+			instructorDTO.setName(session.getAttribute("name").toString());
+			instructorDTO.setNickname(instructor.get("NICKNAME").toString());
+			instructorDTO.setPhone(session.getAttribute("phone").toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return instructorDTO;
+	}
 }

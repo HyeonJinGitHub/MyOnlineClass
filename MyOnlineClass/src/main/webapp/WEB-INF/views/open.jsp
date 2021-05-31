@@ -111,7 +111,7 @@ a#MOVE_TOP_BTN {
 }
 </style>
 
-<c:import url="header2.jsp"></c:import>
+<c:import url="header.jsp"></c:import>
 </head>
 <body>
 	<%

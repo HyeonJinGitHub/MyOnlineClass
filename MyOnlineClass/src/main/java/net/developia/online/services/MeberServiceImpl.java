@@ -245,4 +245,18 @@ public class MeberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public void getLectureInstructorInfo(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.getLectureInstructorInfo(map);
+			List<LectureDTO> output = (List) map.get("LectureInstructorList");
+			if (output.size() == 0) {
+				throw new RuntimeException("해당 과목의 강사가 아닙니다.");
+			}
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
 }

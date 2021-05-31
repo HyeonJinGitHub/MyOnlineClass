@@ -53,7 +53,6 @@ public class CommentController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("ID", session.getAttribute("id"));
 		List<LectureDTO> data = memberService.checkMemberLecture(map);
-		System.out.println(data.size());
 		if (data.size() == 0) {
 			return "False";
 		}

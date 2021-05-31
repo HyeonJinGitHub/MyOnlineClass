@@ -115,5 +115,8 @@ resultTime = dateForm.format(result_date);
 			onclick="location.href='/online/memberlecture/action/${lecture.id}'">
 			수강신청하기</button>
 	</div>
+	
+	<c:import url="footer.jsp"></c:import>
 </body>
+
 </html>

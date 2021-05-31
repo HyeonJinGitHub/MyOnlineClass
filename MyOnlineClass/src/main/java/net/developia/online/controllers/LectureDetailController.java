@@ -2,6 +2,7 @@ package net.developia.online.controllers;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,13 +51,24 @@ public class LectureDetailController {
 	@Transactional
 	public ModelAndView detail(@PathVariable(required = true) long no, HttpSession session) {
 		ModelAndView mav = new ModelAndView("result");
-
+		
+		boolean already = false; //수강생 확인 
 		try {
 			LectureDTO lectureDTO = lectureService.getLecture(no);
 			InstructorDTO instructorDTO = instructorService.getInstructor(no);
-
-			System.out.println("★★★" + lectureDTO.toString());
-
+			
+			HashMap<String, Object> checkmap = new HashMap<String, Object>();
+			checkmap.put("ID", session.getAttribute("id"));
+			List<LectureDTO> data = memberService.checkMemberLecture(checkmap);
+			
+			for (LectureDTO dto : data) {
+				long lecture_id = dto.getId();
+				if (lecture_id == no) {
+					//현재 로그인한 회원이 이미 강의를 수강중인 경우
+					already = true;
+				}
+			}
+			mav.addObject("already", already);
 			mav.addObject("lectureDTO", lectureDTO);
 			mav.addObject("instructorDTO", instructorDTO);
 			mav.addObject("url", "/online/lecturedetail");

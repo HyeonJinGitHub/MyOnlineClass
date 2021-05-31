@@ -54,7 +54,6 @@ public class MemberLectureController {
 			for (LectureDTO dto : data) {
 				long lecture_id = dto.getId();
 				if (lecture_id == no) {
-					mav.addObject("msg", "이미 수강중인 강좌입니다.");
 					mav.addObject("url", url);
 					return mav;
 				}

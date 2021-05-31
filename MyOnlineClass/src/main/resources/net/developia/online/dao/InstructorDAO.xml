@@ -54,22 +54,11 @@
 	]]>
 	</select>
 	
-<!-- 	<parameterMap type="java.util.HashMap"
-		id="InstructorParam">
-		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
-		<parameter property="InstructorList" jdbcType="CURSOR"
-			mode="OUT" resultMap="MemberLectureDateResultMap" />
-	</parameterMap>
-	<resultMap type="hashmap" id="MemberLectureDateResultMap">
-	</resultMap>
-	<select id="getMemberLectureDate" statementType="CALLABLE"
-		parameterMap="InstructorParam" resultMap="MemberLectureDateResultMap">
+	<select id="getProfile" parameterType="String" resultType="InstructorDTO">
 	<![CDATA[
-          {
-             call member_pkg.get_member_lecture_date(
-				?, ?, ?
-			)
-          }
-       ]]>
-	</select> -->
+		SELECT	*
+		FROM	instructor
+		WHERE	member_id = #{member_id}
+	]]>
+	</select>
 </mapper>

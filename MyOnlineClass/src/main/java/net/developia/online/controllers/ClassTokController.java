@@ -83,14 +83,7 @@ public class ClassTokController {
 			throws Exception {
 		/* 파일 경로 */
 		String path = "C:/online/resources/instructor";
-		File folder = new File(path);
-		if(!folder.exists()) {
-			try {
-				folder.mkdirs();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+
 		/* 이미지 업로드 */
 		String image = file.getOriginalFilename();
 		if (!file.getOriginalFilename().isEmpty()) {
@@ -203,7 +196,6 @@ public class ClassTokController {
 		mav.addObject("keyword", keyword);
 		mav.setViewName("search");
 		return mav;
-//		return new ModelAndView("search");
 	}
 	
 	@RequestMapping(value = "/search", method = {RequestMethod.POST, RequestMethod.GET})
@@ -212,6 +204,15 @@ public class ClassTokController {
 		mav.addObject("keyword", "all");
 		mav.setViewName("search");
 		return mav;
-//		return new ModelAndView("search");
+	}
+	
+	@RequestMapping(value = "/profile/{id}", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView getProfile(@PathVariable(required = true) String id) throws Exception {
+		InstructorDTO instructorDTO = instructorService.getProfile(id);
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("instructorDTO", instructorDTO);
+		mav.setViewName("profile");
+		return mav;
 	}
 }

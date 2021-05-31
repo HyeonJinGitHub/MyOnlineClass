@@ -41,27 +41,41 @@ body {
 		calendar.render();
 	});
 </script>
- <script>
-	$(document).ready(function() {
-		var id = "${id}";
-		$.ajax({
-			type: "POST",
-			url: "getInstFlag",
-			data: {id : id},
-			success: function(data) {
-				nickname = data['nickname'];
-			
-				if (nickname) {
-					$('#management').show();
-				} 
-				
-			},
-			error: function(request, status, error) {
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				console.log("실패");
-			}
-		});
-	});
+<script>
+	$(document).ready(
+			function() {
+				var id = "${id}";
+				$.ajax({
+					type : "POST",
+					url : "getInstFlag",
+					data : {
+						id : id
+					},
+					success : function(data) {
+						nickname = data['nickname'];
+
+						if (nickname) {
+							$('#management').show();
+						}
+
+					},
+					error : function(request, status, error) {
+						alert("code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n" + "error:"
+								+ error);
+						console.log("실패");
+					}
+				});
+			});
+</script>
+<script>
+	function goPage() {
+		var f = document.paging;
+		f.id.value = "${id}"
+		f.action = "${pageContext.request.contextPath}/instructorAction"
+		f.method = "post"
+		f.submit();
+	};
 </script>
 </head>
 <body>
@@ -87,9 +101,13 @@ body {
 					<a href="${pageContext.request.contextPath}/"
 						class="list-group-item">홈</a> <a
 						href="${pageContext.request.contextPath}/mylecture"
-						class="list-group-item">수강정보</a> 
-						<a id="management" style="display:none" href="${pageContext.request.contextPath}/lectureManagement" class="list-group-item">강좌관리</a>
-						<a
+						class="list-group-item">수강정보</a>
+					<form name="paging">
+						<input type="hidden" name="id" />
+					</form>
+					<a id="management" style="display: none"
+						href="${pageContext.request.contextPath}/lectureManagement"
+						class="list-group-item">강좌관리</a> <a
 						href="${pageContext.request.contextPath}/mypage"
 						class="list-group-item">정보수정</a> <a
 						href="${pageContext.request.contextPath}/changePassword"
@@ -189,7 +207,7 @@ body {
 	<c:import url="footer.jsp"></c:import>
 
 	<!--  Bootstrap core JavaScript-->
-<%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
+	<%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script
 		src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 	<!-- /.container -->

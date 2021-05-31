@@ -83,7 +83,15 @@
 		});
 	});
 </script>
-    
+    <script>
+    function goPage() {
+      var f = document.paging;
+      f.id.value = "${id}"
+      f.action = "${pageContext.request.contextPath}/instructorAction"
+      f.method = "post"
+      f.submit();
+    };
+    </script>
 </head>
 <body>
 	<c:set var="up" value=".."/>
@@ -107,7 +115,10 @@
         <div class="list-group">
           <a href="${pageContext.request.contextPath}/" class="list-group-item">홈</a>
           <a href="${pageContext.request.contextPath}/mylecture" class="list-group-item">수강정보</a>
-          	<a id="management" style="display:none" href="${pageContext.request.contextPath}/lectureManagement" class="list-group-item">강좌관리</a>
+             <form name="paging">
+    	<input type="hidden" name="id"/>
+    </form>
+          	<a id="management" style="display:none" href="javascript:goPage();" class="list-group-item">강좌관리</a>
           <a href="${pageContext.request.contextPath}/mypage" class="list-group-item">정보수정</a>
           <a href="${pageContext.request.contextPath}/changePassword" class="list-group-item">비밀번호 변경</a>
           <a href="${pageContext.request.contextPath}/delete" class="list-group-item">회원 탈퇴</a>

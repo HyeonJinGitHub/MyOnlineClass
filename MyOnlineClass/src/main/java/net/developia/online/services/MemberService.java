@@ -44,4 +44,6 @@ public interface MemberService {
 	public void getLectureCount(HashMap<String, Object> map) throws Exception;
 
 	public List<LectureDTO> checkMemberLecture(HashMap<String, Object> map) throws Exception;
+
+	public void getLectureInstructorInfo(HashMap<String, Object> map) throws Exception;
 }

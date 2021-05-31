@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,10 +27,11 @@ import net.developia.online.util.DateFormatClass;
 public class MemberLectureController {
 	@Autowired
 	private LectureService lectureService;
-	
+
 	@Autowired
 	private InstructorService instructorService;
 	private static Logger logger = LoggerFactory.getLogger(LectureDetailController.class);
+
 	// 수강신청 컨트롤러!
 	// URL 예시 : http://localhost/online/memberlecture/{no}
 	@GetMapping("/{no}")
@@ -41,8 +41,8 @@ public class MemberLectureController {
 		try {
 			LectureDTO lectureDTO = lectureService.getLecture(no);
 			InstructorDTO instructorDTO = instructorService.getInstructor(no);
-			System.out.println("ins id"+instructorDTO.getMember_id());
-			if(instructorDTO.getMember_id().equals(session.getAttribute("id"))) {
+			System.out.println("ins id" + instructorDTO.getMember_id());
+			if (instructorDTO.getMember_id().equals(session.getAttribute("id"))) {
 				throw new RuntimeException("나의 강의는 수강할 수 없습니다!");
 			}
 			session.setAttribute("lecture_duration", lectureDTO.getDuration());

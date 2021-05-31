@@ -13,4 +13,6 @@ public class VodDTO{
 	//임의로 추가
 	private int isCheck= 0;
 	private String thumbnail;
+	
+	
 }

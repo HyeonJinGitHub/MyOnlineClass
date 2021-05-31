@@ -12,21 +12,21 @@ public interface MemberService {
 	public void join(HashMap<String, Object> map) throws Exception;
 
 	public void getMemberById(HashMap<String, Object> map) throws Exception;
-	
+
 	public void getMemberByEmail(HashMap<String, Object> map) throws Exception;
-	
+
 	public void getMemberByPhone(HashMap<String, Object> map) throws Exception;
-	
+
 	public void login(HashMap<String, Object> map) throws Exception;
-	
+
 	public void updateInfo(HashMap<String, Object> map) throws Exception;
-	
+
 	public void updatePassword(HashMap<String, Object> map) throws Exception;
-	
+
 	public List<MemberDTO> getMember() throws SQLException;
-	
+
 	public void deleteMember(HashMap<String, Object> map) throws Exception;
-	
+
 	public List<MemberDTO> searchMember(String id) throws SQLException;
 
 	public void findId(HashMap<String, Object> map) throws Exception;
@@ -36,4 +36,6 @@ public interface MemberService {
 	public void getMemberLecture(HashMap<String, Object> map) throws Exception;
 
 	public void getMemberLectureDate(HashMap<String, Object> new_map) throws Exception;
+
+	public List<LectureDTO> checkMemberLecture(HashMap<String, Object> map) throws Exception;
 }

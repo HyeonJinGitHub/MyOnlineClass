@@ -10,6 +10,7 @@ String phone = (String) session.getAttribute("phone");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="lecture_id" value="${lecture_id}" />
+<%@include file="header3.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,6 +115,7 @@ String phone = (String) session.getAttribute("phone");
 
 body {
 	padding-top: 56px;
+	background-color: #121212;
 }
 
 .table-content {
@@ -125,7 +127,7 @@ body {
 
 .item {
 	flex: 1;
-	background-color: #ffffff;
+	background-color: #121212;
 }
 
 .carousel-item {
@@ -160,16 +162,54 @@ body {
 	font-size: 15px;
 }
 
+
+.vodSelect {
+	/*display: inline-flex;*/
+	text-align: center;
+	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
+	background-color: #121212 !important;
+	border-radius: 9px !important;
+	border: 1px solid white;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px 50px !important;
+	text-decoration: none;
+	/*text-shadow: 0px 2px 0px #db3362;*/
+	margin: 12px !important;
+	width: 30% !important;
+	
+}
+
+/*
+.vodSelect:hover {
+	background: linear-gradient(to bottom, #e37b95 5%, #f27e9b 100%);
+	background-color: #e37b95;
+	
+}
+*/
+
+.vodSelect:active {
+	position: relative;
+	top: 1px;
+}
+
+
+
+/*
 .vodSelect {
 	background-color: gray;
 	color: white !important;
 	border-radius: 5px !important;
-	/*border: 0;*/
+	
 	margin: 12px !important;
 	padding: 10px 50px !important;
 	width: 60% !important;
 }
-
+*/
 /*
 .vodUpload{
 	background-color: rgb(255, 80, 90) !important;
@@ -181,15 +221,51 @@ body {
 }
 */
 
+#vodUpload {
+	/*display: inline-flex;*/
+	text-align: center;
+	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
+	background-color: #f21414;
+	border-radius: 9px !important;
+	border: 1px solid #d12e6a;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px 50px !important;
+	text-decoration: none;
+	text-shadow: 0px 2px 0px #db3362;
+	margin: 12px !important;
+	width: 30% !important;
+	
+}
+
+/*
+#vodUpload:hover {
+	background: linear-gradient(to bottom, #e37b95 5%, #f27e9b 100%);
+	background-color: #e37b95;
+}
+*/
+
+#vodUpload:active {
+	position: relative;
+	top: 1px;
+}
+/*
 #vodUpload{
 	background-color: rgb(255, 80, 90) !important;
 	color: white !important;
 	border-radius: 5px !important;
-	/*border: 0;*/
+	
 	margin: 12px !important;
 	width: 60% !important;
 	padding: 10px 50px !important;
 }
+
+*/
+
 
 
 </style>
@@ -211,7 +287,7 @@ body {
 	</div>
 	<div class="container">
 		<div class="carousel-item active"
-			style="height: 100%; background-image: url('${contextPath}/resources/image/background.png')">
+			style="height: 100%; ">
 			<div style="color: #fff; text-align: center; padding-top: 40px;">
 				<p style="display: inline-block; font-size: 29px; font-weight: 500;">
 					동영상을 업로드 해주세요.</p>
@@ -259,6 +335,7 @@ body {
 				         <input type="text" id="lecture_no" name="lecture_no" value="${lecture_id}" style= "display:none"/>
 				         
 				         <button type="button" class="vodSelect" onclick="onclick=document.all.file1.click()">동영상 선택</button>
+				         <br>
 				         <input type="submit" id="vodUpload" value="강의 업로드">
 						
 						

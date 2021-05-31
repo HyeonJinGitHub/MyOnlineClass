@@ -19,8 +19,8 @@ p {
 body{
 	margin:0;
 	
-	/*background-color:black;*/
-	background-color: #484848;
+	background-color: #121212;
+	
 }
 
 ul{
@@ -78,6 +78,7 @@ ul{
 
 .video__wrap > .video__nav{
 	position: absolute;
+	/*text-align: center;*/
 	/*top:0;*/
 	right: 0;
 	width:20%;
@@ -87,9 +88,11 @@ ul{
 }
 
 .lecturer_div{
+     /*
      display: flex;
      justify-content: space-between;        
      margin: 10px 40px 10px 10px;
+     */
 }
 
 .vodSelect {
@@ -101,17 +104,50 @@ ul{
 	padding: 10px 50px !important;
 	width: 100% !important;
 }
-		
+
+.vodUpload {
+	/*display: inline-flex;*/
+	text-align: center;
+	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
+	background-color: #f21414;
+	border-radius: 9px !important;
+	border: 1px solid #d12e6a;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px 50px !important;
+	text-decoration: none;
+	text-shadow: 0px 2px 0px #db3362;
+	margin: 12px !important;
+	width: 100% !important;
+	
+}
+
+/*
+.vodUpload:hover {
+	background: linear-gradient(to bottom, #e37b95 5%, #f27e9b 100%);
+	background-color: #e37b95;
+}
+*/
+
+.vodUpload:active {
+	position: relative;
+	top: 1px;
+}
+/*		
 .vodUpload{
 	background-color: rgb(255, 80, 90) !important;
 	color: white !important;
 	border-radius: 5px !important;
-	/*border: 0;*/
+	
 	margin: 12px !important;
 	width: 100% !important;
 	padding: 10px 50px !important;
 }
-
+*/
 
 
 /*
@@ -212,6 +248,8 @@ background: rgba(115, 133, 159, 0.75);
 
 .video__nav-top{
 	position: relative;
+	/*추가*/
+	width : 30%;
 }
 
 .video__nav-inner{

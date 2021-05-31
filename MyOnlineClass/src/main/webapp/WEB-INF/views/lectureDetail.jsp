@@ -97,10 +97,16 @@ else {
 			type : "post", 
 			url : "<c:url value='/classdetail/${lecture.id}/insert'/>", 
 			headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
-			data : JSON.stringify({ content_textVal : content_textVal }), 
+			data : JSON.stringify({ content_textVal : content_textVal, user : user }), 
 			success : function (result) { 
 				if (result == "Success") {
 					alert("댓글이 등록되었습니다."); 
+				}
+				else if(result == "False"){
+					alert("수강생만 댓글 작성이 가능합니다.");
+					$("#comment_text").val("");
+					$("#commentbtn").attr('disabled', false);
+					return;
 				}
 				getCommentList(); // 댓글 목록 출력 함수 호출 
 				$("#comment_text").val(""); // 댓글 내용 초기화 
@@ -200,6 +206,7 @@ else {
 	
 	
 	function getCommentList() {
+		var user = '<%=(String)session.getAttribute("id")%>';
 		$.ajax({
 					type : 'GET',
 					url : "<c:url value='/classdetail/${lecture.id}/1'/>",
@@ -235,10 +242,13 @@ else {
 							    html += "</div>";
 							    html += "<button type='button' id='updatecmt_do' class='cmtfixbtn' value = " + data[i].no + " name =" + data[i].name + ">수정 완료</button>";
 								html += "</form>";
-								html += "<ul>";
-								html += "<li><button id='updatecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + " data-toggle='collapse' data-target='.multi-collapse-" + data[i].no + " '><i class='fa fa-hand-o-right'></i> 수정하기</button></li>";
-								html += "<li><button id='deletecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + "><i class='fa fa-share-square-o'></i> 삭제하기</button></li>";
-								html += "</ul>" + "</div>" + "</div>";
+								if(user==member){
+									html += "<ul>";
+									html += "<li><button id='updatecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + " data-toggle='collapse' data-target='.multi-collapse-" + data[i].no + " '><i class='fa fa-hand-o-right'></i> 수정하기</button></li>";
+									html += "<li><button id='deletecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + "><i class='fa fa-share-square-o'></i> 삭제하기</button></li>";
+									html += "</ul>";
+								}
+								html +="</div>" + "</div>";
 							}
 						} else {
 							html += "<div class='listing__details__comment__item'>";
@@ -459,15 +469,24 @@ else {
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
 							<div style="position:absoulte; text-align: center; border-radius: 70%; overflow: hidden;">
+								<form name="InstructorPageDo" action="${pageContext.request.contextPath}/instructorAction" method="POST">
+								<input type="hidden" name="id" value="${instructor.member_id}" />
+								</form>
+								<a href="#" onclick="javascript:document.InstructorPageDo.submit();">
 								<br>
 								<img
 									src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
 									alt="Profile"
 									style="width: 90%; max-width: 300px; height: 90%; margin: 2 auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; object-fit: cover; vertical-align: middle;">
+								</a>
 							</div>
 							<div class="listing__sidebar__contact__text">
 								<h6>강사</h6>
-								<h4>${instructor.nickname}</h4>
+								<form name="InstructorPage" action="${pageContext.request.contextPath}/instructorAction" method="POST">
+								<input type="hidden" name="id" value="${instructor.member_id}" />
+								</form>
+								<a href="#" onclick="javascript:document.InstructorPage.submit();">
+								<h4>${instructor.nickname}</h4></a>
 								<ul>
 									<li><br></li>
 									<li><span class="icon_phone"></span>${instructor.phone}</li>

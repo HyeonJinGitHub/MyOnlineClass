@@ -1,11 +1,13 @@
 package net.developia.online.controllers;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -176,13 +178,26 @@ public class StreamingController{
 			}
 			
 			System.out.println(isInstructor);
+			
+			
+			
+			
 			List<VodDTO> list = vodService.getVodList(no);
+			
+			
+			
 			System.out.println(list);
 			mav.setViewName("vodMain");
 			
 			JSONArray jsonArray = new JSONArray();
-
+			
+			boolean isVodList = false;
+			if(list.size() != 0) {
+				isVodList = true;
+			}
+			
 			mav.addObject("jsonList",jsonArray.fromObject(list));
+			
 			
 			mav.addObject("lectureDTO", lectureDTO);
 			
@@ -190,7 +205,7 @@ public class StreamingController{
 			
 			mav.addObject("isInstructor", isInstructor);
 			
-			
+			mav.addObject("isVodList",isVodList);
 		} catch (Exception e) {
 			e.printStackTrace();
 			mav.addObject("msg", e.getMessage());
@@ -198,5 +213,50 @@ public class StreamingController{
 		}
 		return mav;
 	
-	}	
+	}
+	
+//	@RequestMapping(value="/video/{lecture_id}/{video_name:.+}", method = RequestMethod.GET)
+//	public String stream(@PathVariable("lecture_id") String lecture_id,
+//						 @PathVariable("video_name") String video_name, 
+	
+	
+	
+//	$.ajax({
+//		type: "GET",
+//		url: "ThumnailDownload",
+//		data: "fileName=" + img,
+//		success : function(data) {
+//		},
+//		error : function() {
+//		}
+//	});
+	
+	
+	
+	@RequestMapping(value="/ThumnailDownload/{lecture_name}/{img_name:.+}", method = RequestMethod.GET)
+	public void thumbNailstream(@PathVariable("lecture_name") String lecture_name,
+						 @PathVariable("img_name") String img_name, 
+						 HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+		response.setContentType("text/html; charset=utf-8");
+		System.out.println("컨트롤러 왔다");
+		String file_repo = "C:/online/resources/lecture";
+
+		String downFile = file_repo + "/" + lecture_name +"/thumbnail/" + img_name;
+		File f = new File(downFile);
+		response.setHeader("Cache-Control", "no-cache");
+		response.addHeader("Content-disposition", "attachment; fileName=" + URLEncoder.encode(img_name, "UTF-8"));
+		try (FileInputStream in = new FileInputStream(f); OutputStream out = response.getOutputStream()) {
+			byte[] buffer = new byte[1024 * 8];
+			while (true) {
+				int count = in.read(buffer);
+				if (count == -1)
+					break;
+				out.write(buffer, 0, count);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
 }
+	
+

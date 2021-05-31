@@ -8,7 +8,6 @@
 */
 
 
-
 getVideoData()
 	.then(function (res) {
 		var videoArr = res,

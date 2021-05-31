@@ -245,4 +245,14 @@ public class MeberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public void getLectureInstructorInfo(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.getLectureInstructorInfo(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
 }

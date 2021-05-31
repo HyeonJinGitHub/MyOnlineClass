@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isELIgnored="false" 
-    %>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
    String id = (String)session.getAttribute("id");
@@ -12,7 +10,6 @@
 <head>
 <link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/classtok_favi4fa9.png" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
 
 <!-- 폰트 스타일 시트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -22,13 +19,6 @@
 	  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	  crossorigin="anonymous">
-
-
-  <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="${pageContext.request.contextPath}/resources/css/full-width-pics.css" rel="stylesheet">
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -47,6 +37,14 @@
         }
       });
    });
+</script>
+
+<script>
+	function search() {
+		var searchKey = document.getElementById("searchKey").value;
+		var url = '${contextPath}/search/';
+		location.href = url + searchKey;
+	}
 </script>
 
 <!-- 페이지 이동 -->
@@ -215,16 +213,15 @@ a#MOVE_TOP_BTN {
 				<i class="fas fa-home"></i>
 			</a>
 		</div>
+		
 		<div class="ui-widget" style="padding-top: 15px;">
-			<form id="searchClass" method='GET' action="${contextPath}/search">
-           		<label class="header__search-label" for="searchKey" >
-               		<input id="searchKeyNav" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; font-size: 13px; background-color: #f8f9fa; border-radius: 30px;">
-					<button type="submit" style="border:0; outline:0; background-color: white;">
-						<i class="fas fa-search" onclick="search"></i>
-					</button>
-           		</label>
-           	</form>
-           </div>
+            <label class="header__search-label" for="searchKey" >
+                <input id="searchKey" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; font-size: 13px; background-color: #f8f9fa; border-radius: 30px;">
+            	<button type="submit" style="border:0; outline:0; background-color: white;">
+               		<i class="fas fa-search" onclick="search()"></i>
+            	</button>
+            </label>
+         </div>
            
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -257,8 +254,8 @@ a#MOVE_TOP_BTN {
 
 
 <!-- Bootstrap core JavaScript-->
-<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+<%-- <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script> --%>
+<%-- <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 
 <!-- Bootstrap core CSS -->
 <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

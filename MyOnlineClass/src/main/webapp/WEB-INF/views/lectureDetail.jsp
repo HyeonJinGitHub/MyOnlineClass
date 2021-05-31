@@ -76,6 +76,17 @@ else {
 	$(document).on("click", "#commentbtn", function() {
 		var content_text = $("#comment_text");
 		var content_textVal = content_text.val();
+		
+		// 댓글 내용이 있는지 검사
+		if(content_textVal == ""){
+			alert("댓글을 작성해주세요.");
+			$("#comment_text").focus();
+			return;
+		}
+		
+		// 버튼 2번 클릭 인식 방지
+		$("#commentbtn").attr('disabled', 'disabled');
+		
 		$.ajax({ 
 			type : "post", 
 			url : "<c:url value='/classdetail/${lecture.id}/insert'/>", 
@@ -86,13 +97,48 @@ else {
 					alert("댓글이 등록되었습니다."); 
 				}
 				getCommentList(); // 댓글 목록 출력 함수 호출 
-				content_text.val(""); // 댓글 내용 초기화 
+				$("#comment_text").val(""); // 댓글 내용 초기화 
+				$("#commentbtn").attr('disabled', false);
 			},
-			dataType: "json",
+			dataType: "text",
 			contentType: "application/json"
 		});
 	});
+	
+	
+	$(document).on("click", "#deletecmt", function() {
+		var cno = $(this).val();
+		var user_check = $(this).attr('name');
+		// 버튼 2번 클릭 인식 방지
+		$("#deletecmt").attr('disabled', 'disabled');
 
+		// 재확인
+		if (confirm("댓글을 삭제하시겠습니까?")){
+			$.ajax({ 
+				type : "post", 
+				url : "<c:url value='/classdetail/${lecture.id}/delete'/>", 
+				headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
+				data : JSON.stringify({ cno : cno, user_check : user_check }), 
+				success : function (result) { 
+					if (result == "Success") {
+						alert("정상적으로 삭제되었습니다."); 
+					}
+					else if(result == "False"){
+						alert("나의 게시글만 삭제가 가능합니다."); 
+					}
+					getCommentList(); // 댓글 목록 출력 함수 호출 
+					$("#commentbtn").attr('disabled', false);
+				},
+				dataType: "text",
+				contentType: "application/json"
+			});
+		}
+		else{
+			$("#deletecmt").attr('disabled', false);
+			return;
+		}
+		
+	});
 	
 	function getCommentList() {
 		$.ajax({
@@ -125,8 +171,8 @@ else {
 								html += "<h5>" + data[i].name + " (" + member.substring(0,3) + "**) </h5>";
 								html += "<p>" + data[i].content + "</p>";
 								html += "<ul>";
-								html += "<li><i class='fa fa-hand-o-right'></i> Like</li>";
-								html += "<li><i class='fa fa-share-square-o'></i> Reply</li>";
+								html += "<li><button id='updatecmt' class='cmtbtn' value = " + data[i].no + " name =" + data[i].name + "><i class='fa fa-hand-o-right'></i> 수정하기</button></li>";
+								html += "<li><button id='deletecmt' class='cmtbtn' value = " + data[i].no + " name =" + data[i].name + "><i class='fa fa-share-square-o'></i> 삭제하기</button></li>";
 								html += "</ul>" + "</div>" + "</div>";
 							}
 						} else {
@@ -148,6 +194,35 @@ else {
 	
 </script>
 
+<style>
+.cmtbtn {
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #6e6e6e;
+  font-size: 15px;
+  padding: 5px 10px 5px 10px;
+  border: solid #ffffff 0px;
+  text-decoration: none;
+}
+
+.cmtbtn:hover {
+  background: #b3d1e3;
+  background-image: -webkit-linear-gradient(top, #b3d1e3, #bdddf2);
+  background-image: -moz-linear-gradient(top, #b3d1e3, #bdddf2);
+  background-image: -ms-linear-gradient(top, #b3d1e3, #bdddf2);
+  background-image: -o-linear-gradient(top, #b3d1e3, #bdddf2);
+  background-image: linear-gradient(to bottom, #b3d1e3, #bdddf2);
+  text-decoration: none;
+}
+</style>
 </head>
 
 <body>
@@ -270,7 +345,6 @@ else {
 
 						<div class="listing__details__comment">
 							<h4>Comment</h4>
-
 							<div id="commentList"></div>
 						</div>
 						<div class="listing__details__review">

@@ -79,15 +79,28 @@ public class LectureDetailController {
 			@RequestParam(required = true) String caution, @RequestParam(required = true) String introduce,
 			@RequestParam("thumbnail") MultipartFile file1, @RequestParam("image") MultipartFile file2)
 			throws Exception {
-
+		String path = "C:\\online\\resources\\lecture\\" + lecturename;
+		File folder = new File(path);
+		if(!folder.exists()) {
+			try {
+				File folder1 = new File(path + "\\thumbnail");
+				File folder2 = new File(path + "\\image");
+				folder1.mkdirs();
+				folder2.mkdirs();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		/* 이미지 업로드 */
 		String image1 = file1.getOriginalFilename();
+		System.out.println(image1);
 		String path1 = "C:/online/resources/lecture/" + lecturename + "/thumbnail";
 		if (!file1.getOriginalFilename().isEmpty()) {
 			file1.transferTo(new File(path1, image1));
 		}
 
 		String image2 = file2.getOriginalFilename();
+		System.out.println(image2);
 		String path2 = "C:/online/resources/lecture/" + lecturename + "/image";
 		if (!file2.getOriginalFilename().isEmpty()) {
 			file2.transferTo(new File(path2, image2));

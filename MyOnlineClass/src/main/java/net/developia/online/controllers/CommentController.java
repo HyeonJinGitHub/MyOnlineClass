@@ -1,5 +1,6 @@
 package net.developia.online.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.developia.online.dto.CommentDTO;
+import net.developia.online.dto.LectureDTO;
 import net.developia.online.services.CommentService;
+import net.developia.online.services.MemberService;
 import net.developia.online.util.DateFormatClass;
 
 @Slf4j
@@ -27,6 +30,9 @@ public class CommentController {
 
 	@Autowired
 	private CommentService commentService;
+
+	@Autowired
+	private MemberService memberService;
 
 	@GetMapping(value = "/classdetail/{no}/{cno}", produces = "application/json; charset=UTF-8")
 	public List<CommentDTO> comment_list(@PathVariable("no") long no, @PathVariable("cno") long co,
@@ -37,13 +43,20 @@ public class CommentController {
 	}
 
 	@PostMapping(value = "/classdetail/{no}/insert", produces = "application/json; charset=UTF-8")
-	public @ResponseBody String comment_insert(@PathVariable("no") long no, @RequestBody String content_textVal,
+	public @ResponseBody String comment_insert(@PathVariable("no") long no, @RequestBody String strjson,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ResponseEntity<String> entity = null;
 
-		JSONObject jObject = new JSONObject(content_textVal);
+		JSONObject jObject = new JSONObject(strjson);
 		String content = jObject.getString("content_textVal");
 
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("ID", session.getAttribute("id"));
+		List<LectureDTO> data = memberService.checkMemberLecture(map);
+		System.out.println(data.size());
+		if (data.size() == 0) {
+			return "False";
+		}
 		CommentDTO comments = new CommentDTO();
 		comments.setContent(content);
 		comments.setLecture_id(no);
@@ -52,8 +65,14 @@ public class CommentController {
 		comments.setRegdate(DateFormatClass.strDateNow());
 		System.out.println(comments.toString());
 		try {
-			commentService.insertComment(comments);
-			return "Success";
+			for (LectureDTO dto : data) {
+				long lecture_id = dto.getId();
+				if (lecture_id == no) { // 수강생만 댓글 가능
+					commentService.insertComment(comments);
+					return "Success";
+				}
+			}
+			return "False";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -117,6 +136,4 @@ public class CommentController {
 
 	}
 
-	// 수강중인 회원만 댓글 가능하도록 수정해야함 (비회원, 수강생X는 댓글 불가 처리)
-	// 본인 댓글만 수정, 삭제 버튼 나타나도록 수정해야함
 }

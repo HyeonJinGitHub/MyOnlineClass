@@ -18,6 +18,7 @@ else {
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="64x64" href="${pageContext.request.contextPath}/resources/image/classtok_favi4fa9.png" />
 <meta charset="UTF-8">
 <meta name="description" content="MyOnlineClassDetail">
 <meta name="keywords" content="html, comment">

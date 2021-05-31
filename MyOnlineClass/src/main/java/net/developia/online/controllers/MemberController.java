@@ -248,7 +248,7 @@ public class MemberController {
 	}
 	
 	
-	@GetMapping("/instructorAction")
+	@PostMapping("/instructorAction")
 	@Transactional
 	public ModelAndView instructorAction(HttpSession session, @RequestParam(required = true) String id) {
 		HashMap<String, Object> map = new HashMap<String, Object>();

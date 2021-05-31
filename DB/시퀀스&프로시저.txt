@@ -18,7 +18,7 @@ maxvalue 200
 nocycle
 nocache;
 
-create sequence video_no_seq;
+create sequence video_no_seq
 increment by 1
 start with 1
 minvalue 1
@@ -76,6 +76,17 @@ is
     procedure get_member_lecture_date(input_memberid in varchar2,
     input_lectureid in varchar2,
     res_cur out sys_refcursor);
+    
+    procedure get_member_instructor(input_member_id in varchar2,
+    res_cur out sys_refcursor);
+    
+    procedure get_instructor_lecture(
+    input_member_id in varchar2,
+    res_cur out sys_refcursor);
+    
+    procedure get_lecture_count(
+    input_lecture_id in varchar2,
+    cnt out number);
 end member_pkg;
 
 
@@ -238,6 +249,38 @@ is
         where lecture_id = input_lectureid and 
         member_id = input_memberid;
     end get_member_lecture_date;
+    
+    procedure get_member_instructor(input_member_id in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select * 
+        from instructor
+        where member_id = input_member_id;
+    end get_member_instructor;
+    
+    procedure get_instructor_lecture(
+    input_member_id in varchar2,
+    res_cur out sys_refcursor)
+    as
+    begin
+        open res_cur for
+        select id, name, genre, image, duration, caution, introduce, thumbnail
+        from ((select * from enrollment where member_id = input_member_id) A
+        inner join lecture B on (A.lecture_id = B.id));
+    end get_instructor_lecture;
+    
+    procedure get_lecture_count(
+    input_lecture_id in varchar2,
+    cnt out number)
+    as
+    begin
+        select count(*) into cnt
+        from member_lecture
+        where input_lecture_id = lecture_id;
+    end get_lecture_count;
+    
 end member_pkg;
 
 drop package lecture_pkg;
@@ -285,27 +328,21 @@ is
         values(input_member_id, lecture_id);
         commit;
     end enroll_lecture;
-
+    
     procedure lecture_video_proc(
     input_lecture_id in number,
     input_title in varchar2,
     input_time in varchar2,
     input_src in varchar2
     )
-
     as
     video_id number(5);
-    
     begin
-    
     video_id := video_no_seq.nextval;
     insert into video
-    values(video_id, input_title, input_time, input_src);
-    
+    values(video_id, input_title, input_time, input_src);  
     insert into lecture_video
     values(input_lecture_id, video_id);
     commit;
-    
     end lecture_video_proc;
-
 end lecture_pkg;

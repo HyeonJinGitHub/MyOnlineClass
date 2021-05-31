@@ -3,6 +3,9 @@
     isELIgnored="false" 
     %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	String id = (String) session.getAttribute("id");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +16,7 @@
 <link href='${pageContext.request.contextPath}/resources/css/main.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath}/resources/js/main.js'></script>
   <title>수강정보 | Hyundai ClassTok</title>
-
+<c:import url="header.jsp"></c:import>
  	<style>
 		body {
 		  padding-top: 56px;
@@ -59,7 +62,28 @@
     	  calendar.render();
     	});
     </script>
-    <c:import url="header.jsp"></c:import>
+    <script>
+	$(document).ready(function() {
+		var id = "${id}";
+		$.ajax({
+			type: "POST",
+			url: "getInstFlag",
+			data: {id : id},
+			success: function(data) {
+				nickname = data['nickname'];
+				if (nickname) {
+					$('#management').show();
+				} 
+				
+			},
+			error: function(request, status, error) {
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				console.log("실패");
+			}
+		});
+	});
+</script>
+    
 </head>
 <body>
 	<c:set var="up" value=".."/>
@@ -82,7 +106,8 @@
       <div class="col-lg-3 mb-4">
         <div class="list-group">
           <a href="${pageContext.request.contextPath}/" class="list-group-item">홈</a>
-          <a href="${pageContext.request.contextPath}/mylecture" class="list-group-item">수강 정보</a>
+          <a href="${pageContext.request.contextPath}/mylecture" class="list-group-item">수강정보</a>
+          	<a id="management" style="display:none" href="${pageContext.request.contextPath}/lectureManagement" class="list-group-item">강좌관리</a>
           <a href="${pageContext.request.contextPath}/mypage" class="list-group-item">정보수정</a>
           <a href="${pageContext.request.contextPath}/changePassword" class="list-group-item">비밀번호 변경</a>
           <a href="${pageContext.request.contextPath}/delete" class="list-group-item">회원 탈퇴</a>
@@ -107,7 +132,7 @@
    <c:import url="footer.jsp"></c:import>
   <!-- /.container -->
   	<!--  Bootstrap core JavaScript-->
-	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+	<%-- <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
   
   <script type="text/javascript">
@@ -166,19 +191,6 @@
 			return false;
 		}
 	}
-/* 	$('#calendar').fullCalendar({
-		alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');
-		var name = '${data.key}';
-		var start_date = '${data.value[0]}';
-		var end_date = '${data.value[1]}';
-		  events: [
-		    {
-		        title  : 'event2',
-		        start  : '2021-05-16',
-		        end    : '2021-05-29'
-		    }
-		  ]
-		}); */
    </script>
 </body>
 </html>

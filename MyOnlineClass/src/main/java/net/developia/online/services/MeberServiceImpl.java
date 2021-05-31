@@ -204,6 +204,15 @@ public class MeberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void getInstructorInfo(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.getInstructorInfo(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
 	public List<LectureDTO> checkMemberLecture(HashMap<String, Object> map) throws Exception {
 		try {
 			memberDAO.getMemberLecture(map);
@@ -214,4 +223,26 @@ public class MeberServiceImpl implements MemberService {
 			throw e;
 		}
 	}
+
+	@Override
+	public void getInstructorLecture(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.getInstructorLecture(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
+	@Override
+	public void getLectureCount(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.getLectureCount(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+
+	}
+
 }

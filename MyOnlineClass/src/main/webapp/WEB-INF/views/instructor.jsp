@@ -12,7 +12,7 @@
   <meta name="author" content="">
 <link href='${pageContext.request.contextPath}/resources/css/main.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath}/resources/js/main.js'></script>
-  <title>수강정보 | Hyundai ClassTok</title>
+  <title>강사정보 | Hyundai ClassTok</title>
 
  	<style>
 		body {
@@ -34,32 +34,8 @@
 		}
 		 	
  	</style>
-   <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    	  var calendarEl = document.getElementById('calendar');
-    	  var calendar = new FullCalendar.Calendar(calendarEl, {
-    	    initialView: 'dayGridMonth',
-    	    initialDate: '2021-05-07',
-    	    headerToolbar: {
-    	      left: 'prev,next today',
-    	      center: 'title',
-    	      right: 'dayGridMonth'
-    	    },
-    	    events: [
-    	    	<c:forEach items="${data}" var="dataMap" >
-    	      {
-    	    	    title : "${dataMap.key}",
-    	    	    start: "${dataMap.value[0]}",
-    	    	    end: "${dataMap.value[1]}",
-    	    	    url: "/online/video/${dataMap.value[2]}"
-    	      },
-    	      </c:forEach>
-    	    ]
-    	  });
-    	  calendar.render();
-    	});
-    </script>
-    <c:import url="header.jsp"></c:import>
+   
+    <c:import url="header2.jsp"></c:import>
 </head>
 <body>
 	<c:set var="up" value=".."/>
@@ -98,7 +74,6 @@
       </li>
       <li class="breadcrumb-item active">수강정보</li>
     </ol>
- <div id='calendar'></div>
       </div>
     </div>
     <!-- /.row -->
@@ -110,75 +85,6 @@
 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
   
-  <script type="text/javascript">
-  	var emailck = 0;
-	function duplicationEmail() {
-		var useremail = $("#uemail").val();
-		$.ajax({
-				async: false,
-				type: 'POST',
-				data : {"email": useremail },
-				url : '/springproject/check/emailcheck',
-				success : function(data) {
-					if(data > 0) {
-	  					alert('이미 사용 중인 이메일입니다. 다른 이메일을 입력해주세요.');
-	  					$("#uemail").focus();
-	  				} else {
-	  					alert('사용가능한 이메일입니다.');
-	  					$('#uemail').focus();
-	  					emailck = 1;
-	  				}
-				},
-				error : function(error) {
-					alert('error : ' + error);
-				}
-			});
-	}
-	
-	var phoneck = 0;
-	function duplicationPhone() {
-		var userphone = $("#uphone").val();
-		$.ajax({
-				async: false,
-				type: 'POST',
-				data : {"phone": userphone },
-				url : '/springproject/check/phonecheck',
-				success : function(data) {
-					if(data > 0) {
-	  					alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');
-	  					$("#uphone").focus();
-	  				} else {
-	  					alert('사용가능한 번호입니다.');
-	  					$('#uphone').focus();
-	  					emailck = 1;
-	  				}
-				},
-				error : function(error) {
-					alert('error : ' + error);
-				}
-			});
-	}
-	function logoutAction() {
-		var result = confirm('로그아웃 하시겠습니까?');
-		if (result) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-/* 	$('#calendar').fullCalendar({
-		alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');
-		var name = '${data.key}';
-		var start_date = '${data.value[0]}';
-		var end_date = '${data.value[1]}';
-		  events: [
-		    {
-		        title  : 'event2',
-		        start  : '2021-05-16',
-		        end    : '2021-05-29'
-		    }
-		  ]
-		}); */
-   </script>
+ 
 </body>
 </html>

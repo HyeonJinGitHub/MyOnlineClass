@@ -97,7 +97,7 @@ body {
 }
 
 body {
-	background: #eee;
+	background: #121212;
   	font-family: Noto Sans KR, sans-serif, Helvetica Neue, Helvetica, Arial !important;
   	font-size: 14px;
   	color: #000;
@@ -194,7 +194,7 @@ a#MOVE_TOP_BTN {
 
 }
 </style>
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #484848;">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #121212;">
 		<div class="container">
 			<a class="navbar-brand" href="${contextPath}/">
 				<img src="${contextPath}/resources/image/ClassTok_logo_white.png" alt="클래스톡" class="logoImage">
@@ -204,7 +204,7 @@ a#MOVE_TOP_BTN {
 				<form id="searchClass" method='GET' action="${contextPath}/search">
             		<label class="header__search-label" for="searchKey" >
                 		<input id="searchKeyNav" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; color:white; font-size: 13px; background-color: hsla(0,0%,100%,.1); border-radius: 30px;">
-						<button type="submit" style="border:0; outline:0; background-color: #424242;">
+						<button type="submit" style="border:0; outline:0; background-color: #121212;">
 							<font color="white">
 							<i class="fas fa-search" onclick="search"></i>
 							</font>

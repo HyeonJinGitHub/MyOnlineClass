@@ -10,7 +10,6 @@
 <head>
 <link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/classtok_favi4fa9.png" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
 
 <!-- 폰트 스타일 시트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -325,10 +324,9 @@ a#MOVE_TOP_BTN {
       </div>
    </nav>
    
-   
    <!-- Bootstrap core JavaScript -->
-<%--    <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script> --%>
-<%--    <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
+   <%--    <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script> --%>
+   <%--    <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 
    <!-- Bootstrap core CSS -->
    <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

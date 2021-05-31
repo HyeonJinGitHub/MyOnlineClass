@@ -175,7 +175,6 @@ public class ClassTokController {
 	public InstructorDTO getInstFlag(HttpServletRequest request) throws Exception {
 		String id = (String)request.getParameter("id");
 		InstructorDTO instructorDTO = instructorService.getInstFlag(id);
-		
 		return instructorDTO;
 	}
 	

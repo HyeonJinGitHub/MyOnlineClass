@@ -13,4 +13,6 @@ public interface LectureService {
 	public void MemberLectureRegister(HashMap<String, Object> map) throws Exception; // 수강신청
 
 	public List<LectureDTO> getLectureName(String term) throws Exception;
+	
+
 }

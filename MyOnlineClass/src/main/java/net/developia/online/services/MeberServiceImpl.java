@@ -1,6 +1,7 @@
 package net.developia.online.services;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -201,6 +202,37 @@ public class MeberServiceImpl implements MemberService{
 			log.info(e.getMessage());
 			throw e;
 		}
+	}
+
+	@Override
+	public void getInstructorInfo(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.getInstructorInfo(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
+	@Override
+	public void getInstructorLecture(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.getInstructorLecture(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
+	@Override
+	public void getLectureCount(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.getLectureCount(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+		
 	}
 
 }

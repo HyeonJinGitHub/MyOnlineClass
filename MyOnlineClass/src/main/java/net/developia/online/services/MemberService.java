@@ -36,4 +36,11 @@ public interface MemberService {
 	public void getMemberLecture(HashMap<String, Object> map) throws Exception;
 
 	public void getMemberLectureDate(HashMap<String, Object> new_map) throws Exception;
+	
+	public void getInstructorInfo(HashMap<String, Object> map) throws Exception;
+
+	public void getInstructorLecture(HashMap<String, Object> map) throws Exception;
+	
+	public void getLectureCount(HashMap<String, Object> map) throws Exception;
+
 }

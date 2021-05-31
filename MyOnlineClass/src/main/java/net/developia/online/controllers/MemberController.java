@@ -246,4 +246,52 @@ public class MemberController {
 		}
 		return mav;
 	}
+	
+	
+	@GetMapping("/instructorAction")
+	@Transactional
+	public ModelAndView instructorAction(HttpSession session, @RequestParam(required = true) String id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("MEMBER_ID", id);
+		ModelAndView mav = new ModelAndView("instructor");
+		try {
+			memberService.getInstructorInfo(map);
+			List tmp_list = (List)map.get("InstructorList");
+			System.out.println(tmp_list.toString());
+			HashMap<String, Object> instructor = (HashMap<String, Object>) tmp_list.get(0);
+			mav.addObject("nickname", instructor.get("NICKNAME").toString());
+			mav.addObject("phone", session.getAttribute("phone"));
+			mav.addObject("name", session.getAttribute("name"));
+			mav.addObject("email", session.getAttribute("email"));
+			mav.addObject("introduce", instructor.get("INTRODUCE").toString());
+			mav.addObject("instructorimage", instructor.get("IMAGE").toString());
+			memberService.getInstructorLecture(map);
+			List<LectureDTO> lecture_list = (List)map.get("InstructorLectureList");
+			HashMap<String, Object> lecture_map = new HashMap<String, Object>();
+			for(LectureDTO dto : lecture_list) {
+				HashMap<String, Object> count_map = new HashMap<String, Object>();
+				count_map.put("ID", dto.getId());
+				memberService.getLectureCount(count_map);
+				int output = Integer.parseInt(count_map.get("result").toString());
+				List<String> list = new ArrayList<String>();
+				list.add(Long.toString(dto.getId()));
+				list.add(dto.getName());
+				list.add(dto.getGenre());
+				list.add(dto.getImage());
+				list.add(Long.toString(dto.getDuration()));
+				list.add(dto.getCaution());
+				list.add(dto.getIntroduce());
+				list.add(dto.getThumbnail());
+				list.add(Integer.toString(output));
+				lecture_map.put(Long.toString(dto.getId()), list);
+			}
+			System.out.println(lecture_map);
+			mav.addObject("lecture", lecture_map);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			mav.addObject("msg", e.getMessage());
+		}
+		return mav;
+	}
 }

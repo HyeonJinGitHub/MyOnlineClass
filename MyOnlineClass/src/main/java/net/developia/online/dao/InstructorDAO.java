@@ -11,4 +11,5 @@ public interface InstructorDAO {
 	void registerInstructor(InstructorDTO instructorDTO) throws Exception;
 	InstructorDTO getInstFlag(String id) throws Exception;
 	List<InstructorDTO> getNickname(String term) throws Exception;
+	InstructorDTO getProfile(String id) throws Exception;
 }

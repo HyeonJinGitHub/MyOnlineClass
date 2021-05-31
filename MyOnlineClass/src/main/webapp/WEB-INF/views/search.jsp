@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% int numberOfReturnRows = (int)session.getAttribute("numberOfReturnRows"); %>
+<%-- <c:set var="numberOfReturnRows" value="${sessionScope.numberOfReturnRows}"/> --%>
+<% int numberOfReturnRows = 0;
+   if (session.getAttribute("numberOfReturnRows") != null) {
+	   numberOfReturnRows = (int)session.getAttribute("numberOfReturnRows");
+   }
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -47,6 +52,7 @@
 					url: "thumbnailDownload",
 					data: {fileName : thumbnail, lectureName : lectureName},
 					success : function(data) {
+						
 					},
 					error : function() {
 					}
@@ -177,26 +183,28 @@ a#MOVE_TOP_BTN {
 				검색결과</h5>
 			<h5
 				style="display: inline-block; padding-bottom: 30px; font-size: 20px; font-weight: 500;">
-				<%=numberOfReturnRows%>건</h5>
+				${numberOfReturnRows}건</h5>
 		</div>
 		
 		<div class="container">
 			<div class="row">
+<%-- 				<c:forEach var="i" begin="0" end="${numberOfReturnRows - 1}" > --%>
 				<%
  					for (int i = 0; i < numberOfReturnRows; i++) {
  				%> 
 				<div class="col-lg-4 mb-4 swiper-slide">
-					<div class="card h-auto id<%=i %>" style="width: 300px; height: 200px; box-shadow: 2.3px 2.3px lightgray; cursor: pointer;">
-						<img class="card-img-top thumbnail<%=i %>" src="${contextPath}/resources/image/background2.png" alt="Card image" style="height: 200px;">
+					<div class="card h-auto id${numberOfReturnRows}" style="width: 300px; height: 200px; box-shadow: 2.3px 2.3px lightgray; cursor: pointer;">
+						<img class="card-img-top thumbnail${numberOfReturnRows}" src="${contextPath}/resources/image/background2.png" alt="Card image" style="height: 200px;">
 						<div class="custom-card-body" style="width: 300px; height: 50px;">
-							<p class="lecture<%=i %>" style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">NO DATA</p>
-							<p class="nickname<%=i %>" style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">NO DATA</p>
+							<p class="lecture${numberOfReturnRows}" style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">NO DATA</p>
+							<p class="nickname${numberOfReturnRows}" style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">NO DATA</p>
 						</div>
 						<div class="custom-card-body" style="width: 300px; height: 40px; text-align: left;">
- 							<p class="participants<%=i %>" style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">NO DATA</p>
+ 							<p class="participants${numberOfReturnRows}" style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">NO DATA</p>
 						</div>
 					</div>
 				</div>
+<%-- 				</c:forEach> --%>
 				<%
  					} 
  				%> 

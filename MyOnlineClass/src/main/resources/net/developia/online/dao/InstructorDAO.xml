@@ -53,4 +53,12 @@
 		WHERE	nickname like '%' || #{term} || '%'
 	]]>
 	</select>
+	
+	<select id="getProfile" parameterType="String" resultType="InstructorDTO">
+	<![CDATA[
+		SELECT	*
+		FROM	instructor
+		WHERE	member_id = #{member_id}
+	]]>
+	</select>
 </mapper>

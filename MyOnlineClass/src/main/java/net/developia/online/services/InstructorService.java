@@ -16,4 +16,6 @@ public interface InstructorService {
 	public InstructorDTO getInstFlag(String id) throws Exception;
 
 	public List<InstructorDTO> getNickname(String term) throws Exception;
+
+	public InstructorDTO getProfile(String id) throws Exception;
 }

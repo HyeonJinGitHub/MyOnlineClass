@@ -53,4 +53,9 @@ public class InstructorServiceImpl implements InstructorService {
 	public List<InstructorDTO> getNickname(String term) throws Exception {
 		return instructorDAO.getNickname(term);
 	}
+
+	@Override
+	public InstructorDTO getProfile(String id) throws Exception {
+		return instructorDAO.getProfile(id);
+	}
 }

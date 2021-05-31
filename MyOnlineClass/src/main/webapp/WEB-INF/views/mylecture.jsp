@@ -42,7 +42,7 @@
     	  var calendarEl = document.getElementById('calendar');
     	  var calendar = new FullCalendar.Calendar(calendarEl, {
     	    initialView: 'dayGridMonth',
-    	    initialDate: '2021-05-07',
+    	    initialDate: '2021-06-01',
     	    headerToolbar: {
     	      left: 'prev,next today',
     	      center: 'title',
@@ -54,7 +54,7 @@
     	    	    title : "${dataMap.key}",
     	    	    start: "${dataMap.value[0]}",
     	    	    end: "${dataMap.value[1]}",
-    	    	    url: "/online/video/${dataMap.value[2]}"
+    	    	    url: "/online/vodStreaming?no=${dataMap.value[2]}"
     	      },
     	      </c:forEach>
     	    ]

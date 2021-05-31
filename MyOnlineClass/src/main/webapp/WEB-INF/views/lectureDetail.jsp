@@ -76,6 +76,12 @@ else {
 	$(document).on("click", "#commentbtn", function() {
 		var content_text = $("#comment_text");
 		var content_textVal = content_text.val();
+		var user = '<%=(String)session.getAttribute("id")%>';
+		if (user == 'null'){
+			alert('로그인 후 이용해주세요.');
+			location.href='/online/login';
+			return;
+		}
 		
 		// 댓글 내용이 있는지 검사
 		if(content_textVal == ""){
@@ -91,10 +97,16 @@ else {
 			type : "post", 
 			url : "<c:url value='/classdetail/${lecture.id}/insert'/>", 
 			headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
-			data : JSON.stringify({ content_textVal : content_textVal }), 
+			data : JSON.stringify({ content_textVal : content_textVal, user : user }), 
 			success : function (result) { 
 				if (result == "Success") {
 					alert("댓글이 등록되었습니다."); 
+				}
+				else if(result == "False"){
+					alert("수강생만 댓글 작성이 가능합니다.");
+					$("#comment_text").val("");
+					$("#commentbtn").attr('disabled', false);
+					return;
 				}
 				getCommentList(); // 댓글 목록 출력 함수 호출 
 				$("#comment_text").val(""); // 댓글 내용 초기화 
@@ -111,7 +123,14 @@ else {
 		var user_check = $(this).attr('name');
 		// 버튼 2번 클릭 인식 방지
 		$("#deletecmt").attr('disabled', 'disabled');
-
+		
+		var user = '<%=(String)session.getAttribute("id")%>';
+		if (user == 'null'){
+			alert('로그인 후 이용해주세요.');
+			location.href='/online/login';
+			return;
+		}
+		
 		// 재확인
 		if (confirm("댓글을 삭제하시겠습니까?")){
 			$.ajax({ 
@@ -140,7 +159,54 @@ else {
 		
 	});
 	
+	$(document).on("click", "#updatecmt", function() {
+		var user = '<%=(String)session.getAttribute("id")%>';
+		if (user == 'null'){
+			alert('로그인 후 이용해주세요.');
+			location.href='/online/login';
+			return;
+		}
+	});
+
+	$(document).on("click", "#updatecmt_do", function() {
+		//댓글 수정
+		var cno = $(this).val();
+		var comment_user = $(this).attr('name');
+		var content_fix = $("#comment_text_fix").val();
+		// 버튼 2번 클릭 인식 방지
+		$("#updatecmt").attr('disabled', 'disabled');
+		
+		// 재확인
+		if (confirm("댓글을 수정하시겠습니까?")){
+			$.ajax({ 
+				type : "post", 
+				url : "<c:url value='/classdetail/${lecture.id}/update'/>", 
+				headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
+				data : JSON.stringify({ cno : cno, comment_user : comment_user, content_fix : content_fix }), 
+				success : function (result) { 
+					if (result == "Success") {
+						alert("수정되었습니다."); 
+					}
+					else if(result == "False"){
+						alert("나의 게시글만 수정이 가능합니다."); 
+					}
+					getCommentList(); // 댓글 목록 출력 함수 호출 
+					$("#updatecmt").attr('disabled', false);
+				},
+				dataType: "text",
+				contentType: "application/json"
+			});
+		}
+		else{
+			$("#updatecmt").attr('disabled', false);
+			return;
+		}
+		
+	});
+	
+	
 	function getCommentList() {
+		var user = '<%=(String)session.getAttribute("id")%>';
 		$.ajax({
 					type : 'GET',
 					url : "<c:url value='/classdetail/${lecture.id}/1'/>",
@@ -169,11 +235,20 @@ else {
 								html += "</div>";
 								html += "<span>" + data[i].regdate + "</span>";
 								html += "<h5>" + data[i].name + " (" + member.substring(0,3) + "**) </h5>";
-								html += "<p>" + data[i].content + "</p>";
-								html += "<ul>";
-								html += "<li><button id='updatecmt' class='cmtbtn' value = " + data[i].no + " name =" + data[i].name + "><i class='fa fa-hand-o-right'></i> 수정하기</button></li>";
-								html += "<li><button id='deletecmt' class='cmtbtn' value = " + data[i].no + " name =" + data[i].name + "><i class='fa fa-share-square-o'></i> 삭제하기</button></li>";
-								html += "</ul>" + "</div>" + "</div>";
+								html += "<p class='collapse multi-collapse-" + data[i].no + " show'>" + data[i].content + "</p>"; // 일반
+								html += "<form class='collapse multi-collapse-" + data[i].no + " '>"; // 수정모드
+							    html += "<div class='form-group'>";
+								html += "<textarea class='form-control' id='comment_text_fix' rows='3'style='resize: none;'>" + data[i].content + "</textarea>";
+							    html += "</div>";
+							    html += "<button type='button' id='updatecmt_do' class='cmtfixbtn' value = " + data[i].no + " name =" + data[i].name + ">수정 완료</button>";
+								html += "</form>";
+								if(user==member){
+									html += "<ul>";
+									html += "<li><button id='updatecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + " data-toggle='collapse' data-target='.multi-collapse-" + data[i].no + " '><i class='fa fa-hand-o-right'></i> 수정하기</button></li>";
+									html += "<li><button id='deletecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + "><i class='fa fa-share-square-o'></i> 삭제하기</button></li>";
+									html += "</ul>";
+								}
+								html +="</div>" + "</div>";
 							}
 						} else {
 							html += "<div class='listing__details__comment__item'>";
@@ -222,7 +297,37 @@ else {
   background-image: linear-gradient(to bottom, #b3d1e3, #bdddf2);
   text-decoration: none;
 }
+
+.cmtfixbtn {
+ background: #d1d1d1;
+  background-image: -webkit-linear-gradient(top, #d1d1d1, #cccccc);
+  background-image: -moz-linear-gradient(top, #d1d1d1, #cccccc);
+  background-image: -ms-linear-gradient(top, #d1d1d1, #cccccc);
+  background-image: -o-linear-gradient(top, #d1d1d1, #cccccc);
+  background-image: linear-gradient(to bottom, #d1d1d1, #cccccc);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  border-width: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 5px 7px 5px 7px;
+  text-decoration: none;
+}
+
+.cmtfixbtn:hover {
+  background: #cfcfcf;
+  background-image: -webkit-linear-gradient(top, #cfcfcf, #cccccc);
+  background-image: -moz-linear-gradient(top, #cfcfcf, #cccccc);
+  background-image: -ms-linear-gradient(top, #cfcfcf, #cccccc);
+  background-image: -o-linear-gradient(top, #cfcfcf, #cccccc);
+  background-image: linear-gradient(to bottom, #cfcfcf, #cccccc);
+  text-decoration: none;
+}
+
 </style>
+
 </head>
 
 <body>
@@ -248,11 +353,12 @@ else {
 								<div class="listing__hero__widget__rating">
 									<span class="icon_star"></span> <span class="icon_star"></span>
 									<span class="icon_star"></span> <span class="icon_star"></span>
-									<span class="icon_star-half_alt"></span>
+									<span class="icon_star"></span>
+									<!-- <span class="icon_star-half_alt"></span> -->
 								</div>
 							</div>
-							<div>${lecture.duration}일 과정</div>
-							<p>${lecture.genre}</p>
+							<p>${lecture.duration}일 과정</p>
+							<p><h6># ${lecture.genre}</h6></p>
 						</div>
 					</div>
 				</div>
@@ -363,15 +469,24 @@ else {
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
 							<div style="position:absoulte; text-align: center; border-radius: 70%; overflow: hidden;">
+								<form name="InstructorPageDo" action="${pageContext.request.contextPath}/instructorAction" method="POST">
+								<input type="hidden" name="id" value="${instructor.member_id}" />
+								</form>
+								<a href="#" onclick="javascript:document.InstructorPageDo.submit();">
 								<br>
 								<img
 									src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
 									alt="Profile"
 									style="width: 90%; max-width: 300px; height: 90%; margin: 2 auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; object-fit: cover; vertical-align: middle;">
+								</a>
 							</div>
 							<div class="listing__sidebar__contact__text">
 								<h6>강사</h6>
-								<h4>${instructor.nickname}</h4>
+								<form name="InstructorPage" action="${pageContext.request.contextPath}/instructorAction" method="POST">
+								<input type="hidden" name="id" value="${instructor.member_id}" />
+								</form>
+								<a href="#" onclick="javascript:document.InstructorPage.submit();">
+								<h4>${instructor.nickname}</h4></a>
 								<ul>
 									<li><br></li>
 									<li><span class="icon_phone"></span>${instructor.phone}</li>

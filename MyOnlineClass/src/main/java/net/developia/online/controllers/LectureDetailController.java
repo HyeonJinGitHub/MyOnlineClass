@@ -2,7 +2,6 @@ package net.developia.online.controllers;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,17 +16,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
-import net.developia.online.dto.CommentDTO;
 import net.developia.online.dto.InstructorDTO;
 import net.developia.online.dto.LectureDTO;
 import net.developia.online.services.CommentService;
 import net.developia.online.services.InstructorService;
 import net.developia.online.services.LectureService;
+import net.developia.online.services.MemberService;
 
 @Slf4j
 @Controller
@@ -41,6 +39,9 @@ public class LectureDetailController {
 
 	@Autowired
 	private CommentService commentService;
+
+	@Autowired
+	private MemberService memberService;
 
 	private static Logger logger = LoggerFactory.getLogger(LectureDetailController.class);
 
@@ -67,30 +68,32 @@ public class LectureDetailController {
 		}
 		return mav;
 	}
-	
+
 	@GetMapping("/enroll")
 	public ModelAndView enroll() throws Exception {
+
 		return new ModelAndView("enroll");
 	}
-	
+
 	@PostMapping(value = "/enrollAction")
-	public ModelAndView enrollAction(HttpSession session, HttpServletRequest request, @RequestParam(required = true) String lecturename,
-			@RequestParam(required = true) String genre, @RequestParam(required = true) long duration,
-			@RequestParam(required = true) String caution, @RequestParam(required = true) String introduce,
-			@RequestParam("thumbnail") MultipartFile file1, @RequestParam("image") MultipartFile file2)
-			throws Exception {
+	public ModelAndView enrollAction(HttpSession session, HttpServletRequest request,
+			@RequestParam(required = true) String lecturename, @RequestParam(required = true) String genre,
+			@RequestParam(required = true) long duration, @RequestParam(required = true) String caution,
+			@RequestParam(required = true) String introduce, @RequestParam("thumbnail") MultipartFile file1,
+			@RequestParam("image") MultipartFile file2) throws Exception {
 		String path = "C:\\online\\resources\\lecture\\" + lecturename;
 		File folder = new File(path);
-		if(!folder.exists()) {
+		if (!folder.exists()) {
 			try {
 				File folder1 = new File(path + "\\thumbnail");
 				File folder2 = new File(path + "\\image");
 				folder1.mkdirs();
 				folder2.mkdirs();
-			} catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+
 		/* 이미지 업로드 */
 		String image1 = file1.getOriginalFilename();
 		System.out.println(image1);
@@ -105,6 +108,7 @@ public class LectureDetailController {
 		if (!file2.getOriginalFilename().isEmpty()) {
 			file2.transferTo(new File(path2, image2));
 		}
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("MEMBERID", session.getAttribute("id"));
 		map.put("LECTURENAME", lecturename);
@@ -114,6 +118,7 @@ public class LectureDetailController {
 		map.put("INTRODUCE", introduce);
 		map.put("THUMBNAIL", image1);
 		map.put("IMAGE", image2);
+
 		try {
 			lectureService.enrollLecture(map);
 			ModelAndView mav = new ModelAndView("result");

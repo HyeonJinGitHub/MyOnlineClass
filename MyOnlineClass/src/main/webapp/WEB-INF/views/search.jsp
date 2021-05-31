@@ -7,7 +7,7 @@
 <head>
 <c:import url="header.jsp"></c:import>
 <meta charset="UTF-8">
-<title>클래스톡 :: 함께 배우는 온라인 클래스 강의, 수업, 강좌 - 클래스톡</title>
+<title>클래스톡 :: 기획전</title>
 
 <script type="text/javascript">
 // 	alert('${keyword}');
@@ -16,11 +16,12 @@
 <!-- jquery 를 이용하여 화면 맨위로 자연스럽게 올라가는 TOP 버튼 만들기 -->
 <script>
     $(function() {
+    	$('#MOVE_TOP_BTN').show();
         $(window).scroll(function() {
             if ($(this).scrollTop() > 0) {
-                $('#MOVE_TOP_BTN').fadeIn();
+//                 $('#MOVE_TOP_BTN').fadeIn();
             } else {
-                $('#MOVE_TOP_BTN').fadeOut();
+//                 $('#MOVE_TOP_BTN').fadeOut();
             }
         });
         
@@ -74,12 +75,12 @@
 				
 				html += "<div class='col-lg-4 mb-4 swiper-slide'>";
 				html += "<div class='card h-auto' style='width: 300px; height: 200px; box-shadow: 2.3px 2.3px lightgray; cursor: pointer;'>";
-				html += "<img class='card-img-top' style='height: 200px;' alt='Card image' src='" + link + "'>"; 
+				html += "<img class='card-img-top' style='height: 200px;' alt='Card image' src='" + link + "'>";
 				html += "<div class='custom-card-body' style='width: 300px; height: 50px;'>";
 				html += "<p style='text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;'>" + data[key]['lectureName'] + "</p>"; 
 				html += "<p style='text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;'>" + data[key]['nickname'] + "</p>";
-				html += "</div>"
-				html += "<div class='custom-card-body' style='width: 300px; height: 40px; text-align: left;'>"
+				html += "</div>";
+				html += "<div class='custom-card-body' style='width: 300px; height: 40px; text-align: left;'>";
 				html += "<p style='text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;'>" + data[key]['participants'] + "</p>";
 				html += "</div>"
 				html += "</div>"
@@ -177,8 +178,7 @@ a#MOVE_TOP_BTN {
 </head>
 
 <body style="background-color: white;">
-
-<!-- Move TOP Icon -->
+	<!-- Move TOP Icon -->
 	<a id="MOVE_TOP_BTN" href="#"> 
 		<img src="${contextPath}/resources/image/icon_move_top.png">
 	</a>

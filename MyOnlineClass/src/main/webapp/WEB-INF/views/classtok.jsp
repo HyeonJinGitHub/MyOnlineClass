@@ -83,11 +83,12 @@
 <!-- jquery 를 이용하여 화면 맨위로 자연스럽게 올라가는 TOP 버튼 만들기 -->
 <script>
     $(function() {
+    	$('#MOVE_TOP_BTN').show();
         $(window).scroll(function() {
             if ($(this).scrollTop() > 0) {
-                $('#MOVE_TOP_BTN').fadeIn();
+//                 $('#MOVE_TOP_BTN').fadeIn();
             } else {
-                $('#MOVE_TOP_BTN').fadeOut();
+//                 $('#MOVE_TOP_BTN').fadeOut();
             }
         });
         
@@ -347,6 +348,15 @@ body {
 a#MOVE_TOP_BTN {
 	position: fixed;
 	right: 5%;
+	bottom: 80px;
+	display: none;
+	/* 화면 레이어 최상단으로 MOVE_TOP_BTN을 표시 */
+	z-index: 999;
+}
+	
+a#KAKAO_BTN {
+	position: fixed;
+	right: 10%;
 	bottom: 80px;
 	display: none;
 	/* 화면 레이어 최상단으로 MOVE_TOP_BTN을 표시 */

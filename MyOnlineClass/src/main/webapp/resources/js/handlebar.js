@@ -66,3 +66,4 @@ Handlebars.registerHelper("select", function (value, options) {
 	return select.innerHTML;
 
 });
+

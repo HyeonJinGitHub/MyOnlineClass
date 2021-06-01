@@ -41,5 +41,10 @@ public class VodServiceImpl implements VodService {
 		vodDAO.register_lecture_video(map);
 	}
 	
+	@Override
+	public void deleteVOD(long vodNo) throws SQLException {
+		vodDAO.delete_video(vodNo);
+		
+	}
 	
 }

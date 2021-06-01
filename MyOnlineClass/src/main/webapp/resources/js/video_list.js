@@ -132,6 +132,10 @@ getVideoData()
 				}
 			});
 		}
+		
+		
+		
+			
 
 		function prevBtn() {
 			var prevBtn = document.querySelector('.video__prev-btn');
@@ -182,6 +186,7 @@ function getBtn(btnName) {
 
 	return videoBtns;
 }
+
 
 function removeBtn() {
 	var btnBox = document.querySelector('.vidoe__btn-box');

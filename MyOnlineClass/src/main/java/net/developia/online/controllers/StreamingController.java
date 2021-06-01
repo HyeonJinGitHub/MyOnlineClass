@@ -1,13 +1,11 @@
 package net.developia.online.controllers;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.developia.online.dto.InstructorDTO;
@@ -45,6 +46,10 @@ public class StreamingController{
 	@Autowired
 	private InstructorService instructorService;
 	
+	@Value("upload.path")
+	String file_repo;
+	
+	// 	= "C:/online/resources/lecture";
 	//private final String FOLDER_MOVIE = "../../../../../video/"; 
 	//String DIR_PATH =  StreamingController.class.getResource(".").getPath();
 	String FOLDER_MOVIE = "C:/online/resources/video/";
@@ -215,6 +220,41 @@ public class StreamingController{
 	
 	}
 	
+	
+	
+	@RequestMapping(value="/getVodUrl", method=RequestMethod.GET) //강의에 대한 정보 반환
+	public void getVodUrl(@RequestParam(required = true) long no, HttpSession session, Model model) {
+		
+		
+		//ModelAndView mav = new ModelAndView();		
+		
+		
+		String id = (String)session.getAttribute("id");
+		
+		
+		try {
+
+			
+			List<VodDTO> list = vodService.getVodList(no);
+			
+			
+			JSONArray jsonArray = new JSONArray();
+			
+			model.addAttribute("jsonList",jsonArray.fromObject(list));
+			
+			//mav.addObject("jsonList",jsonArray.fromObject(list));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			//mav.addObject("msg", e.getMessage());
+			//mav.addObject("url", "../");
+		}
+		//return mav;
+	
+	}
+	
+	
+	
 //	@RequestMapping(value="/video/{lecture_id}/{video_name:.+}", method = RequestMethod.GET)
 //	public String stream(@PathVariable("lecture_id") String lecture_id,
 //						 @PathVariable("video_name") String video_name, 
@@ -231,8 +271,35 @@ public class StreamingController{
 //		}
 //	});
 	
+	//src="${pageContext.request.contextPath}/lectureThumbnail?name=${lecture.name}&thumbnail=${lecture.thumbnail}"
 	
+	/*
+	@RequestMapping(value="{img_name:.+}", method = RequestMethod.GET)
+	public void thumbNailstream(@PathVariable("lecture_name") String lecture_name,
+						 @PathVariable("img_name") String img_name, 
+						 HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+		response.setContentType("text/html; charset=utf-8");
+		System.out.println("컨트롤러 왔다");
+		
+		String downFile = file_repo + "/" + lecture_name +"/thumbnail/" + img_name;
+		File f = new File(downFile);
+		response.setHeader("Cache-Control", "no-cache");
+		response.addHeader("Content-disposition", "attachment; fileName=" + URLEncoder.encode(img_name, "UTF-8"));
+		try (FileInputStream in = new FileInputStream(f); OutputStream out = response.getOutputStream()) {
+			byte[] buffer = new byte[1024 * 8];
+			while (true) {
+				int count = in.read(buffer);
+				if (count == -1)
+					break;
+				out.write(buffer, 0, count);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+	*/
 	
+	/*
 	@RequestMapping(value="/ThumnailDownload/{lecture_name}/{img_name:.+}", method = RequestMethod.GET)
 	public void thumbNailstream(@PathVariable("lecture_name") String lecture_name,
 						 @PathVariable("img_name") String img_name, 
@@ -256,6 +323,20 @@ public class StreamingController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
+	}
+	*/
+	
+	@ResponseBody
+	@RequestMapping(value = "vodDelete")
+	public List<VodDTO> vodDelete(String lecture_no, String del_no, HttpServletResponse response) throws Exception {
+		System.out.println("여기 왔네여?");
+		
+		vodService.deleteVOD(Long.parseLong(del_no));
+		List<VodDTO> list = vodService.getVodList(Long.parseLong(lecture_no));
+		
+		return list;
+		
+		
 	}
 }
 	

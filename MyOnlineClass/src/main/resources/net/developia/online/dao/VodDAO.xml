@@ -41,4 +41,20 @@
        ]]>
 	</select>
 	
+	
+	
+	<delete id="delete_video" parameterType="long">
+		<![CDATA[
+		
+		delete
+		from lecture_video
+		where video_id= #{vodNo}
+		
+		]]>
+	</delete>
+	
+	
+	
+	
+	
 </mapper>

@@ -22,5 +22,7 @@ public interface VodDAO {
 	void insertDTO(VodDTO vodDTO) throws SQLException;
 	
 	void register_lecture_video(HashMap<String, Object> map) throws SQLException;
+	
+	void delete_video(long vodNo) throws SQLException;
 }
 

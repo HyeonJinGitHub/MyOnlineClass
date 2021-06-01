@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.online.dao.InstructorDAO">
+	<!-- <parameterMap type="java.util.HashMap" id="InstructorParam"> <parameter 
+		property="ID" jdbcType="VARCHAR" mode="IN" /> <parameter property="PASSWORD" 
+		jdbcType="VARCHAR" mode="IN" /> <parameter property="PHONE" jdbcType="VARCHAR" 
+		mode="IN" /> <parameter property="INTRODUCE" jdbcType="VARCHAR" mode="IN" 
+		/> <parameter property="IMAGE" jdbcType="VARCHAR" mode="IN" /> <parameter 
+		property="InstructorList" jdbcType="CURSOR" mode="OUT" resultMap="InstructorResultMap" 
+		/> </parameterMap> <resultMap type="InstructorDTO" id="InstructorResultMap"> 
+		<result property="id" column="ID" /> <result property="password" column="PASSWORD" 
+		/> <result property="phone" column="PHONE" /> <result property="introduce" 
+		column="INTRODUCE" /> <result property="image" column="IMAGE" /> </resultMap> -->
+
+	<select id="getInstructor" parameterType="long"
+		resultType="InstructorDTO">
+	<![CDATA[
+		select instructor.member_id, member.name, instructor.nickname, instructor.introduce, instructor.image, member.email, member.phone 
+		from instructor join member on instructor.member_id=member.id 
+		where instructor.member_id = (select member_id from enrollment where lecture_id = #{lectureNo})
+	]]>
+	</select>
+	
+	<select id="getInstructorList" resultType="InstructorDTO">
+	<![CDATA[
+		SELECT	member_id, nickname, introduce, image
+		FROM	instructor
+	]]>
+	</select>
+	
+	<insert id="registerInstructor">
+	<![CDATA[
+		INSERT INTO instructor VALUES
+		(#{member_id}, #{nickname}, #{introduce}, #{image})
+	]]>
+	</insert>
+	
+	<select id="getInstFlag" resultType="InstructorDTO">
+	<![CDATA[
+		SELECT	instructor.nickname
+		FROM	instructor
+		WHERE	instructor.member_id = (SELECT	id
+										FROM	member
+										WHERE	member.id = #{member_id})
+	]]>
+	</select>
+	
+	<select id="getNickname" resultType="InstructorDTO">
+	<![CDATA[
+		SELECT	nickname
+		FROM	instructor
+		WHERE	nickname like '%' || #{term} || '%'
+	]]>
+	</select>
+	
+</mapper>

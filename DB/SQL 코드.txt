@@ -103,36 +103,36 @@ ALTER TABLE video ADD CONSTRAINT video_pk PRIMARY KEY ( id );
 
 ALTER TABLE comments
     ADD CONSTRAINT comment_lecture_fk FOREIGN KEY ( lecture_id )
-        REFERENCES lecture ( id );
+        REFERENCES lecture ( id ) ON DELETE CASCADE;
 
 ALTER TABLE comments
     ADD CONSTRAINT comment_member_fk FOREIGN KEY ( member_id )
-        REFERENCES member ( id );
+        REFERENCES member ( id ) ON DELETE CASCADE;
 
 ALTER TABLE enrollment
     ADD CONSTRAINT enrollment_lecture_fk FOREIGN KEY ( lecture_id )
-        REFERENCES lecture ( id );
+        REFERENCES lecture ( id ) ON DELETE CASCADE;
 
 ALTER TABLE enrollment
     ADD CONSTRAINT enrollment_member_fk FOREIGN KEY ( member_id )
-        REFERENCES member ( id );
+        REFERENCES member ( id ) ON DELETE CASCADE;
 
 ALTER TABLE instructor
     ADD CONSTRAINT instructor_member_fk FOREIGN KEY ( member_id )
-        REFERENCES member ( id );
+        REFERENCES member ( id ) ON DELETE CASCADE;
 
 ALTER TABLE lecture_video
     ADD CONSTRAINT lecture_video_lecture_fk FOREIGN KEY ( lecture_id )
-        REFERENCES lecture ( id );
+        REFERENCES lecture ( id ) ON DELETE CASCADE;
 
 ALTER TABLE lecture_video
     ADD CONSTRAINT lecture_video_video_fk FOREIGN KEY ( video_id )
-        REFERENCES video ( id );
+        REFERENCES video ( id ) ON DELETE CASCADE;
 
 ALTER TABLE member_lecture
     ADD CONSTRAINT member_lecture_lecture_fk FOREIGN KEY ( lecture_id )
-        REFERENCES lecture ( id );
+        REFERENCES lecture ( id ) ON DELETE CASCADE;
 
 ALTER TABLE member_lecture
     ADD CONSTRAINT member_lecture_member_fk FOREIGN KEY ( member_id )
-        REFERENCES member ( id );
+        REFERENCES member ( id ) ON DELETE CASCADE;

@@ -32,4 +32,13 @@ public interface MemberDAO {
 	void getMemberLecture(HashMap<String, Object> map) throws SQLException;
 
 	void getMemberLectureDate(HashMap<String, Object> new_map) throws SQLException;
+
+	void getInstructorInfo(HashMap<String, Object> map) throws SQLException;
+
+	void getInstructorLecture(HashMap<String, Object> map) throws SQLException;
+	
+	void getLectureCount(HashMap<String, Object> map) throws SQLException;
+
+	void getLectureInstructorInfo(HashMap<String, Object> map) throws SQLException;
+
 }

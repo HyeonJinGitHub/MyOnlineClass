@@ -5,19 +5,21 @@
 <%
 String user = (String) session.getAttribute("id");
 String user_name;
-if(session.getAttribute("id") == null){
+if (session.getAttribute("id") == null) {
 	user_name = "로그인후이용해주세요.";
-}
-else {
+} else {
 	user_name = (String) session.getAttribute("name");
 }
 %>
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
 <c:set var="comment" value="${commentDTO}" />
+<c:set var="already" value="${already}" />
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="64x64"
+	href="${pageContext.request.contextPath}/resources/image/classtok_favi4fa9.png" />
 <meta charset="UTF-8">
 <meta name="description" content="MyOnlineClassDetail">
 <meta name="keywords" content="html, comment">
@@ -76,7 +78,7 @@ else {
 	$(document).on("click", "#commentbtn", function() {
 		var content_text = $("#comment_text");
 		var content_textVal = content_text.val();
-		var user = '<%=(String)session.getAttribute("id")%>';
+		var user = '<%=(String) session.getAttribute("id")%>';
 		if (user == 'null'){
 			alert('로그인 후 이용해주세요.');
 			location.href='/online/login';
@@ -124,7 +126,7 @@ else {
 		// 버튼 2번 클릭 인식 방지
 		$("#deletecmt").attr('disabled', 'disabled');
 		
-		var user = '<%=(String)session.getAttribute("id")%>';
+		var user = '<%=(String) session.getAttribute("id")%>';
 		if (user == 'null'){
 			alert('로그인 후 이용해주세요.');
 			location.href='/online/login';
@@ -160,7 +162,7 @@ else {
 	});
 	
 	$(document).on("click", "#updatecmt", function() {
-		var user = '<%=(String)session.getAttribute("id")%>';
+		var user = '<%=(String) session.getAttribute("id")%>';
 		if (user == 'null'){
 			alert('로그인 후 이용해주세요.');
 			location.href='/online/login';
@@ -206,8 +208,10 @@ else {
 	
 	
 	function getCommentList() {
-		var user = '<%=(String)session.getAttribute("id")%>';
-		$.ajax({
+		var user = '<%=(String) session.getAttribute("id")%>
+	';
+		$
+				.ajax({
 					type : 'GET',
 					url : "<c:url value='/classdetail/${lecture.id}/1'/>",
 					dataType : "json",
@@ -226,29 +230,32 @@ else {
 								html += "<img src='${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png' alt=''>";
 								html += "</div>";
 								html += "<div class='listing__details__comment__item__text'>";
-								html +=	"<div class='listing__details__comment__item__rating'>";
-								html +=	"<i class='fa fa-star'></i> ";
-								html +=	"<i class='fa fa-star'></i> ";
-								html +=	"<i class='fa fa-star'></i> ";
-								html +=	"<i class='fa fa-star'></i> ";
-								html +=	"<i class='fa fa-star'></i> ";
+								html += "<div class='listing__details__comment__item__rating'>";
+								html += "<i class='fa fa-star'></i> ";
+								html += "<i class='fa fa-star'></i> ";
+								html += "<i class='fa fa-star'></i> ";
+								html += "<i class='fa fa-star'></i> ";
+								html += "<i class='fa fa-star'></i> ";
 								html += "</div>";
 								html += "<span>" + data[i].regdate + "</span>";
-								html += "<h5>" + data[i].name + " (" + member.substring(0,3) + "**) </h5>";
-								html += "<p class='collapse multi-collapse-" + data[i].no + " show'>" + data[i].content + "</p>"; // 일반
+								html += "<h5>" + data[i].name + " ("
+										+ member.substring(0, 3) + "**) </h5>";
+								html += "<p class='collapse multi-collapse-" + data[i].no + " show'>"
+										+ data[i].content + "</p>"; // 일반
 								html += "<form class='collapse multi-collapse-" + data[i].no + " '>"; // 수정모드
-							    html += "<div class='form-group'>";
-								html += "<textarea class='form-control' id='comment_text_fix' rows='3'style='resize: none;'>" + data[i].content + "</textarea>";
-							    html += "</div>";
-							    html += "<button type='button' id='updatecmt_do' class='cmtfixbtn' value = " + data[i].no + " name =" + data[i].name + ">수정 완료</button>";
+								html += "<div class='form-group'>";
+								html += "<textarea class='form-control' id='comment_text_fix' rows='3'style='resize: none;'>"
+										+ data[i].content + "</textarea>";
+								html += "</div>";
+								html += "<button type='button' id='updatecmt_do' class='cmtfixbtn' value = " + data[i].no + " name =" + data[i].name + ">수정 완료</button>";
 								html += "</form>";
-								if(user==member){
+								if (user == member) {
 									html += "<ul>";
 									html += "<li><button id='updatecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + " data-toggle='collapse' data-target='.multi-collapse-" + data[i].no + " '><i class='fa fa-hand-o-right'></i> 수정하기</button></li>";
 									html += "<li><button id='deletecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + "><i class='fa fa-share-square-o'></i> 삭제하기</button></li>";
 									html += "</ul>";
 								}
-								html +="</div>" + "</div>";
+								html += "</div>" + "</div>";
 							}
 						} else {
 							html += "<div class='listing__details__comment__item'>";
@@ -266,66 +273,64 @@ else {
 					}
 				});
 	}
-	
 </script>
 
 <style>
 .cmtbtn {
-  background: #ffffff;
-  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
-  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
-  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
-  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
-  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #6e6e6e;
-  font-size: 15px;
-  padding: 5px 10px 5px 10px;
-  border: solid #ffffff 0px;
-  text-decoration: none;
+	background: #ffffff;
+	background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+	background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+	-webkit-border-radius: 28;
+	-moz-border-radius: 28;
+	border-radius: 28px;
+	font-family: Arial;
+	color: #6e6e6e;
+	font-size: 15px;
+	padding: 5px 10px 5px 10px;
+	border: solid #ffffff 0px;
+	text-decoration: none;
 }
 
 .cmtbtn:hover {
-  background: #b3d1e3;
-  background-image: -webkit-linear-gradient(top, #b3d1e3, #bdddf2);
-  background-image: -moz-linear-gradient(top, #b3d1e3, #bdddf2);
-  background-image: -ms-linear-gradient(top, #b3d1e3, #bdddf2);
-  background-image: -o-linear-gradient(top, #b3d1e3, #bdddf2);
-  background-image: linear-gradient(to bottom, #b3d1e3, #bdddf2);
-  text-decoration: none;
+	background: #b3d1e3;
+	background-image: -webkit-linear-gradient(top, #b3d1e3, #bdddf2);
+	background-image: -moz-linear-gradient(top, #b3d1e3, #bdddf2);
+	background-image: -ms-linear-gradient(top, #b3d1e3, #bdddf2);
+	background-image: -o-linear-gradient(top, #b3d1e3, #bdddf2);
+	background-image: linear-gradient(to bottom, #b3d1e3, #bdddf2);
+	text-decoration: none;
 }
 
 .cmtfixbtn {
- background: #d1d1d1;
-  background-image: -webkit-linear-gradient(top, #d1d1d1, #cccccc);
-  background-image: -moz-linear-gradient(top, #d1d1d1, #cccccc);
-  background-image: -ms-linear-gradient(top, #d1d1d1, #cccccc);
-  background-image: -o-linear-gradient(top, #d1d1d1, #cccccc);
-  background-image: linear-gradient(to bottom, #d1d1d1, #cccccc);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  border-width: 0px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 15px;
-  padding: 5px 7px 5px 7px;
-  text-decoration: none;
+	background: #d1d1d1;
+	background-image: -webkit-linear-gradient(top, #d1d1d1, #cccccc);
+	background-image: -moz-linear-gradient(top, #d1d1d1, #cccccc);
+	background-image: -ms-linear-gradient(top, #d1d1d1, #cccccc);
+	background-image: -o-linear-gradient(top, #d1d1d1, #cccccc);
+	background-image: linear-gradient(to bottom, #d1d1d1, #cccccc);
+	-webkit-border-radius: 28;
+	-moz-border-radius: 28;
+	border-radius: 28px;
+	border-width: 0px;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 15px;
+	padding: 5px 7px 5px 7px;
+	text-decoration: none;
 }
 
 .cmtfixbtn:hover {
-  background: #cfcfcf;
-  background-image: -webkit-linear-gradient(top, #cfcfcf, #cccccc);
-  background-image: -moz-linear-gradient(top, #cfcfcf, #cccccc);
-  background-image: -ms-linear-gradient(top, #cfcfcf, #cccccc);
-  background-image: -o-linear-gradient(top, #cfcfcf, #cccccc);
-  background-image: linear-gradient(to bottom, #cfcfcf, #cccccc);
-  text-decoration: none;
+	background: #cfcfcf;
+	background-image: -webkit-linear-gradient(top, #cfcfcf, #cccccc);
+	background-image: -moz-linear-gradient(top, #cfcfcf, #cccccc);
+	background-image: -ms-linear-gradient(top, #cfcfcf, #cccccc);
+	background-image: -o-linear-gradient(top, #cfcfcf, #cccccc);
+	background-image: linear-gradient(to bottom, #cfcfcf, #cccccc);
+	text-decoration: none;
 }
-
 </style>
 
 </head>
@@ -357,17 +362,27 @@ else {
 									<!-- <span class="icon_star-half_alt"></span> -->
 								</div>
 							</div>
-							<p>${lecture.duration}일 과정</p>
-							<p><h6># ${lecture.genre}</h6></p>
+							<p>${lecture.duration}일과정</p>
+							<p>
+							<h6># ${lecture.genre}</h6>
+							</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="listing__hero__btns">
 						<a href="javascript:history.back()" class="primary-btn share-btn"><i
-							class="fa fa-mail-reply"></i> 뒤로가기</a> <a
-							href="/online/memberlecture/${lecture.id}" class="primary-btn"><i
-							class="fa fa-bookmark"></i> 수강신청</a>
+							class="fa fa-mail-reply"></i> 뒤로가기</a>
+						<c:if test="${already eq true}">
+							<a href="/online/memberlecture/${lecture.id}" class="primary-btn">
+								<i class="fa fa-bookmark"></i> 강의보기
+							</a>
+						</c:if>
+						<c:if test="${already eq false}">
+							<a href="/online/memberlecture/${lecture.id}" class="primary-btn">
+								<i class="fa fa-bookmark"></i> 수강신청
+							</a>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -456,9 +471,11 @@ else {
 						<div class="listing__details__review">
 							<h4>Add Comment</h4>
 							<form action="#">
-								<input type="text" placeholder=<%=user_name%> id ="userName" readonly/>
-								<textarea placeholder="댓글을 작성하세요." id = "comment_text"></textarea>
-								<button type="button" name ="commentbtn" id="commentbtn" class="site-btn commentbtn">댓글쓰기</button>
+								<input type="text" placeholder=<%=user_name%> id="userName"
+									readonly />
+								<textarea placeholder="댓글을 작성하세요." id="comment_text"></textarea>
+								<button type="button" name="commentbtn" id="commentbtn"
+									class="site-btn commentbtn">댓글쓰기</button>
 							</form>
 						</div>
 					</div>
@@ -468,25 +485,32 @@ else {
 				<div class="col-lg-4">
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
-							<div style="position:absoulte; text-align: center; border-radius: 70%; overflow: hidden;">
-								<form name="InstructorPageDo" action="${pageContext.request.contextPath}/instructorAction" method="POST">
-								<input type="hidden" name="id" value="${instructor.member_id}" />
+							<div
+								style="position: absoulte; text-align: center; border-radius: 70%; overflow: hidden;">
+								<form name="InstructorPageDo"
+									action="${pageContext.request.contextPath}/instructorAction"
+									method="POST">
+									<input type="hidden" name="id" value="${instructor.member_id}" />
 								</form>
-								<a href="#" onclick="javascript:document.InstructorPageDo.submit();">
-								<br>
-								<img
+								<a href="#"
+									onclick="javascript:document.InstructorPageDo.submit();"> <br>
+									<img
 									src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
 									alt="Profile"
-									style="width: 90%; max-width: 300px; height: 90%; margin: 2 auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; object-fit: cover; vertical-align: middle;">
+									style="width: 90%; max-width: 300px; height: 300px; margin: 2 auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; object-fit: cover; vertical-align: middle;">
 								</a>
 							</div>
 							<div class="listing__sidebar__contact__text">
 								<h6>강사</h6>
-								<form name="InstructorPage" action="${pageContext.request.contextPath}/instructorAction" method="POST">
-								<input type="hidden" name="id" value="${instructor.member_id}" />
+								<form name="InstructorPage"
+									action="${pageContext.request.contextPath}/instructorAction"
+									method="POST">
+									<input type="hidden" name="id" value="${instructor.member_id}" />
 								</form>
-								<a href="#" onclick="javascript:document.InstructorPage.submit();">
-								<h4>${instructor.nickname}</h4></a>
+								<a href="#"
+									onclick="javascript:document.InstructorPage.submit();">
+									<h4>${instructor.nickname}</h4>
+								</a>
 								<ul>
 									<li><br></li>
 									<li><span class="icon_phone"></span>${instructor.phone}</li>
@@ -498,10 +522,18 @@ else {
 								</ul>
 								<div class="listing__details__review"
 									style="text-align: center;">
-									<button type="button" class="site-btn"
-										onclick="location.href='/online/memberlecture/${lecture.id}'">
-										<i class="fa fa-bookmark"></i> 수강신청
-									</button>
+									<c:if test="${already eq true}">
+										<button type="button" class="site-btn"
+											onclick="location.href='/online/memberlecture/${lecture.id}'">
+											<i class="fa fa-bookmark"></i> 강의보기
+										</button>
+									</c:if>
+									<c:if test="${already eq false}">
+										<button type="button" class="site-btn"
+											onclick="location.href='/online/memberlecture/${lecture.id}'">
+											<i class="fa fa-bookmark"></i> 수강신청
+										</button>
+									</c:if>
 								</div>
 							</div>
 						</div>

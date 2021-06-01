@@ -33,9 +33,10 @@ resultTime = dateForm.format(result_date);
 <!DOCTYPE html>
 <html>
 <head>
+<c:import url="header2.jsp"></c:import>
 <meta charset="UTF-8">
 <title>My Online Class</title>
-<c:import url="header.jsp"></c:import>
+
 <style>
 .myButton {
 	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
@@ -114,5 +115,8 @@ resultTime = dateForm.format(result_date);
 			onclick="location.href='/online/memberlecture/action/${lecture.id}'">
 			수강신청하기</button>
 	</div>
+	
+	<c:import url="footer.jsp"></c:import>
 </body>
+
 </html>

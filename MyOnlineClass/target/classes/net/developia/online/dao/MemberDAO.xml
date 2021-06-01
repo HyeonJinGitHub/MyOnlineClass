@@ -236,5 +236,80 @@
           }
        ]]>
 	</select>
+	
+	<parameterMap type="java.util.HashMap"
+		id="InstructorParam">
+		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="InstructorList" jdbcType="CURSOR"
+			mode="OUT" resultMap="InstructorResultMap" />
+	</parameterMap>
+	<resultMap type="hashmap" id="InstructorResultMap">
+	</resultMap>
+	<select id="getInstructorInfo" statementType="CALLABLE"
+		parameterMap="InstructorParam" resultMap="InstructorResultMap">
+	<![CDATA[
+          {
+             call member_pkg.get_member_instructor(
+				?, ?
+			)
+          }
+       ]]>
+	</select>
+
+	<parameterMap type="java.util.HashMap" id="InstructorLectureParam">
+		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="InstructorLectureList" jdbcType="CURSOR"
+			mode="OUT" resultMap="InstructorLectureResultMap" />
+	</parameterMap>
+	<resultMap type="LectureDTO" id="InstructorLectureResultMap">
+		<result property="id" column="ID" />
+	</resultMap>
+	<select id="getInstructorLecture" statementType="CALLABLE"
+		parameterMap="InstructorLectureParam" resultMap="InstructorLectureResultMap">
+	<![CDATA[
+          {
+             call member_pkg.get_instructor_lecture(
+				?, ?
+			)
+          }
+       ]]>
+	</select>
+	
+	<parameterMap type="java.util.HashMap"
+		id="lectureCountParam">
+		<parameter property="ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="result" jdbcType="NUMERIC" mode="OUT" />
+	</parameterMap>
+
+	<select id="getLectureCount" statementType="CALLABLE"
+		parameterMap="lectureCountParam" resultType="Integer">
+	<![CDATA[
+          {
+             call member_pkg.get_lecture_count(
+				?, ?
+			)
+          }
+       ]]>
+	</select>
+	
+	<parameterMap type="java.util.HashMap"
+		id="LectureInstructorParam">
+		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="LECTURE_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="LectureInstructorList" jdbcType="CURSOR"
+			mode="OUT" resultMap="LectureInstructorResultMap" />
+	</parameterMap>
+	<resultMap type="hashmap" id="LectureInstructorResultMap">
+	</resultMap>
+	<select id="getLectureInstructorInfo" statementType="CALLABLE"
+		parameterMap="LectureInstructorParam" resultMap="LectureInstructorResultMap">
+	<![CDATA[
+          {
+             call member_pkg.get_lecture_instructor(
+				?, ?, ?
+			)
+          }
+       ]]>
+	</select>
 
 </mapper>

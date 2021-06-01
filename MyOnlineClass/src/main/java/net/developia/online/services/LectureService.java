@@ -16,5 +16,7 @@ public interface LectureService {
 
 	public List<LectureDTO> getLectureName(String term) throws Exception;
 	
+
 	public void deleteLecture(long lectureNo) throws Exception;
+
 }

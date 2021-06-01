@@ -62,15 +62,12 @@ public class CommentController {
 	
 	@GetMapping(value = "/classdetail/{no}/{cno}", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public Map<String, Object> comment_list(@PathVariable("no") long no, @PathVariable(required = false) long cno,
+	public Map<String, Object> comment_list(@PathVariable("no") long no, @PathVariable("cno") long cno,
 			@ModelAttribute("comments") CommentDTO comments) throws Exception {
 		Map<String, Object> result = new HashMap<>();
 		List<CommentDTO> commentlist = commentService.getCommentList(no);
 		System.out.println("★★★" + commentlist.toString());
 
-		if(Long.valueOf(cno) == null) 
-			cno = 1;
-		
 		///Comment 페이징 기능 추가
 		// online/classdetail/{no}/{cno} 이때 no는 lecture.id, cno는 comment page 번호를 의미!
 		PagingUtil pageUtil = new PagingUtil();
@@ -81,12 +78,9 @@ public class CommentController {
 		System.out.println(pageUtil.toString());
 		System.out.println(pageMaker.toString());
 		
-		System.out.println(pageMaker.getPageUtil().getRowStart()+" "+pageMaker.getPageUtil().getRowEnd());
-		List<CommentDTO> pagingcommentlist = commentlist.subList(pageMaker.getPageUtil().getRowStart(), pageMaker.getPageUtil().getRowEnd());
-		System.out.println("★★★" + pagingcommentlist.toString());
-		
-		result.put("commentlist", pagingcommentlist);
-		result.put("page", cno);
+		result.put("commentlist", commentlist);
+		result.put("pageMaker", pageMaker);
+		result.put("pageUtil", pageUtil);
 		result.put("startPage",pageMaker.getStartPage());
 		result.put("endPage",pageMaker.getEndPage());
 		

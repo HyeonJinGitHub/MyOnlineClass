@@ -214,18 +214,11 @@ if (session.getAttribute("id") == null) {
 	
 	<%long page_num = 1;%>
 	
-	$(document).on("click", "#pagebtn", function() {
-		var cno = $(this).val();
-		getCommentList();
-	});
-
-	
-	function getCommentList() {
+	function getCommentList(page) {
 		var user = '<%=(String) session.getAttribute("id")%>';
 		$.ajax({
 					type : 'GET',
-					url : '/online/classdetail/${lecture.id}/<%=page_num%>
-	',
+					url : '/online/classdetail/${lecture.id}/<%=page_num%>',
 					dataType : "json",
 					success : function(data) {
 
@@ -234,11 +227,7 @@ if (session.getAttribute("id") == null) {
 						var endPage = data.endPage;
 						var commentList = data.commentlist;
 						if (commentList != null) {
-
-							$
-									.each(
-											commentList,
-											function(key, value) {
+							$.each( commentList, function(key, value) {
 												var member = value.member_id;
 												html += "<div class='listing__details__comment__item'>";
 												html += "<div class='listing__details__comment__item__pic'>";
@@ -294,14 +283,10 @@ if (session.getAttribute("id") == null) {
 
 						var html_page = '<a href="#" id = "pagebtn" value = "1" class="w3-button">&laquo;</a>';
 						for (var num = startPage; num <= endPage; num++) {
-							if (num ==
-<%=page_num%>
-	) {
-								html_page += '<a href="#" id = "pagebtn" onclick="" class="w3-button w3-blue">'
-										+ num + '</a>';
+							if (num == page) {
+								html_page += '<a href="#" id = "pagebtn" onclick="getCommentList(' + num + ')" class="w3-button w3-blue">'	+ num + '</a>';
 							} else {
-								html_page += '<a href="#" id = "pagebtn" onclick="return false;" class="w3-button">'
-										+ num + '</a>';
+								html_page += '<a href="#" id = "pagebtn" onclick="return false;" class="w3-button">' + num + '</a>';
 							}
 						}
 						html_page += '<a href="#" id = "pagebtn" value = ' + endPage + ' class="w3-button">&raquo;</a>';

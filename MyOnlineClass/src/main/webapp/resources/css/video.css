@@ -165,6 +165,30 @@ ul{
 	top: 1px;
 }
 
+
+.lectureDelete{
+	text-align: center;
+	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
+	background-color: #f21414;
+	border-radius: 9px !important;
+	border: 1px solid #d12e6a;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px 50px !important;
+	text-decoration: none;
+	text-shadow: 0px 2px 0px #db3362;
+	margin: 12px !important;
+	width: 100% !important;
+}
+
+.lectureDelete:active {
+	position: relative;
+	top: 1px;
+}
 /*		
 .vodUpload{
 	background-color: rgb(255, 80, 90) !important;

@@ -55,6 +55,7 @@
 			alert(delete_id)
 			alert('이제 삭제 가능')	
 			
+			
 			$.ajax({
 					type: "POST",
 					url: "vodDelete",
@@ -98,10 +99,32 @@
 						alert('실패');
 					}
 				});
-	
-			
-		
 		}
+			function delLecture(lecture_id){
+				console.log(lecture_id)
+				alert(lecture_id)
+				alert('이제 삭제 가능')	
+				
+				
+				$.ajax({
+						type: "POST",
+						url: "lectureDelete",
+						data: {
+							lecture_no : lecture_id,
+							}
+							,
+						dataType: "json",
+						success : function(data) {
+								alert('성공');
+						},
+						
+						error : function() {
+							alert('실패');
+						}
+					});
+			
+			}
+		
 	</script>
 	
 	
@@ -152,12 +175,14 @@
 	   					<form method="post" action="tempfile">
 	   						<input type="text" name="lecture_name" style= "display:none" value="${lecture.name}"/>
 	   						<input type="text" name="lecture_id" style= "display:none" value="${lecture.id}"/>
-	   						<input type="submit" value="강의 업로드" class="vodUpload" >
+	   						<input type="submit" value="동영상 업로드" class="vodUpload" >
 	 					</form>
 	 					<!-- <input type="button" value="강의 삭제" class="vodDelete"> -->
 	 					
-	 					<input type="button" value="강의 삭제" class="vodDelete" onclick="javascript:delBtn(${lecture.id});">
-	 					
+	 					<input type="button" value="동영상 삭제" class="vodDelete" onclick="javascript:delBtn(${lecture.id});">
+	 					<br>
+	 					<br>
+	 					<input type="button" value="전체 강의 삭제" class="lectureDelete" onclick="javascript:delLecture(${lecture.id});">
  					 </c:if>
  					 <!-- <input type="text" id="lecture_id" name="lecture_id" style= "display:none" /> -->
  					 <!-- <input type="text" id="lecture_id" name="lecture_id" value="${lecture.id}"/> -->

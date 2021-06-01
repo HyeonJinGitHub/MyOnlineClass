@@ -60,4 +60,15 @@ public class LectureServiceImpl implements LectureService {
 	public List<LectureDTO> getLectureName(String term) throws Exception {
 		return lectureDAO.getLectureName(term);
 	}
+	
+	@Override
+	public void deleteLecture(long lectureNo) throws Exception {
+		try {
+		lectureDAO.deleteLecture(lectureNo);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
+	}
 }

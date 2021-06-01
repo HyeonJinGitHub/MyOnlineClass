@@ -100,7 +100,7 @@
 					}
 				});
 		}
-			function delLecture(lecture_id, id){
+			function delLecture(lecture_id, member_id){
 				console.log(lecture_id)
 				alert(lecture_id)
 				alert('이제 삭제 가능')	
@@ -113,28 +113,31 @@
 							lecture_no : lecture_id,
 							}
 							,
-						dataType: "json",
-						success : function(data) {
+						dataType: "text",
+						success : function() {
 							alert("삭제 성공");
 							$.ajax({
 								type: "POST",
 								url: "instructorAction",
 								data: {
-									id : id,
+									id : member_id,
 									}
 									,
-								dataType: "json",
-								success : function(data) {
+								dataType: "text",
+								success : function() {
 										alert("강좌 삭제 & 페이지 이동");
 								},
 								
-								error : function() {
+								error : function(request, error) {
+									console.log("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
+									alert("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
 									alert('실패');
 								}
 							});
 						},
 						
-						error : function() {
+						error : function(request, error) {
+							alert("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
 							alert('실패');
 						}
 					});
@@ -198,7 +201,7 @@
 	 					<input type="button" value="동영상 삭제" class="vodDelete" onclick="javascript:delBtn(${lecture.id});">
 	 					<br>
 	 					<br>
-	 					<input type="button" value="전체 강의 삭제" class="lectureDelete" onclick="javascript:delLecture(${lecture.id},${id});">
+	 					<input type="button" value="전체 강의 삭제" class="lectureDelete" onclick="javascript:delLecture(${lecture.id},'${id}');">
  					 </c:if>
  					 <!-- <input type="text" id="lecture_id" name="lecture_id" style= "display:none" /> -->
  					 <!-- <input type="text" id="lecture_id" name="lecture_id" value="${lecture.id}"/> -->

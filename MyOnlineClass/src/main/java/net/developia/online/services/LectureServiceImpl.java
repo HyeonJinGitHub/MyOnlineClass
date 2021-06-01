@@ -62,6 +62,7 @@ public class LectureServiceImpl implements LectureService {
 		lectureDAO.deleteLecture(lectureNo);
 		}
 		catch(Exception e) {
+			System.out.println("삭제 에러");
 			System.out.println(e);
 		}
 		

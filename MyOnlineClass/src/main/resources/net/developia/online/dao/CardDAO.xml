@@ -19,6 +19,40 @@
 		]]>
 	</select>
 	
+	<select id="getCardListSortedByEnroll" resultType="CardDTO">
+		<![CDATA[
+			SELECT DISTINCT lecture.id
+		  				  , lecture.thumbnail AS thumbnail
+          				  , lecture.name AS lectureName
+          				  ,( SELECT instructor.nickname 
+          					 FROM instructor 
+          					 WHERE instructor.member_id = enrollment.member_id ) AS nickname
+          				  ,( SELECT COUNT(*) 
+            				 FROM member_lecture 
+            				 WHERE lecture_id = lecture.id ) AS participants
+			FROM enrollment, lecture
+			WHERE enrollment.lecture_id = lecture.id
+			ORDER BY id ASC
+		]]>
+	</select>
+	
+	<select id="getCardListSortedByDeadline" resultType="CardDTO">
+		<![CDATA[
+			SELECT DISTINCT lecture.id
+		  				  , lecture.thumbnail AS thumbnail
+          				  , lecture.name AS lectureName
+          				  ,( SELECT instructor.nickname 
+          					 FROM instructor 
+          					 WHERE instructor.member_id = enrollment.member_id ) AS nickname
+          				  ,( SELECT COUNT(*) 
+            				 FROM member_lecture 
+            				 WHERE lecture_id = lecture.id ) AS participants
+			FROM enrollment, lecture
+			WHERE enrollment.lecture_id = lecture.id
+			ORDER BY id DESC
+		]]>
+	</select>
+	
 	<select id="getCardListWithKeyword" parameterType="String" resultType="CardDTO">
 		<![CDATA[
 			SELECT lecture.id

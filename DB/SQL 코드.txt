@@ -1,0 +1,138 @@
+DROP TABLE comments CASCADE CONSTRAINTS;
+
+DROP TABLE enrollment CASCADE CONSTRAINTS;
+
+DROP TABLE instructor CASCADE CONSTRAINTS;
+
+DROP TABLE lecture CASCADE CONSTRAINTS;
+
+DROP TABLE lecture_video CASCADE CONSTRAINTS;
+
+DROP TABLE member CASCADE CONSTRAINTS;
+
+DROP TABLE member_lecture CASCADE CONSTRAINTS;
+
+DROP TABLE video CASCADE CONSTRAINTS;
+
+DROP TABLE lecture_video CASCADE CONSTRAINTS;
+
+-- predefined type, no DDL - MDSYS.SDO_GEOMETRY
+
+-- predefined type, no DDL - XMLTYPE
+
+CREATE TABLE comments (
+    no          NUMBER(5) NOT NULL,
+    member_id   VARCHAR2(30) NOT NULL,
+    lecture_id  NUMBER(5) NOT NULL,
+    content     CLOB NOT NULL,
+    regdate     VARCHAR2(50) NOT NULL
+);
+
+ALTER TABLE comments
+    ADD CONSTRAINT comment_pk PRIMARY KEY ( no,
+                                            lecture_id,
+                                            member_id );
+
+CREATE TABLE enrollment (
+    member_id   VARCHAR2(30) NOT NULL,
+    lecture_id  NUMBER(5) NOT NULL
+);
+
+ALTER TABLE enrollment ADD CONSTRAINT enrollment_pk PRIMARY KEY ( member_id,
+                                                                  lecture_id );
+
+CREATE TABLE instructor (
+    member_id  VARCHAR2(30) NOT NULL,
+    nickname   VARCHAR2(50) NOT NULL,
+    introduce  VARCHAR2(1000) NOT NULL,
+    image      VARCHAR2(300) NOT NULL
+);
+
+ALTER TABLE instructor ADD CONSTRAINT instructor_pk PRIMARY KEY ( member_id );
+
+CREATE TABLE lecture (
+    id         NUMBER(5) NOT NULL,
+    name       VARCHAR2(100) NOT NULL,
+    genre      VARCHAR2(50) NOT NULL,
+    image      VARCHAR2(300) NOT NULL,
+    duration   NUMBER(5) NOT NULL,
+    caution    VARCHAR2(300) NOT NULL,
+    introduce  VARCHAR2(300) NOT NULL,
+    thumbnail  VARCHAR2(300) NOT NULL
+);
+
+ALTER TABLE lecture ADD CONSTRAINT lecture_pk PRIMARY KEY ( id );
+
+CREATE TABLE lecture_video (
+    lecture_id  NUMBER(5) NOT NULL,
+    video_id    NUMBER(5) NOT NULL
+);
+
+ALTER TABLE lecture_video ADD CONSTRAINT lecture_video_pk PRIMARY KEY ( lecture_id,
+                                                                        video_id );
+
+CREATE TABLE member (
+    id        VARCHAR2(30) NOT NULL,
+    password  VARCHAR2(1000) NOT NULL,
+    name      VARCHAR2(50) NOT NULL,
+    email     VARCHAR2(50) NOT NULL,
+    phone     VARCHAR2(50) NOT NULL
+);
+
+ALTER TABLE member ADD CONSTRAINT member_pk PRIMARY KEY ( id );
+
+CREATE TABLE member_lecture (
+    lecture_id  NUMBER(5) NOT NULL,
+    member_id   VARCHAR2(30) NOT NULL,
+    start_date  VARCHAR2(50) NOT NULL,
+    end_date    VARCHAR2(50) NOT NULL
+);
+
+ALTER TABLE member_lecture ADD CONSTRAINT member_lecture_pk PRIMARY KEY ( member_id,
+                                                                          lecture_id );
+
+CREATE TABLE video (
+
+    id     NUMBER(5) NOT NULL,
+    title  VARCHAR2(100) NOT NULL,
+    time   VARCHAR2(300) NOT NULL,
+    src    VARCHAR2(300) NOT NULL
+);
+
+ALTER TABLE video ADD CONSTRAINT video_pk PRIMARY KEY ( id );
+
+ALTER TABLE comments
+    ADD CONSTRAINT comment_lecture_fk FOREIGN KEY ( lecture_id )
+        REFERENCES lecture ( id ) ON DELETE CASCADE;
+
+ALTER TABLE comments
+    ADD CONSTRAINT comment_member_fk FOREIGN KEY ( member_id )
+        REFERENCES member ( id ) ON DELETE CASCADE;
+
+ALTER TABLE enrollment
+    ADD CONSTRAINT enrollment_lecture_fk FOREIGN KEY ( lecture_id )
+        REFERENCES lecture ( id ) ON DELETE CASCADE;
+
+ALTER TABLE enrollment
+    ADD CONSTRAINT enrollment_member_fk FOREIGN KEY ( member_id )
+        REFERENCES member ( id ) ON DELETE CASCADE;
+
+ALTER TABLE instructor
+    ADD CONSTRAINT instructor_member_fk FOREIGN KEY ( member_id )
+        REFERENCES member ( id ) ON DELETE CASCADE;
+
+ALTER TABLE lecture_video
+    ADD CONSTRAINT lecture_video_lecture_fk FOREIGN KEY ( lecture_id )
+        REFERENCES lecture ( id ) ON DELETE CASCADE;
+
+ALTER TABLE lecture_video
+    ADD CONSTRAINT lecture_video_video_fk FOREIGN KEY ( video_id )
+        REFERENCES video ( id ) ON DELETE CASCADE;
+
+ALTER TABLE member_lecture
+    ADD CONSTRAINT member_lecture_lecture_fk FOREIGN KEY ( lecture_id )
+        REFERENCES lecture ( id ) ON DELETE CASCADE;
+
+ALTER TABLE member_lecture
+    ADD CONSTRAINT member_lecture_member_fk FOREIGN KEY ( member_id )
+        REFERENCES member ( id ) ON DELETE CASCADE;

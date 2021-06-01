@@ -20,12 +20,7 @@ String phone = (String) session.getAttribute("phone");
 <meta name="author" content="">
 <title>클래스톡 :: 함께 배우는 온라인 클래스 강의, 수업, 강좌 - 클래스톡</title>
 
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
+<c:import url="header2.jsp"></c:import>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#lecturename').on('keyup', function() {
@@ -37,14 +32,14 @@ String phone = (String) session.getAttribute("phone");
 			}
 		});
 
-		$('#genre').on('keyup', function() {
+	/* 	$('#genre').on('keyup', function() {
 			$('#genreCount').html("(" + $(this).val().length + " / 50)");
 
 			if ($(this).val().length > 50) {
 				$(this).val($(this).val().substring(0, 25));
 				$('#genreCount').html("(0 / 50)");
 			}
-		});
+		}); */
 
 		$('#caution').on('keyup', function() {
 			$('#cautionCount').html("(" + $(this).val().length + " / 300)");
@@ -76,9 +71,6 @@ String phone = (String) session.getAttribute("phone");
 </script>
 
 <style>
-body {
-	padding-top: 56px;
-}
 
 .table-content {
 	display: flex;
@@ -92,42 +84,19 @@ body {
 	background-color: #ffffff;
 }
 
-.carousel-item {
-	height: 65vh;
-	min-height: 300px;
-	background: no-repeat center center scroll;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+
+.table-content1 {
+	display: flex;
+	flex-direction: column;
+	height: 700px;
+	background-color: #ff0000;
 }
 
-.portfolio-item {
-	margin-bottom: 30px;
-}
 
-.logoImage {
-	width: 120px;
-	height: auto;
-	object-fit: cover;
-}
 
-.ul {
-	list-style: none;
-}
-
-.custom-card-body {
-	-ms-flex: 1 1 auto;
-	flex: 1 1 auto;
-	min-height: 1px;
-	padding: 0.3rem;
-	font-size: 15px;
-}
-}
 </style>
-
-<c:import url="header2.jsp"></c:import>
 </head>
+
 <body>
 	<%
 	if (id == null || id == "") {
@@ -139,6 +108,7 @@ body {
 		<div class="item"></div>
 	</div>
 	<div class="container">
+	<section>
 		<div class="carousel-item active"
 			style="height: 100%; background-image: url('${contextPath}/resources/image/background.png')">
 			<div style="color: #fff; text-align: center; padding-top: 40px;">
@@ -162,20 +132,37 @@ body {
 								placeholder="강의명을 적어주세요." maxlength="10" autocomplete="off"
 								required="required"
 								style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
-							<div id="lecturenameCount"
-								style="display: inline; padding-left: 10px;">(0 / 50)</div>
+							<span id="lecturenameCount"
+								style="display: inline; padding-left: 10px;">(0 / 50)</span>
+							<span style="display: inline; visibility: hidden">0</span>
 						</div>
 					</div>
 					<br>
 
-					<div>
+					<div class="selectbox">
 						<span style="position: relative; left: 40px; color: gray;">#</span>
-						<input type="text" id="genre" name="genre"
-							placeholder="장르를 입력하세요." maxlength="50" autocomplete="off"
+						<select name="genre" id="genre" required="required" style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
+							<option selected>장르를 선택하세요.</option>
+							<option>다이어트</option>
+							<option>교육</option>
+							<option>외국어</option>
+							<option>음악</option>
+							<option>커리어</option>
+							<option>필라테스</option>
+							<option>창업</option>
+							<option>손글씨</option>
+							<option>블로그</option>
+							<option>육아</option>
+							<option>IT</option>
+							<option>기타</option>
+						</select>
+						<!-- <input type="text" id="genre" name="genre"
+							placeholder="장르를 선택하세요." maxlength="50" autocomplete="off"
 							required="required"
-							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
-						<div id="genreCount" style="display: inline; padding-left: 10px;">(0
-							/ 50)</div>
+							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;"> -->
+						<span id="genreCount" style="position: relative; display: inline; visibility: hidden; padding-left: 10px;">(0 / 300)</span>
+						<!-- <div id="genreCount" style="display: inline; padding-left: 10px;">(0
+							/ 50)</div> -->
 					</div>
 					<br>
 					<div>
@@ -184,8 +171,9 @@ body {
 							placeholder="수강기한일을 적어주세요." maxlength="50" autocomplete="off"
 							required="required"
 							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
-						<div id="durationCount"
-							style="display: inline; padding-left: 10px;">(0 / 3)</div>
+						<span id="durationCount"
+							style="display: inline; padding-left: 10px;">(0 / 3)</span>
+							<span style="display: inline; visibility: hidden">00</span>
 					</div>
 					<br>
 
@@ -195,8 +183,8 @@ body {
 							placeholder="주의사항을 입력하세요." maxlength="50" autocomplete="off"
 							required="required"
 							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
-						<div id="cautionCount"
-							style="display: inline; padding-left: 10px;">(0 / 300)</div>
+						<span id="cautionCount"
+							style="display: inline; padding-left: 10px;">(0 / 300)</span>
 					</div>
 					<br>
 
@@ -206,8 +194,8 @@ body {
 							placeholder="강의 소개를 표현하세요." maxlength="50" autocomplete="off"
 							required="required"
 							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
-						<div id="introduceCount"
-							style="display: inline; padding-left: 10px;">(0 / 300)</div>
+						<span id="introduceCount"
+							style="display: inline; padding-left: 10px;">(0 / 300)</span>
 					</div>
 					<br>
 
@@ -219,7 +207,7 @@ body {
 							readonly> <input type="file" accept="image/*"
 							name="thumbnail" required="required" style="padding-left: 10px;">
 					</div>
-					<br> <br>
+					<br> 
 
 					<div style="margin-left: 250px;">
 						<span style="position: relative; left: 40px; color: gray;">#</span>
@@ -235,10 +223,17 @@ body {
 				</form>
 			</div>
 		</div>
-	</div>
+		<br>
 	
+		</section>
+	</div>
+		<div class="table-content1">
+		<div class="item"></div>
+	</div>
+	<c:import url="footer.jsp"></c:import>
 		<!--  Bootstrap core JavaScript-->
-	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+<%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+	<%-- <c:import url="footer.jsp"></c:import> --%>
 </body>
 </html>

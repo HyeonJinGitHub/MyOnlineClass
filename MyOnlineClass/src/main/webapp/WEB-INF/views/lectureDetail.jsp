@@ -208,8 +208,7 @@ if (session.getAttribute("id") == null) {
 	
 	
 	function getCommentList() {
-		var user = '<%=(String) session.getAttribute("id")%>
-	';
+		var user = '<%=(String) session.getAttribute("id")%>';
 		$
 				.ajax({
 					type : 'GET',

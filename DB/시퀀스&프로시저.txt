@@ -205,6 +205,9 @@ is
         password = input_password;
 
         if cnt > 0 then
+            delete from lecture
+            where id in (select lecture_id
+            from enrollment where input_id = member_id);
             delete from member
             where id = input_id;
             commit;

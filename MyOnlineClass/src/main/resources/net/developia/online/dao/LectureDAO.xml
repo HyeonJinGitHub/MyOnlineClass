@@ -51,4 +51,15 @@
 	]]>
 	</select>
 	
+	<delete id="deleteLecture" parameterType="long">
+		<![CDATA[
+		
+		delete
+		from lecture
+		where id= #{lectureNo}
+		
+		]]>
+	
+	</delete>
+	
 </mapper>

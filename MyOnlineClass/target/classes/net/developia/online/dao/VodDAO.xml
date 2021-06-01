@@ -7,11 +7,11 @@
 		resultType="VodDTO">
 		<![CDATA[
 		
-		select *
-		from video
-		where id IN (select video_id
-					from lecture_video
-					where lecture_id = #{lectureNo})
+		select l.thumbnail, v.id, v.title, v.time, v.src
+		from lecture_video lv
+		inner join video v on lv.video_id = v.id
+		inner join lecture l on l.id = #{lectureNo}
+		
 		]]>
 	</select>
 	
@@ -40,5 +40,21 @@
           }
        ]]>
 	</select>
+	
+	
+	
+	<delete id="delete_video" parameterType="long">
+		<![CDATA[
+		
+		delete
+		from lecture_video
+		where video_id= #{vodNo}
+		
+		]]>
+	</delete>
+	
+	
+	
+	
 	
 </mapper>

@@ -170,7 +170,7 @@ body {
 		</section>
 		<!-- Instructor Section End -->
 	</div>
-
+	<c:import url="footer.jsp"></c:import>
 	<script>
 	function check_instructor(no) {
 		var id = "${id}";

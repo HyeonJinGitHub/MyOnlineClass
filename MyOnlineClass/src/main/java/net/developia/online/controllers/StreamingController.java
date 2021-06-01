@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import net.developia.online.dto.InstructorDTO;
 import net.developia.online.dto.LectureDTO;
@@ -347,9 +346,9 @@ public class StreamingController{
 		
 		lectureService.deleteLecture(Long.parseLong(lecture_no));
 		System.out.println("삭제 됐네영");
-		String id= (String) session.getAttribute("id");
-		ModelAndView mav = new ModelAndView();
-        mav.setView(new RedirectView("instructorAction/"+id));
+		//String id= (String) session.getAttribute("id");
+		//ModelAndView mav = new ModelAndView();
+        //mav.setView(new RedirectView("instructorAction/"+id));
 		
 		
 	}

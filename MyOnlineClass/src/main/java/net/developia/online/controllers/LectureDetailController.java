@@ -39,9 +39,6 @@ public class LectureDetailController {
 	private InstructorService instructorService;
 
 	@Autowired
-	private CommentService commentService;
-
-	@Autowired
 	private MemberService memberService;
 
 	private static Logger logger = LoggerFactory.getLogger(LectureDetailController.class);

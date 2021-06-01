@@ -7,7 +7,7 @@ public class VodDTO{
 	
 	private long id;
 	private String title;
-	private String time;
+	private String time="12:23";
 	private String src;
 	
 	//임의로 추가

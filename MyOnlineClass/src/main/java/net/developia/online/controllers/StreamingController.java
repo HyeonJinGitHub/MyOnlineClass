@@ -151,7 +151,7 @@ public class StreamingController{
 	}
 
 	
-	// URL 예시 : http://localhost/online/vodStreaming?no=1
+	// URL : http://localhost/online/vodStreaming?no=1
 	
 	@RequestMapping(value="vodStreaming", produces = "application/json; charset=UTF-8") //강의에 대한 정보 반환
 	public ModelAndView vodStreaming(@RequestParam(required = true) long no, HttpSession session) {
@@ -226,8 +226,6 @@ public class StreamingController{
 	public void getVodUrl(@RequestParam(required = true) long no, HttpSession session, Model model) {
 		
 		
-		//ModelAndView mav = new ModelAndView();		
-		
 		
 		String id = (String)session.getAttribute("id");
 		
@@ -253,78 +251,6 @@ public class StreamingController{
 	
 	}
 	
-	
-	
-//	@RequestMapping(value="/video/{lecture_id}/{video_name:.+}", method = RequestMethod.GET)
-//	public String stream(@PathVariable("lecture_id") String lecture_id,
-//						 @PathVariable("video_name") String video_name, 
-	
-	
-	
-//	$.ajax({
-//		type: "GET",
-//		url: "ThumnailDownload",
-//		data: "fileName=" + img,
-//		success : function(data) {
-//		},
-//		error : function() {
-//		}
-//	});
-	
-	//src="${pageContext.request.contextPath}/lectureThumbnail?name=${lecture.name}&thumbnail=${lecture.thumbnail}"
-	
-	/*
-	@RequestMapping(value="{img_name:.+}", method = RequestMethod.GET)
-	public void thumbNailstream(@PathVariable("lecture_name") String lecture_name,
-						 @PathVariable("img_name") String img_name, 
-						 HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
-		response.setContentType("text/html; charset=utf-8");
-		System.out.println("컨트롤러 왔다");
-		
-		String downFile = file_repo + "/" + lecture_name +"/thumbnail/" + img_name;
-		File f = new File(downFile);
-		response.setHeader("Cache-Control", "no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName=" + URLEncoder.encode(img_name, "UTF-8"));
-		try (FileInputStream in = new FileInputStream(f); OutputStream out = response.getOutputStream()) {
-			byte[] buffer = new byte[1024 * 8];
-			while (true) {
-				int count = in.read(buffer);
-				if (count == -1)
-					break;
-				out.write(buffer, 0, count);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-	}
-	*/
-	
-	/*
-	@RequestMapping(value="/ThumnailDownload/{lecture_name}/{img_name:.+}", method = RequestMethod.GET)
-	public void thumbNailstream(@PathVariable("lecture_name") String lecture_name,
-						 @PathVariable("img_name") String img_name, 
-						 HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
-		response.setContentType("text/html; charset=utf-8");
-		System.out.println("컨트롤러 왔다");
-		String file_repo = "C:/online/resources/lecture";
-
-		String downFile = file_repo + "/" + lecture_name +"/thumbnail/" + img_name;
-		File f = new File(downFile);
-		response.setHeader("Cache-Control", "no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName=" + URLEncoder.encode(img_name, "UTF-8"));
-		try (FileInputStream in = new FileInputStream(f); OutputStream out = response.getOutputStream()) {
-			byte[] buffer = new byte[1024 * 8];
-			while (true) {
-				int count = in.read(buffer);
-				if (count == -1)
-					break;
-				out.write(buffer, 0, count);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-	}
-	*/
 	
 	@ResponseBody
 	@RequestMapping(value = "vodDelete")

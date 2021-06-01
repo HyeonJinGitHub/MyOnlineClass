@@ -21,21 +21,7 @@ public class VodServiceImpl implements VodService {
 		return vodDAO.getVodList(lectureNo);
 	}
 	
-	//안씀
-	/*
-	@Override
-	public void registerVod(VodDTO vodDTO) throws SQLException{
-		vodDAO.insertDTO(vodDTO);	
-		
-	}
-	*/
-	/*
-	@Override
-	public void registerLectureVod(VodDTO vodDTO) throws SQLException{
-		vodDAO.insertDTO(vodDTO);	
-		
-	}
-	*/
+	
 	@Override
 	public void registerLectureVod(HashMap<String, Object> map) throws SQLException {
 		vodDAO.register_lecture_video(map);

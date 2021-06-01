@@ -317,7 +317,6 @@ is
     procedure lecture_video_proc(
     input_lecture_id in number,
     input_title in varchar2,
-    input_time in varchar2,
     input_src in varchar2);
 
 
@@ -355,7 +354,6 @@ is
     procedure lecture_video_proc(
     input_lecture_id in number,
     input_title in varchar2,
-    input_time in varchar2,
     input_src in varchar2
     )
     as
@@ -363,7 +361,7 @@ is
     begin
     video_id := video_no_seq.nextval;
     insert into video
-    values(video_id, input_title, input_time, input_src);  
+    values(video_id, input_title, input_src);  
     insert into lecture_video
     values(input_lecture_id, video_id);
     commit;

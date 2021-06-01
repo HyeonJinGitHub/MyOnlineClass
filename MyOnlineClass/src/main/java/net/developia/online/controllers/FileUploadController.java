@@ -31,103 +31,11 @@ public class FileUploadController {
 
 	private static final String SAVE_PATH = "C:/online/resources/video/";
 	
-	/*
-	@ResponseBody
-	@RequestMapping("upload")
-    public ModelAndView upload(@RequestBody Map<String, Object> params,
-    		HttpSession session,
-            HttpServletRequest request, HttpServletResponse response) throws Exception{
-    		String id = (String)session.getAttribute("id");
-    		
-    		String lecture_no = (String)params.get("lecture_no");
-            String time = (String)params.get("time");
-			String title= (String)params.get("title");
-			
-    		String My_SAVE_PATH = SAVE_PATH+id+"/";
-    		System.out.println(lecture_no);
-    		System.out.println(time);
-    		System.out.println(title);
-    		System.out.println(params);
-    		
-
-    		// 	폴더 없으면 생성
-			File makeFolder = new File(My_SAVE_PATH);
-			
-			if(!makeFolder.exists()) {
-				makeFolder.mkdir();
-				System.out.println("폴더 생성");
-				System.out.println(makeFolder.exists());
-			}
-			else {
-				System.out.println("이미 존재");
-			}
-    		//String SAVE_PATH =  System.getProperty("user.dir");
-    	
-    		//System.out.println(DIR_PATH);
-            
-			//ModelAndView mav = new ModelAndView("vodStreaming?no="+lecture_no);
-            
-
-            System.out.println(My_SAVE_PATH);
-            
-            //String originalFileName = mf.getOriginalFilename();
-            String originalFileName = "hi";
-
-            String safeFile =  My_SAVE_PATH + originalFileName;
-
-            String src = "video/"+id+"/"+originalFileName;
-            
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            
-            map.put("lecutre_id", lecture_no);
-            map.put("title", title);
-			map.put("time", time);
-			map.put("src", src);
-			System.out.println(lecture_no);
-			System.out.println(title);
-			System.out.println(time);
-			System.out.println(src);
-			
-		
-			try {
-				
-				vodService.registerLectureVod(map);
-
-				System.out.println("성공");
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
-			}
-			
-            try {
-            	
-                //mf.transferTo(new File(safeFile));
-                
-               
-               } catch (IllegalStateException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            //catch (IOException e) {
-                    // TODO Auto-generated catch block
-             //       e.printStackTrace();
-                //}
-            
-            
-            
-            
-        
-        return null;
-        
-    }
-	*/
-	
 	
     @RequestMapping("upload")
     public ModelAndView upload(
             @RequestParam(value="file1", required = false) MultipartFile mf, HttpSession session,
             @RequestParam(value="lecture_no",required = true) String lecture_no,
-            @RequestParam(value="time",required = true) String time,
 			@RequestParam(value="lecturename" ,required = true) String title,
 
             HttpServletRequest request, HttpServletResponse response) {
@@ -135,7 +43,7 @@ public class FileUploadController {
 		
     		String My_SAVE_PATH = SAVE_PATH+id+"/";
     		System.out.println(lecture_no);
-    		System.out.println(time);
+    		
     		System.out.println(title);
     		
     		
@@ -170,11 +78,9 @@ public class FileUploadController {
             
             map.put("lecutre_id", lecture_no);
             map.put("title", title);
-			map.put("time", time);
 			map.put("src", src);
 			System.out.println(lecture_no);
 			System.out.println(title);
-			System.out.println(time);
 			System.out.println(src);
 			
 		
@@ -203,12 +109,7 @@ public class FileUploadController {
             
             ModelAndView mav = new ModelAndView();
             mav.setView(new RedirectView("vodStreaming?no="+lecture_no));
-            //mav.setViewName("vodStreaming");
-            //mav.addObject("lecture_no",lecture_no);
-            
-			//mav.addObject("msg", "강의 등록에 성공하였습니다.");
-			
-		
+
             
             
             
@@ -231,7 +132,7 @@ public class FileUploadController {
     	
     	mav.setViewName("vodEnroll");
     	mav.addObject("lecture_id",lecture_id);
-    	//mav.addObject(lecture_name);
+
 		return mav;
 	}
 

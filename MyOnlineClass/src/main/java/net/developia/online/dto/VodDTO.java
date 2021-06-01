@@ -12,7 +12,9 @@ public class VodDTO{
 	
 	//임의로 추가
 	private int isCheck= 0;
-	private String thumbnail;
+	
+	//private String poster="https://i.ibb.co/dBLbrRV/bg1.jpg";
+	public String thumbnail;
 	
 	
 }

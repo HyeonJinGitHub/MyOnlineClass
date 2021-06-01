@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.online.dao.CardDAO">
+	<select id="getCardList" resultType="CardDTO">
+		<![CDATA[
+			SELECT DISTINCT lecture.id
+		  				  , lecture.thumbnail AS thumbnail
+          				  , lecture.name AS lectureName
+          				  ,( SELECT instructor.nickname 
+          					 FROM instructor 
+          					 WHERE instructor.member_id = enrollment.member_id ) AS nickname
+          				  ,( SELECT COUNT(*) 
+            				 FROM member_lecture 
+            				 WHERE lecture_id = lecture.id ) AS participants
+			FROM enrollment, lecture
+			WHERE enrollment.lecture_id = lecture.id
+			ORDER BY participants DESC
+		]]>
+	</select>
+	
+	<select id="getCardListWithKeyword" parameterType="String" resultType="CardDTO">
+		<![CDATA[
+			SELECT lecture.id
+          		 , lecture.thumbnail AS thumbnail
+          		 , lecture.name AS lectureName
+          		 , (SELECT instructor.nickname 
+          		 	FROM instructor 
+          		 	WHERE instructor.member_id = enrollment.member_id) AS nickname
+          		 , (SELECT COUNT(*) 
+          		 	FROM member_lecture 
+          		 	WHERE lecture_id = lecture.id) AS participants
+			FROM enrollment JOIN lecture ON enrollment.lecture_id = lecture.id
+			WHERE enrollment.lecture_id IN (SELECT id 
+									  	   FROM lecture 
+									  	   WHERE genre like '%' || #{keyword} || '%')
+			UNION
+			SELECT lecture.id
+          		 , lecture.thumbnail AS thumbnail
+          		 , lecture.name AS lectureName
+          		 , (SELECT instructor.nickname
+          		 	FROM instructor 
+          		 	WHERE instructor.member_id = enrollment.member_id) AS nickname
+          		 , (SELECT COUNT(*) 
+          		 	FROM member_lecture 
+          		 	WHERE lecture_id = lecture.id) AS participants
+			FROM enrollment JOIN lecture ON enrollment.lecture_id = lecture.id
+			WHERE enrollment.lecture_id IN (SELECT id 
+										   FROM lecture 
+										   WHERE name like '%' || #{keyword} || '%')
+			UNION
+			SELECT   lecture.id
+          		   , lecture.thumbnail AS thumbnail
+          		   , lecture.name AS lectureName
+          		   , (SELECT instructor.nickname 
+          		   	  FROM instructor 
+          		   	  WHERE instructor.member_id = enrollment.member_id ) AS nickname
+          		   , (SELECT COUNT(*) 
+          		   	  FROM member_lecture 
+          		   	  WHERE lecture_id = lecture.id) AS participants
+			FROM enrollment JOIN lecture ON enrollment.lecture_id = id
+			WHERE enrollment.lecture_id IN (SELECT id 
+										   FROM lecture 
+										   WHERE id = (SELECT lecture_id 
+										   			   FROM enrollment 
+										   			   WHERE member_id = (SELECT member_id 
+										   			   					  FROM instructor 
+										   			   					  WHERE nickname like '%' || #{keyword} || '%')))
+
+									  	   
+		]]>
+	</select>
+</mapper>

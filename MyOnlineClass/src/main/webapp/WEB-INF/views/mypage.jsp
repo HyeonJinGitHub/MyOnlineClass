@@ -105,9 +105,7 @@ body {
 					<form name="paging">
 						<input type="hidden" name="id" />
 					</form>
-					<a id="management" style="display: none"
-						href="${pageContext.request.contextPath}/lectureManagement"
-						class="list-group-item">강좌관리</a> <a
+					<a id="management" style="display:none" href="javascript:goPage();" class="list-group-item">강좌관리</a> <a
 						href="${pageContext.request.contextPath}/mypage"
 						class="list-group-item">정보수정</a> <a
 						href="${pageContext.request.contextPath}/changePassword"

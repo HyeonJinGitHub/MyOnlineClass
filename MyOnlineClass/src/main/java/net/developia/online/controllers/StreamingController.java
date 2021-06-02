@@ -264,6 +264,9 @@ public class StreamingController{
 		
 		vodService.deleteVOD(Long.parseLong(del_no));
 		List<VodDTO> list = vodService.getVodList(Long.parseLong(lecture_no));
+		for(int i=0; i<list.size();i++) {
+			list.get(i).setCnt(i+1);
+		}
 		
 		return list;
 		
@@ -277,9 +280,6 @@ public class StreamingController{
 		
 		lectureService.deleteLecture(Long.parseLong(lecture_no));
 		System.out.println("삭제 됐네영");
-		//String id= (String) session.getAttribute("id");
-		//ModelAndView mav = new ModelAndView();
-        //mav.setView(new RedirectView("instructorAction/"+id));
 		
 		
 	}

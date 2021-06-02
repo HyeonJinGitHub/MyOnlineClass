@@ -123,15 +123,8 @@
 								,
 							dataType: "text",
 							success : function() {
+								pageMove();
 								alert("삭제 성공");
-								
-								
-							      var f = document.paging;
-							      f.id.value = "${id}"
-							      f.action = "${pageContext.request.contextPath}/instructorAction"
-							      f.method = "post"
-							      f.submit();
-								  
 								
 							},
 							
@@ -142,17 +135,32 @@
 						});
 				}
 			}
+			
+			function pageMove(){
+			      var f = document.paging;
+			      f.id.value = "${id}"
+			      f.action = "${pageContext.request.contextPath}/profile"
+			      f.method = "post"
+			      f.submit();
+				  }
 		
 	</script>
 	
 	
 </head>
+
+
+
 <body>
 
 	<form name="paging">
     	<input type="hidden" name="id"/>
     </form>
-	<h2>${lecture.name}</h2>
+	
+	<h2 onclick="pageMove();" >
+		${lecture.name}
+	</h2>
+	
 	<p>${instructor.nickname} 강사님</p>
 	
 	<div class="video__wrap">

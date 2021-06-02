@@ -15,6 +15,7 @@ if (session.getAttribute("id") == null) {
 <c:set var="instructor" value="${instructorDTO}" />
 <c:set var="comment" value="${commentDTO}" />
 <c:set var="already" value="${already}" />
+<c:set var="teacher" value="${teacher}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -211,9 +212,7 @@ if (session.getAttribute("id") == null) {
 	$(document).on("click", "#updatecmt_undo", function() {
 		getCommentList(1);
 	});
-	
-	<%long page_num = 1;%>
-	
+		
 	function getCommentList(page) {
 		var user = '<%=(String) session.getAttribute("id")%>';
 		$.ajax({
@@ -229,7 +228,7 @@ if (session.getAttribute("id") == null) {
 						var startPage = data.startPage;
 						var endPage = data.endPage;
 						var commentList = data.commentlist;
-						if (commentList != null) {
+						if (commentList != "none") {
 							$.each( commentList, function(key, value) {
 												var member = value.member_id;
 												html += "<div class='listing__details__comment__item'>";
@@ -400,16 +399,23 @@ if (session.getAttribute("id") == null) {
 					<div class="listing__hero__btns">
 						<a href="javascript:history.back()" class="primary-btn share-btn"><i
 							class="fa fa-mail-reply"></i> 뒤로가기</a>
-						<c:if test="${already eq true}">
-							<a href="/online/vodStreaming?no=${lecture.id}"
+						<c:choose>
+							<c:when test="${already eq true}">
+								<a href="/online/vodStreaming?no=${lecture.id}"
 								class="primary-btn"> <i class="fa fa-bookmark"></i> 강의실 이동
-							</a>
-						</c:if>
-						<c:if test="${already eq false}">
-							<a href="/online/memberlecture/${lecture.id}" class="primary-btn">
+								</a>
+							</c:when>
+							<c:when test="${teacher eq true}">
+								<a href="/online/vodStreaming?no=${lecture.id}"
+								class="primary-btn"> <i class="fa fa-bookmark"></i> 강좌 관리
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/online/memberlecture/${lecture.id}" class="primary-btn">
 								<i class="fa fa-bookmark"></i> 수강신청
-							</a>
-						</c:if>
+								</a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
@@ -516,15 +522,15 @@ if (session.getAttribute("id") == null) {
 						<div class="listing__sidebar__contact">
 							<div
 								style="position: absoulte; text-align: center; border-radius: 70%; overflow: hidden;">
-								<br> <img
-									src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
+								<br>
+								 <img src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
 									alt="Profile"
 									style="width: 90%; max-width: 300px; height: 300px; margin: 2 auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; object-fit: cover; vertical-align: middle;">
 							</div>
 							<div class="listing__sidebar__contact__text">
 								<h6>강사</h6>
 								<form name="InstructorPage"
-									action="${pageContext.request.contextPath}/instructorAction"
+									action="${pageContext.request.contextPath}/profile"
 									method="POST">
 									<input type="hidden" name="id" value="${instructor.member_id}" />
 								</form>
@@ -545,7 +551,7 @@ if (session.getAttribute("id") == null) {
 									style="text-align: center;">
 
 									<form name="InstructorPageDo"
-										action="${pageContext.request.contextPath}/instructorAction"
+										action="${pageContext.request.contextPath}/profile"
 										method="POST">
 										<input type="hidden" name="id" value="${instructor.member_id}" />
 									</form>

@@ -10,38 +10,9 @@ commit;
 ------------------------
 
 /* SQL Sample Data */
-				ver.21.05.26
-- 회원가입 아이디를 member1 또는 member2로 생성하면 샘플데이터 이용하기 좋음!
-- lecture id 값 시퀀스 적용 X 임의로 설정 
+				ver.21.06.02
 ------------------------
 
-drop sequence lecture_no_seq;
-drop sequence video_no_seq;
-drop sequence comments_no_seq;
-
-create sequence lecture_no_seq
-increment by 1
-start with 1
-minvalue 1
-maxvalue 100
-nocycle
-nocache;
-
-create sequence comments_no_seq
-increment by 1
-start with 1
-minvalue 1
-maxvalue 200
-nocycle
-nocache;
-
-create sequence video_no_seq;
-increment by 1
-start with 1
-minvalue 1
-maxvalue 100
-nocycle
-nocache;
 
 INSERT INTO member
 (id, password, name, email, phone)

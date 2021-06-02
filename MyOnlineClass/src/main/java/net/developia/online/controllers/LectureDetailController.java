@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import lombok.extern.slf4j.Slf4j;
 import net.developia.online.dto.InstructorDTO;
 import net.developia.online.dto.LectureDTO;
-import net.developia.online.services.CommentService;
 import net.developia.online.services.InstructorService;
 import net.developia.online.services.LectureService;
 import net.developia.online.services.MemberService;
@@ -48,24 +47,31 @@ public class LectureDetailController {
 	@Transactional
 	public ModelAndView detail(@PathVariable(required = true) long no, HttpSession session) {
 		ModelAndView mav = new ModelAndView("result");
-		
-		boolean already = false; //수강생 확인 
+
+		boolean already = false; // 수강생 확인
+		boolean teacher = false; // 강사 확인
 		try {
 			LectureDTO lectureDTO = lectureService.getLecture(no);
 			InstructorDTO instructorDTO = instructorService.getInstructor(no);
-			
+
 			HashMap<String, Object> checkmap = new HashMap<String, Object>();
 			checkmap.put("ID", session.getAttribute("id"));
 			List<LectureDTO> data = memberService.checkMemberLecture(checkmap);
-			
+
 			for (LectureDTO dto : data) {
 				long lecture_id = dto.getId();
 				if (lecture_id == no) {
-					//현재 로그인한 회원이 이미 강의를 수강중인 경우
+					// 현재 로그인한 회원이 이미 강의를 수강중인 경우
 					already = true;
 				}
 			}
+
+			if (instructorDTO.getMember_id().equals(session.getAttribute("id"))) {
+				teacher = true;
+			}
+
 			mav.addObject("already", already);
+			mav.addObject("teacher", teacher);
 			mav.addObject("lectureDTO", lectureDTO);
 			mav.addObject("instructorDTO", instructorDTO);
 			mav.addObject("url", "/online/lecturedetail");

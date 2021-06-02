@@ -11,8 +11,7 @@ String user = null;
 //로그인 세션 확인
 if (session.getAttribute("id") != null) {
 	user = (String) session.getAttribute("id");
-}
-else{
+} else {
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert('로그인이 필요합니다.')");
@@ -94,7 +93,9 @@ resultTime = dateForm.format(result_date);
 </style>
 </head>
 <body>
-
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	<div style="border: 3px solid silver; padding: 1px; height: 10px;"></div>
 	<div style="text-align: center; padding: 40px;">
 		<img
@@ -108,14 +109,14 @@ resultTime = dateForm.format(result_date);
 		<br> 수강 기간 <br> 총 ${lecture.duration} 일<br> <br>
 		수강 시작일 :
 		<%=dateForm.format(nowTime)%>
-		<br> <br>
+		<br> <br> <br>
 		<button type="button" class="myButton2"
 			onclick="location.href='javascript:history.back()'">취소</button>
 		<button type="button" class="myButton"
 			onclick="location.href='/online/memberlecture/action/${lecture.id}'">
 			수강신청하기</button>
 	</div>
-	
+	<div style="height: 100px;"></div>
 	<c:import url="footer.jsp"></c:import>
 </body>
 

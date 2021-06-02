@@ -52,21 +52,30 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	@Override
+	public void MemberLectureCancle(HashMap<String, Object> map) throws Exception {
+		try {
+			System.out.println(map);
+			lectureDAO.MemberLectureCancle(map);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
+	@Override
 	public List<LectureDTO> getLectureName(String term) throws Exception {
 		return lectureDAO.getLectureName(term);
 	}
-	
+
 	@Override
 	public void deleteLecture(long lectureNo) {
-		
+
 		try {
 			lectureDAO.deleteLecture(lectureNo);
-			}
-			catch(Exception e) {
-				System.out.println("삭제 에러");
-				System.out.println(e);
-			}
-			
-		
+		} catch (Exception e) {
+			System.out.println("삭제 에러");
+			System.out.println(e);
+		}
+
 	}
 }

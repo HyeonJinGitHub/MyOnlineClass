@@ -103,4 +103,28 @@ public class MemberLectureController {
 		}
 
 	}
+
+	// URL 예시 : http://localhost/online/memberlecture/cancle/{no}
+	@GetMapping("/cancle/{no}")
+	@Transactional
+	public ModelAndView memberLectureCancle(@PathVariable(required = true) long no, HttpSession session) {
+		ModelAndView mav = new ModelAndView("result");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String member_id = (String) session.getAttribute("id");
+		try {
+			map.put("lecture_id", no);
+			map.put("member_id", member_id);
+			lectureService.MemberLectureCancle(map);
+			System.out.println(no + "" + member_id);
+			mav.addObject("msg", "수강중인 과정을 취소했습니다.");
+			mav.addObject("url", "/online/classdetail/" + no);
+			return mav;
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.addObject("msg", e.getMessage());
+			mav.addObject("url", "javascript:history.back();");
+			return mav;
+		}
+
+	}
 }

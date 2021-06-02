@@ -7,11 +7,11 @@
 		resultType="LectureDTO">
 		select * from Lecture where id = #{lectureNo}
 	</select>
-	
-	<parameterMap type="java.util.HashMap"
-		id="enrollParam">
+
+	<parameterMap type="java.util.HashMap" id="enrollParam">
 		<parameter property="MEMBERID" jdbcType="VARCHAR" mode="IN" />
-		<parameter property="LECTURENAME" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="LECTURENAME" jdbcType="VARCHAR"
+			mode="IN" />
 		<parameter property="GENRE" jdbcType="VARCHAR" mode="IN" />
 		<parameter property="DURATION" jdbcType="NUMERIC" mode="IN" />
 		<parameter property="CAUTION" jdbcType="VARCHAR" mode="IN" />
@@ -21,7 +21,7 @@
 	</parameterMap>
 
 	<select id="enroll" statementType="CALLABLE"
-		parameterMap="enrollParam" >
+		parameterMap="enrollParam">
 	<![CDATA[
           {
              call lecture_pkg.enroll_lecture(
@@ -31,18 +31,20 @@
        ]]>
 	</select>
 
-	<parameterMap type="java.util.HashMap"
-		id="registerMap">
-		<parameter property="LECTURE_ID" jdbcType="INTEGER" mode="IN" />
+	<parameterMap type="java.util.HashMap" id="registerMap">
+		<parameter property="LECTURE_ID" jdbcType="INTEGER"
+			mode="IN" />
 		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
-		<parameter property="START_DATE" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="START_DATE" jdbcType="VARCHAR"
+			mode="IN" />
 		<parameter property="END_DATE" jdbcType="VARCHAR" mode="IN" />
 	</parameterMap>
 	<insert id="MemberLectureRegister" parameterMap="registerMap">
-		INSERT INTO MEMBER_LECTURE(lecture_id, member_id, start_date, end_date)
+		INSERT INTO
+		MEMBER_LECTURE(lecture_id, member_id, start_date, end_date)
 		VALUES(#{lecture_id}, #{member_id}, #{start_date}, #{end_date})
 	</insert>
-	
+
 	<select id="getLectureName" resultType="LectureDTO">
 	<![CDATA[
 		SELECT	name
@@ -50,9 +52,9 @@
 		WHERE	name like '%' || #{term} || '%'
 	]]>
 	</select>
-	
-	
-	<select id="deleteLecture" statementType="CALLABLE" >
+
+
+	<select id="deleteLecture" statementType="CALLABLE">
 	<![CDATA[
           {
              call lecture_pkg.lecture_del_proc(
@@ -61,5 +63,14 @@
           }
        ]]>
 	</select>
-	
+
+
+	<parameterMap type="java.util.HashMap" id="cancleMap">
+		<parameter property="LECTURE_ID" jdbcType="INTEGER"	mode="IN" />
+		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
+	</parameterMap>
+	<delete id="MemberLectureCancle" parameterMap="cancleMap">
+		DELETE FROM member_lecture
+		WHERE lecture_id=#{lecture_id} AND member_id=#{member_id}
+	</delete>
 </mapper>

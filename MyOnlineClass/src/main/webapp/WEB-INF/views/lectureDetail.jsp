@@ -241,18 +241,9 @@ if (session.getAttribute("id") == null) {
 												html += "<i class='fa fa-star'></i> ";
 												html += "<i class='fa fa-star'></i> ";
 												html += "</div>";
-												html += "<span>"
-														+ value.regdate
-														+ "</span>";
-												html += "<h5>"
-														+ value.name
-														+ " ("
-														+ member
-																.substring(0, 3)
-														+ "**) </h5>";
-												html += "<p class='collapse multi-collapse-" + value.no + " show'>"
-														+ value.content
-														+ "</p>"; // 일반
+												html += "<span>" + value.regdate + "</span>";
+												html += "<h5>" + value.name	+ " (" + member.substring(0, 3) + "**) </h5>";
+												html += "<p class='collapse multi-collapse-" + value.no + " show'>" + value.content	+ "</p>"; // 일반
 												html += "<form class='collapse multi-collapse-" + value.no + " '>"; // 수정모드
 												html += "<div class='form-group'>";
 												html += "<textarea class='form-control' id='comment_text_fix' rows='3'style='resize: none;'>"

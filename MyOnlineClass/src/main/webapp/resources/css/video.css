@@ -6,7 +6,14 @@ h2 {
       	color:white;
       	padding: 0px 5px;
       	margin: 40px 200px 20px 200px;
+      	
 }
+
+h2:hover{
+	color:aqua;
+	cursor: pointer;
+}
+
 
 p {
 		color:white;

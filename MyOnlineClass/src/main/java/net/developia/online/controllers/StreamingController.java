@@ -189,6 +189,10 @@ public class StreamingController{
 			
 			List<VodDTO> list = vodService.getVodList(no);
 			
+			for(int i=0;i<list.size(); i++) {
+				list.get(i).setCnt(i+1);
+				System.out.println(list.get(i));
+			}
 			
 			
 			System.out.println(list);
@@ -211,6 +215,7 @@ public class StreamingController{
 			mav.addObject("isInstructor", isInstructor);
 			
 			mav.addObject("isVodList",isVodList);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			mav.addObject("msg", e.getMessage());

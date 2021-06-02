@@ -80,19 +80,19 @@
 										
 										//console.log(data[i].id);
 										html += "<li class='video__items complate' data-idx="+myvod.id+ " id="+myvod.id+" onclick='reply_click(this.id)''>";
-										html += "<span class='video__items-tit'> "+ myvod.id +"." + myvod.title + "</span>";
+										html += "<span class='video__items-tit'> "+ (i+1) +". " + myvod.title + "</span>";
 										html += "<span class='video__player-icon'>";
-										html += "<svg width='18' aria-hidden='true' data-prefix='fal' data-icon='play-circle' class='svg-inline--fa fa-play-circle fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='currentColor' d='M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z'></path>";
-										
-										
+										html += "<svg aria-hidden='true' data-prefix='fal' data-icon='play-circle' class='svg-inline--fa fa-play-circle fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='currentColor' d='M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z'></path>";
 										html += "</svg>";
-										html +=	"<span class='video__player-time'> " + myvod.time + "</span>";
+										html +=	"<span class='video__player-time'> " + myvod.time + " </span>";
 										
 										
 										html +=	"</span> ";
 										html +=	"</li> ";
 										
 										}
+									
+										
 									}
 								$(".video__menu").html(html);
 							},
@@ -124,24 +124,15 @@
 							dataType: "text",
 							success : function() {
 								alert("삭제 성공");
-								$.ajax({
-									type: "POST",
-									url: "instructorAction",
-									data: {
-										id : member_id,
-										}
-										,
-									dataType: "text",
-									success : function() {
-											alert("강좌 삭제 & 페이지 이동");
-									},
-									
-									error : function(request, error) {
-										console.log("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
-										alert("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
-										alert('실패');
-									}
-								});
+								
+								
+							      var f = document.paging;
+							      f.id.value = "${id}"
+							      f.action = "${pageContext.request.contextPath}/instructorAction"
+							      f.method = "post"
+							      f.submit();
+								  
+								
 							},
 							
 							error : function(request, error) {
@@ -157,7 +148,10 @@
 	
 </head>
 <body>
-	
+
+	<form name="paging">
+    	<input type="hidden" name="id"/>
+    </form>
 	<h2>${lecture.name}</h2>
 	<p>${instructor.nickname} 강사님</p>
 	
@@ -225,8 +219,8 @@
 	<script id="video__total-template" type="text/x-handlebars-template">
 			{{#text}}
 			{{#if isCheck}}
-			<li class="video__items complate" data-idx={{id}} id={{id}} onclick="reply_click(this.id)">
-				<span class="video__items-tit">{{id}}.{{title}}</span>
+			<li class="video__items complate" data-idx={{id}} id={{id}} onclick="reply_click(this.id)" >
+				<span class="video__items-tit">{{cnt}}.{{title}}</span>
 				<span class="video__player-icon">
 					<svg width="18" aria-hidden="true" data-prefix="fal" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z"></path>
 					</svg>
@@ -235,7 +229,7 @@
 			</li>
 			{{else}}
 			<li class="video__items" data-idx={{id}} id={{id}} onclick="reply_click(this.id)">
-				<span class="video__items-tit">{{id}}. {{title}}</span>
+				<span class="video__items-tit">{{cnt}}. {{title}}</span>
 				<span class="video__player-icon">
 					<svg width="18" aria-hidden="true" data-prefix="fal" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z"></path>
 					</svg>

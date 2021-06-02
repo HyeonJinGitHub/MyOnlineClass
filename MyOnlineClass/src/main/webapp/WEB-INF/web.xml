@@ -46,12 +46,12 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<multipart-config>
-        <max-file-size>104857600</max-file-size> <!-- 10MB limit -->
-        <max-request-size>104857600</max-request-size>
-        <file-size-threshold>0</file-size-threshold>
-    </multipart-config>
-    <!-- fileupload multipart-config -->
+		<max-file-size>104857600</max-file-size> <!-- 10MB limit -->
+		<max-request-size>104857600</max-request-size>
+		<file-size-threshold>0</file-size-threshold>
+	</multipart-config>
+	<!-- fileupload multipart-config -->
 
 </web-app>

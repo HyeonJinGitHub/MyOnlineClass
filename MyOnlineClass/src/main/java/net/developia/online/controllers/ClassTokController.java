@@ -3,7 +3,6 @@ package net.developia.online.controllers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.HashSet;
 import java.util.List;
@@ -36,10 +35,10 @@ import net.developia.online.services.LectureService;
 public class ClassTokController {
 	@Autowired
 	private InstructorService instructorService;
-	
+
 	@Autowired
 	private LectureService lectureService;
-	
+
 	@Autowired
 	private CardService cardService;
 
@@ -48,31 +47,31 @@ public class ClassTokController {
 		List<InstructorDTO> list = instructorService.getInstructorList();
 		return list;
 	}
-	
+
 	@GetMapping(value = "cardJson", produces = "application/json; charset=UTF-8")
 	public List<CardDTO> getLecture() throws Exception {
 		List<CardDTO> list = cardService.getCardList();
 		return list;
 	}
-	
+
 	@GetMapping(value = "cardJsonSortedByEnroll", produces = "application/json; charset=UTF-8")
 	public List<CardDTO> getLectureSortedByEnroll() throws Exception {
 		List<CardDTO> list = cardService.getCardListSortedByEnroll();
-		
+
 		System.out.println("리턴 행 갯수(ASC) : " + list.size());
-		
+
 		return list;
 	}
-	
+
 	@GetMapping(value = "cardJsonSortedByDeadline", produces = "application/json; charset=UTF-8")
 	public List<CardDTO> getLectureSortedByDeadline() throws Exception {
 		List<CardDTO> list = cardService.getCardListSortedByDeadline();
-		
+
 		System.out.println("리턴 행 갯수(DESC) : " + list.size());
-		
+
 		return list;
 	}
-	
+
 	@GetMapping(value = "cardJsonWithKeyword", produces = "application/json; charset=UTF-8")
 	public List<CardDTO> getLectureWithKeyword(HttpServletRequest request, HttpSession session) throws Exception {
 		List<CardDTO> list;
@@ -83,7 +82,7 @@ public class ClassTokController {
 			list = cardService.getCardListWithKeyword(keyword);
 		}
 //		System.out.println("리턴 행 갯수 : " + list.size());
-		
+
 		session.setAttribute("numberOfReturnRows", list.size());
 		return list;
 	}
@@ -94,15 +93,15 @@ public class ClassTokController {
 	}
 
 	@PostMapping(value = "/registerAction")
-	public ModelAndView registerAction(HttpSession session,HttpServletRequest request, @RequestParam(required = true) String id,
-			@RequestParam(required = true) String name, @RequestParam(required = true) String email,
-			@RequestParam(required = true) String phone, @RequestParam(required = true) String nickname,
-			@RequestParam(required = true) String introduce, @RequestParam("image") MultipartFile file)
-			throws Exception {
+	public ModelAndView registerAction(HttpSession session, HttpServletRequest request,
+			@RequestParam(required = true) String id, @RequestParam(required = true) String name,
+			@RequestParam(required = true) String email, @RequestParam(required = true) String phone,
+			@RequestParam(required = true) String nickname, @RequestParam(required = true) String introduce,
+			@RequestParam("image") MultipartFile file) throws Exception {
 		/* 파일 경로 */
 		String path = "C:/online/resources/instructor";
 		File folder = new File(path);
-		if(!folder.exists()) {
+		if (!folder.exists()) {
 			try {
 				folder.mkdirs();
 			} catch (Exception e) {
@@ -133,7 +132,7 @@ public class ClassTokController {
 		instructorDTO.setImage(image);
 
 		instructorService.registerInstructor(instructorDTO);
-		
+
 		session.setAttribute("nickname", instructorDTO.getNickname());
 		return new ModelAndView("classtok");
 	}
@@ -157,21 +156,21 @@ public class ClassTokController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 	}
-	
+
 	@GetMapping(value = "thumbnailDownload")
 	public void thumbnailDownload(String fileName, String lectureName, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=utf-8");
 		String file_repo = "C:/online/resources/lecture";
-		
+
 		file_repo += "/";
 		file_repo += lectureName;
 		file_repo += "/";
 		file_repo += "thumbnail";
 
 		String downFile = file_repo + "/" + fileName;
-		
+
 		File f = new File(downFile);
 		response.setHeader("Cache-Control", "no-cache");
 		response.addHeader("Content-disposition", "attachment; fileName=" + URLEncoder.encode(fileName, "UTF-8"));
@@ -185,36 +184,36 @@ public class ClassTokController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 	}
-	
+
 	@PostMapping(value = "getInstFlag", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public InstructorDTO getInstFlag(HttpServletRequest request) throws Exception {
-		String id = (String)request.getParameter("id");
+		String id = (String) request.getParameter("id");
 		InstructorDTO instructorDTO = instructorService.getInstFlag(id);
 		return instructorDTO;
 	}
-	
+
 	@RequestMapping(value = "autoComplete")
 	public Set<String> autoComplete(String term) throws Exception {
 		Set<String> keyword = new HashSet<String>();
-		
+
 		List<InstructorDTO> instructorDTO = instructorService.getNickname(term);
 		List<LectureDTO> lectureDTO = lectureService.getLectureName(term);
-		
+
 		for (int i = 0; i < instructorDTO.size(); i++) {
 			keyword.add(instructorDTO.get(i).getNickname());
 		}
-		
+
 		for (int i = 0; i < lectureDTO.size(); i++) {
 			keyword.add(lectureDTO.get(i).getName());
 		}
-		
+
 		return keyword;
 	}
-	
-	@RequestMapping(value = "/search/{keyword}", method = {RequestMethod.POST, RequestMethod.GET})
+
+	@RequestMapping(value = "/search/{keyword}", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView search(@PathVariable(required = true) String keyword) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("keyword", keyword);
@@ -222,8 +221,8 @@ public class ClassTokController {
 		return mav;
 //		return new ModelAndView("search");
 	}
-	
-	@RequestMapping(value = "/search", method = {RequestMethod.POST, RequestMethod.GET})
+
+	@RequestMapping(value = "/search", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView searchAll() throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("keyword", "all");
@@ -231,7 +230,7 @@ public class ClassTokController {
 		return mav;
 //		return new ModelAndView("search");
 	}
-	
+
 	@GetMapping(value = "earlybird")
 	public ModelAndView earlybird() throws Exception {
 		return new ModelAndView("earlybird");

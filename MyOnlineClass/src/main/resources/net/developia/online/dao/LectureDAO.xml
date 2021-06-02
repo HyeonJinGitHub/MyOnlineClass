@@ -30,7 +30,7 @@
           }
        ]]>
 	</select>
-		
+
 	<parameterMap type="java.util.HashMap"
 		id="registerMap">
 		<parameter property="LECTURE_ID" jdbcType="INTEGER" mode="IN" />
@@ -49,6 +49,17 @@
 		FROM	lecture
 		WHERE	name like '%' || #{term} || '%'
 	]]>
+	</select>
+	
+	
+	<select id="deleteLecture" statementType="CALLABLE" >
+	<![CDATA[
+          {
+             call lecture_pkg.lecture_del_proc(
+				#{lectureNo}
+			)
+          }
+       ]]>
 	</select>
 	
 </mapper>

@@ -84,6 +84,7 @@
 <script>
     $(function() {
     	$('#MOVE_TOP_BTN').show();
+    	$('#KAKAO_BTN').show();
         $(window).scroll(function() {
             if ($(this).scrollTop() > 0) {
 //                 $('#MOVE_TOP_BTN').fadeIn();
@@ -97,7 +98,11 @@
                 scrollTop : 0
             }, 400);
             return false;
-        }); 
+        });
+        
+        $("#KAKAO_BTN").click(function() {
+            window.open('https://open.kakao.com/o/sxy0MCgd', '_blank');
+        });
     });
 </script>
 
@@ -256,6 +261,7 @@ body {
 }
 </style>
 
+<!-- Swiper Style -->
 <style>
 html, body {
 	position: relative;
@@ -338,6 +344,7 @@ body {
 }
 </style>
 
+<!-- Sidebar Style -->
 <style>
 .my-box {
 	border: 1px solid #ff5a5f;
@@ -356,11 +363,16 @@ a#MOVE_TOP_BTN {
 	
 a#KAKAO_BTN {
 	position: fixed;
-	right: 10%;
-	bottom: 80px;
+	right: 5%;
+	bottom: 160px;
 	display: none;
 	/* 화면 레이어 최상단으로 MOVE_TOP_BTN을 표시 */
 	z-index: 999;
+}
+
+.ui-autocomplete {
+	font-size: 13px;
+	z-index: 9999 !important;
 }
 </style>
 
@@ -371,7 +383,10 @@ a#KAKAO_BTN {
 	<a id="MOVE_TOP_BTN" href="#"> <img
 		src="${contextPath}/resources/image/icon_move_top.png">
 	</a>
-	<div id="images"></div>
+	<a id="KAKAO_BTN" href="#"> <img
+		src="${contextPath}/resources/image/icon_fixed_katalk.png">
+	</a>
+
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		style="background-color: #ffffff;">
@@ -424,16 +439,15 @@ a#KAKAO_BTN {
    </nav>
 	<div class="container" style="padding-top: 50px; padding-bottom: 30px;">
 		<div style="display: inline; padding-right: 28px;">
-			<a href="${contextPath}/notify"
-				style="color: black; text-decoration: none;"> <i
-				class="far fa-bell"></i> 오픈알림
+			<a  style="color: black; text-decoration: none; cursor: pointer;"> 
+			<i class="far fa-bell"></i> 오픈알림
 			</a>
 		</div>
 
 		<div style="display: inline; padding-right: 28px;">
 			<a href="${contextPath}/earlybird"
-				style="color: black; text-decoration: none;"> <i
-				class="far fa-gem"></i> 기획전
+				style="color: black; text-decoration: none;"> 
+				<i class="far fa-gem"></i> 기획전
 			</a>
 		</div>
 
@@ -562,7 +576,7 @@ a#KAKAO_BTN {
 		</div>
 
 		<div class="container">
-			<div class="row" style="margin-left: 20px;">
+			<div class="row" style="margin-left: 3px;">
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;" onclick="categorySearch('운동')"
 					>

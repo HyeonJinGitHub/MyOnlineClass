@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 
 <style>
+
+
 .footer {
 	padding-top: 70px;
 	padding-bottom: 0;
+	background-color: #121212;
 }
 
 .footer__about {
@@ -172,7 +175,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
-<body>
+
 	<!-- Footer Section Begin-->
 	<footer class="footer">
 		<div class="container">
@@ -200,5 +203,5 @@
 		</div>
 	</footer>
 	<!-- Footer Section End -->
-</body>
+
 </html>

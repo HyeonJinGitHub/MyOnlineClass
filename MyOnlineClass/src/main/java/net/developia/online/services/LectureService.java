@@ -15,6 +15,8 @@ public interface LectureService {
 	//public void MemberLectureRegister(String MemberId) throws Exception; // 수강생 여부 확인
 
 	public List<LectureDTO> getLectureName(String term) throws Exception;
+
+	public void deleteLecture(long lectureNo);
 	
 
 }

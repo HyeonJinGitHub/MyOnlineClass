@@ -205,6 +205,9 @@ is
         password = input_password;
 
         if cnt > 0 then
+            delete from lecture
+            where id in (select lecture_id
+            from enrollment where input_id = member_id);
             delete from member
             where id = input_id;
             commit;
@@ -314,8 +317,12 @@ is
     procedure lecture_video_proc(
     input_lecture_id in number,
     input_title in varchar2,
-    input_time in varchar2,
     input_src in varchar2);
+
+
+    procedure lecture_del_proc(
+    p_lecture in number);
+
 
 end lecture_pkg;
 
@@ -347,7 +354,6 @@ is
     procedure lecture_video_proc(
     input_lecture_id in number,
     input_title in varchar2,
-    input_time in varchar2,
     input_src in varchar2
     )
     as
@@ -355,9 +361,32 @@ is
     begin
     video_id := video_no_seq.nextval;
     insert into video
-    values(video_id, input_title, input_time, input_src);  
+    values(video_id, input_title, input_src);  
     insert into lecture_video
     values(input_lecture_id, video_id);
     commit;
     end lecture_video_proc;
+
+
+    procedure lecture_del_proc(
+    p_lecture in number
+    )
+   as
+   begin
+   delete
+       from video
+       where id in
+           (select id 
+           from lecture_video 
+           where video_id in (select video_id
+                               from lecture_video
+                               where lecture_id = p_lecture));
+
+     delete
+     from lecture
+     where id = p_lecture;
+     
+     commit;
+     end lecture_del_proc;
+
 end lecture_pkg;

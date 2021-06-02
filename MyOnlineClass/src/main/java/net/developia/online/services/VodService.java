@@ -10,8 +10,7 @@ public interface VodService {
 	List<VodDTO> getVodList(long lectureNo) throws SQLException;
 
 	void registerLectureVod(HashMap<String, Object> map) throws SQLException;
+	
+	void deleteVOD(long vodNo) throws SQLException;
 
-	/*
-	void registerVod(VodDTO vodDTO) throws SQLException;
-	*/
 }

@@ -55,6 +55,24 @@ public class ClassTokController {
 		return list;
 	}
 	
+	@GetMapping(value = "cardJsonSortedByEnroll", produces = "application/json; charset=UTF-8")
+	public List<CardDTO> getLectureSortedByEnroll() throws Exception {
+		List<CardDTO> list = cardService.getCardListSortedByEnroll();
+		
+		System.out.println("리턴 행 갯수(ASC) : " + list.size());
+		
+		return list;
+	}
+	
+	@GetMapping(value = "cardJsonSortedByDeadline", produces = "application/json; charset=UTF-8")
+	public List<CardDTO> getLectureSortedByDeadline() throws Exception {
+		List<CardDTO> list = cardService.getCardListSortedByDeadline();
+		
+		System.out.println("리턴 행 갯수(DESC) : " + list.size());
+		
+		return list;
+	}
+	
 	@GetMapping(value = "cardJsonWithKeyword", produces = "application/json; charset=UTF-8")
 	public List<CardDTO> getLectureWithKeyword(HttpServletRequest request, HttpSession session) throws Exception {
 		List<CardDTO> list;
@@ -64,7 +82,7 @@ public class ClassTokController {
 		} else {
 			list = cardService.getCardListWithKeyword(keyword);
 		}
-		System.out.println("리턴 행 갯수 : " + list.size());
+//		System.out.println("리턴 행 갯수 : " + list.size());
 		
 		session.setAttribute("numberOfReturnRows", list.size());
 		return list;

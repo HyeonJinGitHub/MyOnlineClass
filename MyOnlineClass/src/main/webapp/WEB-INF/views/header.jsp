@@ -215,9 +215,12 @@ a#MOVE_TOP_BTN {
     right: 5%;
     bottom: 80px;
     display: none;
-    
-/* 화면 레이어 최상단으로 MOVE_TOP_BTN을 표시 */
     z-index: 999;
+}
+
+.ui-autocomplete {
+	font-size: 13px;
+	z-index: 9999 !important;
 }
 </style>
 

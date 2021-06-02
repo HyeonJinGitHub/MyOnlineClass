@@ -23,4 +23,14 @@ public class CardServiceImpl implements CardService {
 	public List<CardDTO> getCardListWithKeyword(String keyword) throws SQLException {
 		return cardDAO.getCardListWithKeyword(keyword);
 	}
+
+	@Override
+	public List<CardDTO> getCardListSortedByEnroll() throws SQLException {
+		return cardDAO.getCardListSortedByEnroll();
+	}
+
+	@Override
+	public List<CardDTO> getCardListSortedByDeadline() throws SQLException {
+		return cardDAO.getCardListSortedByDeadline();
+	}
 }

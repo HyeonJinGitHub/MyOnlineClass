@@ -41,7 +41,7 @@
     </ol>
    <div class="jumbotron" style="height: 100%">
       <h1 class="display-3" style="text-align: center;margin-top: -30px;margin-bottom: 50px;">회원가입</h1>
-      <form action="${pageContext.request.contextPath}/joinAction" class="was-validated" method="post" onsubmit="return validate()">
+      <form action="${pageContext.request.contextPath}/joinAction" class="was-validated" method="post" onsubmit="return registerCheck()">
           <div class="form-group" style="width: 50%;margin: 0 auto; overflow: hidden;">
             <input type="text" class="form-control" id="uid" style="width:78%; float: left;" placeholder="아이디 입력" name="uid" required>
             <input id="idck" type="button"  onclick="duplicationId();" class="btn btn-primary" style="width:20%; margin-left:10px; float:left; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
@@ -121,6 +121,7 @@
 					if(data > 0) {
 	  					alert('아이디가 존재합니다. 다른 아이디를 입력해주세요.');
 	  					$("#uid").focus();
+	  					idck = 0;
 	  				} else {
 	  					alert('사용가능한 아이디입니다.');
 	  					$('#uid').focus();
@@ -144,6 +145,7 @@
 					if(data > 0) {
 	  					alert('이미 사용 중인 이메일입니다. 다른 이메일을 입력해주세요.');
 	  					$("#uemail").focus();
+	  					emailck = 0;
 	  				} else {
 	  					alert('사용가능한 이메일입니다.');
 	  					$('#uemail').focus();
@@ -168,16 +170,41 @@
 					if(data > 0) {
 	  					alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');
 	  					$("#uphone").focus();
+	  					phoneck = 0;
 	  				} else {
 	  					alert('사용가능한 번호입니다.');
 	  					$('#uphone').focus();
-	  					emailck = 1;
+	  					phoneck = 1;
 	  				}
 				},
 				error : function(error) {
 					alert('error : ' + error);
 				}
 			});
+ 	}
+ 	$('#uid').on('keyup', function() {
+		idck = 0;
+	});
+ 	$('#uemail').on('keyup', function() {
+ 		emailck = 0;
+	});
+ 	$('#uphone').on('keyup', function() {
+ 		phoneck = 0;
+	});
+ 	function registerCheck() {
+ 		if(idck == 0) {
+ 			alert('아이디 중복 여부를 확인해주세요.');
+ 			return false;
+ 		}
+ 		if(emailck == 0) {
+ 			alert('이메일 중복 여부를 확인해주세요.');
+ 			return false;
+ 		}
+ 		if(phoneck == 0) {
+ 			alert('핸드폰 중복 여부를 확인해주세요.');
+ 			return false;
+ 		}
+ 		return true;
  	}
   </script>
   

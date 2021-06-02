@@ -66,13 +66,15 @@ if (session.getAttribute("id") == null) {
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/style.css"
 	type="text/css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
+
 	$(function() {
-		getCommentList();
+		getCommentList(1);
 	});
 
 	$(document).on("click", "#commentbtn", function() {
@@ -110,7 +112,7 @@ if (session.getAttribute("id") == null) {
 					$("#commentbtn").attr('disabled', false);
 					return;
 				}
-				getCommentList(); // 댓글 목록 출력 함수 호출 
+				getCommentList(1); // 댓글 목록 출력 함수 호출 
 				$("#comment_text").val(""); // 댓글 내용 초기화 
 				$("#commentbtn").attr('disabled', false);
 			},
@@ -147,7 +149,7 @@ if (session.getAttribute("id") == null) {
 					else if(result == "False"){
 						alert("나의 게시글만 삭제가 가능합니다."); 
 					}
-					getCommentList(); // 댓글 목록 출력 함수 호출 
+					getCommentList(1); // 댓글 목록 출력 함수 호출 
 					$("#commentbtn").attr('disabled', false);
 				},
 				dataType: "text",
@@ -192,7 +194,7 @@ if (session.getAttribute("id") == null) {
 					else if(result == "False"){
 						alert("나의 게시글만 수정이 가능합니다."); 
 					}
-					getCommentList(); // 댓글 목록 출력 함수 호출 
+					getCommentList(1); // 댓글 목록 출력 함수 호출 
 					$("#updatecmt").attr('disabled', false);
 				},
 				dataType: "text",
@@ -206,56 +208,71 @@ if (session.getAttribute("id") == null) {
 		
 	});
 	
+	$(document).on("click", "#updatecmt_undo", function() {
+		getCommentList(1);
+	});
 	
-	function getCommentList() {
+	<%long page_num = 1;%>
+	
+	function getCommentList(page) {
 		var user = '<%=(String) session.getAttribute("id")%>';
-		$
-				.ajax({
-					type : 'GET',
-					url : "<c:url value='/classdetail/${lecture.id}/1'/>",
-					dataType : "json",
-					data : $("#commentlist").serialize(),
-					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+		$.ajax({
+					type : 'POST',
+					url : "<c:url value='/classdetail/${lecture.id}/list'/>",
+					headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
+					dataType: "json",
+					contentType: "application/json",
+					data : JSON.stringify({ page : page }), 
 					success : function(data) {
 
 						var html = "";
-
-						if (data.length > 0) {
-
-							for (i = 0; i < data.length; i++) {
-								var member = data[i].member_id;
-								html += "<div class='listing__details__comment__item'>";
-								html += "<div class='listing__details__comment__item__pic'>";
-								html += "<img src='${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png' alt=''>";
-								html += "</div>";
-								html += "<div class='listing__details__comment__item__text'>";
-								html += "<div class='listing__details__comment__item__rating'>";
-								html += "<i class='fa fa-star'></i> ";
-								html += "<i class='fa fa-star'></i> ";
-								html += "<i class='fa fa-star'></i> ";
-								html += "<i class='fa fa-star'></i> ";
-								html += "<i class='fa fa-star'></i> ";
-								html += "</div>";
-								html += "<span>" + data[i].regdate + "</span>";
-								html += "<h5>" + data[i].name + " ("
-										+ member.substring(0, 3) + "**) </h5>";
-								html += "<p class='collapse multi-collapse-" + data[i].no + " show'>"
-										+ data[i].content + "</p>"; // 일반
-								html += "<form class='collapse multi-collapse-" + data[i].no + " '>"; // 수정모드
-								html += "<div class='form-group'>";
-								html += "<textarea class='form-control' id='comment_text_fix' rows='3'style='resize: none;'>"
-										+ data[i].content + "</textarea>";
-								html += "</div>";
-								html += "<button type='button' id='updatecmt_do' class='cmtfixbtn' value = " + data[i].no + " name =" + data[i].name + ">수정 완료</button>";
-								html += "</form>";
-								if (user == member) {
-									html += "<ul>";
-									html += "<li><button id='updatecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + " data-toggle='collapse' data-target='.multi-collapse-" + data[i].no + " '><i class='fa fa-hand-o-right'></i> 수정하기</button></li>";
-									html += "<li><button id='deletecmt' class='cmtbtn collapse multi-collapse-" + data[i].no + " show' value = " + data[i].no + " name =" + data[i].name + "><i class='fa fa-share-square-o'></i> 삭제하기</button></li>";
-									html += "</ul>";
-								}
-								html += "</div>" + "</div>";
-							}
+						var startPage = data.startPage;
+						var endPage = data.endPage;
+						var commentList = data.commentlist;
+						if (commentList != null) {
+							$.each( commentList, function(key, value) {
+												var member = value.member_id;
+												html += "<div class='listing__details__comment__item'>";
+												html += "<div class='listing__details__comment__item__pic'>";
+												html += "<img src='${pageContext.request.contextPath}/resources/vendor/bootstrap/img/listing/details/comment_icon.png' alt=''>";
+												html += "</div>";
+												html += "<div class='listing__details__comment__item__text'>";
+												html += "<div class='listing__details__comment__item__rating'>";
+												html += "<i class='fa fa-star'></i> ";
+												html += "<i class='fa fa-star'></i> ";
+												html += "<i class='fa fa-star'></i> ";
+												html += "<i class='fa fa-star'></i> ";
+												html += "<i class='fa fa-star'></i> ";
+												html += "</div>";
+												html += "<span>"
+														+ value.regdate
+														+ "</span>";
+												html += "<h5>"
+														+ value.name
+														+ " ("
+														+ member
+																.substring(0, 3)
+														+ "**) </h5>";
+												html += "<p class='collapse multi-collapse-" + value.no + " show'>"
+														+ value.content
+														+ "</p>"; // 일반
+												html += "<form class='collapse multi-collapse-" + value.no + " '>"; // 수정모드
+												html += "<div class='form-group'>";
+												html += "<textarea class='form-control' id='comment_text_fix' rows='3'style='resize: none;'>"
+														+ value.content
+														+ "</textarea>";
+												html += "</div>";
+												html += "<button type='button' id='updatecmt_do' class='cmtfixbtn' value = " + value.no + " name =" + value.name + ">수정 완료</button>";
+												html += "<button type='button' id='updatecmt_undo' class='cmtfixbtn' value = " + value.no + " name =" + value.name + ">수정 취소</button>";
+												html += "</form>";
+												if (user == member) {
+													html += "<ul>";
+													html += "<li><button id='updatecmt' class='cmtbtn collapse multi-collapse-" + value.no + " show' value = " + value.no + " name =" + value.name + " data-toggle='collapse' data-target='.multi-collapse-" + value.no + " '><i class='fa fa-hand-o-right'></i> 수정하기</button></li>";
+													html += "<li><button id='deletecmt' class='cmtbtn collapse multi-collapse-" + value.no + " show' value = " + value.no + " name =" + value.name + "><i class='fa fa-share-square-o'></i> 삭제하기</button></li>";
+													html += "</ul>";
+												}
+												html += "</div>" + "</div>";
+											})
 						} else {
 							html += "<div class='listing__details__comment__item'>";
 							html += "<div class='listing__details__comment__item__pic'>";
@@ -266,7 +283,19 @@ if (session.getAttribute("id") == null) {
 							html += "<p>등록된 댓글이 없습니다.</p>";
 							html += "</div>";
 						}
+
+						var html_page = '<button id = "pagebtn" onclick = "getCommentList(1)" class = "w3-button">&laquo;</button>';
+						for (var num = startPage; num <= endPage; num++) {
+							if (num == page) {
+								html_page += '<button id = "pagebtn" onclick = "getCommentList(' + num + ')" class = "w3-button w3-blue">' + num + '</button>';
+							} else {
+								html_page +=  '<button id = "pagebtn" onclick = "getCommentList(' + num + ')" class = "w3-button">' + num + '</button>';
+							}
+						}
+						html_page +=  '<button id = "pagebtn" onclick = "getCommentList(' + endPage + ')" class = "w3-button">&raquo;</a>';
+
 						$("#commentList").html(html);
+						$("#commentPage").html(html_page);
 					},
 					error : function(request, status, error) {
 					}
@@ -318,6 +347,7 @@ if (session.getAttribute("id") == null) {
 	color: #ffffff;
 	font-size: 15px;
 	padding: 5px 7px 5px 7px;
+	margin: 3px 10px 3px 0px;
 	text-decoration: none;
 }
 
@@ -362,9 +392,7 @@ if (session.getAttribute("id") == null) {
 								</div>
 							</div>
 							<p>${lecture.duration}일과정</p>
-							<p>
-							<h6># ${lecture.genre}</h6>
-							</p>
+							<p># ${lecture.genre}</p>
 						</div>
 					</div>
 				</div>
@@ -373,8 +401,8 @@ if (session.getAttribute("id") == null) {
 						<a href="javascript:history.back()" class="primary-btn share-btn"><i
 							class="fa fa-mail-reply"></i> 뒤로가기</a>
 						<c:if test="${already eq true}">
-							<a href="/online/memberlecture/${lecture.id}" class="primary-btn">
-								<i class="fa fa-bookmark"></i> 강의보기
+							<a href="/online/vodStreaming?no=${lecture.id}"
+								class="primary-btn"> <i class="fa fa-bookmark"></i> 강의실 이동
 							</a>
 						</c:if>
 						<c:if test="${already eq false}">
@@ -466,6 +494,8 @@ if (session.getAttribute("id") == null) {
 						<div class="listing__details__comment">
 							<h4>Comment</h4>
 							<div id="commentList"></div>
+							<div id="commentPage" class="w3-bar" style="text-align: center;"></div>
+							<br>
 						</div>
 						<div class="listing__details__review">
 							<h4>Add Comment</h4>
@@ -486,18 +516,10 @@ if (session.getAttribute("id") == null) {
 						<div class="listing__sidebar__contact">
 							<div
 								style="position: absoulte; text-align: center; border-radius: 70%; overflow: hidden;">
-								<form name="InstructorPageDo"
-									action="${pageContext.request.contextPath}/instructorAction"
-									method="POST">
-									<input type="hidden" name="id" value="${instructor.member_id}" />
-								</form>
-								<a href="#"
-									onclick="javascript:document.InstructorPageDo.submit();"> <br>
-									<img
+								<br> <img
 									src="${pageContext.request.contextPath}/imageDownload?fileName=${instructor.image}"
 									alt="Profile"
 									style="width: 90%; max-width: 300px; height: 300px; margin: 2 auto 0; border: 1px solid #efefef; border-radius: 70%; background-repeat: no-repeat; background-size: cover; background-position: center; object-fit: cover; vertical-align: middle;">
-								</a>
 							</div>
 							<div class="listing__sidebar__contact__text">
 								<h6>강사</h6>
@@ -521,18 +543,17 @@ if (session.getAttribute("id") == null) {
 								</ul>
 								<div class="listing__details__review"
 									style="text-align: center;">
-									<c:if test="${already eq true}">
-										<button type="button" class="site-btn"
-											onclick="location.href='/online/memberlecture/${lecture.id}'">
-											<i class="fa fa-bookmark"></i> 강의보기
-										</button>
-									</c:if>
-									<c:if test="${already eq false}">
-										<button type="button" class="site-btn"
-											onclick="location.href='/online/memberlecture/${lecture.id}'">
-											<i class="fa fa-bookmark"></i> 수강신청
-										</button>
-									</c:if>
+
+									<form name="InstructorPageDo"
+										action="${pageContext.request.contextPath}/instructorAction"
+										method="POST">
+										<input type="hidden" name="id" value="${instructor.member_id}" />
+									</form>
+
+									<button type="button" class="site-btn"
+										onclick="javascript:document.InstructorPage.submit();">
+										프로필 보기</button>
+
 								</div>
 							</div>
 						</div>

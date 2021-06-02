@@ -259,4 +259,18 @@ public class MeberServiceImpl implements MemberService {
 		}
 	}
 
+	@Override
+	public void getMemberByNickname(HashMap<String, Object> map) throws Exception {
+		try {
+			memberDAO.selectMemberByNickname(map);
+			List<MemberDTO> output = (List) map.get("MemberList");
+			if (output.size() != 0) {
+				throw new RuntimeException("닉네임이 존재합니다. 다른 닉네임을 입력해주세요.");
+			}
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			throw e;
+		}
+	}
+
 }

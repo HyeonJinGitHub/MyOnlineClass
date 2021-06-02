@@ -82,5 +82,23 @@ public class CheckController {
 		return 0;
 	}
 	
-	
+	@PostMapping("/nicknamecheck")
+	@ResponseBody
+	@Transactional
+	public int nicknamecheck(@RequestParam(required = true) String nickname) {
+		if(nickname.equals("")) {
+			return 2;
+		}
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("NICKNAME_ID", nickname);
+			memberService.getMemberByNickname(map);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 1;
+		}
+		return 0;
+	}
 }

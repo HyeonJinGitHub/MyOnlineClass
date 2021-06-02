@@ -311,5 +311,24 @@
           }
        ]]>
 	</select>
+	
+	<parameterMap type="java.util.HashMap" id="NicknameParam">
+		<parameter property="NICKNAME_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="MemberList" jdbcType="CURSOR"
+			mode="OUT" resultMap="NicknameResultMap" />
+	</parameterMap>
+		<resultMap type="InstructorDTO" id="NicknameResultMap">
+		<result property="nickname" column="NICKNAME" />
+	</resultMap>
+	<select id="selectMemberByNickname" statementType="CALLABLE"
+		parameterMap="NicknameParam" resultMap="NicknameResultMap">
+	<![CDATA[
+          {
+             call member_pkg.select_memberByNickname(
+				?, ?
+			)
+          }
+       ]]>
+	</select>
 
 </mapper>

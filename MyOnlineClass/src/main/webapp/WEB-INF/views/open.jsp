@@ -141,7 +141,7 @@ a#MOVE_TOP_BTN {
 						</h3>
 						<br>
 						
-						<form id="register" method='POST' action="${contextPath}/registerAction" enctype="multipart/form-data">
+						<form id="register" method='POST' action="${contextPath}/registerAction" enctype="multipart/form-data" onsubmit="return registerCheck()">
 							<input type="hidden" value="${id}" name="id">
 							<input type="hidden" value="${name}" name="name"> 
 							<input type="hidden" value="${email}" name="email"> 
@@ -219,6 +219,20 @@ a#MOVE_TOP_BTN {
 	$('#nickname').on('keyup', function() {
 		nicknameck = 0;
 	});
+	function registerCheck() {
+ 		if(nicknameck == 0) {
+ 			alert('닉네임 중복 여부를 확인해주세요.');
+ 			return false;
+ 		} else {
+ 			var result = confirm('강사로 등록하시겠습니까?');
+ 			if (result) {
+ 				return true;
+ 			} else {
+ 				return false;
+ 			}
+ 		}
+ 		return true;
+ 	}
 	</script>
 </body>
 </html>

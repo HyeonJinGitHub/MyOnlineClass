@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="enrollment_lecture_FK" directorySegmentName="seg_0" id="52D4D666-58B5-0E93-1D22-E0731D45A6CB">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>A6AA6413-8F0D-A25E-DC6F-6C6519FA1334</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<sourcePk>EA1C7B6B-60A0-8523-7DD4-C14072B6CAEB</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D3201722-8C48-DC32-B0D0-E7E00E0D4A87</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>3083CB5C-6869-7E84-0BF0-981CA5D3AE20</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

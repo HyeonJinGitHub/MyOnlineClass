@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D1C168F4-C28F-1942-8863-A999FEEC686C" name="member_lecture">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>7139DDE4-ADED-71F4-F79F-0185D57E4152</importedID>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="lecture_id" id="83F39F0E-F682-F446-D3DD-FF7A8633B96C">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>95AA8EBC-7478-D579-F3E6-290B20AFA46E</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A82A4E86-655A-C96C-2C2E-F94F1573A4A6" referredColumn="73CFFF4E-6192-F11D-7011-EAFE63A07D02"/>
+</associations>
+</Column>
+<Column name="member_id" id="1818A68C-3DEA-1840-5AD2-5A2149ADE0C6">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>54A9EB48-33FB-989C-E589-417D8E958F8C</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BFE26635-1974-E406-FD8B-FAC68689924B" referredColumn="2B9D0A93-88C6-60B7-EEAB-C5975C5FC7A7"/>
+</associations>
+</Column>
+<Column name="start_date" id="A023B402-E1F2-C256-AE0E-1D239721127A">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>E8317DE2-72E8-74AC-91C9-A4BDC1202F6A</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="end_date" id="25797B0B-D930-5353-82CA-7A5A94F26C1E">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>62268618-3A05-E452-EA04-7F98A1CD6C9F</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="597BA580-4311-3A39-25EB-E3F52640798E" name="member_lecture_PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>7C763781-D0FE-EB4F-0570-CD6CAD1D9401</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1818A68C-3DEA-1840-5AD2-5A2149ADE0C6"/>
+<colUsage columnID="83F39F0E-F682-F446-D3DD-FF7A8633B96C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F5D761E4-EBE3-87C0-185A-C4400FF348F5" name="member_lecture_lecture_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="83F39F0E-F682-F446-D3DD-FF7A8633B96C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="758EAA2A-3031-F70A-DC67-E108C3764D23" name="member_lecture_member_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1818A68C-3DEA-1840-5AD2-5A2149ADE0C6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

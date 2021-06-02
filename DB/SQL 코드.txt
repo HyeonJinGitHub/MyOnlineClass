@@ -95,7 +95,6 @@ CREATE TABLE video (
 
     id     NUMBER(5) NOT NULL,
     title  VARCHAR2(100) NOT NULL,
-    time   VARCHAR2(300) NOT NULL,
     src    VARCHAR2(300) NOT NULL
 );
 

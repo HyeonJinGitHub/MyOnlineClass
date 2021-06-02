@@ -13,7 +13,4 @@ public interface VodService {
 	
 	void deleteVOD(long vodNo) throws SQLException;
 
-	/*
-	void registerVod(VodDTO vodDTO) throws SQLException;
-	*/
 }

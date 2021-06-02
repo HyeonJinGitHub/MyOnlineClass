@@ -112,6 +112,9 @@ String phone = (String) session.getAttribute("phone");
 <style>
 
 	
+input::placehoder{
+	color: black !important;
+}
 
 body {
 	padding-top: 56px;
@@ -311,23 +314,14 @@ body {
 							<input type="text" id="lecturename" name="lecturename"
 								placeholder="강좌명을 입력하세요" maxlength="10" autocomplete="off"
 								required="required"
-								style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
+								style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px; ">
 							<div id="lecturenameCount"
 								style="display: inline; padding-left: 10px;">(0 / 50)</div>
+							<span style="display: inline; visibility: hidden">0</span>
 						</div>
 					</div>
 					<br>
 
-					<div>
-						<span style="position: relative; left: 40px; color: gray;">#</span>
-						<input type="text" id="time" name="time"
-							placeholder="시간 입력(나중에 제거)." maxlength="50" autocomplete="off"
-							required="required"
-							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
-						<div id="genreCount" style="display: inline; padding-left: 10px;">(0
-							/ 50)</div>
-					</div>
-					
 					<br><br>
 					
 				         <input multiple="multiple" type="file" name="file1" style= "display:none"/>

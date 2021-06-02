@@ -46,102 +46,110 @@
 		
 		function reply_click(clicked_id){
 			delete_id = clicked_id;
-			alert(clicked_id);
+			
 		}
 		
 		
 		
 		function delBtn(lecture_id){
-			alert(delete_id)
-			alert('이제 삭제 가능')	
 			
 			
-			$.ajax({
-					type: "POST",
-					url: "vodDelete",
-					data: {
-						
-						lecture_no : lecture_id,
-						del_no : delete_id}
-						,
-					dataType: "json",
-					success : function(data) {
-
-						var html = "";
-
-						if (data.length > 0) {
-							
-							for (i = 0; i < data.length; i++) {
-								var myvod = data[i];
-								console.log(myvod.id);
-								console.log(${myvod.id});
-								
-								//console.log(data[i].id);
-								html += "<li class='video__items complate' data-idx="+myvod.id+ " id="+myvod.id+" onclick='reply_click(this.id)''>";
-								html += "<span class='video__items-tit'> "+ myvod.id +"." + myvod.title + "</span>";
-								html += "<span class='video__player-icon'>";
-								html += "<svg width='18' aria-hidden='true' data-prefix='fal' data-icon='play-circle' class='svg-inline--fa fa-play-circle fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='currentColor' d='M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z'></path>";
-								
-								
-								html += "</svg>";
-								html +=	"<span class='video__player-time'> " + myvod.time + "</span>";
-								
-								
-								html +=	"</span> ";
-								html +=	"</li> ";
-								
-								}
-							}
-						$(".video__menu").html(html);
-					},
+			let vodtag = confirm('강의를 정말 삭제하시겠습니까?');
+			alert(vodtag);
+			if(vodtag){
 					
-					error : function() {
-						alert('실패');
-					}
-				});
-		}
-			function delLecture(lecture_id, member_id){
-				console.log(lecture_id)
-				alert(lecture_id)
-				alert('이제 삭제 가능')	
-				
-				
-				$.ajax({
-						type: "POST",
-						url: "lectureDelete",
-						data: {
-							lecture_no : lecture_id,
-							}
-							,
-						dataType: "text",
-						success : function() {
-							alert("삭제 성공");
-							$.ajax({
-								type: "POST",
-								url: "instructorAction",
-								data: {
-									id : member_id,
-									}
-									,
-								dataType: "text",
-								success : function() {
-										alert("강좌 삭제 & 페이지 이동");
-								},
+					$.ajax({
+							type: "POST",
+							url: "vodDelete",
+							data: {
 								
-								error : function(request, error) {
-									console.log("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
-									alert("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
-									alert('실패');
-								}
-							});
-						},
-						
-						error : function(request, error) {
-							alert("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
-							alert('실패');
-						}
-					});
+								lecture_no : lecture_id,
+								del_no : delete_id}
+								,
+							dataType: "json",
+							success : function(data) {
+
+								var html = "";
+
+								if (data.length > 0) {
+									
+									for (i = 0; i < data.length; i++) {
+										var myvod = data[i];
+										console.log(myvod.id);
+										console.log(${myvod.id});
+										
+										//console.log(data[i].id);
+										html += "<li class='video__items complate' data-idx="+myvod.id+ " id="+myvod.id+" onclick='reply_click(this.id)''>";
+										html += "<span class='video__items-tit'> "+ myvod.id +"." + myvod.title + "</span>";
+										html += "<span class='video__player-icon'>";
+										html += "<svg width='18' aria-hidden='true' data-prefix='fal' data-icon='play-circle' class='svg-inline--fa fa-play-circle fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='currentColor' d='M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z'></path>";
+										
+										
+										html += "</svg>";
+										html +=	"<span class='video__player-time'> " + myvod.time + "</span>";
+										
+										
+										html +=	"</span> ";
+										html +=	"</li> ";
+										
+										}
+									}
+								$(".video__menu").html(html);
+							},
+							
+							error : function() {
+								alert('실패');
+							}
+						});
+				}
+			else{
+				alert('아니래');
+			}
 			
+			}
+		
+			function delLecture(lecture_id, member_id){
+				
+				let tag = confirm('강의 전체를 정말 삭제하시겠습니까?');
+				if(tag){
+				
+				
+					$.ajax({
+							type: "POST",
+							url: "lectureDelete",
+							data: {
+								lecture_no : lecture_id,
+								}
+								,
+							dataType: "text",
+							success : function() {
+								alert("삭제 성공");
+								$.ajax({
+									type: "POST",
+									url: "instructorAction",
+									data: {
+										id : member_id,
+										}
+										,
+									dataType: "text",
+									success : function() {
+											alert("강좌 삭제 & 페이지 이동");
+									},
+									
+									error : function(request, error) {
+										console.log("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
+										alert("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
+										alert('실패');
+									}
+								});
+							},
+							
+							error : function(request, error) {
+								alert("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
+								alert('실패');
+							}
+						});
+				}
 			}
 		
 	</script>

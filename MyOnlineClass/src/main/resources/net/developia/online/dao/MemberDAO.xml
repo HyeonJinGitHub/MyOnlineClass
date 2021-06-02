@@ -239,7 +239,7 @@
 	
 	<parameterMap type="java.util.HashMap"
 		id="InstructorParam">
-		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="ID" jdbcType="VARCHAR" mode="IN" />
 		<parameter property="InstructorList" jdbcType="CURSOR"
 			mode="OUT" resultMap="InstructorResultMap" />
 	</parameterMap>
@@ -257,7 +257,7 @@
 	</select>
 
 	<parameterMap type="java.util.HashMap" id="InstructorLectureParam">
-		<parameter property="MEMBER_ID" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="ID" jdbcType="VARCHAR" mode="IN" />
 		<parameter property="InstructorLectureList" jdbcType="CURSOR"
 			mode="OUT" resultMap="InstructorLectureResultMap" />
 	</parameterMap>

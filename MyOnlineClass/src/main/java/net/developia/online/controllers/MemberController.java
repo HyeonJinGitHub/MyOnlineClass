@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -250,46 +252,25 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("/profile")
+	@GetMapping(value = {"/profile/{id}"})
 	@Transactional
-	public ModelAndView instructorAction(HttpSession session, @RequestParam(required = true) String id) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("MEMBER_ID", id);
+	public ModelAndView instructorGetAction(HttpSession session, @PathVariable(value="id") String id) {
 		ModelAndView mav = new ModelAndView("instructor");
 		try {
-			memberService.getInstructorInfo(map);
-			List tmp_list = (List)map.get("InstructorList");
-			System.out.println(tmp_list.toString());
-			HashMap<String, Object> instructor = (HashMap<String, Object>) tmp_list.get(0);
-			mav.addObject("nickname", instructor.get("NICKNAME").toString());
-			mav.addObject("phone", session.getAttribute("phone"));
-			mav.addObject("name", session.getAttribute("name"));
-			mav.addObject("email", session.getAttribute("email"));
-			mav.addObject("introduce", instructor.get("INTRODUCE").toString());
-			mav.addObject("instructorimage", instructor.get("IMAGE").toString());
-			memberService.getInstructorLecture(map);
-			List<LectureDTO> lecture_list = (List)map.get("InstructorLectureList");
-			HashMap<String, Object> lecture_map = new HashMap<String, Object>();
-			for(LectureDTO dto : lecture_list) {
-				HashMap<String, Object> count_map = new HashMap<String, Object>();
-				count_map.put("ID", dto.getId());
-				memberService.getLectureCount(count_map);
-				int output = Integer.parseInt(count_map.get("result").toString());
-				List<String> list = new ArrayList<String>();
-				list.add(Long.toString(dto.getId()));
-				list.add(dto.getName());
-				list.add(dto.getGenre());
-				list.add(dto.getImage());
-				list.add(Long.toString(dto.getDuration()));
-				list.add(dto.getCaution());
-				list.add(dto.getIntroduce());
-				list.add(dto.getThumbnail());
-				list.add(Integer.toString(output));
-				lecture_map.put(Long.toString(dto.getId()), list);
-			}
-			System.out.println(lecture_map);
-			mav.addObject("lecture", lecture_map);
-			
+			return instructorDetail(mav, id);
+		} catch(Exception e) {
+			e.printStackTrace();
+			mav.addObject("msg", e.getMessage());
+		}
+		return mav;
+	}
+
+	@PostMapping(value = {"/profile"})
+	@Transactional
+	public ModelAndView instructorPostAction(HttpSession session, @RequestParam(value="id") String id) {
+		ModelAndView mav = new ModelAndView("instructor");
+		try {
+			return instructorDetail(mav, id);
 		} catch(Exception e) {
 			e.printStackTrace();
 			mav.addObject("msg", e.getMessage());
@@ -297,6 +278,49 @@ public class MemberController {
 		return mav;
 	}
 	
+	private ModelAndView instructorDetail(ModelAndView mav, String id) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("ID", id);
+		memberService.getInstructorInfo(map);
+		List tmp_list = (List)map.get("InstructorList");
+		List member_list = (List)map.get("MemberList");
+		System.out.println("tmp_list : " + tmp_list.toString());
+		System.out.println("member_list : " + member_list.toString());
+		HashMap<String, Object> instructor = (HashMap<String, Object>) tmp_list.get(0);
+		MemberDTO member = (MemberDTO) member_list.get(0);
+		mav.addObject("nickname", instructor.get("NICKNAME").toString());
+		mav.addObject("phone", member.getPhone());
+		mav.addObject("name", member.getName());
+		mav.addObject("email", member.getEmail());
+		mav.addObject("introduce", instructor.get("INTRODUCE").toString());
+		mav.addObject("instructorimage", instructor.get("IMAGE").toString());
+		memberService.getInstructorLecture(map);
+		List<LectureDTO> lecture_list = (List)map.get("InstructorLectureList");
+		System.out.println("lecture list : " + lecture_list.toString());
+		HashMap<String, Object> lecture_map = new HashMap<String, Object>();
+		for(LectureDTO dto : lecture_list) {
+			HashMap<String, Object> count_map = new HashMap<String, Object>();
+			count_map.put("ID", dto.getId());
+			memberService.getLectureCount(count_map);
+			int output = Integer.parseInt(count_map.get("result").toString());
+			List<String> list = new ArrayList<String>();
+			list.add(Long.toString(dto.getId()));
+			list.add(dto.getName());
+			list.add(dto.getGenre());
+			list.add(dto.getImage());
+			list.add(Long.toString(dto.getDuration()));
+			list.add(dto.getCaution());
+			list.add(dto.getIntroduce());
+			list.add(dto.getThumbnail());
+			list.add(Integer.toString(output));
+			lecture_map.put(Long.toString(dto.getId()), list);
+		}
+		System.out.println(lecture_map);
+		mav.addObject("lecture", lecture_map);
+
+		return mav;
+	}
+
 	@PostMapping("/getLectureInstructorInfo")
 	@Transactional
 	@ResponseBody

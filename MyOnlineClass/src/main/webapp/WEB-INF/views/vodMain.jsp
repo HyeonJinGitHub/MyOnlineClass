@@ -28,8 +28,6 @@
 	<script src='${pageContext.request.contextPath}/resources/js/jquery-3.4.1.min.js'></script>
 	
 	<script>
-		
-	
 		var getVideoData = function () {
 			
 		return new Promise(function (resolve, reject) {
@@ -73,26 +71,75 @@
 
 								if (data.length > 0) {
 									
+									getVideoData = function () {
+										
+										return new Promise(function (resolve, reject) {
+											
+										    console.log(data);
+											var videoData = data;
+											resolve(videoData);
+										})
+									}
+									
+									
+									/*
+									getVideoData();
+									
+									html +="<div class='video__inner-box'>"
+									
+									html +="<video" 
+									html +=		"id='my-video'" 
+									html +=		"class='video-js vjs-big-play-centered vjs-fluid'" 
+									html +=		"controls" 
+									html +=		"preload='auto'" 
+									html +=		"width='640'" 
+									html +=		"height='268'" 
+									html +=		"poster='${pageContext.request.contextPath}/lectureThumbnail?name=${lecture.name}&thumbnail=${lecture.thumbnail}'"
+									html +=		"data-setup='{'techOrder':['html5','flash','flvjs']}'>"
+									html +=	"<source src='video/skatn3/Forest.mp4' type='video/mp4'>"
+									html +="</video>"
+					<!-- poster="ThumnailDownload/${lecture.name}/${lecture.thumbnail}" -->
+									
+				 					html +="</div>"
+									*/
+				 					
 									for (i = 0; i < data.length; i++) {
+										getVideoData();
 										var myvod = data[i];
 										console.log(myvod.id);
 										console.log(${myvod.id});
 										
-										//console.log(data[i].id);
-										html += "<li class='video__items complate' data-idx="+myvod.id+ " id="+myvod.id+" onclick='reply_click(this.id)''>";
-										html += "<span class='video__items-tit'> "+ (i+1) +". " + myvod.title + "</span>";
-										html += "<span class='video__player-icon'>";
-										html += "<svg aria-hidden='true' data-prefix='fal' data-icon='play-circle' class='svg-inline--fa fa-play-circle fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='currentColor' d='M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z'></path>";
-										html += "</svg>";
-										html +=	"<span class='video__player-time'> " + myvod.time + " </span>";
 										
-										html +=	"</span> ";
-										html +=	"</li> ";
-										
+										if(i == 0){
+											
+											html += "<li class='video__items active ' data-idx="+myvod.id+ " id="+myvod.id+" onclick='reply_click(this.id)''>";
+											html += "<span class='video__items-tit'> "+ (i+1) +". " + myvod.title + "</span>";
+											html += "<span class='video__player-icon'>";
+											html += "<svg aria-hidden='true' data-prefix='fal' data-icon='play-circle' class='svg-inline--fa fa-play-circle fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='currentColor' d='M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z'></path>";
+											html += "</svg>";
+											html +=	"<span class='video__player-time'> " + myvod.time + " </span>";
+											
+											html +=	"</span> ";
+											html +=	"</li> ";
+											
 										}
+										else{
+											html += "<li class='video__items complate' data-idx="+myvod.id+ " id="+myvod.id+" onclick='reply_click(this.id)''>";
+											html += "<span class='video__items-tit'> "+ (i+1) +". " + myvod.title + "</span>";
+											html += "<span class='video__player-icon'>";
+											html += "<svg aria-hidden='true' data-prefix='fal' data-icon='play-circle' class='svg-inline--fa fa-play-circle fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='currentColor' d='M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z'></path>";
+											html += "</svg>";
+											html +=	"<span class='video__player-time'> " + myvod.time + " </span>";
+											
+											html +=	"</span> ";
+											html +=	"</li> ";
+											}
 									
+										}
 										
 									}
+									
+									
 								$(".video__menu").html(html);
 							},
 							
@@ -122,7 +169,7 @@
 								,
 							dataType: "text",
 							success : function() {
-								pageMove();
+								pageMove(member_id);
 								alert("삭제 성공");
 								
 							},
@@ -137,7 +184,7 @@
 			
 			function pageMove(id){
 				 console.log(id);
-				 alert(id);
+				 
 			      var f = document.paging;
 			      f.id.value = id
 			      f.action = "${pageContext.request.contextPath}/profile"
@@ -166,6 +213,9 @@
 	<p>${instructor.nickname} 강사님</p>
 	
 	<div class="video__wrap">
+		
+		
+		
 		<div class="video__contents">
 			<div class="video__box">
 				<!-- <p class="video__tit"></p> -->
@@ -188,6 +238,9 @@
 				<div class="vidoe__btn-box"></div>
 			</div>
 		</div>
+		
+		
+		
 		<div class="video__nav">
 			<div class="video__nav-header">
 				<div class="video__nav-inner">

@@ -61,9 +61,14 @@ public class CommentController {
 		if (pageMaker.getPageUtil().getRowEnd() > commentlist.size())
 			max_index = commentlist.size();
 
-		List<CommentDTO> commentlistpaging = commentlist.subList(pageMaker.getPageUtil().getRowStart() - 1, max_index);
-		System.out.println("★☆★" + commentlistpaging.toString());
-		result.put("commentlist", commentlistpaging);
+		if (commentlist.isEmpty())
+			result.put("commentlist", "none");
+		else {
+			List<CommentDTO> commentlistpaging = commentlist.subList(pageMaker.getPageUtil().getRowStart() - 1,
+					max_index);
+			System.out.println("★☆★" + commentlistpaging.toString());
+			result.put("commentlist", commentlistpaging);
+		}
 		result.put("pageMaker", pageMaker);
 		result.put("pageUtil", pageUtil);
 		result.put("startPage", pageMaker.getStartPage());

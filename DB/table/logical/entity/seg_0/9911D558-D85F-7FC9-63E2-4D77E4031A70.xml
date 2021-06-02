@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9911D558-D85F-7FC9-63E2-4D77E4031A70" name="comments">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>B8C27DBB-046C-D81F-A8D7-54EEE5AA9B79</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="no" id="C852B7F5-FB6E-77D1-31A7-6FABFF191D0A">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>E1895DDB-9E1F-2CBD-5AAF-59BF127AC543</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="member id" id="25D24D9D-6636-DFC0-C233-59A4CF7A01FF">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>08C46E49-62AE-711A-C6A4-EF3898181F07</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<referedAttribute>D697A5B5-D9E5-78A0-7113-92B5147BC160</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="lecture id" id="5037241E-A52C-6082-C149-F4341240CC1D">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>266F6800-1C50-6799-4FC3-10BF9F8EA5D6</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<referedAttribute>5AD3D9D8-9B47-F6D7-60CF-DC2FFBC7B902</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="content" id="CF17D900-BEA2-A605-CB39-0CFFE60E3F4E">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>8C18A390-E659-7584-24E4-5EBD921FD873</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="regdate" id="DF5AC4EE-9990-B302-8AFA-A61FEBC726FF">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>4A5EF8F9-B7E0-2A99-E6F1-AEFF2F39B205</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CE54F8DF-4C85-0177-7311-734E5288C27C" name="comment PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>026C7952-C389-DF62-6E3D-AA67AFF63033</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C852B7F5-FB6E-77D1-31A7-6FABFF191D0A</attributeRef>
+<attributeRef>5037241E-A52C-6082-C149-F4341240CC1D</attributeRef>
+<attributeRef>25D24D9D-6636-DFC0-C233-59A4CF7A01FF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

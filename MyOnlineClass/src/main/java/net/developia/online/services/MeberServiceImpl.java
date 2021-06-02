@@ -206,6 +206,7 @@ public class MeberServiceImpl implements MemberService {
 	@Override
 	public void getInstructorInfo(HashMap<String, Object> map) throws Exception {
 		try {
+			memberDAO.selectMemberById(map);
 			memberDAO.getInstructorInfo(map);
 		} catch (Exception e) {
 			log.info(e.getMessage());

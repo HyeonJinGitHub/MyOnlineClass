@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3083CB5C-6869-7E84-0BF0-981CA5D3AE20" name="enrollment">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>9AD0103A-B277-35E9-74BE-5DD2A6301213</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="member id" id="FEF100CF-0CD6-0D37-7EF3-EB07D439A985">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>1A5BB9CF-8D76-5F5F-889B-420BF784CA27</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<referedAttribute>D697A5B5-D9E5-78A0-7113-92B5147BC160</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="lecture id" id="29787901-1AF6-060B-6B8A-CE3AD399265A">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>52D4D666-58B5-0E93-1D22-E0731D45A6CB</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<referedAttribute>5AD3D9D8-9B47-F6D7-60CF-DC2FFBC7B902</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="780AD8B2-5807-9DEF-4B62-B29D2F23AF35" name="enrollment PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>BC831E55-EB50-36D5-784F-D3E3FB3E637E</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>FEF100CF-0CD6-0D37-7EF3-EB07D439A985</attributeRef>
+<attributeRef>29787901-1AF6-060B-6B8A-CE3AD399265A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

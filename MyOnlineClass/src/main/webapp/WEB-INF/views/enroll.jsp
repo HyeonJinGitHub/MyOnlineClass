@@ -119,7 +119,7 @@ String phone = (String) session.getAttribute("phone");
 				<br>
 
 				<form id="register" method='POST'
-					action="${contextPath}/enrollAction" enctype="multipart/form-data">
+					action="${contextPath}/enrollAction" enctype="multipart/form-data" onsubmit="return registerAction()">
 					<input type="hidden" value="${id}" name="id"> <input
 						type="hidden" value="${name}" name="name"> <input
 						type="hidden" value="${email}" name="email"> <input
@@ -139,7 +139,7 @@ String phone = (String) session.getAttribute("phone");
 					</div>
 					<br>
 
-					<div class="selectbox">
+					<div>
 						<span style="position: relative; left: 40px; color: gray;">#</span>
 						<select name="genre" id="genre" required="required" style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
 							<option selected>장르를 선택하세요.</option>
@@ -235,5 +235,18 @@ String phone = (String) session.getAttribute("phone");
 <%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 	<%-- <c:import url="footer.jsp"></c:import> --%>
+	
+	<script>
+	function registerAction() {
+		var name = $("#lecturename").val();
+		var result = confirm("강의명 : " + name + "\n강의를 등록하시겠습니까?");
+		if (result) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	</script>
+	
 </body>
 </html>

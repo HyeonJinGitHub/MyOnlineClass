@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="instructor_member_FK" directorySegmentName="seg_0" id="3E25E980-E256-09F5-36D6-8F9C72DE0B50">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:17:10 UTC</createdTime>
+<generatorID>C74BDCF9-7272-CB2A-5218-937C0B09CDDB</generatorID>
+<ownerDesignName>table</ownerDesignName>
+<engineerTo>
+<item key="CCBC8DE7-9320-08B7-38F0-9E218AF59351" value="true"/>
+<item key="DA321402-9A21-407F-D247-1D64F41E3CAA" value="true"/>
+</engineerTo>
+<sourcePk>A0DA1A47-D752-00A2-D1DB-13AC731418E0</sourcePk>
+<dominantRole>61F4471C-4570-871D-E107-400D2940FDFA</dominantRole>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>61F4471C-4570-871D-E107-400D2940FDFA</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>41C891CF-3570-B763-37C8-F83D8366A72F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

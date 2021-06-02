@@ -12,11 +12,13 @@ public interface LectureService {
 
 	public void MemberLectureRegister(HashMap<String, Object> map) throws Exception; // 수강신청
 
-	//public void MemberLectureRegister(String MemberId) throws Exception; // 수강생 여부 확인
+	public void MemberLectureCancle(HashMap<String, Object> map) throws Exception; // 수강취소
+
+	// public void MemberLectureRegister(String MemberId) throws Exception; // 수강생
+	// 여부 확인
 
 	public List<LectureDTO> getLectureName(String term) throws Exception;
 
 	public void deleteLecture(long lectureNo);
-	
 
 }

@@ -212,6 +212,15 @@ if (session.getAttribute("id") == null) {
 	$(document).on("click", "#updatecmt_undo", function() {
 		getCommentList(1);
 	});
+	
+	$(document).on("click", "#canclebtn", function() {
+		if (confirm("수강을 취소하시겠습니까?") == true){
+			location.href='/online/memberlecture/cancle/'+${lecture.id};
+			return
+		}else{
+		    return;
+		}
+	});
 		
 	function getCommentList(page) {
 		var user = '<%=(String) session.getAttribute("id")%>';
@@ -359,7 +368,27 @@ if (session.getAttribute("id") == null) {
 	background-image: linear-gradient(to bottom, #cfcfcf, #cccccc);
 	text-decoration: none;
 }
+.canclebtn {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  text-shadow: 1px 1px 3px #969696;
+  font-family: Arial;
+  color: #292929;
+  font-size: 15px;
+  background: #ffffff;
+  border-width: 1px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+
+.canclebtn:hover {
+  background: #d1d1d1;
+  text-decoration: none;
+}
 </style>
+
+<%@ include file="header4.jsp" %>
 
 </head>
 
@@ -387,33 +416,25 @@ if (session.getAttribute("id") == null) {
 									<span class="icon_star"></span> <span class="icon_star"></span>
 									<span class="icon_star"></span> <span class="icon_star"></span>
 									<span class="icon_star"></span>
-									<!-- <span class="icon_star-half_alt"></span> -->
 								</div>
+								<p>${lecture.duration}일 과정</p>
 							</div>
-							<p>${lecture.duration}일과정</p>
 							<p># ${lecture.genre}</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="listing__hero__btns">
-						<a href="javascript:history.back()" class="primary-btn share-btn"><i
-							class="fa fa-mail-reply"></i> 뒤로가기</a>
+					<button type="button" class="primary-btn share-btn" onClick="history.back();"> <i class="fa fa-mail-reply"></i> 뒤로가기 </button>
 						<c:choose>
 							<c:when test="${already eq true}">
-								<a href="/online/vodStreaming?no=${lecture.id}"
-								class="primary-btn"> <i class="fa fa-bookmark"></i> 강의실 이동
-								</a>
+								<button type="button" class="primary-btn" onClick="location.href='/online/vodStreaming?no=${lecture.id}'"> <i class="fa fa-bookmark"></i> 강의실 이동 </button>
 							</c:when>
 							<c:when test="${teacher eq true}">
-								<a href="/online/vodStreaming?no=${lecture.id}"
-								class="primary-btn"> <i class="fa fa-bookmark"></i> 강좌 관리
-								</a>
+								<button type="button" class="primary-btn" onClick="location.href='/online/vodStreaming?no=${lecture.id}'"> <i class="fa fa-bookmark"></i> 강좌 관리 </button>
 							</c:when>
 							<c:otherwise>
-								<a href="/online/memberlecture/${lecture.id}" class="primary-btn">
-								<i class="fa fa-bookmark"></i> 수강신청
-								</a>
+								<button type="button" class="primary-btn" onClick="location.href='/online/memberlecture/${lecture.id}'"> <i class="fa fa-bookmark"></i> 수강 신청 </button>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -570,6 +591,11 @@ if (session.getAttribute("id") == null) {
 								<li>+ ${lecture.duration} Days<span class="closed">Closed</span></li>
 							</ul>
 						</div>
+						<c:if test="${already eq true}">
+						<div class="listing__sidebar__working__hours">
+							<button id="canclebtn" class="canclebtn">수강신청 취소</button>
+						</div>
+						</c:if>
 					</div>
 				</div>
 			</div>

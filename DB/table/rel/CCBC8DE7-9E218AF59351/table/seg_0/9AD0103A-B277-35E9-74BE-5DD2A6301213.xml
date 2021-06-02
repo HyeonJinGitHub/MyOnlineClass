@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9AD0103A-B277-35E9-74BE-5DD2A6301213" name="enrollment">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>AFB69E9F-6005-FEAF-7232-3AE325EE12C5</importedID>
+<ordsAlias>table_9</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="member_id" id="EB5EAF06-3FE9-0D58-3E4E-F4476266C8E7">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>9D8FA995-F256-9DC7-D614-3A13915C0635</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A63EB891-F5FD-8960-EC78-6F044F735ED9" referredColumn="2B9D0A93-88C6-60B7-EEAB-C5975C5FC7A7"/>
+</associations>
+</Column>
+<Column name="lecture_id" id="85341B03-092F-3C4C-EAD2-8DA175E62A2B">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>328D0CF9-FAC6-65AF-50A4-06A064C01C4D</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A6AA6413-8F0D-A25E-DC6F-6C6519FA1334" referredColumn="73CFFF4E-6192-F11D-7011-EAFE63A07D02"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BC831E55-EB50-36D5-784F-D3E3FB3E637E" name="enrollment_PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>8DF58F0A-FB52-E39E-CB3F-000234481DD4</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EB5EAF06-3FE9-0D58-3E4E-F4476266C8E7"/>
+<colUsage columnID="85341B03-092F-3C4C-EAD2-8DA175E62A2B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E077C009-C3F8-5DC7-B6E0-763A11BB4B2F" name="enrollment_member_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EB5EAF06-3FE9-0D58-3E4E-F4476266C8E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CCAB1605-9B5F-45B7-EAA2-AD36070D28F8" name="enrollment_lecture_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="85341B03-092F-3C4C-EAD2-8DA175E62A2B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

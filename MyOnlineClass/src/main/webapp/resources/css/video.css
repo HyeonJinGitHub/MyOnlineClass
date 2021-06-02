@@ -2,18 +2,23 @@
  * reset
 */
 
-h2 {
+.lecture_name_class {
       	color:white;
       	padding: 0px 5px;
       	margin: 40px 200px 20px 200px;
       	
 }
 
-h2:hover{
+.lecture_name_span{
+	  	color:white;
+      	padding: 10px 5px;
+      	
+}
+
+.lecture_name_span:hover{
 	color:aqua;
 	cursor: pointer;
 }
-
 
 p {
 		color:white;

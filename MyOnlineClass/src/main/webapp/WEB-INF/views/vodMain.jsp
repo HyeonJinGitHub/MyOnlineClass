@@ -157,8 +157,9 @@
     	<input type="hidden" name="id"/>
     </form>
 	
-	<h2 onclick="pageMove();" >
-		${lecture.name}
+	<h2 class="lecture_name_class">
+		<span class="lecture_name_span" onclick="pageMove();" >${lecture.name}</span>
+		
 	</h2>
 	
 	<p>${instructor.nickname} 강사님</p>

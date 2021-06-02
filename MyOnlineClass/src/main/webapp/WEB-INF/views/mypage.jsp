@@ -72,7 +72,7 @@ body {
 	function goPage() {
 		var f = document.paging;
 		f.id.value = "${id}"
-		f.action = "${pageContext.request.contextPath}/instructorAction"
+		f.action = "${pageContext.request.contextPath}/profile"
 		f.method = "post"
 		f.submit();
 	};

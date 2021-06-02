@@ -76,7 +76,7 @@ body {
 	function goPage() {
 		var f = document.paging;
 		f.id.value = "${id}"
-		f.action = "${pageContext.request.contextPath}/instructorAction"
+		f.action = "${pageContext.request.contextPath}/profile"
 		f.method = "post"
 		f.submit();
 	};
@@ -84,10 +84,6 @@ body {
 </head>
 <body>
 	<c:set var="up" value=".." />
-	<div class="table-content">
-		<div class="item"></div>
-
-	</div>
 	<!-- Page Content -->
 	<div class="container">
 

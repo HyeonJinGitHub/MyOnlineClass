@@ -250,7 +250,7 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("/instructorAction")
+	@PostMapping("/profile")
 	@Transactional
 	public ModelAndView instructorAction(HttpSession session, @RequestParam(required = true) String id) {
 		HashMap<String, Object> map = new HashMap<String, Object>();

@@ -147,27 +147,31 @@ a#MOVE_TOP_BTN {
 							<input type="hidden" value="${email}" name="email"> 
 							<input type="hidden" value="${phone}" name="phone"> 
 							
-							<div>
-								<div style="width: auto;">
-								<span style="position: relative; left: 40px; color: gray;">#</span>
+							    <div class="form-group" style="width: 50%;margin: 0 auto; overflow: hidden;">
+							    	<span style="position: relative; left: 40px; color: gray;">#</span>
 								<input type="text" id="nickname" name="nickname" placeholder="원하시는 닉네임이 있으신가요?" 
 									   maxlength="10" autocomplete="off" required="required"
 									   style="width: 500px; height: 50px; border-radius: 30px; 
 									   border: 0; outline: 0; padding-left: 40px;">
 								<div id="nicknameCount" style="display: inline; padding-left: 10px;">(0 / 10)</div> 
-								</div>
-							</div> <br>
+								<input type="button" class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
+          						</div>
+								<!-- <div style="width: auto;"> -->
 							
-							<div>
+								<!-- </div> -->
+							 <br>
+							 <div class="form-group" style="width: 50%;margin: 0 auto; overflow: hidden;">
 								<span style="position: relative; left: 40px; color: gray;">#</span>
 								<input type="text" id="introduce" name="introduce" placeholder="자신을 한 줄로 표현하세요." 
 									   maxlength="50" autocomplete="off" required="required"
 									   style="width: 500px; height: 50px; border-radius: 30px; 
 									   border: 0; outline: 0; padding-left: 40px;"> 
 							    <div id="introduceCount" style="display: inline; padding-left: 10px;">(0 / 30)</div> 
-							</div> <br>
+							    <input type="button"  class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
+							    </div>
+							<br>
 							
-							<div style="margin-left: 250px;">
+							<div style="margin-left: 143px;">
 								<span style="position: relative; left: 40px; color: gray;">#</span>
 								<input type="text" placeholder="프로필 사진을 선택하세요." 
 									   maxlength="25" autocomplete="off" 
@@ -185,5 +189,36 @@ a#MOVE_TOP_BTN {
 			</div>
 		</div>
 	</header>
+	
+	<script>
+	var nicknameck = 0;
+ 	function duplicationNickname() {
+ 		var nickname = $("#nickname").val();
+ 		$.ajax({
+				async: false,
+				type: 'POST',
+				data : {"nickname": nickname },
+				url : '/online/check/nicknamecheck',
+				success : function(data) {
+					if(data > 0) {
+	  					alert('이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해주세요.');
+	  					$("#nickname").focus();
+	  					nicknameck = 0;
+	  				} else {
+	  					alert('사용가능한 닉네임입니다.');
+	  					$('#nickname').focus();
+	  					nicknameck = 1;
+	  				}
+				},
+				error : function(error) {
+					alert('error : ' + error);
+				}
+			});
+ 		
+ 	}
+	$('#nickname').on('keyup', function() {
+		nicknameck = 0;
+	});
+	</script>
 </body>
 </html>

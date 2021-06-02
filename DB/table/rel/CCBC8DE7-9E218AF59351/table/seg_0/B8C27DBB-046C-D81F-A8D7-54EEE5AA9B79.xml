@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B8C27DBB-046C-D81F-A8D7-54EEE5AA9B79" name="comments">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>DF1BCA7A-6E35-F022-6DE2-70E92973DE26</importedID>
+<ordsAlias>table_10</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="no" id="E1895DDB-9E1F-2CBD-5AAF-59BF127AC543">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>3A91E722-C51A-1E8A-79BE-158684BA5E22</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="member_id" id="C29BA3B7-B926-2720-63AB-D41436F6AD24">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>CAA773A7-47F1-68EB-C3D3-2D96CE9E2609</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BD45FECB-7C82-E6E1-938A-735358ACE67C" referredColumn="2B9D0A93-88C6-60B7-EEAB-C5975C5FC7A7"/>
+</associations>
+</Column>
+<Column name="lecture_id" id="342CCCBE-27F1-057D-05FA-E8A1C32AB88C">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>2C15EB19-6D20-08A6-21BB-36EB0C2F7FD4</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CF16D12C-CE78-636D-35C2-385ABBE0DD58" referredColumn="73CFFF4E-6192-F11D-7011-EAFE63A07D02"/>
+</associations>
+</Column>
+<Column name="content" id="8C18A390-E659-7584-24E4-5EBD921FD873">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>D302F1ED-42CB-E756-7C4C-89634D0023FB</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="regdate" id="4A5EF8F9-B7E0-2A99-E6F1-AEFF2F39B205">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>B0A779DD-B88B-3FF4-7E91-B0244A479EE6</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="026C7952-C389-DF62-6E3D-AA67AFF63033" name="comment_PK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<importedID>EFBE4503-D04E-68D6-32B8-7C6C37355D74</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E1895DDB-9E1F-2CBD-5AAF-59BF127AC543"/>
+<colUsage columnID="342CCCBE-27F1-057D-05FA-E8A1C32AB88C"/>
+<colUsage columnID="C29BA3B7-B926-2720-63AB-D41436F6AD24"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3C05F7C0-BFD7-40C3-F20F-A4CB997CF44D" name="comment_lecture_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="342CCCBE-27F1-057D-05FA-E8A1C32AB88C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="065E5B89-7E87-983D-8487-4A701A01C33E" name="comment_member_FK">
+<createdBy>COM</createdBy>
+<createdTime>2021-06-02 00:16:30 UTC</createdTime>
+<ownerDesignName>table</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C29BA3B7-B926-2720-63AB-D41436F6AD24"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

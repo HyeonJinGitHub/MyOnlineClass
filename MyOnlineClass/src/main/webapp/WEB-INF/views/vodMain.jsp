@@ -86,7 +86,6 @@
 										html += "</svg>";
 										html +=	"<span class='video__player-time'> " + myvod.time + " </span>";
 										
-										
 										html +=	"</span> ";
 										html +=	"</li> ";
 										
@@ -136,9 +135,11 @@
 				}
 			}
 			
-			function pageMove(){
+			function pageMove(id){
+				 console.log(id);
+				 alert(id);
 			      var f = document.paging;
-			      f.id.value = "${id}"
+			      f.id.value = id
 			      f.action = "${pageContext.request.contextPath}/profile"
 			      f.method = "post"
 			      f.submit();
@@ -158,7 +159,7 @@
     </form>
 	
 	<h2 class="lecture_name_class">
-		<span class="lecture_name_span" onclick="pageMove();" >${lecture.name}</span>
+		<span class="lecture_name_span" onclick="pageMove('${instructor.member_id}');" >${lecture.name}</span>
 		
 	</h2>
 	

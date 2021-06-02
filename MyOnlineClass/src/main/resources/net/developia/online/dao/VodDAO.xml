@@ -42,7 +42,6 @@
 	</select>
 	
 	
-	
 	<delete id="delete_video" parameterType="long">
 		<![CDATA[
 		

@@ -68,9 +68,8 @@
 							dataType: "json",
 							success : function(data) {
 
-								//var html = "";
+								
 								console.log(data);
-								alert(data);
 								console.log(data[0].cnt);
 								
 								
@@ -285,7 +284,7 @@
 							dataType: "text",
 							success : function() {
 								pageMove(member_id);
-								alert("삭제 성공");
+								alert("강의가 정상적으로 삭제되었습니다.");
 								
 							},
 							

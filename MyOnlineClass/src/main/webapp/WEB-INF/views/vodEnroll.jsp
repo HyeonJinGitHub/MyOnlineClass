@@ -10,6 +10,8 @@ String phone = (String) session.getAttribute("phone");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="lecture_id" value="${lecture_id}" />
+<c:set var="lecture_name" value="${lecture_name}" />
+
 <%@include file="header3.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -30,27 +32,6 @@ String phone = (String) session.getAttribute("phone");
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <script type="text/javascript">
-	
-	/*
-	$(document).on("click", "#vodUpload", function () {
-		   console.log("입력됨");
-		   alert('클릭했다구');
-		   var queryString = $("form[name=testForm]").serialize();
-			
-			$.ajax({
-				type : 'post',
-				url : '/upload'
-				data : queryString,
-				error: function(xhr, status, error){
-					alert(error);
-				},
-				success : function(json){
-					alert(json);
-				}
-			});
-	});
-	
-	*/
 	
 
 	
@@ -101,8 +82,6 @@ String phone = (String) session.getAttribute("phone");
 		});
 		
 		
-			
-		
 	});
 	
 	
@@ -112,8 +91,9 @@ String phone = (String) session.getAttribute("phone");
 <style>
 
 	
-input::placehoder{
-	color: black !important;
+input::-webkit-input-placeholder{
+	color: gray;
+	
 }
 
 body {
@@ -187,42 +167,13 @@ body {
 	
 }
 
-/*
-.vodSelect:hover {
-	background: linear-gradient(to bottom, #e37b95 5%, #f27e9b 100%);
-	background-color: #e37b95;
-	
-}
-*/
+
 
 .vodSelect:active {
 	position: relative;
 	top: 1px;
 }
 
-
-
-/*
-.vodSelect {
-	background-color: gray;
-	color: white !important;
-	border-radius: 5px !important;
-	
-	margin: 12px !important;
-	padding: 10px 50px !important;
-	width: 60% !important;
-}
-*/
-/*
-.vodUpload{
-	background-color: rgb(255, 80, 90) !important;
-	color: white !important;
-	border-radius: 5px !important;
-	margin: 12px !important;
-	width: 60% !important;
-	padding: 10px 50px !important;
-}
-*/
 
 #vodUpload {
 	/*display: inline-flex;*/
@@ -245,29 +196,11 @@ body {
 	
 }
 
-/*
-#vodUpload:hover {
-	background: linear-gradient(to bottom, #e37b95 5%, #f27e9b 100%);
-	background-color: #e37b95;
-}
-*/
 
 #vodUpload:active {
 	position: relative;
 	top: 1px;
 }
-/*
-#vodUpload{
-	background-color: rgb(255, 80, 90) !important;
-	color: white !important;
-	border-radius: 5px !important;
-	
-	margin: 12px !important;
-	width: 60% !important;
-	padding: 10px 50px !important;
-}
-
-*/
 
 
 
@@ -292,22 +225,27 @@ body {
 		<div class="carousel-item active"
 			style="height: 100%; ">
 			<div style="color: #fff; text-align: center; padding-top: 40px;">
+			
+			
+			
 				<p style="display: inline-block; font-size: 29px; font-weight: 500;">
 					동영상을 업로드 해주세요.</p>
 				<h3 style="display: inline-block; color: red; padding-bottom: 30px;">
 					.</h3>
 				<br>
 				
+				<!-- 
+				<p style="display: inline-block; font-size: 29px; font-weight: 500;">
+					강의명: ${lecture_name}</p>
+				<br>
+				<br>
+				<br>
+				 -->
+				
  				<!-- <form name="testForm" id="testForm" method="post" enctype="multipart/form-data"> -->
 				<form method="post" action="upload" enctype="multipart/form-data" >
 				
-				<!-- 
-					<input type="hidden" value="${id}" name="id"> <input
-						type="hidden" value="${name}" name="name"> <input
-						type="hidden" value="${email}" name="email"> <input
-						type="hidden" value="${phone}" name="phone">
 					
-					 -->
 					<div>
 						<div style="width: auto;">
 							<span style="position: relative; left: 40px; color: gray;">#</span>
@@ -321,7 +259,8 @@ body {
 						</div>
 					</div>
 					<br>
-
+					
+					
 					<br><br>
 					
 				         <input multiple="multiple" type="file" name="file1" style= "display:none"/>

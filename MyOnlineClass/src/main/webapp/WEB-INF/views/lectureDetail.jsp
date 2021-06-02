@@ -74,7 +74,7 @@ if (session.getAttribute("id") == null) {
 <script>
 
 	$(function() {
-		getCommentList();
+		getCommentList(1);
 	});
 
 	$(document).on("click", "#commentbtn", function() {
@@ -112,7 +112,7 @@ if (session.getAttribute("id") == null) {
 					$("#commentbtn").attr('disabled', false);
 					return;
 				}
-				getCommentList(); // 댓글 목록 출력 함수 호출 
+				getCommentList(1); // 댓글 목록 출력 함수 호출 
 				$("#comment_text").val(""); // 댓글 내용 초기화 
 				$("#commentbtn").attr('disabled', false);
 			},
@@ -149,7 +149,7 @@ if (session.getAttribute("id") == null) {
 					else if(result == "False"){
 						alert("나의 게시글만 삭제가 가능합니다."); 
 					}
-					getCommentList(); // 댓글 목록 출력 함수 호출 
+					getCommentList(1); // 댓글 목록 출력 함수 호출 
 					$("#commentbtn").attr('disabled', false);
 				},
 				dataType: "text",
@@ -194,7 +194,7 @@ if (session.getAttribute("id") == null) {
 					else if(result == "False"){
 						alert("나의 게시글만 수정이 가능합니다."); 
 					}
-					getCommentList(); // 댓글 목록 출력 함수 호출 
+					getCommentList(1); // 댓글 목록 출력 함수 호출 
 					$("#updatecmt").attr('disabled', false);
 				},
 				dataType: "text",
@@ -209,7 +209,7 @@ if (session.getAttribute("id") == null) {
 	});
 	
 	$(document).on("click", "#updatecmt_undo", function() {
-		getCommentList();
+		getCommentList(1);
 	});
 	
 	<%long page_num = 1;%>
@@ -217,9 +217,12 @@ if (session.getAttribute("id") == null) {
 	function getCommentList(page) {
 		var user = '<%=(String) session.getAttribute("id")%>';
 		$.ajax({
-					type : 'GET',
-					url : '/online/classdetail/${lecture.id}/<%=page_num%>',
-					dataType : "json",
+					type : 'POST',
+					url : "<c:url value='/classdetail/${lecture.id}/list'/>",
+					headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
+					dataType: "json",
+					contentType: "application/json",
+					data : JSON.stringify({ page : page }), 
 					success : function(data) {
 
 						var html = "";
@@ -241,9 +244,18 @@ if (session.getAttribute("id") == null) {
 												html += "<i class='fa fa-star'></i> ";
 												html += "<i class='fa fa-star'></i> ";
 												html += "</div>";
-												html += "<span>" + value.regdate + "</span>";
-												html += "<h5>" + value.name	+ " (" + member.substring(0, 3) + "**) </h5>";
-												html += "<p class='collapse multi-collapse-" + value.no + " show'>" + value.content	+ "</p>"; // 일반
+												html += "<span>"
+														+ value.regdate
+														+ "</span>";
+												html += "<h5>"
+														+ value.name
+														+ " ("
+														+ member
+																.substring(0, 3)
+														+ "**) </h5>";
+												html += "<p class='collapse multi-collapse-" + value.no + " show'>"
+														+ value.content
+														+ "</p>"; // 일반
 												html += "<form class='collapse multi-collapse-" + value.no + " '>"; // 수정모드
 												html += "<div class='form-group'>";
 												html += "<textarea class='form-control' id='comment_text_fix' rows='3'style='resize: none;'>"
@@ -272,15 +284,15 @@ if (session.getAttribute("id") == null) {
 							html += "</div>";
 						}
 
-						var html_page = '<a href="#" id = "pagebtn" value = "1" class="w3-button">&laquo;</a>';
+						var html_page = '<button id = "pagebtn" onclick = "getCommentList(1)" class = "w3-button">&laquo;</button>';
 						for (var num = startPage; num <= endPage; num++) {
 							if (num == page) {
-								html_page += '<a href="#" id = "pagebtn" onclick="getCommentList(' + num + ')" class="w3-button w3-blue">'	+ num + '</a>';
+								html_page += '<button id = "pagebtn" onclick = "getCommentList(' + num + ')" class = "w3-button w3-blue">' + num + '</button>';
 							} else {
-								html_page += '<a href="#" id = "pagebtn" onclick="return false;" class="w3-button">' + num + '</a>';
+								html_page +=  '<button id = "pagebtn" onclick = "getCommentList(' + num + ')" class = "w3-button">' + num + '</button>';
 							}
 						}
-						html_page += '<a href="#" id = "pagebtn" value = ' + endPage + ' class="w3-button">&raquo;</a>';
+						html_page +=  '<button id = "pagebtn" onclick = "getCommentList(' + endPage + ')" class = "w3-button">&raquo;</a>';
 
 						$("#commentList").html(html);
 						$("#commentPage").html(html_page);

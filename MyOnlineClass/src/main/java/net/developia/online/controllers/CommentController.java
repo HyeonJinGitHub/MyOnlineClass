@@ -2,13 +2,13 @@ package net.developia.online.controllers;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +23,8 @@ import net.developia.online.dto.LectureDTO;
 import net.developia.online.services.CommentService;
 import net.developia.online.services.MemberService;
 import net.developia.online.util.DateFormatClass;
+import net.developia.online.util.PageMaker;
+import net.developia.online.util.PagingUtil;
 
 @Slf4j
 @RestController
@@ -34,18 +36,63 @@ public class CommentController {
 	@Autowired
 	private MemberService memberService;
 
-	@GetMapping(value = "/classdetail/{no}/{cno}", produces = "application/json; charset=UTF-8")
-	public List<CommentDTO> comment_list(@PathVariable("no") long no, @PathVariable("cno") long co,
+	/*
+	 * public List<CommentDTO> comment_list(@PathVariable("no") long
+	 * no, @PathVariable("cno") long cno,
+	 * 
+	 * @ModelAttribute("comments") CommentDTO comments) throws Exception {
+	 * List<CommentDTO> commentlist = commentService.getCommentList(no);
+	 * System.out.println("★★★" + commentlist.toString());
+	 * 
+	 * ///Comment 페이징 기능 추가 // online/classdetail/{no}/{cno} 이때 no는 lecture.id, cno는
+	 * comment page 번호를 의미! PagingUtil pageUtil = new PagingUtil(); PageMaker
+	 * pageMaker = new PageMaker(); pageUtil.setPage(cno);
+	 * pageMaker.setpu(pageUtil); pageMaker.setTotalCount(commentlist.size());
+	 * System.out.println(pageUtil.toString());
+	 * System.out.println(pageMaker.toString());
+	 * 
+	 * System.out.println(pageMaker.getPageUtil().getRowStart()+" "+pageMaker.
+	 * getPageUtil().getRowEnd()); List<CommentDTO> pagingcommentlist =
+	 * commentlist.subList(pageMaker.getPageUtil().getRowStart(),
+	 * pageMaker.getPageUtil().getRowEnd()); System.out.println("★★★" +
+	 * pagingcommentlist.toString());
+	 * 
+	 * return pagingcommentlist;
+	 * 
+	 * }
+	 */
+
+	@GetMapping(value = "/classdetail/{no}/list", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> comment_list(@PathVariable("no") long no, @RequestBody String strjson,
 			@ModelAttribute("comments") CommentDTO comments) throws Exception {
+		Map<String, Object> result = new HashMap<>();
 		List<CommentDTO> commentlist = commentService.getCommentList(no);
 		System.out.println("★★★" + commentlist.toString());
-		return commentlist;
+
+		/// Comment 페이징 기능 추가
+		// online/classdetail/{no}/{cno} 이때 no는 lecture.id, cno는 comment page 번호를 의미!
+		PagingUtil pageUtil = new PagingUtil();
+		PageMaker pageMaker = new PageMaker();
+		pageUtil.setPage(cno);
+		pageMaker.setpu(pageUtil);
+		pageMaker.setTotalCount(commentlist.size());
+		System.out.println(pageUtil.toString());
+		System.out.println(pageMaker.toString());
+
+		result.put("commentlist", commentlist);
+		result.put("pageMaker", pageMaker);
+		result.put("pageUtil", pageUtil);
+		result.put("startPage", pageMaker.getStartPage());
+		result.put("endPage", pageMaker.getEndPage());
+
+		return result;
+
 	}
 
 	@PostMapping(value = "/classdetail/{no}/insert", produces = "application/json; charset=UTF-8")
 	public @ResponseBody String comment_insert(@PathVariable("no") long no, @RequestBody String strjson,
 			HttpServletRequest request, HttpSession session) throws Exception {
-		ResponseEntity<String> entity = null;
 
 		JSONObject jObject = new JSONObject(strjson);
 		String content = jObject.getString("content_textVal");

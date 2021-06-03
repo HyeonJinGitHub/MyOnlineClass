@@ -279,6 +279,8 @@ function registerAction() {
 				         
 				         <input type="text" id="lecture_no" name="lecture_no" value="${lecture_id}" style= "display:none"/>
 				         
+				         <input type="text" id="lecture_name" name="lecture_name" value="${lecture_name}" style= "display:none"/>
+				         
 				         <button type="button" id="vodSelect" onclick="onclick=document.all.file1.click()">동영상 선택</button>
 				         <br>
 				         <input type="submit" id="vodUpload" value="강의 업로드">

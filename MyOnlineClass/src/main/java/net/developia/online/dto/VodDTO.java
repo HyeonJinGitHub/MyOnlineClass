@@ -17,6 +17,9 @@ public class VodDTO{
 	//private String poster="https://i.ibb.co/dBLbrRV/bg1.jpg";
 	public String thumbnail;
 	
+	//새로 추가
+	public String poster;
+	
 	
 	
 }

@@ -222,6 +222,30 @@ if (session.getAttribute("id") == null) {
 		}
 	});
 
+	$(document).on("click", "#regbtn", function() {
+		var user = '<%=(String) session.getAttribute("id")%>';
+		if (user == 'null'){
+			Swal.fire({ 
+				title: '비회원 이용불가', 
+				text: "로그인 후 이용해주세요.", 
+				icon: 'warning', 
+				showCancelButton: true, 
+				confirmButtonColor: '#a1d1ff', 
+				cancelButtonColor: '#fa7373', 
+				confirmButtonText: '확인', 
+				cancelButtonText: '취소' 
+			}).then((result) => { 
+				if (result.isConfirmed) { 
+					location.href='/online/login';
+					} 
+				})
+			return;
+		}
+		else{
+			location.href='/online/memberlecture/'+${lecture.id};
+		}
+	});
+	
 	$(document).on("click", "#updatecmt_do", function() {
 		//댓글 수정
 		var cno = $(this).val();
@@ -506,7 +530,7 @@ if (session.getAttribute("id") == null) {
 								<button type="button" class="primary-btn" onClick="location.href='/online/vodStreaming?no=${lecture.id}'"> <i class="fa fa-bookmark"></i> 강좌 관리 </button>
 							</c:when>
 							<c:otherwise>
-								<button type="button" class="primary-btn" onClick="location.href='/online/memberlecture/${lecture.id}'"> <i class="fa fa-bookmark"></i> 수강 신청 </button>
+								<button type="button" id="regbtn" class="primary-btn"> <i class="fa fa-bookmark"></i> 수강 신청 </button>
 							</c:otherwise>
 						</c:choose>
 					</div>

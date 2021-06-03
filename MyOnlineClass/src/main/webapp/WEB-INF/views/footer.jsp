@@ -137,7 +137,7 @@
 	top: 0;
 	left: 0;
 	z-index: 999999;
-	background: #000;
+	background: #fff;
 }
 
 .loader {
@@ -151,6 +151,10 @@
 	border-radius: 60px;
 	animation: loader 0.8s linear infinite;
 	-webkit-animation: loader 0.8s linear infinite;
+}
+
+.loaderAfterWhite {
+	background-color: white;
 }
 
 @keyframes loader {

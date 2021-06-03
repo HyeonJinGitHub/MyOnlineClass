@@ -7,9 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/classtok_favi4fa9.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/favicon.png" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>클래스팡 :: MyOnlineClass</title>
 
 <!-- 폰트 스타일 시트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -197,7 +197,7 @@ a#MOVE_TOP_BTN {
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #121212;">
 		<div class="container">
 			<a class="navbar-brand" href="${contextPath}/">
-				<img src="${contextPath}/resources/image/ClassTok_logo_white.png" alt="클래스톡" class="logoImage">
+				<img src="${contextPath}/resources/image/Classpang_logo_white.png" alt="클래스팡" class="logoImage">
 			</a>
 			
 			<div class="ui-widget" style="padding-top: 15px;">

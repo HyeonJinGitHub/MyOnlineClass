@@ -26,7 +26,7 @@ if (session.getAttribute("id") == null) {
 <meta name="keywords" content="html, comment">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>My Online Class</title>
+<title>클래스팡 :: MyOnlineClass</title>
 
 <!-- Google Font -->
 <link

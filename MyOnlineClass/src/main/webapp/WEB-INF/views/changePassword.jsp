@@ -24,7 +24,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>비밀번호 변경 | Hyundai ClassTok</title>
+<title>비밀번호 변경 :: MyOnlineClass</title>
 <c:import url="header.jsp"></c:import>
 <script>
 	$(document).ready(

@@ -23,7 +23,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>로그인 | Hyundai ClassTok</title>
+  <title>로그인 :: MyOnlineClass</title>
 	<c:import url="header.jsp"></c:import>
 </head>
 <body>

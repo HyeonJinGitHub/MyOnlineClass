@@ -324,14 +324,14 @@ a#MOVE_TOP_BTN {
          	<ul class="navbar-nav ml-auto">	
          		<li class="nav-item active">	
          			<a class="nav-link linkSwitch" href="${contextPath}/open" >	
-         			<font color="white">
-         				<span class="textSwitch"></span>
-         				</font>	
+         			
+         				<span class="textSwitch" style="color:white; "></span>
+         				
             		</a>	
             	<li class="nav-item active">	
-            		<a class="nav-link" href="${contextPath}/alarm"><font color="white">
-            			<i class="far fa-bell"></i>
-            			</font>
+            		<a class="nav-link" href="${contextPath}/alarm">
+            			<i class="far fa-bell" style="color:white;"></i>
+            			
             		</a>	
             	</li>	
                <li class="nav-item active">	
@@ -341,9 +341,9 @@ a#MOVE_TOP_BTN {
                   </a>	
                   <% } else { %>	
                   <a class="nav-link" href="${contextPath}/mylecture" style="padding-right: 40px;">
-                  	<font color="white">	
-                     <i class="fas fa-user"></i>
-                     </font>	
+                  	
+                     <i class="fas fa-user" style="color:white"></i>
+                    	
                   </a>	
                   <% } %>	
                </li>	

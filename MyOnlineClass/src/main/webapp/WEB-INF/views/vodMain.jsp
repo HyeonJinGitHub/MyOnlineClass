@@ -10,7 +10,7 @@
 <c:set var="isInstructor" value="${isInstructor}" />
 <c:set var="isVodList" value="${isVodList}" />
 
-<%@include file="header3.jsp" %>
+<%@include file="header5.jsp" %>
  
 <%--
 	String id = (String)session.getAttribute("id");

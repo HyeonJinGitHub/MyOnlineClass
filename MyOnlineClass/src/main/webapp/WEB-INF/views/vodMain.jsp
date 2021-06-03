@@ -3,17 +3,18 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
- <c:import url="header3.jsp"></c:import>
+<!-- <c:import url="header5.jsp"></c:import> --> 
 
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
 <c:set var="isInstructor" value="${isInstructor}" />
 <c:set var="isVodList" value="${isVodList}" />
 
-<%@include file="header3.jsp" %>
-<%
+<%@include file="header5.jsp" %>
+ 
+<%--
 	String id = (String)session.getAttribute("id");
-%>
+--%>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -185,7 +185,9 @@
 					html += "onclick=";
 					html += pro;
 					html += ">";
+					html += "<div class='box'>";
 					html += "<img class='card-img-top' style='height: 200px;' alt='Card image' src='" + link + "'>";
+					html += "</div>";
 					html += "<div class='custom-card-body' style='width: 300px; height: 50px;'>";
 					html += "<p style='text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;'>" + data[key]['lectureName'] + "</p>"; 
 					html += "<p style='text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;'>" + data[key]['nickname'] + "</p>";
@@ -266,6 +268,7 @@ body {
 	height: 100%;
 	object-fit: cover;
 }
+
 }
 </style>
 
@@ -284,11 +287,37 @@ a#MOVE_TOP_BTN {
 	/* 화면 레이어 최상단으로 MOVE_TOP_BTN을 표시 */
 	z-index: 999;
 }
+
+.box{
+	overflow: hidden;   
+}
+
+.box img{
+	height:100%;
+	width: 100%;
+	object-fit:cover;     
+	
+	/* 마우스가 이미지를 벗어 났을 때도 자연스럽게 크기가 줄어들기 위함 */
+	transform: scale(1.0);        
+	transition: transform .5s; 
+
+}
+
+/* 마우스 호버시 */
+.box img:hover{            
+	transform: scale(1.2);            /* 이미지 확대 */
+	transition: transform .5s; 		 /*  시간 설정  */
 </style>
 
 </head>
 
 <body style="background-color: white;">
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+		<div class="loaderAfterWhite"></div>
+	</div>
+	
 	<!-- Move TOP Icon -->
 	<a id="MOVE_TOP_BTN" href="#"> 
 		<img src="${contextPath}/resources/image/icon_move_top.png">
@@ -298,5 +327,7 @@ a#MOVE_TOP_BTN {
 	<section class="py-5">
 		<div id="detailList"></div>
 	</section>
+	
+<c:import url="footer.jsp"></c:import>	
 </body>
 </html>

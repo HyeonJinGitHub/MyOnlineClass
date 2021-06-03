@@ -11,7 +11,7 @@
 
 .lecture_name_span{
 	  	color:white;
-      	padding: 10px 5px;
+      	/*padding: 10px 5px;*/
       	
 }
 
@@ -55,7 +55,7 @@ ul{
 
 .video__wrap > .video__contents{
 	float:left;
-	width:80%;
+	width:75%;
 }
 
 .video__wrap > .video__contents > .video__box{
@@ -112,18 +112,19 @@ ul{
 	color: white !important;
 	border-radius: 5px !important;
 	/*border: 0;*/
-	margin: 12px !important;
+	margin: 5px 12px !important;
 	padding: 10px 50px !important;
 	width: 100% !important;
 }
 
 .vodUpload {
-	/*display: inline-flex;*/
+	
 	text-align: center;
-	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
-	background-color: #f21414;
-	border-radius: 9px !important;
-	border: 1px solid #d12e6a;
+	/*box-shadow: inset -4px 0px 0px -15px #f7c5c0;*/
+	
+	background-color: #121212;
+	border-radius: 24px !important;
+	border: 1px solid #ffff;
 	display: inline-block;
 	cursor: pointer;
 	color: #ffffff;
@@ -132,8 +133,7 @@ ul{
 	font-weight: bold;
 	padding: 10px 50px !important;
 	text-decoration: none;
-	text-shadow: 0px 2px 0px #db3362;
-	margin: 12px !important;
+	margin: 5px 12px !important;
 	width: 100% !important;
 	
 }
@@ -152,12 +152,12 @@ ul{
 
 
 .vodDelete{
-	/*display: inline-flex;*/
+	
 	text-align: center;
-	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
+	/*box-shadow: inset -4px 0px 0px -15px #f7c5c0;*/
 	background-color: #f21414;
-	border-radius: 9px !important;
-	border: 1px solid #d12e6a;
+	border-radius: 24px !important;
+	border: 1px solid #f21414;
 	display: inline-block;
 	cursor: pointer;
 	color: #ffffff;
@@ -166,8 +166,7 @@ ul{
 	font-weight: bold;
 	padding: 10px 50px !important;
 	text-decoration: none;
-	text-shadow: 0px 2px 0px #db3362;
-	margin: 12px !important;
+	margin: 5px 12px !important;
 	width: 100% !important;
 	
 }
@@ -180,10 +179,10 @@ ul{
 
 .lectureDelete{
 	text-align: center;
-	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
+	/*box-shadow: inset -4px 0px 0px -15px #f7c5c0;*/
 	background-color: #f21414;
-	border-radius: 9px !important;
-	border: 1px solid #d12e6a;
+	/*border-radius: 24px !important;*/
+	border: 1px solid #f21414;
 	display: inline-block;
 	cursor: pointer;
 	color: #ffffff;
@@ -192,8 +191,7 @@ ul{
 	font-weight: bold;
 	padding: 10px 50px !important;
 	text-decoration: none;
-	text-shadow: 0px 2px 0px #db3362;
-	margin: 12px !important;
+	margin: 40px 12px !important;
 	width: 100% !important;
 }
 

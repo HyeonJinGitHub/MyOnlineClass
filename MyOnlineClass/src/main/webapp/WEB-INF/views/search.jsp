@@ -129,6 +129,18 @@
 				html += "<p style='text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray'>교육</p>";
 				html += "</div>";
 				html += "</div>";
+				html += "<div class='col-lg-1 mb-4' style='border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;' onclick=categorySearch('IT')>";
+				html += "<div class='card h-auto' align='center' style='border-radius: 15px; width: 70px; border-style: none; cursor: pointer;'>";
+				html += "<img class='card-img-top' src='${contextPath}/resources/genre/1614939075c81e.jpg' alt='Card image' style='width: 70px; height: 70px; border-radius: 15px;'>";
+				html += "<p style='text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray'>IT</p>";
+				html += "</div>";
+				html += "</div>";
+				html += "<div class='col-lg-1 mb-4' style='border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;' onclick=categorySearch('기타')>";
+				html += "<div class='card h-auto' align='center' style='border-radius: 15px; width: 70px; border-style: none; cursor: pointer;'>";
+				html += "<img class='card-img-top' src='${contextPath}/resources/genre/dsjfioajeiofasja.png' alt='Card image' style='width: 70px; height: 70px; border-radius: 15px;'>";
+				html += "<p style='text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray'>기타</p>";
+				html += "</div>";
+				html += "</div>";
 				html += "<div class='col-lg-1 mb-4' style='border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;' onclick=categorySearch('')>";
 				html += "<div class='card h-auto' align='center' style='border-radius: 15px; width: 70px; border-style: none; cursor: pointer;'>";
 				html += "<img class='card-img-top' src='${contextPath}/resources/genre/icon_search_all.png' alt='Card image' style='width: 70px; border-radius: 15px;'>";

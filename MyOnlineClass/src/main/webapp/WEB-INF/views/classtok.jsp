@@ -226,7 +226,6 @@
 body {
 	padding-top: 56px;
 }
-
 .carousel-item {
 	height: 65vh;
 	min-height: 300px;
@@ -236,21 +235,17 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 }
-
 .portfolio-item {
 	margin-bottom: 30px;
 }
-
 .logoImage {
 	width: 120px;
 	height: auto;
 	object-fit: cover;
 }
-
 .ul {
 	list-style: none;
 }
-
 .custom-card-body {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
@@ -267,7 +262,6 @@ html, body {
 	position: relative;
 	height: 100%;
 }
-
 body {
 	background: #eee;
 	font-family: Noto Sans KR, sans-serif, Helvetica Neue, Helvetica,
@@ -277,12 +271,10 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
 .swiper-container {
 	width: 100%;
 	height: 100%;
 }
-
 .swiper-slide {
 	text-align: center;
 	font-size: 18px;
@@ -301,14 +293,12 @@ body {
 	-webkit-align-items: center;
 	align-items: center;
 }
-
 .swiper-slide img {
 	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-
 .swiper-button-prev {
 	background-repeat: no-repeat;
 	background-size: 100% auto;
@@ -316,7 +306,6 @@ body {
 	-webkit-filter: opacity(.5) drop-shadow(0 0 0 gray);
 	filter: opacity(.5) dropshadow(0 0 0 gray);
 }
-
 .swiper-button-next {
 	background-repeat: no-repeat;
 	background-size: 100% auto;
@@ -324,21 +313,17 @@ body {
 	-webkit-filter: opacity(.5) drop-shadow(0 0 0 gray);
 	filter: opacity(.5) dropshadow(0 0 0 gray);
 }
-
 .swiper-button-prev:hover {
 	-webkit-filter: opacity(.5) drop-shadow(0 0 0 black);
 	filter: opacity(.5) dropshadow(0 0 0 black);
 }
-
 .swiper-button-next:hover {
 	-webkit-filter: opacity(.5) drop-shadow(0 0 0 black);
 	filter: opacity(.5) dropshadow(0 0 0 black);
 }
-
 .swiper-button-prev::after {
 	display: none;
 }
-
 .swiper-button-next::after {
 	display: none;
 }
@@ -351,7 +336,6 @@ body {
 	width: 80px;
 	height: 25px;
 }
-
 a#MOVE_TOP_BTN {
 	position: fixed;
 	right: 5%;
@@ -369,7 +353,6 @@ a#KAKAO_BTN {
 	/* 화면 레이어 최상단으로 MOVE_TOP_BTN을 표시 */
 	z-index: 999;
 }
-
 .ui-autocomplete {
 	font-size: 13px;
 	z-index: 9999 !important;
@@ -521,6 +504,12 @@ a#KAKAO_BTN {
 							<input type="button" value="#육아"
 								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;"
 								readonly onclick="categorySearch('육아')">
+							<input type="button" value="#IT"
+								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;"
+								readonly onclick="categorySearch('IT')">
+							<input type="button" value="#기타"
+								style="border-radius: 30px; border: 0; outline: 0; height: 25px; width: 50px; font-size: 11px; margin-right: 5px;"
+								readonly onclick="categorySearch('기타')">
 						</div>
 					</div>
 				</div>
@@ -713,6 +702,34 @@ a#KAKAO_BTN {
 				</div>
 				<div class="col-lg-1 mb-4"
 					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
+					onclick="categorySearch('IT')">
+					<div class="card h-auto" align="center"
+						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
+						>
+						<img class="card-img-top"
+							src="${contextPath}/resources/genre/1614939075c81e.jpg"
+							alt="Card image"
+							style="width: 70px; height: 70px; border-radius: 15px;">
+						<p
+							style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">IT</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4"
+					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
+					onclick="categorySearch('기타')">
+					<div class="card h-auto" align="center"
+						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
+						>
+						<img class="card-img-top"
+							src="${contextPath}/resources/genre/dsjfioajeiofasja.png"
+							alt="Card image"
+							style="width: 70px; height: 70px; border-radius: 15px;">
+						<p
+							style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 11.5px; margin-bottom: 0px; color: gray">기타</p>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-4"
+					style="border-radius: 15px; width: 70px; margin-left: 13px; margin-right: 13px;"
 					onclick="categorySearch('')">
 					<div class="card h-auto" align="center"
 						style="border-radius: 15px; width: 70px; border-style: none; cursor: pointer;"
@@ -820,4 +837,6 @@ a#KAKAO_BTN {
        });
 	</script>
 </body>
+
+<c:import url="footer.jsp"></c:import>
 </html>

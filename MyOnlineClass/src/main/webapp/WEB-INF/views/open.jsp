@@ -146,7 +146,7 @@ a#MOVE_TOP_BTN {
 						  <input type="button"  class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
 						<br>
 						
-						<form id="register" method='POST' action="${contextPath}/registerAction" enctype="multipart/form-data" onsubmit="return registerCheck()">
+						<form name="registerForm" id="register" method='POST' action="${contextPath}/registerAction" enctype="multipart/form-data" onsubmit="registerCheck(event)">
 							<input type="hidden" value="${id}" name="id">
 							<input type="hidden" value="${name}" name="name"> 
 							<input type="hidden" value="${email}" name="email"> 
@@ -209,17 +209,17 @@ a#MOVE_TOP_BTN {
 				url : '/online/check/nicknamecheck',
 				success : function(data) {
 					if(data > 0) {
-	  					alert('이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해주세요.');
+						alert('실패', '이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해주세요.', 'warning');
 	  					$("#nickname").focus();
 	  					nicknameck = 0;
 	  				} else {
-	  					alert('사용가능한 닉네임입니다.');
+	  					alert('성공', '사용가능한 닉네임입니다.', 'success');
 	  					$('#nickname').focus();
 	  					nicknameck = 1;
 	  				}
 				},
 				error : function(error) {
-					alert('error : ' + error);
+					alert('실패', 'error : ' + error, 'error');
 				}
 			});
  		
@@ -227,20 +227,58 @@ a#MOVE_TOP_BTN {
 	$('#nickname').on('keyup', function() {
 		nicknameck = 0;
 	});
-	function registerCheck() {
+	function registerCheck(e) {
+		var form = document.registerForm;
+		e.preventDefault();	
  		if(nicknameck == 0) {
- 			alert('닉네임 중복 여부를 확인해주세요.');
+ 			alert('실패', '닉네임 중복 여부를 확인해주세요.', 'warning');
  			return false;
  		} else {
- 			var result = confirm('강사로 등록하시겠습니까?');
- 			if (result) {
- 				return true;
- 			} else {
- 				return false;
- 			}
+ 			swal({
+				title : '강사등록',
+				text : '강사로 등록하시겠습니까?',
+				icon : 'info',
+				buttons: {
+				    yes: {
+				    	text : "예",
+				    	value : true,
+						className : "swal-button"
+				    },
+				    no: {
+				    	text : "아니오",
+				    	value : false,
+				    	className : "swal-button"
+				    }
+				  }
+			}).then((value)=> {
+				switch(value) {
+				case true:
+					swal({
+						title : '성공',
+						text : '강사로 등록되었습니다.',
+						icon : 'success',
+						buttons: {
+							yes: {
+						    	text : "예",
+						    	value : true,
+								className : "swal-button"
+						    },
+						}
+					}).then((value) => {
+						switch(value) {
+						case true:
+							form.submit();
+							break;
+						}
+					});
+					break;
+				case false:
+					break;
+				}
+			});
+			return false;
  		}
- 		return true;
- 	}
+	}
 	</script>
 </body>
 </html>

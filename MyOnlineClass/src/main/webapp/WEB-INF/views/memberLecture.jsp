@@ -11,12 +11,6 @@ String user = null;
 //로그인 세션 확인
 if (session.getAttribute("id") != null) {
 	user = (String) session.getAttribute("id");
-} else {
-	PrintWriter script = response.getWriter();
-	script.println("<script>");
-	script.println("alert('로그인이 필요합니다.')");
-	script.println("location.href='/online/login'");
-	script.println("</script>");
 }
 
 Date nowTime = new Date();
@@ -35,7 +29,53 @@ resultTime = dateForm.format(result_date);
 <c:import url="header2.jsp"></c:import>
 <meta charset="UTF-8">
 <title>클래스팡 :: MyOnlineClass</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+$(function(){
+	var user = '<%=(String) session.getAttribute("id")%>';
+	if (user == 'null'){
+		Swal.fire({ 
+			title: '비회원 이용불가', 
+			text: "로그인 후 이용해주세요.", 
+			icon: 'warning', 
+			showCancelButton: true, 
+			confirmButtonColor: '#a1d1ff', 
+			cancelButtonColor: '#fa7373', 
+			confirmButtonText: '확인', 
+			cancelButtonText: '취소' 
+		}).then((result) => { 
+			if (result.isConfirmed) { 
+				location.href='/online/login';
+				} 
+			else
+				history.back();
+			})
+		return;
+	}
+});
 
+$(document).on("click", "#regbtn", function() {
+	Swal.fire({ 
+		title: '강의를 수강하시겠습니까?', 
+		text: "오늘부터 강의를 수강할 수 있습니다!", 
+		icon: 'warning', 
+		showCancelButton: true, 
+		confirmButtonColor: '#a1d1ff', 
+		cancelButtonColor: '#fa7373', 
+		confirmButtonText: '네', 
+		cancelButtonText: '아니오' 
+	}).then((result) => { 
+		if (result.isConfirmed) { 
+			location.href='/online/memberlecture/action/'+${lecture.id};
+			return;
+		} 
+		else{
+			return;
+		}
+		})
+});
+
+</script>
 <style>
 .myButton {
 	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
@@ -95,6 +135,7 @@ resultTime = dateForm.format(result_date);
 <body>
 	<div id="preloder">
 		<div class="loader"></div>
+		<div class="loaderAfterWhite"></div>
 	</div>
 	<div style="border: 3px solid silver; padding: 1px; height: 10px;"></div>
 	<div style="text-align: center; padding: 40px;">
@@ -112,9 +153,7 @@ resultTime = dateForm.format(result_date);
 		<br> <br> <br>
 		<button type="button" class="myButton2"
 			onclick="location.href='javascript:history.back()'">취소</button>
-		<button type="button" class="myButton"
-			onclick="location.href='/online/memberlecture/action/${lecture.id}'">
-			수강신청하기</button>
+		<button type="button" class="myButton" id="regbtn">수강신청하기</button>
 	</div>
 	<div style="height: 100px;"></div>
 	<c:import url="footer.jsp"></c:import>

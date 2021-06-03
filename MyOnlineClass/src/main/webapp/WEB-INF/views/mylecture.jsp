@@ -130,7 +130,7 @@
           <a href="${pageContext.request.contextPath}/mypage" class="list-group-item">정보수정</a>
           <a href="${pageContext.request.contextPath}/changePassword" class="list-group-item">비밀번호 변경</a>
           <a href="${pageContext.request.contextPath}/delete" class="list-group-item">회원 탈퇴</a>
-           <a onclick="return logoutAction()" href="${pageContext.request.contextPath}/logout" class="list-group-item">로그아웃</a>
+           <a onclick="logoutAction(event)" href="${pageContext.request.contextPath}/logout" class="list-group-item">로그아웃</a>
         </div>
       </div>
       <!-- Content Column -->
@@ -189,7 +189,7 @@
 				url : '/springproject/check/phonecheck',
 				success : function(data) {
 					if(data > 0) {
-	  					alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');
+						alert('실패', '번호가 사용중입니다. 다른 번호를 입력해주세요.', 'warning');
 	  					$("#uphone").focus();
 	  				} else {
 	  					alert('사용가능한 번호입니다.');
@@ -202,13 +202,33 @@
 				}
 			});
 	}
-	function logoutAction() {
-		var result = confirm('로그아웃 하시겠습니까?');
-		if (result) {
-			return true;
-		} else {
-			return false;
-		}
+	function logoutAction(e) {
+		e.preventDefault();
+		swal({
+			title : '로그아웃',
+			text : '로그아웃 하시겠습니까?',
+			icon : 'warning',
+			buttons: {
+			    yes: {
+			    	text : "예",
+			    	value : true,
+					className : "swal-button"
+			    },
+			    no: {
+			    	text : "아니오",
+			    	value : false
+			    }
+			  }
+		}).then((value)=> {
+			switch(value) {
+			case true:
+				this.location.href = e.target.href;
+				break;
+			case false:
+				break;
+			}
+		});
+		return false;
 	}
    </script>
 </body>

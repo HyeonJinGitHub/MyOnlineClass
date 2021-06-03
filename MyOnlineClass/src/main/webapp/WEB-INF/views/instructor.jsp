@@ -13,7 +13,7 @@
 <link href='${pageContext.request.contextPath}/resources/css/main.css'
 	rel='stylesheet' />
 <script src='${pageContext.request.contextPath}/resources/js/main.js'></script>
-<title>강사정보 :: MyOnlineClass</title></title>
+<title>강사정보 :: MyOnlineClass</title>
 
 <style>
 body {
@@ -100,6 +100,29 @@ body {
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/style.css"
 	type="text/css">
 	
+	<script>
+	function check_instructor(no) {
+		var id = "${lectureVar.value[9]}";
+		$.ajax({
+				type: 'POST',
+				data : {id: id,
+					lecture_id: no	
+				},
+				url : "${contextPath}/getLectureInstructorInfo",
+				success : function(data) {
+					nickname = data['nickname'];
+					if(nickname) {
+						location.href="${contextPath}/vodStreaming?no=" + no;
+	  				} else {
+	  					location.href="${contextPath}/classdetail/" + no;
+	  				}
+				},
+				error : function(error) {
+					alert('실패', 'error : ' + error, 'error');
+				}
+			});
+	}
+	</script>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -175,29 +198,7 @@ body {
 		<!-- Instructor Section End -->
 	</div>
 	<c:import url="footer.jsp"></c:import>
-	<script>
-	function check_instructor(no) {
-		var id = "${id}";
-		$.ajax({
-				type: 'POST',
-				data : {id: id,
-					lecture_id: no	
-				},
-				url : "getLectureInstructorInfo",
-				success : function(data) {
-					nickname = data['nickname'];
-					if(nickname) {
-						location.href="vodStreaming?no=" + no;
-	  				} else {
-	  					location.href="classdetail/" + no;
-	  				}
-				},
-				error : function(error) {
-					alert('error : ' + error);
-				}
-			});
-	}
-	</script>
+
 	<!-- /.row -->
 	<!-- /.container -->
 	<!--  Bootstrap core JavaScript-->

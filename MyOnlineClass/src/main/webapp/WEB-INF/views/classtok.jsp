@@ -357,6 +357,10 @@ a#KAKAO_BTN {
 	font-size: 13px;
 	z-index: 9999 !important;
 }
+
+.test {
+	background-color:white;
+}
 </style>
 
 </head>
@@ -365,6 +369,7 @@ a#KAKAO_BTN {
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
+		<div class="loaderAfterWhite"></div>
 	</div>
 
 	<!-- Move TOP Icon -->

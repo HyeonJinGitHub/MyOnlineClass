@@ -327,7 +327,9 @@
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
+		<div class="loaderAfterWhite"></div>
 	</div>
+	
 	<!-- Move TOP Icon -->
 	<a id="MOVE_TOP_BTN" href="#">
 		<img src="${contextPath}/resources/image/icon_move_top.png">

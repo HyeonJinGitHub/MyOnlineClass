@@ -292,6 +292,7 @@ a#MOVE_TOP_BTN {
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
+		<div class="loaderAfterWhite"></div>
 	</div>
 	
 	<!-- Move TOP Icon -->

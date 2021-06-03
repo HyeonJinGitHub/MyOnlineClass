@@ -52,21 +52,28 @@ public class StreamingController{
 	// 	= "C:/online/resources/lecture";
 	//private final String FOLDER_MOVIE = "../../../../../video/"; 
 	//String DIR_PATH =  StreamingController.class.getResource(".").getPath();
-	String FOLDER_MOVIE = "C:/online/resources/video/";
+	String FOLDER_MOVIE = "C:/online/resources/lecture/";
 	//<source src="video/sample.mp4" type="video/mp4">
 	
-	@RequestMapping(value="/video/{lecture_id}/{video_name:.+}", method = RequestMethod.GET)
+	
+	
+	/*
 	public String stream(@PathVariable("lecture_id") String lecture_id,
 						 @PathVariable("video_name") String video_name, 
 						 HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+	*/
+	
+	/*@RequestMapping(value="/video/{lecture_id}/{video_name:.+}", method = RequestMethod.GET)*/
+	
+	@RequestMapping(value="/{lecture_name}/video/{video_name:.+}", method = RequestMethod.GET)
+	public String stream(@PathVariable("lecture_name") String lecture_name,
+			 @PathVariable("video_name") String video_name, 
+			 HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
 		
-		//String id = (String)session.getAttribute("id");
-		
-		
-		String My_FOLDER_MOVIE = FOLDER_MOVIE+lecture_id+"/";
-		//String My_FOLDER_MOVIE = FOLDER_MOVIE+id+"/";
+		String My_FOLDER_MOVIE = FOLDER_MOVIE+lecture_name+"/video/";
+		System.out.println("스트리밍 컨트롤러");
 		System.out.println(My_FOLDER_MOVIE);
-		
+		//sample/video/Forest.mp4
 		
 		//확장자 확인 //
 		//System.out.println(video_name);
@@ -186,11 +193,18 @@ public class StreamingController{
 			
 			
 			
-			
+			//poster="ThumnailDownload/${lecture.name}/${lecture.thumbnail}" 
+			//poster="${pageContext.request.contextPath}/lectureThumbnail?name=동영상 업로드 방법&thumbnail=ClassPang.jpg"
+			//
+			String str = "/online/lectureThumbnail?name="+ lectureDTO.getName() + "&thumbnail=";
+			System.out.println(str);
 			List<VodDTO> list = vodService.getVodList(no);
 			
 			for(int i=0;i<list.size(); i++) {
+				String thumbnail_name = list.get(i).getThumbnail();
 				list.get(i).setCnt(i+1);
+				//list.get(i).setThumbnail(str+thumbnail_name);
+				list.get(i).setPoster(str+thumbnail_name);
 				System.out.println(list.get(i));
 			}
 			

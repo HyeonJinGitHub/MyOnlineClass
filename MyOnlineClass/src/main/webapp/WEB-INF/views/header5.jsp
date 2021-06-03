@@ -37,7 +37,7 @@
 <!-- 다중 Autocomplete -->
 <script type="text/javascript">
 
-alert(id);
+
 $(function() {
     $( "#searchKey" ).autocomplete({
       source: '${contextPath}/autoComplete',
@@ -94,10 +94,12 @@ $(function() {
 
 
 <style>
+/*
 body {
 	padding-top: 56px;
 	
 }
+*/
 
 .carousel-item {
 	height: 65vh;
@@ -132,9 +134,11 @@ body {
 }
 
 }
+
 </style>
 
 <style>
+
 html,
 body {
 	position: relative;
@@ -160,7 +164,7 @@ body {
   	font-size: 18px;
   	background: #fff;
 
-  /* Center slide text vertically */
+  
  	display: -webkit-box;
   	display: -ms-flexbox;
  	display: -webkit-flex;
@@ -215,6 +219,7 @@ body {
 .swiper-button-next::after {
 	display: none;
 }
+
 </style>
 
 <style>
@@ -246,7 +251,8 @@ a#MOVE_TOP_BTN {
 
 
 </style>
-<style>	
+<style>
+
 .ui-autocomplete {	
     position: absolute;	
     top: 100%;	
@@ -293,7 +299,7 @@ a#MOVE_TOP_BTN {
     -webkit-border-radius: 0px;	
     -moz-border-radius: 0px;	
     background-image: none;
-    
+  
 </style>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #121212;">
 		<div class="container">	

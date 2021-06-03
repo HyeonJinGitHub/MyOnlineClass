@@ -23,12 +23,16 @@ getVideoData()
 		});
 
 		//현재 받은 비디오데이터의 맨처음 list 재생준비
+		console.log(videoArr[0].poster);
+		
 		player.poster(videoArr[0].poster);
+		//player.poster(videoArr[0].poster);
 		player.src(videoArr[0].src);
 		$(".video__tit").text(videoArr[0].id + ". " + videoArr[0].title);
 
 
 		var videoList = new HandleBars(videoListData, '#video__total-template', '.video__menu');
+		console.log(videoList);
 		videoList.render();
 
 		var listItem = $('.video__items');
@@ -36,10 +40,15 @@ getVideoData()
 		listClick(listItem);
 
 		var setSlcect = function (listSelect, currentNum) {
+			console.log('리스트 셀렉트');
+			console.log(listSelect)
+
 			listSelect.text[currentNum].id = videoArr[currentNum].id;
 			listSelect.text[currentNum].title = videoArr[currentNum].title;
 			listSelect.text[currentNum].src = videoArr[currentNum].src;
 			listSelect.text[currentNum].poster = videoArr[currentNum].poster;
+			//listSelect.text[currentNum].poster = videoArr[currentNum].poster;
+			
 			listSelect.text[currentNum].isCheck = videoArr[currentNum].isCheck;
 		};
 

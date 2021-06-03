@@ -2,17 +2,17 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
+<%--
 String id = (String) session.getAttribute("id");
 String name = (String) session.getAttribute("name");
 String email = (String) session.getAttribute("email");
 String phone = (String) session.getAttribute("phone");
-%>
+--%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="lecture_id" value="${lecture_id}" />
 <c:set var="lecture_name" value="${lecture_name}" />
 
-<%@include file="header3.jsp" %>
+<%@include file="header5.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -278,6 +278,8 @@ function registerAction() {
 				         <input multiple="multiple" type="file" id="myfile" name="file1" style= "display:none"/>
 				         
 				         <input type="text" id="lecture_no" name="lecture_no" value="${lecture_id}" style= "display:none"/>
+				         
+				         <input type="text" id="lecture_name" name="lecture_name" value="${lecture_name}" style= "display:none"/>
 				         
 				         <button type="button" id="vodSelect" onclick="onclick=document.all.file1.click()">동영상 선택</button>
 				         <br>

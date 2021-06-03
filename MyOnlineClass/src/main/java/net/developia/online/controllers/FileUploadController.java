@@ -29,20 +29,29 @@ public class FileUploadController {
 	@Autowired
 	private VodService vodService;
 
-	private static final String SAVE_PATH = "C:/online/resources/video/";
+	private static final String SAVE_PATH = "C:/online/resources/lecture/";
 	
+	/*
+    @RequestParam(value="file1", required = false) MultipartFile mf, HttpSession session,
+    @RequestParam(value="lecture_no",required = true) String lecture_no,
+	@RequestParam(value="lecturename" ,required = true) String title,
+	*/
 	
+	// lecturename/video/비디오이름
     @RequestMapping("upload")
     public ModelAndView upload(
-            @RequestParam(value="file1", required = false) MultipartFile mf, HttpSession session,
-            @RequestParam(value="lecture_no",required = true) String lecture_no,
+    		@RequestParam(value="file1", required = false) MultipartFile mf, HttpSession session,
+    		@RequestParam(value="lecture_no",required = true) String lecture_no,
+            @RequestParam(value="lecture_name",required = true) String lecture_name,
 			@RequestParam(value="lecturename" ,required = true) String title,
 
             HttpServletRequest request, HttpServletResponse response) {
     		String id = (String)session.getAttribute("id");
-		
-    		String My_SAVE_PATH = SAVE_PATH+id+"/";
-    		System.out.println(lecture_no);
+    		System.out.println("upload 컨트롤러");
+    		//String My_SAVE_PATH = SAVE_PATH+id+"/";
+    		
+    		String My_SAVE_PATH = SAVE_PATH +lecture_name+ "/video/";
+    		System.out.println(lecture_name);
     		
     		System.out.println(title);
     		
@@ -72,7 +81,9 @@ public class FileUploadController {
 
             String safeFile =  My_SAVE_PATH + originalFileName;
 
-            String src = "video/"+id+"/"+originalFileName;
+            //String src = "video/"+id+"/"+originalFileName;
+            //sample/video/Forest.mp4"
+            String src = lecture_name+ "/video/"+originalFileName;
             
             HashMap<String, Object> map = new HashMap<String, Object>();
             
@@ -110,10 +121,6 @@ public class FileUploadController {
             ModelAndView mav = new ModelAndView();
             mav.setView(new RedirectView("vodStreaming?no="+lecture_no));
 
-            
-            
-            
-        
         return mav;
         
     }

@@ -29,6 +29,10 @@
 </head>
 
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 <div class="table-content">
 	<div class="item"></div>
 	
@@ -73,7 +77,7 @@
   <!-- Footer -->
   <c:import url="footer.jsp"></c:import>
   	<!--  Bootstrap core JavaScript-->
-	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+	<%-- <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 </body>
 </html>

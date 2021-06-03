@@ -17,13 +17,22 @@
 	flex: 1;
 	background-color: #ffffff;
 }
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #4962B3;
+  font-size: 12px;
+  border: 1px solid #3e549a;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
 </style>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <title>비밀번호 변경 | Hyundai ClassTok</title>
 <c:import url="header.jsp"></c:import>
 <script>
@@ -65,6 +74,10 @@
 </head>
 
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	<div class="container">
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
@@ -94,10 +107,13 @@
 						href="${pageContext.request.contextPath}/mypage"
 						class="list-group-item">정보수정</a> <a
 						href="${pageContext.request.contextPath}/changePassword"
-						class="list-group-item">비밀번호 변경</a> <a
+						class="list-group-item">비밀번호 변경</a> 
+						<a
 						href="${pageContext.request.contextPath}/delete"
-						class="list-group-item">회원 탈퇴</a> <a
-						onclick="return logoutAction()"
+						class="list-group-item">회원 탈퇴</a> 
+						<a
+						id = "logout"
+						onclick="logoutAction(event)"
 						href="${pageContext.request.contextPath}/logout"
 						class="list-group-item">로그아웃</a>
 				</div>
@@ -180,13 +196,33 @@
 				$("#updateButton").attr("disabled", true);
 			}
 		});
-		function logoutAction() {
-			var result = confirm('로그아웃 하시겠습니까?');
-			if (result) {
-				return true;
-			} else {
-				return false;
-			}
+		function logoutAction(e) {
+			e.preventDefault();
+			swal({
+				title : '로그아웃',
+				text : '로그아웃 하시겠습니까?',
+				icon : 'warning',
+				buttons: {
+				    yes: {
+				    	text : "예",
+				    	value : true,
+						className : "swal-button"
+				    },
+				    no: {
+				    	text : "아니오",
+				    	value : false
+				    }
+				  }
+			}).then((value)=> {
+				switch(value) {
+				case true:
+					this.location.href= e.target.href;
+					break;
+				case false:
+					break;
+				}
+			});
+			return false;
 		}
 	</script>
 	<!--  Bootstrap core JavaScript-->

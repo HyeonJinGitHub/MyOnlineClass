@@ -94,11 +94,15 @@ public class MemberLectureController {
 			lectureService.MemberLectureRegister(map);
 			mav.addObject("msg", "수강신청이 완료되었습니다.");
 			mav.addObject("url", "/online/mylecture");
+			mav.addObject("type", "success");
+			mav.addObject("title", "성공");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
 			mav.addObject("msg", e.getMessage());
 			mav.addObject("url", "javascript:history.back();");
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			return mav;
 		}
 

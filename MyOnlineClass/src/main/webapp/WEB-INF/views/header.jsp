@@ -311,7 +311,20 @@ a#MOVE_TOP_BTN {
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
 </style>
-
+<script>
+var alert = function(title, msg, type) {
+	swal({
+		title : title,
+		text : msg,
+		icon : type,
+		button: '확인'
+	}).then((YES) => {
+		if(YES) {
+			
+		}
+	});
+}
+</script>
 </head>
 <body>
 <!-- Navigation -->

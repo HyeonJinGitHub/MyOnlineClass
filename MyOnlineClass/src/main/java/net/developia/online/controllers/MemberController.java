@@ -339,6 +339,7 @@ public class MemberController {
 			list.add(dto.getIntroduce());
 			list.add(dto.getThumbnail());
 			list.add(Integer.toString(output));
+			list.add(id);
 			lecture_map.put(Long.toString(dto.getId()), list);
 		}
 		System.out.println(lecture_map);
@@ -372,4 +373,6 @@ public class MemberController {
 		}
 		return instructorDTO;
 	}
+	
+	
 }

@@ -11,7 +11,12 @@
 <link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/favicon.png" />
 <meta charset="UTF-8">
 
+
 <title>클래스팡 :: MyOnlineClass</title>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 <!-- 폰트 스타일 시트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
@@ -200,6 +205,14 @@ a#MOVE_TOP_BTN {
 .ui-autocomplete {
 	font-size: 13px;
 	z-index: 9999 !important;
+}
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #4962B3;
+  font-size: 12px;
+  border: 1px solid #3e549a;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
 </style>
 

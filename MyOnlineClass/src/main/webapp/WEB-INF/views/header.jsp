@@ -11,7 +11,11 @@
 <link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/favicon.png" />
 <meta charset="UTF-8">
 
+
 <title>클래스팡 :: MyOnlineClass</title>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <!-- 폰트 스타일 시트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
@@ -25,6 +29,29 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<!-- <script>
+	function confirm(title, msg, type) {
+		swal({
+			title : title,
+			text : msg,
+			icon : type,
+			buttons: {
+			    yes: "예",
+			    no: "아니오"
+			  },
+		})
+		.then((value) => {
+			switch(value) {
+			case "예":
+				return true;
+			case "아니오":
+				return false;
+			}
+			 
+		});
+	}
+</script> -->
 
 <!-- 다중 Autocomplete -->
 <script type="text/javascript">
@@ -274,6 +301,14 @@ a#MOVE_TOP_BTN {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     background-image: none;
+}
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #4962B3;
+  font-size: 12px;
+  border: 1px solid #3e549a;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
 </style>
 

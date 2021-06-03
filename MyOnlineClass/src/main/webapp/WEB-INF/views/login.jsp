@@ -27,6 +27,10 @@
 	<c:import url="header.jsp"></c:import>
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 <div class="table-content">
 	<div class="item"></div>
 </div>

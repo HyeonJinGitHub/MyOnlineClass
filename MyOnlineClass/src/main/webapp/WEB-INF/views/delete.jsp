@@ -83,6 +83,10 @@ body {
 </script>
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	<c:set var="up" value=".." />
 	<!-- Page Content -->
 	<div class="container">
@@ -117,7 +121,7 @@ body {
 						class="list-group-item">비밀번호 변경</a> <a
 						href="${pageContext.request.contextPath}/delete"
 						class="list-group-item">회원 탈퇴</a> <a
-						onclick="return logoutAction()"
+						onclick="logoutAction(event)"
 						href="${pageContext.request.contextPath}/logout"
 						class="list-group-item">로그아웃</a>
 
@@ -133,7 +137,8 @@ body {
 				</ol>
 
 				<div class="jumbotron" style="height: 80%; overflow: hidden;">
-					<form action="${pageContext.request.contextPath}/deleteAction"
+					<form name="deleteForm"
+					action="${pageContext.request.contextPath}/deleteAction"
 						class="was-validated" method="post">
 						<div class="form-group"
 							style="width: 70%; margin: 0 auto; overflow: hidden;">
@@ -158,7 +163,7 @@ body {
 						<br />
 						<div class="form-group"
 							style="width: 50%; margin: 10px auto; margin-top: 40px;">
-							<button type="submit" onclick="return confirmSubmit();"
+							<button type="submit" onclick="confirmSubmit(event);"
 								class="btn btn-primary"
 								style="width: 100%; border-color: #343a40; background-color: #343a40;">회원탈퇴</button>
 						</div>
@@ -175,25 +180,70 @@ body {
 		<div class="item"></div>
 
 	</div>
+	<div class="table-content">
+		<div class="item"></div>
+
+	</div>
 	<c:import url="footer.jsp"></c:import>
 	<script type="text/javascript">
 		var emailck = 0;
-		function confirmSubmit() {
-			var result = confirm('탈퇴하시겠습니까?');
-			if (result) {
-				return true;
-			} else {
-				return false;
-			}
+		function confirmSubmit(e) {
+			var form = document.deleteForm;
+			e.preventDefault();
+			swal({
+				title : '회원탈퇴',
+				text : '탈퇴하시겠습니까?',
+				icon : 'warning',
+				buttons: {
+				    yes: {
+				    	text : "예",
+				    	value : true,
+						className : "swal-button"
+				    },
+				    no: {
+				    	text : "아니오",
+				    	value : false,
+				    	className : "swal-button"
+				    }
+				  }
+			}).then((value)=> {
+				switch(value) {
+				case true:
+					form.submit();
+					break;
+				case false:
+					break;
+				}
+			});
+			return false;
 		}
-
-		function logoutAction() {
-			var result = confirm('로그아웃 하시겠습니까?');
-			if (result) {
-				return true;
-			} else {
-				return false;
-			}
+		function logoutAction(e) {
+			e.preventDefault();
+			swal({
+				title : '로그아웃',
+				text : '로그아웃 하시겠습니까?',
+				icon : 'warning',
+				buttons: {
+				    yes: {
+				    	text : "예",
+				    	value : true,
+						className : "swal-button"
+				    },
+				    no: {
+				    	text : "아니오",
+				    	value : false
+				    }
+				  }
+			}).then((value)=> {
+				switch(value) {
+				case true:
+					this.location.href = e.target.href;
+					break;
+				case false:
+					break;
+				}
+			});
+			return false;
 		}
 	</script>
 	<!--  Bootstrap core JavaScript-->

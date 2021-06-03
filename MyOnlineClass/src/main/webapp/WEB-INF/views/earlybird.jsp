@@ -48,6 +48,11 @@
 				var h = Math.floor(distance / (1000 * 60 * 60));
 				var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 				var s = Math.floor((distance % (1000 * 60)) / 1000);
+
+				
+				if (String(h).length == 1) {
+					h = "0" + h;
+				}
 				
 				if (String(m).length == 1) {
 					m = "0" + m;
@@ -175,11 +180,14 @@
 				link += 'lectureName=';
 				link += lectureName;
 				
-				let pro = "location.href='classDetail/";
+				let pro = "location.href='classdetail/";
 				pro += data[key]['id'] + "'";
 				
 				html += "<div class='col-lg-4 mb-4 swiper-slide'>";
-				html += "<div class='card h-auto' style='width: 250px; height: 130px; cursor: pointer;'>";
+				html += "<div class='card h-auto' style='width: 250px; height: 130px; cursor: pointer;'";
+				html += "onclick=";
+				html += pro;
+				html += ">";
 				html += "<img class='card-img-top' style='height: 200px;' alt='Card image' src='" + link + "'>";
 				html += "<div class='custom-card-body' style='width: 300px; height: 70px;'>";
 				html += "<p style='text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;'>" + data[key]['lectureName'] + "</p>"; 
@@ -230,11 +238,14 @@
 				link += 'lectureName=';
 				link += lectureName;
 				
-				let pro = "location.href='classDetail/";
+				let pro = "location.href='classdetail/";
 				pro += data[key]['id'] + "'";
 				
 				html += "<div class='col-lg-4 mb-4 swiper-slide'>";
-				html += "<div class='card h-auto' style='width: 250px; height: 130px; cursor: pointer;'>";
+				html += "<div class='card h-auto' style='width: 250px; height: 130px; cursor: pointer;'";
+				html += "onclick=";
+				html += pro;
+				html += ">";
 				html += "<img class='card-img-top' style='height: 200px;' alt='Card image' src='" + link + "'>";
 				html += "<div class='custom-card-body' style='width: 300px; height: 70px;'>";
 				html += "<p style='text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;'>" + data[key]['lectureName'] + "</p>"; 

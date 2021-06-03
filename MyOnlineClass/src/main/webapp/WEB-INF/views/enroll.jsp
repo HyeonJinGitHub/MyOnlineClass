@@ -95,6 +95,7 @@ String phone = (String) session.getAttribute("phone");
 
 
 </style>
+
 </head>
 
 <body>
@@ -111,7 +112,7 @@ String phone = (String) session.getAttribute("phone");
 	<div class="table-content">
 		<div class="item"></div>
 	</div>
-	<div class="container">
+
 	<section>
 		<div class="carousel-item active"
 			style="height: 100%; background-image: url('${contextPath}/resources/image/background.png')">
@@ -144,8 +145,8 @@ String phone = (String) session.getAttribute("phone");
 					<br>
 
 					<div>
-						<span style="position: relative; left: 40px; color: gray;">#</span>
-						<select name="genre" id="genre" required="required" style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
+						<span style="position: relative; left: 38px; color: gray;">#</span>
+						<select name="genre" id="genre" required="required" style="color: gray; width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 38px; appearance: none;">
 							<option selected>장르를 선택하세요.</option>
 							<option>다이어트</option>
 							<option>교육</option>
@@ -228,9 +229,7 @@ String phone = (String) session.getAttribute("phone");
 			</div>
 		</div>
 		<br>
-	
 		</section>
-	</div>
 		<div class="table-content1">
 		<div class="item"></div>
 	</div>

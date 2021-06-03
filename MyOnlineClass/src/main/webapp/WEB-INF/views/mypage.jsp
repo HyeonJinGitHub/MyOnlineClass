@@ -79,6 +79,10 @@ body {
 </script>
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	<c:set var="up" value=".." />
 	<!-- Page Content -->
 	<div class="container">
@@ -129,7 +133,7 @@ body {
 
 				<div class="jumbotron" style="height: 80%; overflow: hidden;">
 					<form action="${pageContext.request.contextPath}/updateAction"
-						class="was-validated" method="post">
+						class="was-validated" method="post" onsubmit="return updateAction()">
 						<div class="form-group"
 							style="width: 70%; margin: 0 auto; overflow: hidden;">
 							<label for="uname" style="float: left;">아이디&nbsp; &nbsp;
@@ -210,7 +214,9 @@ body {
 		src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 	<!-- /.container -->
 	<script type="text/javascript">
-		var emailck = 0;
+		var emailck = 1;
+		var init_email = $("#uemail").val();
+		var init_phone = $("#uphone").val();
 		function duplicationEmail() {
 			var useremail = $("#uemail").val();
 			$.ajax({
@@ -221,13 +227,20 @@ body {
 				},
 				url : '/online/check/emailcheck',
 				success : function(data) {
-					if (data > 0) {
-						alert('이미 사용 중인 이메일입니다. 다른 이메일을 입력해주세요.');
-						$("#uemail").focus();
-					} else {
-						alert('사용가능한 이메일입니다.');
+					if(init_email == useremail) {
+						alert('기존 이메일입니다.');
 						$('#uemail').focus();
 						emailck = 1;
+					} else {
+						if (data > 0) {
+							alert('이미 사용 중인 이메일입니다. 다른 이메일을 입력해주세요.');
+							$("#uemail").focus();
+							emailck = 0;
+						} else {
+							alert('사용가능한 이메일입니다.');
+							$('#uemail').focus();
+							emailck = 1;
+						}
 					}
 				},
 				error : function(error) {
@@ -235,7 +248,7 @@ body {
 				}
 			});
 		}
-		var phoneck = 0;
+		var phoneck = 1;
 		function duplicationPhone() {
 			var userphone = $("#uphone").val();
 			$.ajax({
@@ -246,13 +259,20 @@ body {
 				},
 				url : '/online/check/phonecheck',
 				success : function(data) {
-					if (data > 0) {
-						alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');
-						$("#uphone").focus();
-					} else {
-						alert('사용가능한 번호입니다.');
+					if(init_phone == userphone) {
+						alert('기존 번호입니다.');
 						$('#uphone').focus();
-						emailck = 1;
+						phoneck = 1;
+					} else {
+						if (data > 0) {
+							alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');
+							$("#uphone").focus();
+							phoneck = 0;
+						} else {
+							alert('사용가능한 번호입니다.');
+							$('#uphone').focus();
+							phoneck = 1;
+						}
 					}
 				},
 				error : function(error) {
@@ -260,8 +280,31 @@ body {
 				}
 			});
 		}
+		
+		$('#uemail').on('keyup', function() {
+			emailck = 0;
+		});
+		$('#uphone').on('keyup', function() {
+			phoneck = 0;
+		});
 		function logoutAction() {
 			var result = confirm('로그아웃 하시겠습니까?');
+			if (result) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		function updateAction() {
+			if(emailck == 0) {
+	 			alert('이메일 중복 여부를 확인해주세요.');
+	 			return false;
+	 		}
+			if(phoneck == 0) {
+	 			alert('핸드폰 중복 여부를 확인해주세요.');
+	 			return false;
+	 		}
+			var result = confirm('정보를 수정하시겠습니까?');
 			if (result) {
 				return true;
 			} else {

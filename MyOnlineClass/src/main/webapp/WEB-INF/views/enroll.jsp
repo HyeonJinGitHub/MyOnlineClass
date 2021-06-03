@@ -98,6 +98,10 @@ String phone = (String) session.getAttribute("phone");
 </head>
 
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	<%
 	if (id == null || id == "") {
 		response.sendRedirect("login");
@@ -118,8 +122,8 @@ String phone = (String) session.getAttribute("phone");
 					.</h3>
 				<br>
 
-				<form id="register" method='POST'
-					action="${contextPath}/enrollAction" enctype="multipart/form-data" onsubmit="return registerAction()">
+				<form id="register" method='POST' name="registerForm"
+					action="${contextPath}/enrollAction" enctype="multipart/form-data" onsubmit="registerAction(event)">
 					<input type="hidden" value="${id}" name="id"> <input
 						type="hidden" value="${name}" name="name"> <input
 						type="hidden" value="${email}" name="email"> <input
@@ -217,7 +221,7 @@ String phone = (String) session.getAttribute("phone");
 							readonly> <input type="file" accept="image/*"
 							name="image" required="required" style="padding-left: 10px;">
 					</div>
-					<br> <br> <input type="submit" value="신청하기"
+					<br> <br> <input type="submit" value="신청하기" onclick=""
 						style="width: 100px; border-radius: 30px; border: 0; outline: 0;">
 					<br> <br>
 				</form>
@@ -237,14 +241,35 @@ String phone = (String) session.getAttribute("phone");
 	<%-- <c:import url="footer.jsp"></c:import> --%>
 	
 	<script>
-	function registerAction() {
+	function registerAction(e) {
+		var form = document.registerForm;
 		var name = $("#lecturename").val();
-		var result = confirm("강의명 : " + name + "\n강의를 등록하시겠습니까?");
-		if (result) {
-			return true;
-		} else {
-			return false;
-		}
+		e.preventDefault();
+		swal({
+			title : '강의등록',
+			text : name + '으로 등록하시겠습니까?',
+			icon : 'info',
+			buttons: {
+			    yes: {
+			    	text : "예",
+			    	value : true,
+					className : "swal-button"
+			    },
+			    no: {
+			    	text : "아니오",
+			    	value : false
+			    }
+			  }
+		}).then((value)=> {
+			switch(value) {
+			case true:
+				form.submit();
+				break;
+			case false:
+				break;
+			}
+		});
+		return false;
 	}
 	</script>
 	

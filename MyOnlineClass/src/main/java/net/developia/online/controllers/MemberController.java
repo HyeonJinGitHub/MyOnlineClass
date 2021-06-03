@@ -64,6 +64,8 @@ public class MemberController {
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
 			mav.addObject("url", "javascript:history.back();");
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			return mav;
 		}
 	}
@@ -88,7 +90,9 @@ public class MemberController {
 			memberService.updatePassword(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "비밀번호가 수정되었습니다.");
-			mav.addObject("url", "/online/move/changePassword");
+			mav.addObject("url", "/online/changePassword");
+			mav.addObject("title", "성공");
+			mav.addObject("type", "success");
 			return mav;
 			
  		} catch (Exception e) {
@@ -97,6 +101,8 @@ public class MemberController {
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
 			mav.addObject("url", "javascript:history.back();");
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			return mav;
 		}
 	}
@@ -113,6 +119,8 @@ public class MemberController {
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "탈퇴되었습니다. 이용해 주셔서 감사합니다.");
 			mav.addObject("url", "/online/");
+			mav.addObject("title", "성공");
+			mav.addObject("type", "success");
 			session.invalidate();
 			return mav;
 			
@@ -122,6 +130,8 @@ public class MemberController {
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
 			mav.addObject("url", "javascript:history.back();");
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			return mav;
 		}
 	}
@@ -141,7 +151,9 @@ public class MemberController {
 			
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "회원정보가 수정되었습니다.");
-			mav.addObject("url", "/online/move/mypage");
+			mav.addObject("url", "/online/mypage");
+			mav.addObject("title", "성공");
+			mav.addObject("type", "success");
 			return mav;
 
  		} catch (Exception e) {
@@ -149,6 +161,8 @@ public class MemberController {
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
 			mav.addObject("url", "javascript:history.back();");
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			return mav;
 
  		}
@@ -163,12 +177,16 @@ public class MemberController {
 			memberService.findId(map);
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", uemail + "로 아이디를 전송하였습니다.");
+			mav.addObject("title", "성공");
 			mav.addObject("url", "/online/");
+			mav.addObject("type", "success");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			mav.addObject("url", "javascript:history.back();");
 			return mav;
 		}
@@ -184,11 +202,15 @@ public class MemberController {
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "계정에 등록된 이메일로 임시 비밀번호를 전송하였습니다.");
 			mav.addObject("url", "/online/");
+			mav.addObject("type", "success");
+			mav.addObject("title", "성공");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			mav.addObject("url", "javascript:history.back();");
 			return mav;
 		}
@@ -208,11 +230,15 @@ public class MemberController {
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "회원가입에 성공하였습니다.");
 			mav.addObject("url", "/online/login");
+			mav.addObject("type", "success");
+			mav.addObject("title", "성공");
 			return mav;
 		} catch (Exception e) {
 			e.printStackTrace();
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
+			mav.addObject("url", "javascript:history.back();");
+			mav.addObject("title", "실패");
 			mav.addObject("url", "javascript:history.back();");
 			return mav;
 		}
@@ -332,7 +358,6 @@ public class MemberController {
 		
 		try {
 			memberService.getLectureInstructorInfo(map);
-			System.out.println("여기" + map.toString());
 			List tmp_list = (List)map.get("LectureInstructorList");
 			HashMap<String, Object> instructor = (HashMap<String, Object>) tmp_list.get(0);
 			instructorDTO.setMember_id(id);

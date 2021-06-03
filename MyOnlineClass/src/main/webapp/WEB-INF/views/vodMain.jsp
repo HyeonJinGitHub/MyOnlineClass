@@ -3,7 +3,7 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- <c:import url="header5.jsp"></c:import> --> 
+<c:import url="header5.jsp"></c:import> 
 
 <c:set var="lecture" value="${lectureDTO}" />
 <c:set var="instructor" value="${instructorDTO}" />
@@ -315,7 +315,7 @@
 
 
 <body>
-
+	
 	<form name="paging">
     	<input type="hidden" name="id"/>
     </form>
@@ -330,7 +330,7 @@
 	<div class="video__wrap">
 		
 		
-		
+		<!-- poster="${pageContext.request.contextPath}/lectureThumbnail?name=${lecture.name}&thumbnail=${lecture.thumbnail}" -->
 		<div class="video__contents">
 			<div class="video__box">
 				<!-- <p class="video__tit"></p> -->
@@ -343,7 +343,7 @@
 							preload="auto" 
 							width="640" 
 							height="268" 
-							poster="${pageContext.request.contextPath}/lectureThumbnail?name=${lecture.name}&thumbnail=${lecture.thumbnail}"
+							poster="${pageContext.request.contextPath}/lectureThumbnail?name=동영상 업로드 방법&thumbnail=ClassPang.jpg"
 							data-setup="{'techOrder':['html5','flash','flvjs']}">
 						<source src="video/skatn3/Forest.mp4" type="video/mp4">
 					</video>

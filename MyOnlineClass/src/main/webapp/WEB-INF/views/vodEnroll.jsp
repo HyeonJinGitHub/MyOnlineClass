@@ -2,17 +2,17 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
+<%--
 String id = (String) session.getAttribute("id");
 String name = (String) session.getAttribute("name");
 String email = (String) session.getAttribute("email");
 String phone = (String) session.getAttribute("phone");
-%>
+--%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="lecture_id" value="${lecture_id}" />
 <c:set var="lecture_name" value="${lecture_name}" />
 
-<%@include file="header3.jsp" %>
+<%@include file="header5.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>

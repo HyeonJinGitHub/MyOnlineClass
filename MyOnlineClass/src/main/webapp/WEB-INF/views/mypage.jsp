@@ -116,7 +116,7 @@ body {
 						class="list-group-item">비밀번호 변경</a> <a
 						href="${pageContext.request.contextPath}/delete"
 						class="list-group-item">회원 탈퇴</a> <a
-						onclick="return logoutAction()"
+						onclick="logoutAction(event)"
 						href="${pageContext.request.contextPath}/logout"
 						class="list-group-item">로그아웃</a>
 				</div>
@@ -132,8 +132,8 @@ body {
 				</ol>
 
 				<div class="jumbotron" style="height: 80%; overflow: hidden;">
-					<form action="${pageContext.request.contextPath}/updateAction"
-						class="was-validated" method="post" onsubmit="return updateAction()">
+					<form action="${pageContext.request.contextPath}/updateAction" name="updateForm"
+						class="was-validated" method="post" onsubmit="updateAction(event)">
 						<div class="form-group"
 							style="width: 70%; margin: 0 auto; overflow: hidden;">
 							<label for="uname" style="float: left;">아이디&nbsp; &nbsp;
@@ -228,23 +228,23 @@ body {
 				url : '/online/check/emailcheck',
 				success : function(data) {
 					if(init_email == useremail) {
-						alert('기존 이메일입니다.');
+						alert('실패', '기존 이메일입니다.', 'warning');
 						$('#uemail').focus();
 						emailck = 1;
 					} else {
 						if (data > 0) {
-							alert('이미 사용 중인 이메일입니다. 다른 이메일을 입력해주세요.');
+							alert('실패', '이미 사용 중인 이메일입니다. 다른 이메일을 입력해주세요.', 'warning');
 							$("#uemail").focus();
 							emailck = 0;
 						} else {
-							alert('사용가능한 이메일입니다.');
+							alert('성공', '사용가능한 이메일입니다.', 'success');
 							$('#uemail').focus();
 							emailck = 1;
 						}
 					}
 				},
 				error : function(error) {
-					alert('error : ' + error);
+					alert('실패', 'error : ' + error, 'error');
 				}
 			});
 		}
@@ -260,23 +260,23 @@ body {
 				url : '/online/check/phonecheck',
 				success : function(data) {
 					if(init_phone == userphone) {
-						alert('기존 번호입니다.');
+						alert('실패', '기존 번호입니다.', 'warning');
 						$('#uphone').focus();
 						phoneck = 1;
 					} else {
 						if (data > 0) {
-							alert('번호가 사용중입니다. 다른 번호를 입력해주세요.');
+							alert('실패', '번호가 사용중입니다. 다른 번호를 입력해주세요.', 'warning');
 							$("#uphone").focus();
 							phoneck = 0;
 						} else {
-							alert('사용가능한 번호입니다.');
+							alert('성공', '사용가능한 번호입니다.', 'success');
 							$('#uphone').focus();
 							phoneck = 1;
 						}
 					}
 				},
 				error : function(error) {
-					alert('error : ' + error);
+					alert('실패', 'error : ' + error, 'error');
 				}
 			});
 		}
@@ -287,29 +287,71 @@ body {
 		$('#uphone').on('keyup', function() {
 			phoneck = 0;
 		});
-		function logoutAction() {
-			var result = confirm('로그아웃 하시겠습니까?');
-			if (result) {
-				return true;
-			} else {
-				return false;
-			}
+		function logoutAction(e) {
+			e.preventDefault();
+			swal({
+				title : '로그아웃',
+				text : '로그아웃 하시겠습니까?',
+				icon : 'warning',
+				buttons: {
+				    yes: {
+				    	text : "예",
+				    	value : true,
+						className : "swal-button"
+				    },
+				    no: {
+				    	text : "아니오",
+				    	value : false
+				    }
+				  }
+			}).then((value)=> {
+				switch(value) {
+				case true:
+					this.location.href = e.target.href;
+					break;
+				case false:
+					break;
+				}
+			});
+			return false;
 		}
-		function updateAction() {
+		function updateAction(e) {
+			var form = document.updateForm;
+			e.preventDefault();
 			if(emailck == 0) {
-	 			alert('이메일 중복 여부를 확인해주세요.');
+				alert('실패', '이메일 중복 여부를 확인해주세요.', 'warning');
 	 			return false;
 	 		}
 			if(phoneck == 0) {
-	 			alert('핸드폰 중복 여부를 확인해주세요.');
+				alert('실패', '핸드폰 중복 여부를 확인해주세요.', 'warning');
 	 			return false;
 	 		}
-			var result = confirm('정보를 수정하시겠습니까?');
-			if (result) {
-				return true;
-			} else {
-				return false;
-			}
+			swal({
+				title : '정보수정',
+				text : '정보를 수정하시겠습니까?',
+				icon : 'info',
+				buttons: {
+				    yes: {
+				    	text : "예",
+				    	value : true,
+						className : "swal-button"
+				    },
+				    no: {
+				    	text : "아니오",
+				    	value : false,
+				    	className : "swal-button"
+				    }
+				  }
+			}).then((value)=> {
+				switch(value) {
+				case true:
+					form.submit();
+					break;
+				case false:
+					break;
+				}
+			});
+			return false;
 		}
 	</script>
 </body>

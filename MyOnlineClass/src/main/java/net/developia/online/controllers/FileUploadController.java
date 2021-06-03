@@ -124,6 +124,7 @@ public class FileUploadController {
     @RequestMapping("tempfile")
     public ModelAndView tempfile(
     		@RequestParam(required=true) long lecture_id,
+    		@RequestParam(required=true) String lecture_name,
     		HttpServletRequest request, HttpServletResponse response) throws Exception {
     	
     	ModelAndView mav = new ModelAndView();
@@ -132,6 +133,7 @@ public class FileUploadController {
     	
     	mav.setViewName("vodEnroll");
     	mav.addObject("lecture_id",lecture_id);
+    	mav.addObject("lecture_name",lecture_name);
 
 		return mav;
 	}

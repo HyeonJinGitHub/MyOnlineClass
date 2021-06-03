@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -175,9 +176,14 @@ public class StreamingController{
 		
 		try {
 
+			LectureDTO lectureDTO = new LectureDTO();
+			lectureDTO = lectureService.getLecture(no);
+			System.out.println(lectureDTO);
 			
-			LectureDTO lectureDTO = lectureService.getLecture(no);
-			InstructorDTO instructorDTO = instructorService.getInstructor(no);
+			
+			InstructorDTO instructorDTO =new InstructorDTO();  
+			instructorDTO =	instructorService.getInstructor(no);
+			
 			System.out.println(instructorDTO);
 			boolean isInstructor = false; 
 						
@@ -198,13 +204,15 @@ public class StreamingController{
 			//
 			String str = "/online/lectureThumbnail?name="+ lectureDTO.getName() + "&thumbnail=";
 			System.out.println(str);
+			
+			String thumbnail = lectureDTO.getThumbnail();
 			List<VodDTO> list = vodService.getVodList(no);
 			
 			for(int i=0;i<list.size(); i++) {
-				String thumbnail_name = list.get(i).getThumbnail();
+				
 				list.get(i).setCnt(i+1);
-				//list.get(i).setThumbnail(str+thumbnail_name);
-				list.get(i).setPoster(str+thumbnail_name);
+				list.get(i).setThumbnail(thumbnail);
+				list.get(i).setPoster(str+thumbnail);
 				System.out.println(list.get(i));
 			}
 			
@@ -277,7 +285,10 @@ public class StreamingController{
 		System.out.println("여기 왔네여?");
 		
 		vodService.deleteVOD(Long.parseLong(del_no));
-		List<VodDTO> list = vodService.getVodList(Long.parseLong(lecture_no));
+		List<VodDTO> list = new ArrayList<>();
+				
+		list = vodService.getVodList(Long.parseLong(lecture_no));
+		
 		for(int i=0; i<list.size();i++) {
 			list.get(i).setCnt(i+1);
 		}

@@ -146,7 +146,7 @@ body {
 }
 
 
-.vodSelect {
+#vodSelect {
 	/*display: inline-flex;*/
 	text-align: center;
 	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
@@ -169,7 +169,7 @@ body {
 
 
 
-.vodSelect:active {
+#vodSelect:active {
 	position: relative;
 	top: 1px;
 }
@@ -178,10 +178,10 @@ body {
 #vodUpload {
 	/*display: inline-flex;*/
 	text-align: center;
-	box-shadow: inset -4px 0px 0px -15px #f7c5c0;
+	box-shadow: inset -4px 0px 0px -15px #f21414;
 	background-color: #f21414;
 	border-radius: 9px !important;
-	border: 1px solid #d12e6a;
+	border: 1px solid #f21414;
 	display: inline-block;
 	cursor: pointer;
 	color: #ffffff;
@@ -190,7 +190,7 @@ body {
 	font-weight: bold;
 	padding: 10px 50px !important;
 	text-decoration: none;
-	text-shadow: 0px 2px 0px #db3362;
+	/*text-shadow: 0px 2px 0px #f21414;*/
 	margin: 12px !important;
 	width: 30% !important;
 	
@@ -206,7 +206,19 @@ body {
 
 </style>
 
+<script>
 
+function registerAction() {
+	var name = $("#myfile").val();
+	var result = confirm("파일 이름 : " + name + "\n동영상을 등록하시겠습니까?");
+	if (result) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+</script>
 </head>
 <body>
 	
@@ -243,7 +255,7 @@ body {
 				 -->
 				
  				<!-- <form name="testForm" id="testForm" method="post" enctype="multipart/form-data"> -->
-				<form method="post" action="upload" enctype="multipart/form-data" >
+				<form method="post" action="upload" enctype="multipart/form-data" onsubmit="return registerAction()">
 				
 					
 					<div>
@@ -263,39 +275,16 @@ body {
 					
 					<br><br>
 					
-				         <input multiple="multiple" type="file" name="file1" style= "display:none"/>
+				         <input multiple="multiple" type="file" id="myfile" name="file1" style= "display:none"/>
 				         
 				         <input type="text" id="lecture_no" name="lecture_no" value="${lecture_id}" style= "display:none"/>
 				         
-				         <button type="button" class="vodSelect" onclick="onclick=document.all.file1.click()">동영상 선택</button>
+				         <button type="button" id="vodSelect" onclick="onclick=document.all.file1.click()">동영상 선택</button>
 				         <br>
 				         <input type="submit" id="vodUpload" value="강의 업로드">
 						
-						
-						<!-- 둘다 가능 ajax--> 
-				        
-				        <!-- 
-				        <input type="button" id="vodUpload" value="강의 업로드">		    	
-				    	<input type="button" id="vodUpload" value="강의 업로드" onclick="javascript:clicks();">
-				    	-->
-				    
-				         <!-- <button type="button" id ="vodUpload1" name="vodUpload1" class="vodUpload">강의 업로드</button> -->
-				         
-				         <!-- <button type="button" id ="vodUpload" >강의 업로드</button> -->
-				         
   					</form>
-					<!-- 
-					<div style="margin-left: 250px;">
 					
-						<span style="position: relative; left: 40px; color: gray;">#</span>
-						<input type="text" placeholder="썸네일을 선택하세요." maxlength="25"
-							autocomplete="off"
-							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;"
-							readonly> <input type="file" accept="image/*"
-							name="thumbnail" required="required" style="padding-left: 10px;">
-					</div>
-					<br> <br>
- 					-->
 				
 			</div>
 		</div>

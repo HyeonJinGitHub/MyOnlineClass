@@ -44,7 +44,7 @@
 		var delete_id = 0;
 		
 		function reply_click(clicked_id){
-			alert(clicked_id);
+			
 			delete_id = clicked_id;
 			
 		}
@@ -55,7 +55,7 @@
 			
 			
 			let vodtag = confirm('강의를 정말 삭제하시겠습니까?');
-			alert(vodtag);
+			
 			if(vodtag){
 					
 					$.ajax({
@@ -371,17 +371,19 @@
 		
    					 
    					 <c:if test="${isInstructor eq true}">
-	   					<form method="post" action="tempfile">
+	   					<form method="post" action="tempfile" style= "margin:0px">
 	   						<input type="text" name="lecture_name" style= "display:none" value="${lecture.name}"/>
 	   						<input type="text" name="lecture_id" style= "display:none" value="${lecture.id}"/>
-	   						<input type="submit" value="동영상 업로드" class="vodUpload" >
+	   						<input type="submit" value="동영상 업로드" class="vodUpload">
+							
 	 					</form>
-	 					<!-- <input type="button" value="강의 삭제" class="vodDelete"> -->
+	 						
+	 					<input type="button" value="동영상 삭제" class="vodDelete" onclick="javascript:delBtn(${lecture.id});"/>
 	 					
-	 					<input type="button" value="동영상 삭제" class="vodDelete" onclick="javascript:delBtn(${lecture.id});">
-	 					<br>
-	 					<br>
-	 					<input type="button" value="전체 강의 삭제" class="lectureDelete" onclick="javascript:delLecture(${lecture.id},'${id}');">
+	 					<input type="button" value="전체 강의 삭제" class="lectureDelete" onclick="javascript:delLecture(${lecture.id},'${id}');"/>
+	 					
+	 					
+	 					
  					 </c:if>
  					 <!-- <input type="text" id="lecture_id" name="lecture_id" style= "display:none" /> -->
  					 <!-- <input type="text" id="lecture_id" name="lecture_id" value="${lecture.id}"/> -->

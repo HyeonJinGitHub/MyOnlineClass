@@ -304,7 +304,7 @@ a#MOVE_TOP_BTN {
          <div class="ui-widget" style="padding-top: 15px;">	
          
             <label class="header__search-label" for="searchKey" >	
-                <input id="searchKeyNav" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; color:white; font-size: 13px; background-color: #121212; border-radius: 30px;">	
+                <input id="searchKey" name="searchKey" type="text" placeholder="클래스나 코치를 검색해보세요" maxlength="20" autocomplete="off" onfocus="this.value=''" style="border:0; outline:0; width: 200px; padding-left:12px; color:white; font-size: 13px; background-color: hsla(0,0%,100%,.1); border-radius: 30px;">	
             	<button type="submit" style="border:0; outline:0; background-color: #121212;">	
                		<font color="white">
                		<i class="fas fa-search" onclick="search()"></i>
@@ -324,14 +324,14 @@ a#MOVE_TOP_BTN {
          	<ul class="navbar-nav ml-auto">	
          		<li class="nav-item active">	
          			<a class="nav-link linkSwitch" href="${contextPath}/open" >	
-         			<font color="white">
-         				<span class="textSwitch"></span>
-         				</font>	
+         			
+         				<span class="textSwitch" style="color:white; "></span>
+         				
             		</a>	
             	<li class="nav-item active">	
-            		<a class="nav-link" href="${contextPath}/alarm"><font color="white">
-            			<i class="far fa-bell"></i>
-            			</font>
+            		<a class="nav-link" href="${contextPath}/alarm">
+            			<i class="far fa-bell" style="color:white;"></i>
+            			
             		</a>	
             	</li>	
                <li class="nav-item active">	
@@ -341,9 +341,9 @@ a#MOVE_TOP_BTN {
                   </a>	
                   <% } else { %>	
                   <a class="nav-link" href="${contextPath}/mylecture" style="padding-right: 40px;">
-                  	<font color="white">	
-                     <i class="fas fa-user"></i>
-                     </font>	
+                  	
+                     <i class="fas fa-user" style="color:white"></i>
+                    	
                   </a>	
                   <% } %>	
                </li>	

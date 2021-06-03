@@ -71,7 +71,7 @@ if (session.getAttribute("id") == null) {
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 
 	$(function() {
@@ -83,14 +83,27 @@ if (session.getAttribute("id") == null) {
 		var content_textVal = content_text.val();
 		var user = '<%=(String) session.getAttribute("id")%>';
 		if (user == 'null'){
-			alert('로그인 후 이용해주세요.');
-			location.href='/online/login';
+			Swal.fire({ 
+				title: '비회원 이용불가', 
+				text: "로그인 후 이용해주세요.", 
+				icon: 'warning', 
+				showCancelButton: true, 
+				confirmButtonColor: '#a1d1ff', 
+				cancelButtonColor: '#fa7373', 
+				confirmButtonText: '확인', 
+				cancelButtonText: '취소' 
+			}).then((result) => { 
+				if (result.isConfirmed) { 
+					location.href='/online/login';
+					} 
+				})
+			$("#comment_text").val("");
 			return;
 		}
 		
 		// 댓글 내용이 있는지 검사
 		if(content_textVal == ""){
-			alert("댓글을 작성해주세요.");
+			Swal.fire( '댓글을 입력해주세요.', '', 'info' ) 
 			$("#comment_text").focus();
 			return;
 		}
@@ -105,10 +118,10 @@ if (session.getAttribute("id") == null) {
 			data : JSON.stringify({ content_textVal : content_textVal, user : user }), 
 			success : function (result) { 
 				if (result == "Success") {
-					alert("댓글이 등록되었습니다."); 
+					Swal.fire( '댓글이 등록되었습니다.', '', 'success' ) 
 				}
 				else if(result == "False"){
-					alert("수강생만 댓글 작성이 가능합니다.");
+					Swal.fire( '수강 신청 필수', '수강 중인 멤버만 댓글 작성이 가능합니다.', 'warning' ) 
 					$("#comment_text").val("");
 					$("#commentbtn").attr('disabled', false);
 					return;
@@ -131,44 +144,80 @@ if (session.getAttribute("id") == null) {
 		
 		var user = '<%=(String) session.getAttribute("id")%>';
 		if (user == 'null'){
-			alert('로그인 후 이용해주세요.');
-			location.href='/online/login';
+			Swal.fire({ 
+				title: '비회원 이용불가', 
+				text: "로그인 후 이용해주세요.", 
+				icon: 'warning', 
+				showCancelButton: true, 
+				confirmButtonColor: '#a1d1ff', 
+				cancelButtonColor: '#fa7373', 
+				confirmButtonText: '확인', 
+				cancelButtonText: '취소' 
+			}).then((result) => { 
+				if (result.isConfirmed) { 
+					location.href='/online/login';
+					} 
+				})
 			return;
 		}
 		
 		// 재확인
-		if (confirm("댓글을 삭제하시겠습니까?")){
-			$.ajax({ 
-				type : "post", 
-				url : "<c:url value='/classdetail/${lecture.id}/delete'/>", 
-				headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
-				data : JSON.stringify({ cno : cno, user_check : user_check }), 
-				success : function (result) { 
-					if (result == "Success") {
-						alert("정상적으로 삭제되었습니다."); 
-					}
-					else if(result == "False"){
-						alert("나의 게시글만 삭제가 가능합니다."); 
-					}
-					getCommentList(1); // 댓글 목록 출력 함수 호출 
-					$("#commentbtn").attr('disabled', false);
-				},
-				dataType: "text",
-				contentType: "application/json"
-			});
-		}
-		else{
-			$("#deletecmt").attr('disabled', false);
-			return;
-		}
-		
+		Swal.fire({ 
+				title: '댓글을 삭제하시겠습니까?', 
+				text: "삭제 후 복구가 불가능합니다.", 
+				icon: 'warning', 
+				showCancelButton: true, 
+				confirmButtonColor: '#a1d1ff', 
+				cancelButtonColor: '#fa7373', 
+				confirmButtonText: '삭제', 
+				cancelButtonText: '취소' 
+			}).then((result) => { 
+				if (result.isConfirmed) { 
+					$.ajax({ 
+					type : "post", 
+					url : "<c:url value='/classdetail/${lecture.id}/delete'/>", 
+					headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
+					data : JSON.stringify({ cno : cno, user_check : user_check }), 
+					success : function (result) { 
+						if (result == "Success") {
+							Swal.fire( '삭제되었습니다.', '', 'success' ) 
+						}
+						else if(result == "False"){
+							Swal.fire( '나의 게시글만 삭제가 가능합니다.', '', 'error' )
+							return;
+						}
+						getCommentList(1); // 댓글 목록 출력 함수 호출 
+						$("#commentbtn").attr('disabled', false);
+					},
+					dataType: "text",
+					contentType: "application/json"
+					});
+				} 
+				else{
+					$("#deletecmt").attr('disabled', false);
+					return;
+				}
+
+				})
 	});
 	
 	$(document).on("click", "#updatecmt", function() {
 		var user = '<%=(String) session.getAttribute("id")%>';
 		if (user == 'null'){
-			alert('로그인 후 이용해주세요.');
-			location.href='/online/login';
+			Swal.fire({ 
+				title: '비회원 이용불가', 
+				text: "로그인 후 이용해주세요.", 
+				icon: 'warning', 
+				showCancelButton: true, 
+				confirmButtonColor: '#a1d1ff', 
+				cancelButtonColor: '#fa7373', 
+				confirmButtonText: '확인', 
+				cancelButtonText: '취소' 
+			}).then((result) => { 
+				if (result.isConfirmed) { 
+					location.href='/online/login';
+					} 
+				})
 			return;
 		}
 	});
@@ -177,49 +226,72 @@ if (session.getAttribute("id") == null) {
 		//댓글 수정
 		var cno = $(this).val();
 		var comment_user = $(this).attr('name');
-		var content_fix = $("#comment_text_fix").val();
+		var content_fix = $("#comment_text_fix"+cno).val();
 		// 버튼 2번 클릭 인식 방지
 		$("#updatecmt").attr('disabled', 'disabled');
 		
 		// 재확인
-		if (confirm("댓글을 수정하시겠습니까?")){
-			$.ajax({ 
-				type : "post", 
-				url : "<c:url value='/classdetail/${lecture.id}/update'/>", 
-				headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
-				data : JSON.stringify({ cno : cno, comment_user : comment_user, content_fix : content_fix }), 
-				success : function (result) { 
-					if (result == "Success") {
-						alert("수정되었습니다."); 
-					}
-					else if(result == "False"){
-						alert("나의 게시글만 수정이 가능합니다."); 
-					}
-					getCommentList(1); // 댓글 목록 출력 함수 호출 
-					$("#updatecmt").attr('disabled', false);
-				},
-				dataType: "text",
-				contentType: "application/json"
-			});
-		}
-		else{
-			$("#updatecmt").attr('disabled', false);
-			return;
-		}
-		
-	});
+		Swal.fire({ 
+			title: '댓글을 수정하시겠습니까?', 
+			text: "수정 후 복구가 불가능합니다.", 
+			icon: 'warning', 
+			showCancelButton: true, 
+			confirmButtonColor: '#a1d1ff', 
+			cancelButtonColor: '#fa7373', 
+			confirmButtonText: '확인', 
+			cancelButtonText: '취소' 
+		}).then((result) => { 
+			if (result.isConfirmed) { 
+				$.ajax({ 
+					type : "post", 
+					url : "<c:url value='/classdetail/${lecture.id}/update'/>", 
+					headers : { "Content-type" : "application/json", "X-HTTP-Method-Override" : "POST" }, 
+					data : JSON.stringify({ cno : cno, comment_user : comment_user, content_fix : content_fix }), 
+					success : function (result) { 
+						if (result == "Success") {
+							Swal.fire( '수정되었습니다.', '', 'success' )
+						}
+						else if(result == "False"){
+							Swal.fire( '나의 게시글만 수정이 가능합니다.', '', 'error' )
+						}
+						getCommentList(1); // 댓글 목록 출력 함수 호출 
+						$("#updatecmt").attr('disabled', false);
+					},
+					dataType: "text",
+					contentType: "application/json"
+				});
+			} 
+			else{
+				$("#updatecmt").attr('disabled', false);
+				getCommentList(1);
+				return;
+			}
+		})
+});
 	
 	$(document).on("click", "#updatecmt_undo", function() {
 		getCommentList(1);
 	});
 	
 	$(document).on("click", "#canclebtn", function() {
-		if (confirm("수강을 취소하시겠습니까?") == true){
-			location.href='/online/memberlecture/cancle/'+${lecture.id};
-			return
-		}else{
-		    return;
-		}
+		Swal.fire({ 
+			title: '수강을 취소하시겠습니까?', 
+			text: "취소 후에도 재신청이 가능합니다.", 
+			icon: 'warning', 
+			showCancelButton: true, 
+			confirmButtonColor: '#a1d1ff', 
+			cancelButtonColor: '#fa7373', 
+			confirmButtonText: '네', 
+			cancelButtonText: '아니오' 
+		}).then((result) => { 
+			if (result.isConfirmed) { 
+				location.href='/online/memberlecture/cancle/'+${lecture.id};
+				return;
+			} 
+			else{
+				return;
+			}
+			})
 	});
 		
 	function getCommentList(page) {
@@ -266,7 +338,7 @@ if (session.getAttribute("id") == null) {
 														+ "</p>"; // 일반
 												html += "<form class='collapse multi-collapse-" + value.no + " '>"; // 수정모드
 												html += "<div class='form-group'>";
-												html += "<textarea class='form-control' id='comment_text_fix' rows='3'style='resize: none;'>"
+												html += "<textarea class='form-control' id='comment_text_fix"+ value.no +"' rows='3'style='resize: none;'>"
 														+ value.content
 														+ "</textarea>";
 												html += "</div>";

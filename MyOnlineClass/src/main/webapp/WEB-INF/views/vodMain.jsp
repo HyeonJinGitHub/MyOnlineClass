@@ -346,7 +346,7 @@
 							height="268" 
 							poster="${pageContext.request.contextPath}/lectureThumbnail?name=sample&thumbnail=ClassPang.jpg"
 							data-setup="{'techOrder':['html5','flash','flvjs']}">
-						<source src="sample/video/Forest.mp4" type="video/mp4">
+						<source src="sample/video/sample_video.mp4" type="video/mp4">
 						<!-- /{lecture_name}/video/{video_name:.+} -->
 					</video>
  					<!-- poster="ThumnailDownload/${lecture.name}/${lecture.thumbnail}" -->

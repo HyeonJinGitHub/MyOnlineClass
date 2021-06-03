@@ -13,7 +13,7 @@
 <link href='${pageContext.request.contextPath}/resources/css/main.css'
 	rel='stylesheet' />
 <script src='${pageContext.request.contextPath}/resources/js/main.js'></script>
-<title>강사정보 | Hyundai ClassTok</title>
+<title>강사정보 :: MyOnlineClass</title></title>
 
 <style>
 body {
@@ -102,6 +102,10 @@ body {
 	
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	<c:set var="up" value=".." />
 	<!-- Page Content -->
 	<div class="container">

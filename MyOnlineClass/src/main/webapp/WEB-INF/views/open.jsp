@@ -14,7 +14,7 @@
 <link rel="icon" type="image/png" sizes="64x64"
 	href="${contextPath}/resources/image/classtok_favi4fa9.png" />
 <meta charset="UTF-8">
-<title>클래스톡 :: 함께 배우는 온라인 클래스 강의, 수업, 강좌 - 클래스톡</title>
+<title>클래스팡 :: MyOnlineClass</title>
 
 <!-- 폰트 스타일 시트 -->
 <link
@@ -114,6 +114,10 @@ a#MOVE_TOP_BTN {
 <c:import url="header.jsp"></c:import>
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	<%
 	if (id == null || id == "") {
 		response.sendRedirect("login");
@@ -139,6 +143,7 @@ a#MOVE_TOP_BTN {
 						<h3 style="display: inline-block; color: red; padding-bottom: 30px;">
 							.
 						</h3>
+						  <input type="button"  class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
 						<br>
 						
 						<form id="register" method='POST' action="${contextPath}/registerAction" enctype="multipart/form-data" onsubmit="return registerCheck()">
@@ -172,6 +177,7 @@ a#MOVE_TOP_BTN {
 							<br>
 							
 							<div style="margin-left: 143px;">
+								&nbsp; &nbsp; &nbsp; &nbsp;
 								<span style="position: relative; left: 40px; color: gray;">#</span>
 								<input type="text" placeholder="프로필 사진을 선택하세요." 
 									   maxlength="25" autocomplete="off" 
@@ -179,17 +185,19 @@ a#MOVE_TOP_BTN {
 									   border: 0; outline: 0; padding-left: 40px;" readonly>
 								<input type="file" accept="image/*" name="image" required="required"
 									   style="padding-left: 10px;">
+								 <input type="button"  class="btn btn-primary" onclick="duplicationNickname();" style="width:5px; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
 							</div> <br> <br>
 							
 							<input type="submit" value="신청하기" 
 								   style="width: 100px; border-radius: 30px; border: 0; outline: 0;">
+							 <input type="button"  class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
-	
+	<c:import url="footer.jsp"></c:import>
 	<script>
 	var nicknameck = 0;
  	function duplicationNickname() {

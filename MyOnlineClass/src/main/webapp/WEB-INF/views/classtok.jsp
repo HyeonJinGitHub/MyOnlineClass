@@ -11,7 +11,7 @@
 <link rel="icon" 
 	  type="image/png" 
 	  sizes="64x64" 
-	  href="${contextPath}/resources/image/classtok_favi4fa9.png" />
+	  href="${contextPath}/resources/image/favicon.png" />
 <meta charset="utf-8">
 <meta name="viewport" 
 	  content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,7 +20,7 @@
 <meta name="author" 
 	  content="">
 
-<title>클래스톡 :: 함께 배우는 온라인 클래스 강의, 수업, 강좌 - 클래스톡</title>
+<title>클래스팡 :: MyOnlineClass</title>
 
 <!-- 폰트 스타일 시트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
@@ -404,7 +404,7 @@ a#KAKAO_BTN {
 		style="background-color: #ffffff;">
 		<div class="container">
 			<a class="navbar-brand" href="${contextPath}/"> <img
-				src="${contextPath}/resources/image/ClassTok_logo.png" alt="클래스톡"
+				src="${contextPath}/resources/image/Classpang_logo.png" alt="클래스팡"
 				class="logoImage">
 			</a>
 

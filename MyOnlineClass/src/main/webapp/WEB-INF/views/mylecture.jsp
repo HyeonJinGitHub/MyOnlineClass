@@ -15,7 +15,7 @@
   <meta name="author" content="">
 <link href='${pageContext.request.contextPath}/resources/css/main.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath}/resources/js/main.js'></script>
-  <title>수강정보 | Hyundai ClassTok</title>
+  <title>수강정보 :: MyOnlineClass</title>
 <c:import url="header.jsp"></c:import>
  	<style>
 		body {
@@ -40,6 +40,7 @@
    <script>
       document.addEventListener('DOMContentLoaded', function() {
     	  var calendarEl = document.getElementById('calendar');
+    	  
     	  var calendar = new FullCalendar.Calendar(calendarEl, {
     	    initialView: 'dayGridMonth',
     	    initialDate: '2021-06-01',
@@ -53,6 +54,7 @@
     	      {
     	    	    title : "${dataMap.key}",
     	    	    start: "${dataMap.value[0]}",
+    	    	    color: "#" + Math.round(Math.random() * 0xffffff).toString(16),
     	    	    end: "${dataMap.value[1]}",
     	    	    url: "/online/vodStreaming?no=${dataMap.value[2]}"
     	      },
@@ -61,6 +63,8 @@
     	  });
     	  calendar.render();
     	});
+      
+      
     </script>
     <script>
 	$(document).ready(function() {

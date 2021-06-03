@@ -139,11 +139,15 @@ public class LectureDetailController {
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", "강의 등록에 성공하였습니다.");
 			mav.addObject("url", "/online/");
+			mav.addObject("title", "성공");
+			mav.addObject("type", "success");
 			return mav;
 		} catch (Exception e) {
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
 			mav.addObject("url", "javascript:history.back();");
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			return mav;
 		}
 	}

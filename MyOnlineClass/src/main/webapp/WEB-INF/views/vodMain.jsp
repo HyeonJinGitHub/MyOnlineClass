@@ -22,7 +22,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>클래스톡 :: MyOnlineClass</title>
 	<link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/video.css">
 	<script src='${pageContext.request.contextPath}/resources/js/handlebars-v4.1.2.js'></script>

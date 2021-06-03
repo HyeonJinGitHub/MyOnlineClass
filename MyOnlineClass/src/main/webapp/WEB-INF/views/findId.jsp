@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<style>
 	.table-content {
 	display: flex;
@@ -22,12 +23,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  
+  <title>아이디 찾기 :: MyOnlineClass</title>
 
-  <title>아이디 찾기 | Hyundai ClassTok</title>
 
 	<c:import url="header.jsp"></c:import>
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 <div class="table-content">
 	<div class="item"></div>
 	
@@ -72,7 +78,7 @@
   <!-- Footer -->
   <c:import url="footer.jsp"></c:import>
 	<!--  Bootstrap core JavaScript-->
-	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+<%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 </body>
 </html>

@@ -23,10 +23,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>로그인 | Hyundai ClassTok</title>
+  <title>로그인 :: MyOnlineClass</title>
 	<c:import url="header.jsp"></c:import>
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 <div class="table-content">
 	<div class="item"></div>
 </div>

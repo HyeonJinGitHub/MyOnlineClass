@@ -22,7 +22,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>클래스톡 :: MyOnlineClass</title>
+	<title>클래스팡 :: MyOnlineClass</title>
 	<link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/video.css">
 	<script src='${pageContext.request.contextPath}/resources/js/handlebars-v4.1.2.js'></script>
@@ -316,6 +316,9 @@
 
 
 <body>
+<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	
 	<form name="paging">
     	<input type="hidden" name="id"/>
@@ -423,6 +426,29 @@
 			{{/if}}
 			{{/text}}
 
+		</script>
+		<!-- Swiper JS -->
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+		<!-- Initialize Swiper -->
+		<script>
+	     var swiper = new Swiper(".mySwiper", {
+	       slidesPerView: 3,
+	       spaceBetween: 30,
+	       navigation: {
+	         nextEl: ".swiper-button-next",
+	         prevEl: ".swiper-button-prev"
+	       }
+	     });
+	     
+	     var swiper = new Swiper(".mySwiper2", {
+	         slidesPerView: 4,
+	         spaceBetween: 0,
+	         navigation: {
+	           nextEl: ".swiper-button-next",
+	           prevEl: ".swiper-button-prev"
+	         }
+	       });
 		</script>
 		
 		<script src="${pageContext.request.contextPath}/resources/js/handlebar.js"></script>

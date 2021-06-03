@@ -327,6 +327,28 @@ body {
 .swiper-button-next::after {
 	display: none;
 }
+
+.box{
+	overflow: hidden;   
+}
+
+.box img{
+	height:100%;
+	width: 100%;
+	object-fit:cover;     
+	
+	/* 마우스가 이미지를 벗어 났을 때도 자연스럽게 크기가 줄어들기 위함 */
+	transform: scale(1.0);        
+	transition: transform .5s; 
+
+}
+
+/* 마우스 호버시 */
+.box img:hover{            
+	transform: scale(1.2);            /* 이미지 확대 */
+	transition: transform .5s; 		 /*  시간 설정  */
+}
+
 </style>
 
 <!-- Sidebar Style -->
@@ -358,9 +380,6 @@ a#KAKAO_BTN {
 	z-index: 9999 !important;
 }
 
-.test {
-	background-color:white;
-}
 </style>
 
 </head>
@@ -545,7 +564,9 @@ a#KAKAO_BTN {
  				%> 
 				<div class="mb-4 swiper-slide">
 					<div class="card h-auto id<%=i %>" style="width: 300px; height: 200px; box-shadow: 2.3px 2.3px lightgray; cursor: pointer">
+					<div class="box">
 						<img class="card-img-top thumbnail<%=i %>" src="${contextPath}/resources/image/background2.png" alt="Card image" style="height: 200px;">
+					</div>
 						<div class="custom-card-body" style="width: 300px; height: 50px;">
 							<p class="lecture<%=i %>" style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">NO DATA</p>
 							<p class="nickname<%=i %>" style="text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;">NO DATA</p>

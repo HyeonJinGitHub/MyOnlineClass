@@ -289,6 +289,11 @@ a#MOVE_TOP_BTN {
 </head>
 
 <body style="background-color: white;">
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	
 	<!-- Move TOP Icon -->
 	<a id="MOVE_TOP_BTN" href="#"> 
 		<img src="${contextPath}/resources/image/icon_move_top.png">
@@ -298,5 +303,7 @@ a#MOVE_TOP_BTN {
 	<section class="py-5">
 		<div id="detailList"></div>
 	</section>
+	
+<c:import url="footer.jsp"></c:import>	
 </body>
 </html>

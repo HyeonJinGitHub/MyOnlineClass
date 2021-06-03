@@ -324,6 +324,10 @@
 
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	<!-- Move TOP Icon -->
 	<a id="MOVE_TOP_BTN" href="#">
 		<img src="${contextPath}/resources/image/icon_move_top.png">
@@ -388,5 +392,7 @@
 	
 	<!-- Swiper JS -->
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	
+	<c:import url="footer.jsp"></c:import>
 </body>
 </html>

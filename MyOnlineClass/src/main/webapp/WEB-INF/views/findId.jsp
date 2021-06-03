@@ -23,7 +23,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>아이디 찾기 | Hyundai ClassTok</title>
+  
+  <title>아이디 찾기 :: MyOnlineClass</title>
+
 
 	<c:import url="header.jsp"></c:import>
 </head>

@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>마이페이지 | Hyundai ClassTok</title>
+<title>마이페이지 :: MyOnlineClass</title>
 <c:import url="header.jsp"></c:import>
 <style>
 body {

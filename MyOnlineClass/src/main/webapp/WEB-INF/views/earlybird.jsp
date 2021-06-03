@@ -7,7 +7,7 @@
 <head>
 <c:import url="header.jsp"></c:import>
 <meta charset="UTF-8">
-<title>클래스톡 :: 기획전</title>
+<title>클래스팡 :: 기획전</title>
 
 <!-- Swiper API -->
 <link rel="stylesheet"

@@ -8,10 +8,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/classtok_favi4fa9.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/favicon.png" />
 <meta charset="UTF-8">
 
+
+<title>클래스팡 :: MyOnlineClass</title>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <!-- 폰트 스타일 시트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">

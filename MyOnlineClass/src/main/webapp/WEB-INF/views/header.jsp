@@ -8,8 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/classtok_favi4fa9.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="${contextPath}/resources/image/favicon.png" />
 <meta charset="UTF-8">
+
+
+<title>클래스팡 :: MyOnlineClass</title>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -315,7 +318,7 @@ a#MOVE_TOP_BTN {
    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #ffffff;">
       <div class="container">
          <a class="navbar-brand" href="${contextPath}/">
-            <img src="${contextPath}/resources/image/ClassTok_logo.png" alt="클래스톡" class="logoImage">
+            <img src="${contextPath}/resources/image/Classpang_logo.png" alt="클래스팡" class="logoImage">
          </a>
          
          <div class="ui-widget" style="padding-top: 15px;">

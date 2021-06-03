@@ -34,7 +34,7 @@ resultTime = dateForm.format(result_date);
 <head>
 <c:import url="header2.jsp"></c:import>
 <meta charset="UTF-8">
-<title>My Online Class</title>
+<title>클래스팡 :: MyOnlineClass</title>
 
 <style>
 .myButton {

@@ -32,8 +32,10 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-<title>비밀번호 변경 | Hyundai ClassTok</title>
+
+<title>비밀번호 변경 :: MyOnlineClass</title>
+
+
 <c:import url="header.jsp"></c:import>
 <script>
 	$(document).ready(

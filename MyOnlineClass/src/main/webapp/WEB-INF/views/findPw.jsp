@@ -23,7 +23,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>비밀번호 찾기 | Hyundai ClassTok</title>
+  <title>비밀번호 찾기 :: MyOnlineClass</title>
 
   <c:import url="header.jsp"></c:import>
 </head>

@@ -15,7 +15,7 @@
   <meta name="author" content="">
 <link href='${pageContext.request.contextPath}/resources/css/main.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath}/resources/js/main.js'></script>
-  <title>수강정보 | Hyundai ClassTok</title>
+  <title>수강정보 :: MyOnlineClass</title>
 <c:import url="header.jsp"></c:import>
  	<style>
 		body {

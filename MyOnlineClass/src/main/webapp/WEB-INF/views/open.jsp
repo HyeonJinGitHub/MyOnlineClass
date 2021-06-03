@@ -14,7 +14,7 @@
 <link rel="icon" type="image/png" sizes="64x64"
 	href="${contextPath}/resources/image/classtok_favi4fa9.png" />
 <meta charset="UTF-8">
-<title>클래스톡 :: 함께 배우는 온라인 클래스 강의, 수업, 강좌 - 클래스톡</title>
+<title>클래스팡 :: MyOnlineClass</title>
 
 <!-- 폰트 스타일 시트 -->
 <link

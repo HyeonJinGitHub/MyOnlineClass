@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>회원탈퇴 | Hyundai ClassTok</title>
+<title>회원탈퇴 :: MyOnlineClass</title>
 <c:import url="header.jsp"></c:import>
 <style>
 body {

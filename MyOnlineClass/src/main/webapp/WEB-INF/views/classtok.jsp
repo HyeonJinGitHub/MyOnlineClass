@@ -430,7 +430,7 @@ a#KAKAO_BTN {
             			<span class="textSwitch"></span>
             		</a>
            		<li class="nav-item active">
-           			<a class="nav-link" href="${contextPath}/alarm">
+           			<a class="nav-link" style="display:cursor" href="${contextPath}/">
            				<i class="far fa-bell"></i>
            			</a>
            		</li>

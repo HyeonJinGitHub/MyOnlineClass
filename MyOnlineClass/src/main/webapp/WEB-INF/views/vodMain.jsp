@@ -40,8 +40,6 @@
 		}
 		
 		
-		
-			
 		var delete_id = 0;
 		
 		function reply_click(clicked_id){
@@ -68,18 +66,22 @@
 								del_no : delete_id}
 								,
 							dataType: "json",
-							success : function(data) {
-
+							success : function(result) {
+								console.log('성공시');
+								console.log(result);
 								
-								console.log(data);
-								console.log(data[0].cnt);
+								if (result.length > 0) {
+
+								console.log(result);
+								console.log(result[0].cnt);
 								
 								
 								getVideoData = function () {
 									
 									return new Promise(function (resolve, reject) {
-										
-										var videoData = data;
+										console.log('확인');
+										console.log(result);
+										var videoData = result;
 										resolve(videoData);
 									})
 									}
@@ -88,6 +90,9 @@
 								
 								getVideoData()
 								.then(function (res) {
+									console.log('하기');
+									console.log(res);
+									
 									var videoArr = res,
 										vid = document.querySelector('#my-video'),
 										currentNum = 0,
@@ -104,6 +109,9 @@
 									player.poster(videoArr[0].poster);
 									player.src(videoArr[0].src);
 									$(".video__tit").text(videoArr[0].id + ". " + videoArr[0].title);
+									
+									// 추가
+									//$(".video__tit").text(videoArr[0].id + ". " + videoArr[0].title);
 
 
 									var videoList = new HandleBars(videoListData, '#video__total-template', '.video__menu');
@@ -119,6 +127,7 @@
 										listSelect.text[currentNum].src = videoArr[currentNum].src;
 										listSelect.text[currentNum].poster = videoArr[currentNum].poster;
 										listSelect.text[currentNum].isCheck = videoArr[currentNum].isCheck;
+										listSelect.text[currentNum].time = videoArr[currentNum].time;
 										
 										
 										listSelect.text[currentNum].cnt = videoArr[currentNum].cnt;
@@ -257,6 +266,9 @@
 										});
 									}
 								});
+							
+								}
+							
 							},
 							
 							error : function() {
@@ -404,10 +416,11 @@
 	</div>
 	
 	<script id="video__total-template" type="text/x-handlebars-template">
+
 			{{#text}}
 			{{#if isCheck}}
 			<li class="video__items complate" data-idx={{id}} id={{id}} onclick="reply_click(this.id)" >
-				<span class="video__items-tit">{{cnt}}.{{title}}</span>
+				<span class="video__items-tit">{{cnt}}.{{title}} </span>
 				<span class="video__player-icon">
 					<svg width="18" aria-hidden="true" data-prefix="fal" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z"></path>
 					</svg>
@@ -416,7 +429,7 @@
 			</li>
 			{{else}}
 			<li class="video__items" data-idx={{id}} id={{id}} onclick="reply_click(this.id)">
-				<span class="video__items-tit">{{cnt}}. {{title}}</span>
+				<span class="video__items-tit">{{cnt}}. {{title}} </span>
 				<span class="video__player-icon">
 					<svg width="18" aria-hidden="true" data-prefix="fal" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z"></path>
 					</svg>

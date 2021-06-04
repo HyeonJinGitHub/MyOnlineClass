@@ -27,7 +27,7 @@ String phone = (String) session.getAttribute("phone");
 			$('#lecturenameCount').html("(" + $(this).val().length + " / 50)");
 
 			if ($(this).val().length > 50) {
-				$(this).val($(this).val().substring(0, 25));
+				$(this).val($(this).val().substring(0, 50));
 				$('#lecturenameCount').html("(0 / 50)");
 			}
 		});
@@ -45,7 +45,7 @@ String phone = (String) session.getAttribute("phone");
 			$('#cautionCount').html("(" + $(this).val().length + " / 300)");
 
 			if ($(this).val().length > 300) {
-				$(this).val($(this).val().substring(0, 150));
+				$(this).val($(this).val().substring(0, 300));
 				$('#cautionCount').html("(0 / 300)");
 			}
 		});
@@ -54,7 +54,7 @@ String phone = (String) session.getAttribute("phone");
 			$('#introduceCount').html("(" + $(this).val().length + " / 300)");
 
 			if ($(this).val().length > 300) {
-				$(this).val($(this).val().substring(0, 150));
+				$(this).val($(this).val().substring(0, 300));
 				$('#introduceCount').html("(0 / 300)");
 			}
 		});
@@ -134,7 +134,7 @@ String phone = (String) session.getAttribute("phone");
 						<div style="width: auto;">
 							<span style="position: relative; left: 40px; color: gray;">#</span>
 							<input type="text" id="lecturename" name="lecturename"
-								placeholder="강의명을 적어주세요." maxlength="10" autocomplete="off"
+								placeholder="강의명을 적어주세요." maxlength="50" autocomplete="off"
 								required="required"
 								style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
 							<span id="lecturenameCount"
@@ -185,7 +185,7 @@ String phone = (String) session.getAttribute("phone");
 					<div>
 						<span style="position: relative; left: 40px; color: gray;">#</span>
 						<input type="text" id="caution" name="caution"
-							placeholder="주의사항을 입력하세요." maxlength="50" autocomplete="off"
+							placeholder="주의사항을 입력하세요." maxlength="300" autocomplete="off"
 							required="required"
 							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
 						<span id="cautionCount"
@@ -196,7 +196,7 @@ String phone = (String) session.getAttribute("phone");
 					<div>
 						<span style="position: relative; left: 40px; color: gray;">#</span>
 						<input type="text" id="introduce" name="introduce"
-							placeholder="강의 소개를 표현하세요." maxlength="50" autocomplete="off"
+							placeholder="강의 소개를 표현하세요." maxlength="300" autocomplete="off"
 							required="required"
 							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;">
 						<span id="introduceCount"

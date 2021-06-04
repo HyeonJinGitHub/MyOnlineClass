@@ -32,7 +32,7 @@
             				 WHERE lecture_id = lecture.id ) AS participants
 			FROM enrollment, lecture
 			WHERE enrollment.lecture_id = lecture.id
-			ORDER BY id ASC
+			ORDER BY id DESC
 		]]>
 	</select>
 	
@@ -49,7 +49,7 @@
             				 WHERE lecture_id = lecture.id ) AS participants
 			FROM enrollment, lecture
 			WHERE enrollment.lecture_id = lecture.id
-			ORDER BY id DESC
+			ORDER BY id ASC
 		]]>
 	</select>
 	

@@ -23,7 +23,7 @@ String phone = (String) session.getAttribute("phone");
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title> 클래스톡 :: MyOnlineClass</title>
+<title> 클래스팡 :: MyOnlineClass</title>
 
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

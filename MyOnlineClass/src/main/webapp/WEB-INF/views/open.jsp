@@ -136,14 +136,14 @@ a#MOVE_TOP_BTN {
 			<div class="carousel-inner" role="listbox">
 				<div class="carousel-item active"
 					style="height: 425px; background-image: url('${contextPath}/resources/image/background.png')">
-					<div style="color: #fff; text-align: center; padding-top: 40px;">
-						<p style="display: inline-block; font-size: 29px; font-weight: 500;">
+					<div style="color: #fff; text-align: center; padding-top: 40px; padding-left: 60px;">
+						<p style="display: inline-block; font-size: 29px; font-weight: 500; padding-left: 100px;">
 							스타 강사로 데뷔하세요
 						</p>
 						<h3 style="display: inline-block; color: red; padding-bottom: 30px;">
 							.
 						</h3>
-						  <input type="button"  class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
+						  <input type="button" class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
 						<br>
 						
 						<form name="registerForm" id="register" method='POST' action="${contextPath}/registerAction" enctype="multipart/form-data" onsubmit="registerCheck(event)">
@@ -152,14 +152,14 @@ a#MOVE_TOP_BTN {
 							<input type="hidden" value="${email}" name="email"> 
 							<input type="hidden" value="${phone}" name="phone"> 
 							
-							    <div class="form-group" style="width: 50%;margin: 0 auto; overflow: hidden;">
+							    <div class="form-group" style="width: 50%; margin: 0 auto; overflow: hidden; padding-left: 10px;">
 							    	<span style="position: relative; left: 40px; color: gray;">#</span>
 								<input type="text" id="nickname" name="nickname" placeholder="원하시는 닉네임이 있으신가요?" 
 									   maxlength="10" autocomplete="off" required="required"
 									   style="width: 500px; height: 50px; border-radius: 30px; 
 									   border: 0; outline: 0; padding-left: 40px;">
 								<div id="nicknameCount" style="display: inline; padding-left: 10px;">(0 / 10)</div> 
-								<input type="button" class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
+								<input type="button" class="btn btn-primary" onclick="duplicationNickname();" style="display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
           						</div>
 								<!-- <div style="width: auto;"> -->
 							
@@ -176,7 +176,7 @@ a#MOVE_TOP_BTN {
 							    </div>
 							<br>
 							
-							<div style="margin-left: 143px;">
+							<div style="margin-left: 175px;">
 								&nbsp; &nbsp; &nbsp; &nbsp;
 								<span style="position: relative; left: 40px; color: gray;">#</span>
 								<input type="text" placeholder="프로필 사진을 선택하세요." 
@@ -187,10 +187,11 @@ a#MOVE_TOP_BTN {
 									   style="padding-left: 10px;">
 								 <input type="button"  class="btn btn-primary" onclick="duplicationNickname();" style="width:5px; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
 							</div> <br> <br>
-							
+							<div style="padding-left: 80px;">
 							<input type="submit" value="신청하기" 
 								   style="width: 100px; border-radius: 30px; border: 0; outline: 0;">
-							 <input type="button"  class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
+							<input type="button"  class="btn btn-primary" onclick="duplicationNickname();" style="width:10%; visibility:hidden; display: inline; margin-left: 10px; border-color: #343a40; background-color: #343a40;" value="중복확인"/>
+							</div>
 						</form>
 					</div>
 				</div>

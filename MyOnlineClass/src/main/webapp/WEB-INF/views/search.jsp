@@ -193,7 +193,7 @@
 					html += "<p style='text-align: left; padding-left: 5px; padding-top: 5px; font-weight: bold; font-size: 13px; margin-bottom: 0px; color: gray;'>" + data[key]['nickname'] + "</p>";
 					html += "</div>";
 					html += "<div class='custom-card-body' style='width: 300px; height: 40px; text-align: left;'>";
-					html += "<p style='text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;'>" + data[key]['participants'] + "</p>";
+					html += "<p style='text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;'>" + "참여 멤버 " + data[key]['participants'] + "</p>";
 					html += "</div>"
 					html += "</div>"
 					html += "</div>"

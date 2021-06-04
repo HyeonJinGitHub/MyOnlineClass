@@ -9,7 +9,7 @@ import net.developia.online.dto.VodDTO;
 public interface VodDAO {
 	//List<VodDTO> searchVod(String id) throws SQLException;
 
-	List<VodDTO> getVodList(long vodNo) throws SQLException;
+	List<VodDTO> getVodList(long lectureNo) throws SQLException;
 	/*
 	 * select *
 		from video

@@ -170,6 +170,7 @@ body {
 				<div class="container" align="center">
 				<div class="row">
 					<c:forEach items="${lecture}" var="lectureVar">
+						<div class='col-lg-4 mb-4 swiper-slide'>
 						<div class="card h-auto id"
 							style="width: 300px; height: 200px; box-shadow: 2.3px 2.3px lightgray; cursor: pointer; margin:20px" onclick="return check_instructor(${lectureVar.value[0]})">
 							<img class="card-img-top thumbnail"
@@ -189,6 +190,7 @@ body {
 									style="text-align: left; padding-left: 5px; padding-top: 8px; font-weight: bold; font-size: 10px; margin-bottom: 0px; color: gray;">
 									참여 멤버 ${lectureVar.value[8]}</p>
 							</div>
+						</div>
 						</div>
 					</c:forEach>
 				</div>

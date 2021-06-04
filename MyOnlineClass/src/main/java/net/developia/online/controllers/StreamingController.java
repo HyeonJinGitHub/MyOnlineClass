@@ -206,7 +206,7 @@ public class StreamingController{
 			
 			
 			//개수 입력받기
-			String [] time_list = {"12:23","23:12","13:31", "32:12","31:12", "14:15"};
+			String [] time_list = {"01:12","00:38","2:31", "00:48","00:32", "00:52"};
 			
 			
 

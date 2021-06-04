@@ -43,7 +43,7 @@
     	  
     	  var calendar = new FullCalendar.Calendar(calendarEl, {
     	    initialView: 'dayGridMonth',
-    	    initialDate: '2021-06-01',
+    	    initialDate: '2021-06-04',
     	    headerToolbar: {
     	      left: 'prev,next today',
     	      center: 'title',
@@ -56,7 +56,7 @@
     	    	    start: "${dataMap.value[0]}",
     	    	    color: "#" + Math.round(Math.random() * 0xffffff).toString(16),
     	    	    end: "${dataMap.value[1]}",
-    	    	    url: "/online/vodStreaming?no=${dataMap.value[2]}"
+    	    	    url: "/online/classdetail/${dataMap.value[2]}"
     	      },
     	      </c:forEach>
     	    ]

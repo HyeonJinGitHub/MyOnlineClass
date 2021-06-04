@@ -30,7 +30,6 @@ String phone = (String) session.getAttribute("phone");
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
 <script type="text/javascript">
 	
 
@@ -145,7 +144,6 @@ body {
 	font-size: 15px;
 }
 
-
 #vodSelect {
 	/*display: inline-flex;*/
 	text-align: center;
@@ -208,16 +206,54 @@ body {
 
 <script>
 
-function registerAction() {
-	var name = $("#myfile").val();
-	var result = confirm("파일 이름 : " + name + "\n동영상을 등록하시겠습니까?");
-	if (result) {
-		return true;
-	} else {
-		return false;
-	}
+function registerAction(e) {
+	var form = document.registerForm;
+	var name = $("#myfile").val().substring(12, 100);
+	e.preventDefault();
+	swal({
+		title : '등록',
+		text : name + ' 동영상을 등록하시겠습니까?',
+		icon : 'info',
+		buttons: {
+		    yes: {
+		    	text : "예",
+		    	value : true,
+				className : "swal-button",
+		    },
+		    no: {
+		    	text : "아니오",
+		    	value : false,
+		    	className : "swal-button"
+		    }
+		  }
+	}).then((value)=> {
+		switch(value) {
+		case true:
+			swal({
+				title : '성공',
+				text : '동영상이 등록되었습니다.',
+				icon : 'success',
+				buttons: {
+				    yes: {
+				    	text : "예",
+				    	value : true,
+						className : "swal-button"
+				    }
+				  }
+			}).then((value)=> {
+				switch(value) {
+				case true:
+					form.submit();
+					break;
+				}
+			});
+			break;
+		case false:
+			break;
+		}
+	});
+	return false;
 }
-
 </script>
 </head>
 <body>
@@ -255,7 +291,7 @@ function registerAction() {
 				 -->
 				
  				<!-- <form name="testForm" id="testForm" method="post" enctype="multipart/form-data"> -->
-				<form method="post" action="upload" enctype="multipart/form-data" onsubmit="return registerAction()">
+				<form name="registerForm" method="post" action="upload" enctype="multipart/form-data" onsubmit="registerAction(event)">
 				
 					
 					<div>

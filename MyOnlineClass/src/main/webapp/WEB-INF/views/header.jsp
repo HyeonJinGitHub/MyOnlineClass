@@ -310,6 +310,10 @@ a#MOVE_TOP_BTN {
   border: 1px solid #3e549a;
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
+.swal-button:focus {
+  box-shadow: none;
+}
+
 </style>
 <script>
 var alert = function(title, msg, type) {

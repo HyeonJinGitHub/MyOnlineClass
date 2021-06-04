@@ -7,7 +7,9 @@ import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,22 +49,20 @@ public class StreamingController{
 	@Autowired
 	private InstructorService instructorService;
 	
+	private static String thumbnail;
+	
+	private static String thumbnail_path;
+	
+	private static Map<Long,String> time_map = new HashMap<Long, String>(); 
+	
+	
 	@Value("upload.path")
 	String file_repo;
 	
-	// 	= "C:/online/resources/lecture";
-	//private final String FOLDER_MOVIE = "../../../../../video/"; 
-	//String DIR_PATH =  StreamingController.class.getResource(".").getPath();
+
 	String FOLDER_MOVIE = "C:/online/resources/lecture/";
 	//<source src="video/sample.mp4" type="video/mp4">
 	
-	
-	
-	/*
-	public String stream(@PathVariable("lecture_id") String lecture_id,
-						 @PathVariable("video_name") String video_name, 
-						 HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
-	*/
 	
 	/*@RequestMapping(value="/video/{lecture_id}/{video_name:.+}", method = RequestMethod.GET)*/
 	
@@ -74,13 +74,10 @@ public class StreamingController{
 		String My_FOLDER_MOVIE = FOLDER_MOVIE+lecture_name+"/video/";
 		System.out.println("스트리밍 컨트롤러");
 		System.out.println(My_FOLDER_MOVIE);
-		//sample/video/Forest.mp4
 		
 		//확장자 확인 //
-		//System.out.println(video_name);
 		String[] filename_seperate = video_name.split("\\.");
 		
-		//ModelAndView mav = new ModelAndView();
 		
 		String exp;
 		if(filename_seperate.length <= 1) {
@@ -202,18 +199,36 @@ public class StreamingController{
 			//poster="ThumnailDownload/${lecture.name}/${lecture.thumbnail}" 
 			//poster="${pageContext.request.contextPath}/lectureThumbnail?name=동영상 업로드 방법&thumbnail=ClassPang.jpg"
 			//
-			String str = "/online/lectureThumbnail?name="+ lectureDTO.getName() + "&thumbnail=";
-			System.out.println(str);
+			thumbnail_path = "/online/lectureThumbnail?name="+ lectureDTO.getName() + "&thumbnail=";
+			System.out.println(thumbnail_path);
 			
-			String thumbnail = lectureDTO.getThumbnail();
+			thumbnail = lectureDTO.getThumbnail();
+			
+			
+			//개수 입력받기
+			String [] time_list = {"12:23","23:12","13:31", "32:12","31:12", "14:15"};
+			
+			
+
 			List<VodDTO> list = vodService.getVodList(no);
+			
+			
+			
+			
+			for(int i=0;i<list.size(); i++) {
+				time_map.put(list.get(i).getId(), time_list[i]);
+			}
+			
 			
 			for(int i=0;i<list.size(); i++) {
 				
 				list.get(i).setCnt(i+1);
 				list.get(i).setThumbnail(thumbnail);
-				list.get(i).setPoster(str+thumbnail);
-				System.out.println(list.get(i));
+				list.get(i).setPoster(thumbnail_path+thumbnail);
+				//list.get(i).setTime(time_list[i]);
+				
+				list.get(i).setTime(time_map.get(list.get(i).getId()));
+				
 			}
 			
 			
@@ -289,10 +304,17 @@ public class StreamingController{
 				
 		list = vodService.getVodList(Long.parseLong(lecture_no));
 		
-		for(int i=0; i<list.size();i++) {
+		
+		for(int i=0;i<list.size(); i++) {
+			
 			list.get(i).setCnt(i+1);
+			list.get(i).setThumbnail(thumbnail);
+			list.get(i).setPoster(thumbnail_path+thumbnail);
+			list.get(i).setTime(time_map.get(list.get(i).getId()));
+			
 		}
 		
+	
 		return list;
 		
 		
@@ -305,6 +327,9 @@ public class StreamingController{
 		
 		lectureService.deleteLecture(Long.parseLong(lecture_no));
 		System.out.println("삭제 됐네영");
+		
+		
+		
 		
 		
 	}

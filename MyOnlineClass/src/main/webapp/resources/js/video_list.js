@@ -50,6 +50,7 @@ getVideoData()
 			//listSelect.text[currentNum].poster = videoArr[currentNum].poster;
 			
 			listSelect.text[currentNum].isCheck = videoArr[currentNum].isCheck;
+			listSelect.text[currentNum].time = videoArr[currentNum].time;
 		};
 
 		player.on('play', function () {

@@ -69,8 +69,10 @@ public class MemberLectureController {
 			mav.setViewName("memberLecture");
 		} catch (Exception e) {
 			e.printStackTrace();
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			mav.addObject("msg", e.getMessage());
-			mav.addObject("url", "../");
+			mav.addObject("url", "javascript:history.back();");
 		}
 		return mav;
 	}
@@ -120,6 +122,8 @@ public class MemberLectureController {
 			map.put("member_id", member_id);
 			lectureService.MemberLectureCancle(map);
 			System.out.println(no + "" + member_id);
+			mav.addObject("type", "success");
+			mav.addObject("title", "성공");
 			mav.addObject("msg", "수강중인 과정을 취소했습니다.");
 			mav.addObject("url", "/online/classdetail/" + no);
 			return mav;
@@ -127,6 +131,8 @@ public class MemberLectureController {
 			e.printStackTrace();
 			mav.addObject("msg", e.getMessage());
 			mav.addObject("url", "javascript:history.back();");
+			mav.addObject("type", "warning");
+			mav.addObject("title", "실패");
 			return mav;
 		}
 

@@ -210,6 +210,10 @@ function registerAction(e) {
 	var form = document.registerForm;
 	var name = $("#myfile").val().substring(12, 100);
 	e.preventDefault();
+	if(name == "") {
+		alert('실패', '강의를 업로드해주세요.', 'warning');
+		return false;
+	}
 	swal({
 		title : '등록',
 		text : name + ' 동영상을 등록하시겠습니까?',

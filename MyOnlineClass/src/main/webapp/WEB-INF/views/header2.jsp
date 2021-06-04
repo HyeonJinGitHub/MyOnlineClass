@@ -265,7 +265,7 @@ var alert = function(title, msg, type) {
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="${contextPath}/alarm">
+					<a class="nav-link" style="display:cursor" href="${contextPath}/">
 						<i class="far fa-bell"></i>
 					</a>
 				</li>

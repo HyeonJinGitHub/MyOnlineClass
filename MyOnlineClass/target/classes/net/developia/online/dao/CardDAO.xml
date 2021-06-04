@@ -95,9 +95,9 @@
 			FROM enrollment JOIN lecture ON enrollment.lecture_id = id
 			WHERE enrollment.lecture_id IN (SELECT id 
 										   FROM lecture 
-										   WHERE id = (SELECT lecture_id 
+										   WHERE id IN (SELECT lecture_id 
 										   			   FROM enrollment 
-										   			   WHERE member_id = (SELECT member_id 
+										   			   WHERE member_id IN (SELECT member_id 
 										   			   					  FROM instructor 
 										   			   					  WHERE nickname like '%' || #{keyword} || '%')))
 

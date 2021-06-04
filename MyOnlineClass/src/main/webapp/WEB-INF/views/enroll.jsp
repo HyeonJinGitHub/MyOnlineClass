@@ -246,7 +246,7 @@ String phone = (String) session.getAttribute("phone");
 		e.preventDefault();
 		swal({
 			title : '강의등록',
-			text : name + '으로 등록하시겠습니까?',
+			text : name + ' (으)로 등록하시겠습니까?',
 			icon : 'info',
 			buttons: {
 			    yes: {

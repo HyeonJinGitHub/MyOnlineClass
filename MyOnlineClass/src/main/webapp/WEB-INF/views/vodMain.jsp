@@ -25,6 +25,8 @@
 	<title>클래스팡 :: MyOnlineClass</title>
 	<link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/video.css">
+
+	
 	<script src='${pageContext.request.contextPath}/resources/js/handlebars-v4.1.2.js'></script>
 	<script src='${pageContext.request.contextPath}/resources/js/jquery-3.4.1.min.js'></script>
 	
@@ -49,265 +51,302 @@
 		}
 		
 		
-		
-		function delBtn(lecture_id){
+		function delBtn(lecture_id) {
 			
-			
-			let vodtag = confirm('강의를 정말 삭제하시겠습니까?');
-			
-			if(vodtag){
+			swal({
+				title : '영상삭제',
+				text : '해당 영상을 삭제하시겠습니까?',
+				icon : 'warning',
+				buttons: {
+				    yes: {
+				    	text : "예",
+				    	value : true,
+						className : "swal-button"
+				    },
+				    no: {
+				    	text : "아니오",
+				    	value : false,
+				    	className : "swal-button"
+				    }
+				  }
+			}).then((value)=> {
+				
+				switch(value) {
+				case true:
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 					$.ajax({
-							type: "POST",
-							url: "vodDelete",
-							data: {
-								
-								lecture_no : lecture_id,
-								del_no : delete_id}
-								,
-							dataType: "json",
-							success : function(result) {
-								console.log('성공시');
-								console.log(result);
-								
-								if (result.length > 0) {
-
-								console.log(result);
-								console.log(result[0].cnt);
-								
-								
-								getVideoData = function () {
-									
-									return new Promise(function (resolve, reject) {
-										console.log('확인');
-										console.log(result);
-										var videoData = result;
-										resolve(videoData);
-									})
-									}
-								
-								
-								
-								getVideoData()
-								.then(function (res) {
-									console.log('하기');
-									console.log(res);
-									
-									var videoArr = res,
-										vid = document.querySelector('#my-video'),
-										currentNum = 0,
-										maxNum = res.length,
-										videoListData = {
-											text: videoArr,
-										};
-
-									var player = videojs(vid, {
-										inactivityTimeout: 0
-									});
-
-									//현재 받은 비디오데이터의 맨처음 list 재생준비
-									player.poster(videoArr[0].poster);
-									player.src(videoArr[0].src);
-									$(".video__tit").text(videoArr[0].id + ". " + videoArr[0].title);
-									
-									// 추가
-									//$(".video__tit").text(videoArr[0].id + ". " + videoArr[0].title);
-
-
-									var videoList = new HandleBars(videoListData, '#video__total-template', '.video__menu');
-									videoList.render();
-
-									var listItem = $('.video__items');
-									listItem.eq(0).addClass('active');
-									listClick(listItem);
-
-									var setSlcect = function (listSelect, currentNum) {
-										listSelect.text[currentNum].id = videoArr[currentNum].id;
-										listSelect.text[currentNum].title = videoArr[currentNum].title;
-										listSelect.text[currentNum].src = videoArr[currentNum].src;
-										listSelect.text[currentNum].poster = videoArr[currentNum].poster;
-										listSelect.text[currentNum].isCheck = videoArr[currentNum].isCheck;
-										listSelect.text[currentNum].time = videoArr[currentNum].time;
-										
-										
-										listSelect.text[currentNum].cnt = videoArr[currentNum].cnt;
-									};
-
-									player.on('play', function () {
-										//동영상 플레이 감지
-										removeBtn();
-										//console.log(videoListData.text[currentNum].time)
-
-										this.currentTime(videoListData.text[currentNum].time);
-
-									});
-
-									player.on('ended', function () {
-										//비디오가 완료되었다면 체크
-										videoListData.text[currentNum].isCheck = true;
-
-										var videoList = new HandleBars(videoListData, '#video__total-template', '.video__menu');
-										videoList.render();
-
-										var listItem = $('.video__items');
-										listClick(listItem);
-
-										$('.video__items').eq(currentNum).addClass('active');
-
-										var videoBox = document.querySelector('.vidoe__btn-box');
-
-										if (currentNum === 0) {
-											videoBox.appendChild(getBtn('nextBtn'));
-										} else if (currentNum > 0 && currentNum < maxNum - 1) {
-											videoBox.appendChild(getBtn('prevBtn'));
-											videoBox.appendChild(getBtn('nextBtn'));
-										} else if (currentNum === maxNum - 1) {
-											videoBox.appendChild(getBtn('prevBtn'));
-										}
-
-										prevBtn();
-										nextBtn();
-
-										(function () {
-											//3초뒤에 현재 비디오를 다시 처음부터 재생
-											var timer = setTimeout(function () {
-												videoListData.text[currentNum].time = 0;
-												player.play();
-											}, 3000);
-										})();
-
-									});
-
-									player.on('pause', function () {
-										//현재 비디오 정지 체크
-										var isPaused = player.paused();
-
-										if (isPaused) {
-											//정지 되었다면 현재 멈춘만큼의 시간을 체크해서 저장.
-											videoListData.text[currentNum].time = Number(player.cache_.currentTime);
-										}
-
-										return false;
-									})
-
-
-
-									function listClick(listItem) {
-										listItem.on('click', function (e) {
-											try {
-												//클릭시 재생되고있던 비디오 시간 저장
-												var timeCheck = player.currentTime();
-												videoListData.text[currentNum].time = timeCheck;
-
-												var listSelect = {
-													text: videoArr,
-												};
-
-												removeBtn();
-
-												currentNum = $(this).index();
-
-												$('.video__items').removeClass('active');
-												$(this).addClass('active');
-
-												setSlcect(listSelect, currentNum);
-
-												player.poster(listSelect.text[currentNum].poster);
-												player.src(listSelect.text[currentNum].src);
-												//$(".video__tit").text(listSelect.text[currentNum].id + ". " + listSelect.text[currentNum].title);
-												$(".video__tit").text(listSelect.text[currentNum].cnt + ". " + listSelect.text[currentNum].title);
-
-												return false;
-											} catch (error) {
-												console.warn(error);
-											}
-										});
-									}
-
-									function prevBtn() {
-										var prevBtn = document.querySelector('.video__prev-btn');
-										if (!prevBtn) return;
-
-										var listSelect = {
-											text: videoArr,
-										}
-
-										prevBtn.addEventListener('click', function (e) {
-											removeBtn();
-											$('.video__items').removeClass('active');
-											$('.video__items').eq(currentNum - 1).addClass('active');
-											currentNum -= 1;
-											setSlcect(listSelect, currentNum);
-											player.poster(listSelect.text[currentNum].poster);
-											player.src(listSelect.text[currentNum].src);
-											//$(".video__tit").text(listSelect.text[currentNum].id + ". " + listSelect.text[currentNum].title);
-											$(".video__tit").text(listSelect.text[currentNum].cnt + ". " + listSelect.text[currentNum].title);
-										});
-									}
-
-									function nextBtn() {
-										var nextBtn = document.querySelector('.video__next-btn');
-										if (!nextBtn) return;
-
-										var listSelect = {
-											text: videoArr,
-										}
-
-										nextBtn.addEventListener('click', function (e) {
-											removeBtn();
-											$('.video__items').removeClass('active');
-											$('.video__items').eq(currentNum + 1).addClass('active');
-											currentNum += 1;
-											setSlcect(listSelect, currentNum);
-											player.poster(listSelect.text[currentNum].poster);
-											player.src(listSelect.text[currentNum].src);
-											//$(".video__tit").text(listSelect.text[currentNum].id + ". " + listSelect.text[currentNum].title);
-											$(".video__tit").text(listSelect.text[currentNum].cnt + ". " + listSelect.text[currentNum].title);
-										});
-									}
-								});
+						type: "POST",
+						url: "vodDelete",
+						data: {
 							
+							lecture_no : lecture_id,
+							del_no : delete_id}
+							,
+						dataType: "json",
+						success : function(result) {
+							console.log('성공시');
+							console.log(result);
+							
+							if (result.length > 0) {
+							console.log(result);
+							console.log(result[0].cnt);
+							
+							
+							getVideoData = function () {
+								
+								return new Promise(function (resolve, reject) {
+									console.log('확인');
+									console.log(result);
+									var videoData = result;
+									resolve(videoData);
+								})
 								}
 							
-							},
 							
-							error : function() {
-								alert('실패');
+							
+							getVideoData()
+							.then(function (res) {
+								console.log('하기');
+								console.log(res);
+								
+								var videoArr = res,
+									vid = document.querySelector('#my-video'),
+									currentNum = 0,
+									maxNum = res.length,
+									videoListData = {
+										text: videoArr,
+									};
+								var player = videojs(vid, {
+									inactivityTimeout: 0
+								});
+								//현재 받은 비디오데이터의 맨처음 list 재생준비
+								player.poster(videoArr[0].poster);
+								player.src(videoArr[0].src);
+								$(".video__tit").text(videoArr[0].id + ". " + videoArr[0].title);
+								
+								// 추가
+								//$(".video__tit").text(videoArr[0].id + ". " + videoArr[0].title);
+								var videoList = new HandleBars(videoListData, '#video__total-template', '.video__menu');
+								videoList.render();
+								var listItem = $('.video__items');
+								listItem.eq(0).addClass('active');
+								listClick(listItem);
+								var setSlcect = function (listSelect, currentNum) {
+									listSelect.text[currentNum].id = videoArr[currentNum].id;
+									listSelect.text[currentNum].title = videoArr[currentNum].title;
+									listSelect.text[currentNum].src = videoArr[currentNum].src;
+									listSelect.text[currentNum].poster = videoArr[currentNum].poster;
+									listSelect.text[currentNum].isCheck = videoArr[currentNum].isCheck;
+									listSelect.text[currentNum].time = videoArr[currentNum].time;
+									
+									
+									listSelect.text[currentNum].cnt = videoArr[currentNum].cnt;
+								};
+								player.on('play', function () {
+									//동영상 플레이 감지
+									removeBtn();
+									//console.log(videoListData.text[currentNum].time)
+									this.currentTime(videoListData.text[currentNum].time);
+								});
+								player.on('ended', function () {
+									//비디오가 완료되었다면 체크
+									videoListData.text[currentNum].isCheck = true;
+									var videoList = new HandleBars(videoListData, '#video__total-template', '.video__menu');
+									videoList.render();
+									var listItem = $('.video__items');
+									listClick(listItem);
+									$('.video__items').eq(currentNum).addClass('active');
+									var videoBox = document.querySelector('.vidoe__btn-box');
+									if (currentNum === 0) {
+										videoBox.appendChild(getBtn('nextBtn'));
+									} else if (currentNum > 0 && currentNum < maxNum - 1) {
+										videoBox.appendChild(getBtn('prevBtn'));
+										videoBox.appendChild(getBtn('nextBtn'));
+									} else if (currentNum === maxNum - 1) {
+										videoBox.appendChild(getBtn('prevBtn'));
+									}
+									prevBtn();
+									nextBtn();
+									(function () {
+										//3초뒤에 현재 비디오를 다시 처음부터 재생
+										var timer = setTimeout(function () {
+											videoListData.text[currentNum].time = 0;
+											player.play();
+										}, 3000);
+									})();
+								});
+								player.on('pause', function () {
+									//현재 비디오 정지 체크
+									var isPaused = player.paused();
+									if (isPaused) {
+										//정지 되었다면 현재 멈춘만큼의 시간을 체크해서 저장.
+										videoListData.text[currentNum].time = Number(player.cache_.currentTime);
+									}
+									return false;
+								})
+								function listClick(listItem) {
+									listItem.on('click', function (e) {
+										try {
+											//클릭시 재생되고있던 비디오 시간 저장
+											var timeCheck = player.currentTime();
+											videoListData.text[currentNum].time = timeCheck;
+											var listSelect = {
+												text: videoArr,
+											};
+											removeBtn();
+											currentNum = $(this).index();
+											$('.video__items').removeClass('active');
+											$(this).addClass('active');
+											setSlcect(listSelect, currentNum);
+											player.poster(listSelect.text[currentNum].poster);
+											player.src(listSelect.text[currentNum].src);
+											//$(".video__tit").text(listSelect.text[currentNum].id + ". " + listSelect.text[currentNum].title);
+											$(".video__tit").text(listSelect.text[currentNum].cnt + ". " + listSelect.text[currentNum].title);
+											return false;
+										} catch (error) {
+											console.warn(error);
+										}
+									});
+								}
+								function prevBtn() {
+									var prevBtn = document.querySelector('.video__prev-btn');
+									if (!prevBtn) return;
+									var listSelect = {
+										text: videoArr,
+									}
+									prevBtn.addEventListener('click', function (e) {
+										removeBtn();
+										$('.video__items').removeClass('active');
+										$('.video__items').eq(currentNum - 1).addClass('active');
+										currentNum -= 1;
+										setSlcect(listSelect, currentNum);
+										player.poster(listSelect.text[currentNum].poster);
+										player.src(listSelect.text[currentNum].src);
+										//$(".video__tit").text(listSelect.text[currentNum].id + ". " + listSelect.text[currentNum].title);
+										$(".video__tit").text(listSelect.text[currentNum].cnt + ". " + listSelect.text[currentNum].title);
+									});
+								}
+								function nextBtn() {
+									var nextBtn = document.querySelector('.video__next-btn');
+									if (!nextBtn) return;
+									var listSelect = {
+										text: videoArr,
+									}
+									nextBtn.addEventListener('click', function (e) {
+										removeBtn();
+										$('.video__items').removeClass('active');
+										$('.video__items').eq(currentNum + 1).addClass('active');
+										currentNum += 1;
+										setSlcect(listSelect, currentNum);
+										player.poster(listSelect.text[currentNum].poster);
+										player.src(listSelect.text[currentNum].src);
+										//$(".video__tit").text(listSelect.text[currentNum].id + ". " + listSelect.text[currentNum].title);
+										$(".video__tit").text(listSelect.text[currentNum].cnt + ". " + listSelect.text[currentNum].title);
+									});
+								}
+							});
+						
 							}
-						});
+						
+						},
+						error : function() {
+							alert('실패', 'error : ' + error, 'error');
+						}
+					});
+			
+					break;
+				case false:
+					break;
+
 				}
-			else{
-				alert('아니래');
-			}
+			});
+			return false;
+		
+		
 			
 			}
 		
-			function delLecture(lecture_id, member_id){
-				
-				let tag = confirm('강의 전체를 정말 삭제하시겠습니까?');
-				if(tag){
-				
-				
-					$.ajax({
-							type: "POST",
-							url: "lectureDelete",
-							data: {
-								lecture_no : lecture_id,
-								}
-								,
-							dataType: "text",
-							success : function() {
-								pageMove(member_id);
-								alert("강의가 정상적으로 삭제되었습니다.");
-								
-							},
-							
-							error : function(request, error) {
-								alert("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
-								alert('실패');
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		function delLecture(lecture_id, member_id, e){
+				e.preventDefault();
+				swal({
+					title : '강의삭제',
+					text : '강의를 삭제하시겠습니까?',
+					icon : 'warning',
+					buttons: {
+					    yes: {
+					    	text : "예",
+					    	value : true,
+							className : "swal-button"
+					    },
+					    no: {
+					    	text : "아니오",
+					    	value : false
+					    }
+					  }
+				}).then((value)=> {
+					switch(value) {
+					case true:
+						swal({
+							title : '성공',
+							text : '강의가 정상적으로 삭제되었습니다.',
+							icon : 'success',
+							buttons: {
+								yes: {
+							    	text : "예",
+							    	value : true,
+									className : "swal-button"
+							    },
+							}
+						}).then((value) => {
+							switch(value) {
+							case true:
+								$.ajax({
+									type: "POST",
+									url: "lectureDelete",
+									data: {
+										lecture_no : lecture_id,
+										}
+										,
+									dataType: "text",
+									success : function() {
+										pageMove(member_id);
+									},
+									
+									error : function(request, error) {
+										//alert("code:"+request.status + "\n message"+ request.responseText+"\n error:"+error);
+										alert('실패', 'error : ' + error, 'error');
+									}
+								});
+								break;
 							}
 						});
-				}
+						break;
+					case false:
+						break;
+					}
+				});
+				return false;
 			}
 			
 			function pageMove(id){
@@ -399,7 +438,7 @@
 	 						
 	 					<input type="button" value="동영상 삭제" class="vodDelete" onclick="javascript:delBtn(${lecture.id});"/>
 	 					
-	 					<input type="button" value="전체 강의 삭제" class="lectureDelete" onclick="javascript:delLecture(${lecture.id},'${id}');"/>
+	 					<input type="button" value="전체 강의 삭제" class="lectureDelete" onclick="javascript:delLecture(${lecture.id},'${id}', event);"/>
 	 					
 	 					
 	 					

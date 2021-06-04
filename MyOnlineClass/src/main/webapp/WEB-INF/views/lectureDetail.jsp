@@ -91,7 +91,7 @@ if (session.getAttribute("id") == null) {
 				confirmButtonColor: '#a1d1ff', 
 				cancelButtonColor: '#fa7373', 
 				confirmButtonText: '확인', 
-				cancelButtonText: '취소' 
+				cancelButtonText: '취소'
 			}).then((result) => { 
 				if (result.isConfirmed) { 
 					location.href='/online/login';

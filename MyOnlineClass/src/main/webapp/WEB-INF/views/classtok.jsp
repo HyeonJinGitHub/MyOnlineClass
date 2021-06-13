@@ -781,7 +781,7 @@ a#KAKAO_BTN {
 		<div class="container">
 			<h5 style="font-size: 20px; font-weight: 300;">수강생, 평점 ★4 이상!</h5>
 			<h5 style="font-size: 20px; font-weight: 500; padding-bottom: 30px;">
-				클래스톡 인기 코치</h5>
+				클래스팡 인기 코치</h5>
 		</div>
 
 		<div class="container swiper-container mySwiper2" align="center">

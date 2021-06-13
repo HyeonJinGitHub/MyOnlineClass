@@ -6,12 +6,20 @@
 
 
 #### 샘플 데이터 저장 경로(필수)
+
+
 C:/online/resources/lecture/sample/image/ClassPang.jpg   (절대경로)
+
+
 C:/online/resources/lecture/sample/thumbnail/ClassPang.jpg (절대경로) 
+
+
 C:/online/resources/lecture/sample/video/sample_video.mp4 (절대경로)
 
 1. 자신의 로컬환경에 이미지, 동영상 세팅하기.
-2. 폴더명, 파일명 꼭 일치 하도록!! sample => 임의로 설정하라는 뜻 아님!
+
+
+3. 폴더명, 파일명 꼭 일치 하도록!! sample => 임의로 설정하라는 뜻 아님!
 
   
 

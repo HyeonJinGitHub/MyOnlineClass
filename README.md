@@ -7,21 +7,25 @@
 
 #### 샘플 데이터 저장 경로(필수)
 
+MyOnlineClass/setting_img&vod/image/ClassPang.jpg  -> 파일을 아래 경로로 복사하기
 
-C:/online/resources/lecture/sample/image/ClassPang.jpg   (절대경로)
+C:/online/resources/lecture/sample/image/   (절대경로)
 
+
+
+MyOnlineClass/setting_img&vod/thumbnail/ClassPang.jpg -> 파일을 아래 경로로 복사하기
 
 C:/online/resources/lecture/sample/thumbnail/ClassPang.jpg (절대경로) 
 
 
+
+MyOnlineClass/setting_img&vod/video/sample_video.mp4  -> 파일을 아래 경로로 복사하기
+
 C:/online/resources/lecture/sample/video/sample_video.mp4 (절대경로)
+
+
 
 1. 자신의 로컬환경에 이미지, 동영상 세팅하기.
 
 
-3. 폴더명, 파일명 꼭 일치 하도록!! sample => 임의로 설정하라는 뜻 아님!
-
-  
-
- 
-
+2. 폴더명, 파일명 꼭 일치 하도록!! sample => 임의로 설정하라는 뜻 아님!

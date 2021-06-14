@@ -101,14 +101,12 @@ if (session.getAttribute("id") == null) {
 			return;
 		}
 		
-		// 댓글 내용이 있는지 검사
 		if(content_textVal == ""){
 			Swal.fire( '댓글을 입력해주세요.', '', 'info' ) 
 			$("#comment_text").focus();
 			return;
 		}
 		
-		// 버튼 2번 클릭 인식 방지
 		$("#commentbtn").attr('disabled', 'disabled');
 		
 		$.ajax({ 
@@ -126,8 +124,8 @@ if (session.getAttribute("id") == null) {
 					$("#commentbtn").attr('disabled', false);
 					return;
 				}
-				getCommentList(1); // 댓글 목록 출력 함수 호출 
-				$("#comment_text").val(""); // 댓글 내용 초기화 
+				getCommentList(1); 
+				$("#comment_text").val("");  
 				$("#commentbtn").attr('disabled', false);
 			},
 			dataType: "text",
@@ -139,7 +137,6 @@ if (session.getAttribute("id") == null) {
 	$(document).on("click", "#deletecmt", function() {
 		var cno = $(this).val();
 		var user_check = $(this).attr('name');
-		// 버튼 2번 클릭 인식 방지
 		$("#deletecmt").attr('disabled', 'disabled');
 		
 		var user = '<%=(String) session.getAttribute("id")%>';
@@ -186,7 +183,7 @@ if (session.getAttribute("id") == null) {
 							Swal.fire( '나의 게시글만 삭제가 가능합니다.', '', 'error' )
 							return;
 						}
-						getCommentList(1); // 댓글 목록 출력 함수 호출 
+						getCommentList(1); 
 						$("#commentbtn").attr('disabled', false);
 					},
 					dataType: "text",
@@ -247,14 +244,11 @@ if (session.getAttribute("id") == null) {
 	});
 	
 	$(document).on("click", "#updatecmt_do", function() {
-		//댓글 수정
 		var cno = $(this).val();
 		var comment_user = $(this).attr('name');
 		var content_fix = $("#comment_text_fix"+cno).val();
-		// 버튼 2번 클릭 인식 방지
 		$("#updatecmt").attr('disabled', 'disabled');
 		
-		// 재확인
 		Swal.fire({ 
 			title: '댓글을 수정하시겠습니까?', 
 			text: "수정 후 복구가 불가능합니다.", 
@@ -278,7 +272,7 @@ if (session.getAttribute("id") == null) {
 						else if(result == "False"){
 							Swal.fire( '나의 게시글만 수정이 가능합니다.', '', 'error' )
 						}
-						getCommentList(1); // 댓글 목록 출력 함수 호출 
+						getCommentList(1); 
 						$("#updatecmt").attr('disabled', false);
 					},
 					dataType: "text",
@@ -359,8 +353,8 @@ if (session.getAttribute("id") == null) {
 														+ "**) </h5>";
 												html += "<p class='collapse multi-collapse-" + value.no + " show'>"
 														+ value.content
-														+ "</p>"; // 일반
-												html += "<form class='collapse multi-collapse-" + value.no + " '>"; // 수정모드
+														+ "</p>";
+												html += "<form class='collapse multi-collapse-" + value.no + " '>";
 												html += "<div class='form-group'>";
 												html += "<textarea class='form-control' id='comment_text_fix"+ value.no +"' rows='3'style='resize: none;'>"
 														+ value.content

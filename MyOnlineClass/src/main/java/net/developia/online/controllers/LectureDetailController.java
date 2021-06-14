@@ -42,14 +42,13 @@ public class LectureDetailController {
 
 	private static Logger logger = LoggerFactory.getLogger(LectureDetailController.class);
 
-	// URL 예시 : http://localhost/online/classdetail/1
 	@GetMapping("/classdetail/{no}")
 	@Transactional
 	public ModelAndView detail(@PathVariable(required = true) long no, HttpSession session) {
 		ModelAndView mav = new ModelAndView("result");
 
-		boolean already = false; // 수강생 확인
-		boolean teacher = false; // 강사 확인
+		boolean already = false; 
+		boolean teacher = false; 
 		try {
 			LectureDTO lectureDTO = lectureService.getLecture(no);
 			InstructorDTO instructorDTO = instructorService.getInstructor(no);
@@ -61,7 +60,6 @@ public class LectureDetailController {
 			for (LectureDTO dto : data) {
 				long lecture_id = dto.getId();
 				if (lecture_id == no) {
-					// 현재 로그인한 회원이 이미 강의를 수강중인 경우
 					already = true;
 				}
 			}
@@ -109,16 +107,13 @@ public class LectureDetailController {
 			}
 		}
 
-		/* 이미지 업로드 */
 		String image1 = file1.getOriginalFilename();
-		System.out.println(image1);
 		String path1 = "C:/online/resources/lecture/" + lecturename + "/thumbnail";
 		if (!file1.getOriginalFilename().isEmpty()) {
 			file1.transferTo(new File(path1, image1));
 		}
 
 		String image2 = file2.getOriginalFilename();
-		System.out.println(image2);
 		String path2 = "C:/online/resources/lecture/" + lecturename + "/image";
 		if (!file2.getOriginalFilename().isEmpty()) {
 			file2.transferTo(new File(path2, image2));
@@ -137,9 +132,9 @@ public class LectureDetailController {
 		try {
 			lectureService.enrollLecture(map);
 			ModelAndView mav = new ModelAndView("result");
-			mav.addObject("msg", "강의 등록에 성공하였습니다.");
+			mav.addObject("msg", "�Ϸ�Ǿ����ϴ�.");
 			mav.addObject("url", "/online/");
-			mav.addObject("title", "성공");
+			mav.addObject("title", "����");
 			mav.addObject("type", "success");
 			return mav;
 		} catch (Exception e) {
@@ -147,7 +142,7 @@ public class LectureDetailController {
 			mav.addObject("msg", e.getMessage());
 			mav.addObject("url", "javascript:history.back();");
 			mav.addObject("type", "warning");
-			mav.addObject("title", "실패");
+			mav.addObject("title", "����");
 			return mav;
 		}
 	}

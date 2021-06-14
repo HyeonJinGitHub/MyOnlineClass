@@ -2,12 +2,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%--
-String id = (String) session.getAttribute("id");
-String name = (String) session.getAttribute("name");
-String email = (String) session.getAttribute("email");
-String phone = (String) session.getAttribute("phone");
---%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="lecture_id" value="${lecture_id}" />
 <c:set var="lecture_name" value="${lecture_name}" />
@@ -286,15 +281,9 @@ function registerAction(e) {
 					.</h3>
 				<br>
 				
-				<!-- 
-				<p style="display: inline-block; font-size: 29px; font-weight: 500;">
-					강의명: ${lecture_name}</p>
-				<br>
-				<br>
-				<br>
-				 -->
 				
- 				<!-- <form name="testForm" id="testForm" method="post" enctype="multipart/form-data"> -->
+				
+ 				
 				<form name="registerForm" method="post" action="upload" enctype="multipart/form-data" onsubmit="registerAction(event)">
 				
 					

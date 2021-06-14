@@ -8,7 +8,6 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
 String user = null;
-//로그인 세션 확인
 if (session.getAttribute("id") != null) {
 	user = (String) session.getAttribute("id");
 }

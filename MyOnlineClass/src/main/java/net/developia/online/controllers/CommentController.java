@@ -47,15 +47,11 @@ public class CommentController {
 
 		if (strjson == null)
 			page = 1;
-		/// Comment 페이징 기능 추가
-		// online/classdetail/{no}/{cno} 이때 no는 lecture.id, cno는 comment page 번호를 의미!
 		PagingUtil pageUtil = new PagingUtil();
 		PageMaker pageMaker = new PageMaker();
 		pageUtil.setPage(page);
 		pageMaker.setpu(pageUtil);
 		pageMaker.setTotalCount(commentlist.size());
-		System.out.println(page);
-		System.out.println(pageUtil.toString());
 
 		int max_index = pageMaker.getPageUtil().getRowEnd();
 		if (pageMaker.getPageUtil().getRowEnd() > commentlist.size())
@@ -66,7 +62,6 @@ public class CommentController {
 		else {
 			List<CommentDTO> commentlistpaging = commentlist.subList(pageMaker.getPageUtil().getRowStart() - 1,
 					max_index);
-			System.out.println("★☆★" + commentlistpaging.toString());
 			result.put("commentlist", commentlistpaging);
 		}
 		result.put("pageMaker", pageMaker);
@@ -97,11 +92,10 @@ public class CommentController {
 		comments.setMember_id((String) session.getAttribute("id"));
 		comments.setName((String) session.getAttribute("name"));
 		comments.setRegdate(DateFormatClass.strDateNow());
-		System.out.println(comments.toString());
 		try {
 			for (LectureDTO dto : data) {
 				long lecture_id = dto.getId();
-				if (lecture_id == no) { // 수강생만 댓글 가능
+				if (lecture_id == no) { 
 					commentService.insertComment(comments);
 					return "Success";
 				}
@@ -130,14 +124,12 @@ public class CommentController {
 		commentDTO.setLecture_id(no);
 		commentDTO.setContent(content_fix);
 
-		System.out.println(commentDTO.toString());
-
 		try {
 			if (login_user.equals(comment_user) == true) {
-				commentService.updateComment(commentDTO); // 작성자인 경우
+				commentService.updateComment(commentDTO);
 				return "Success";
 			} else
-				return "False"; // 작성자가 아닌 경우
+				return "False"; 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

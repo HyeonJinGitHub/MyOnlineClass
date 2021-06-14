@@ -37,8 +37,6 @@ public class MemberLectureController {
 	private InstructorService instructorService;
 	private static Logger logger = LoggerFactory.getLogger(LectureDetailController.class);
 
-	// 수강신청 컨트롤러!
-	// URL 예시 : http://localhost/online/memberlecture/{no}
 	@GetMapping("/{no}")
 	@Transactional
 	public ModelAndView memberLecture(@PathVariable(required = true) long no, HttpSession session) throws Exception {
@@ -50,7 +48,6 @@ public class MemberLectureController {
 
 		String url = "/online/vodStreaming?no=" + no;
 		try {
-			// 수강생인 경우
 			for (LectureDTO dto : data) {
 				long lecture_id = dto.getId();
 				if (lecture_id == no) {
@@ -77,14 +74,12 @@ public class MemberLectureController {
 		return mav;
 	}
 
-	// URL 예시 : http://localhost/online/memberlecture/action/{no}
 	@GetMapping("/action/{no}")
 	@Transactional
 	public ModelAndView memberLectureAction(@PathVariable(required = true) long no, HttpSession session) {
 		ModelAndView mav = new ModelAndView("result");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String member_id = (String) session.getAttribute("id");
-		System.out.println("action");
 		try {
 			LectureDTO lectureDTO = lectureService.getLecture(no);
 			String now = DateFormatClass.strDateNow();
@@ -110,7 +105,6 @@ public class MemberLectureController {
 
 	}
 
-	// URL 예시 : http://localhost/online/memberlecture/cancle/{no}
 	@GetMapping("/cancle/{no}")
 	@Transactional
 	public ModelAndView memberLectureCancle(@PathVariable(required = true) long no, HttpSession session) {
@@ -121,7 +115,6 @@ public class MemberLectureController {
 			map.put("lecture_id", no);
 			map.put("member_id", member_id);
 			lectureService.MemberLectureCancle(map);
-			System.out.println(no + "" + member_id);
 			mav.addObject("type", "success");
 			mav.addObject("title", "성공");
 			mav.addObject("msg", "수강중인 과정을 취소했습니다.");

@@ -32,14 +32,6 @@ String phone = (String) session.getAttribute("phone");
 			}
 		});
 
-	/* 	$('#genre').on('keyup', function() {
-			$('#genreCount').html("(" + $(this).val().length + " / 50)");
-
-			if ($(this).val().length > 50) {
-				$(this).val($(this).val().substring(0, 25));
-				$('#genreCount').html("(0 / 50)");
-			}
-		}); */
 
 		$('#caution').on('keyup', function() {
 			$('#cautionCount').html("(" + $(this).val().length + " / 300)");
@@ -161,13 +153,8 @@ String phone = (String) session.getAttribute("phone");
 							<option>IT</option>
 							<option>기타</option>
 						</select>
-						<!-- <input type="text" id="genre" name="genre"
-							placeholder="장르를 선택하세요." maxlength="50" autocomplete="off"
-							required="required"
-							style="width: 500px; height: 50px; border-radius: 30px; border: 0; outline: 0; padding-left: 40px;"> -->
 						<span id="genreCount" style="position: relative; display: inline; visibility: hidden; padding-left: 10px;">(0 / 300)</span>
-						<!-- <div id="genreCount" style="display: inline; padding-left: 10px;">(0
-							/ 50)</div> -->
+						
 					</div>
 					<br>
 					<div>
@@ -235,9 +222,8 @@ String phone = (String) session.getAttribute("phone");
 	</div>
 	<c:import url="footer.jsp"></c:import>
 		<!--  Bootstrap core JavaScript-->
-<%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-	<%-- <c:import url="footer.jsp"></c:import> --%>
+	
 	
 	<script>
 	function registerAction(e) {

@@ -42,9 +42,6 @@
 <link rel="stylesheet"
 	  href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-<!-- 새로고침 시 페이지 상단으로 이동 -->
-<!-- <script>history.scrollRestoration = "manual"</script> -->
-
 <!-- 다중 Autocomplete -->
 <script type="text/javascript">
    $(function() {
@@ -343,7 +340,7 @@ body {
 
 }
 
-/* 마우스 호버시 */
+/* 마우스 호버 */
 .box img:hover{            
 	transform: scale(1.2);            /* 이미지 확대 */
 	transition: transform .5s; 		 /*  시간 설정  */

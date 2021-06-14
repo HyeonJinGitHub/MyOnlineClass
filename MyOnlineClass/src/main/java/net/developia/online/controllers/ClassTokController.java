@@ -58,17 +58,13 @@ public class ClassTokController {
 	public List<CardDTO> getLectureSortedByEnroll() throws Exception {
 		List<CardDTO> list = cardService.getCardListSortedByEnroll();
 
-		System.out.println("리턴 행 갯수(ASC) : " + list.size());
-
 		return list;
 	}
 
 	@GetMapping(value = "cardJsonSortedByDeadline", produces = "application/json; charset=UTF-8")
 	public List<CardDTO> getLectureSortedByDeadline() throws Exception {
 		List<CardDTO> list = cardService.getCardListSortedByDeadline();
-
-		System.out.println("리턴 행 갯수(DESC) : " + list.size());
-
+		
 		return list;
 	}
 
@@ -81,7 +77,6 @@ public class ClassTokController {
 		} else {
 			list = cardService.getCardListWithKeyword(keyword);
 		}
-//		System.out.println("리턴 행 갯수 : " + list.size());
 
 		session.setAttribute("numberOfReturnRows", list.size());
 		return list;
@@ -113,14 +108,6 @@ public class ClassTokController {
 		if (!file.getOriginalFilename().isEmpty()) {
 			file.transferTo(new File(path, image));
 		}
-
-		System.out.println("id : " + id);
-		System.out.println("name : " + name);
-		System.out.println("email : " + email);
-		System.out.println("phone : " + phone);
-		System.out.println("nickname : " + nickname);
-		System.out.println("introduce : " + introduce);
-		System.out.println("image : " + image);
 
 		InstructorDTO instructorDTO = new InstructorDTO();
 		instructorDTO.setMember_id(id);

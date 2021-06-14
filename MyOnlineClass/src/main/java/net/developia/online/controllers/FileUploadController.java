@@ -31,75 +31,55 @@ public class FileUploadController {
 
 	private static final String SAVE_PATH = "C:/online/resources/lecture/";
 	
-	/*
-    @RequestParam(value="file1", required = false) MultipartFile mf, HttpSession session,
-    @RequestParam(value="lecture_no",required = true) String lecture_no,
-	@RequestParam(value="lecturename" ,required = true) String title,
-	*/
-	
-	// lecturename/video/비디오이름
     @RequestMapping("upload")
     public ModelAndView upload(
-    		@RequestParam(value="file1", required = false) MultipartFile mf, HttpSession session,
-    		@RequestParam(value="lecture_no",required = true) String lecture_no,
-            @RequestParam(value="lecture_name",required = true) String lecture_name,
+		@RequestParam(value="file1", required = false) MultipartFile mf, HttpSession session,
+		@RequestParam(value="lecture_no",required = true) String lecture_no,
+	    @RequestParam(value="lecture_name",required = true) String lecture_name,
 			@RequestParam(value="lecturename" ,required = true) String title,
 
-            HttpServletRequest request, HttpServletResponse response) {
-    		String id = (String)session.getAttribute("id");
-    		System.out.println("upload 컨트롤러");
-    		//String My_SAVE_PATH = SAVE_PATH+id+"/";
-    		
-    		String My_SAVE_PATH = SAVE_PATH +lecture_name+ "/video/";
-    		System.out.println(lecture_name);
-    		
-    		System.out.println(title);
-    		
-    		
+	    HttpServletRequest request, HttpServletResponse response) {
+		String id = (String)session.getAttribute("id");
 
-    		// 	폴더 없으면 생성
+
+
+		String My_SAVE_PATH = SAVE_PATH +lecture_name+ "/video/";
+
+
+		// 	폴더 없으면 생성
 			File makeFolder = new File(My_SAVE_PATH);
-			
+
 			if(!makeFolder.exists()) {
 				makeFolder.mkdir();
-				System.out.println("폴더 생성");
-				System.out.println(makeFolder.exists());
+
+
 			}
 			else {
-				System.out.println("이미 존재");
+				//System.out.println("이미 존재");
 			}
-    		//String SAVE_PATH =  System.getProperty("user.dir");
-    	
-    		//System.out.println(DIR_PATH);
-            
-			//ModelAndView mav = new ModelAndView("vodStreaming?no="+lecture_no);
-            
 
-            System.out.println(My_SAVE_PATH);
-            
+
+
+
             String originalFileName = mf.getOriginalFilename();
 
             String safeFile =  My_SAVE_PATH + originalFileName;
 
-            //String src = "video/"+id+"/"+originalFileName;
-            //sample/video/Forest.mp4"
+            
             String src = lecture_name+ "/video/"+originalFileName;
             
             HashMap<String, Object> map = new HashMap<String, Object>();
             
             map.put("lecutre_id", lecture_no);
             map.put("title", title);
-			map.put("src", src);
-			System.out.println(lecture_no);
-			System.out.println(title);
-			System.out.println(src);
+	    map.put("src", src);
+			
 			
 		
 			try {
 				
 				vodService.registerLectureVod(map);
 
-				System.out.println("성공");
 			} catch (SQLException e1) {
 
 				e1.printStackTrace();
@@ -111,10 +91,10 @@ public class FileUploadController {
                 
                
                } catch (IllegalStateException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             
@@ -136,7 +116,6 @@ public class FileUploadController {
     	
     	ModelAndView mav = new ModelAndView();
     	
-    	System.out.println(lecture_id);
     	
     	mav.setViewName("vodEnroll");
     	mav.addObject("lecture_id",lecture_id);

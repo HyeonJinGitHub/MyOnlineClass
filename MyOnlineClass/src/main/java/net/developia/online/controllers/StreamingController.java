@@ -61,19 +61,15 @@ public class StreamingController{
 	
 
 	String FOLDER_MOVIE = "C:/online/resources/lecture/";
-	//<source src="video/sample.mp4" type="video/mp4">
-	
-	
-	/*@RequestMapping(value="/video/{lecture_id}/{video_name:.+}", method = RequestMethod.GET)*/
-	
+
+
 	@RequestMapping(value="/{lecture_name}/video/{video_name:.+}", method = RequestMethod.GET)
 	public String stream(@PathVariable("lecture_name") String lecture_name,
 			 @PathVariable("video_name") String video_name, 
 			 HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
 		
 		String My_FOLDER_MOVIE = FOLDER_MOVIE+lecture_name+"/video/";
-		System.out.println("스트리밍 컨트롤러");
-		System.out.println(My_FOLDER_MOVIE);
+		
 		
 		//확장자 확인 //
 		String[] filename_seperate = video_name.split("\\.");
@@ -91,7 +87,6 @@ public class StreamingController{
 		
 		File file = new File(My_FOLDER_MOVIE + video_name);
 
-		System.out.println(video_name);
 		if(!file.exists()) throw new FileNotFoundException();
 		
 		//임의로 파일에 접근
@@ -161,9 +156,7 @@ public class StreamingController{
 	@RequestMapping(value="vodStreaming", produces = "application/json; charset=UTF-8") //강의에 대한 정보 반환
 	public ModelAndView vodStreaming(@RequestParam(required = true) long no, HttpSession session) {
 		
-		//HttpSession session = request.getSession(true);
-		//String user_id = (String)session.getAttribute("user_id");
-		
+	
 		
 		ModelAndView mav = new ModelAndView();		
 		
@@ -175,32 +168,26 @@ public class StreamingController{
 
 			LectureDTO lectureDTO = new LectureDTO();
 			lectureDTO = lectureService.getLecture(no);
-			System.out.println(lectureDTO);
+			
 			
 			
 			InstructorDTO instructorDTO =new InstructorDTO();  
 			instructorDTO =	instructorService.getInstructor(no);
 			
-			System.out.println(instructorDTO);
+			
 			boolean isInstructor = false; 
 						
-			System.out.println("id, getid 확인");
-			System.out.println(id);
-			System.out.println(instructorDTO.getMember_id());
+			
 			
 			if(id.equals(instructorDTO.getMember_id())) {
 				isInstructor = true;
 			}
 			
-			System.out.println(isInstructor);
 			
 			
-			
-			//poster="ThumnailDownload/${lecture.name}/${lecture.thumbnail}" 
-			//poster="${pageContext.request.contextPath}/lectureThumbnail?name=동영상 업로드 방법&thumbnail=ClassPang.jpg"
-			//
+	
 			thumbnail_path = "/online/lectureThumbnail?name="+ lectureDTO.getName() + "&thumbnail=";
-			System.out.println(thumbnail_path);
+			
 			
 			thumbnail = lectureDTO.getThumbnail();
 			
@@ -225,14 +212,13 @@ public class StreamingController{
 				list.get(i).setCnt(i+1);
 				list.get(i).setThumbnail(thumbnail);
 				list.get(i).setPoster(thumbnail_path+thumbnail);
-				//list.get(i).setTime(time_list[i]);
 				
 				list.get(i).setTime(time_map.get(list.get(i).getId()));
 				
 			}
 			
 			
-			System.out.println(list);
+			
 			mav.setViewName("vodMain");
 			
 			JSONArray jsonArray = new JSONArray();
@@ -282,14 +268,11 @@ public class StreamingController{
 			
 			model.addAttribute("jsonList",jsonArray.fromObject(list));
 			
-			//mav.addObject("jsonList",jsonArray.fromObject(list));
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-			//mav.addObject("msg", e.getMessage());
-			//mav.addObject("url", "../");
+		
 		}
-		//return mav;
+		
 	
 	}
 	
@@ -297,7 +280,7 @@ public class StreamingController{
 	@ResponseBody
 	@RequestMapping(value = "vodDelete")
 	public List<VodDTO> vodDelete(String lecture_no, String del_no, HttpServletResponse response) throws Exception {
-		System.out.println("여기 왔네여?");
+		
 		
 		vodService.deleteVOD(Long.parseLong(del_no));
 		List<VodDTO> list = new ArrayList<>();
@@ -323,10 +306,10 @@ public class StreamingController{
 	@ResponseBody
 	@RequestMapping(value = "lectureDelete")
 	public void lectureDelete(String lecture_no, HttpSession session ,HttpServletResponse response) throws Exception {
-		System.out.println(" 강의 삭제하게여? "+ lecture_no);
+		
 		
 		lectureService.deleteLecture(Long.parseLong(lecture_no));
-		System.out.println("삭제 됐네영");
+		
 		
 		
 		

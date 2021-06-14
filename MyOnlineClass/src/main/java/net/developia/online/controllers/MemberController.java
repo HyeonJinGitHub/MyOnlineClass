@@ -42,14 +42,11 @@ public class MemberController {
 	@Transactional
 	public ModelAndView loginAction(HttpSession session, @RequestParam(required = true) String id, @RequestParam(required = true) String password ) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		System.out.println("id : " + id);
-		System.out.println("password : " + password);
 		map.put("ID", id);
 		map.put("PASSWORD", DigestUtils.sha512Hex(password));
 		try {
 			memberService.login(map);
 			List<MemberDTO> output = (List)map.get("MemberList");
-			System.out.println(output);
 			MemberDTO memberDTO = output.get(0);
 			ModelAndView mav = new ModelAndView("result");
 			session.setAttribute("id", memberDTO.getId()); 
@@ -59,7 +56,6 @@ public class MemberController {
 			mav.setViewName("classtok");
 			return mav;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
@@ -96,7 +92,6 @@ public class MemberController {
 			return mav;
 			
  		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
@@ -125,7 +120,6 @@ public class MemberController {
 			return mav;
 			
  		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			ModelAndView mav = new ModelAndView("result");
 			mav.addObject("msg", e.getMessage());
@@ -322,7 +316,6 @@ public class MemberController {
 		mav.addObject("instructorimage", instructor.get("IMAGE").toString());
 		memberService.getInstructorLecture(map);
 		List<LectureDTO> lecture_list = (List)map.get("InstructorLectureList");
-		System.out.println("lecture list : " + lecture_list.toString());
 		HashMap<String, Object> lecture_map = new HashMap<String, Object>();
 		for(LectureDTO dto : lecture_list) {
 			HashMap<String, Object> count_map = new HashMap<String, Object>();
@@ -342,7 +335,6 @@ public class MemberController {
 			list.add(id);
 			lecture_map.put(Long.toString(dto.getId()), list);
 		}
-		System.out.println(lecture_map);
 		mav.addObject("lecture", lecture_map);
 
 		return mav;

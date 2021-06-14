@@ -42,9 +42,6 @@
 <link rel="stylesheet"
 	  href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-<!-- 새로고침 시 페이지 상단으로 이동 -->
-<!-- <script>history.scrollRestoration = "manual"</script> -->
-
 <!-- 다중 Autocomplete -->
 <script type="text/javascript">
    $(function() {
@@ -108,6 +105,7 @@
 
 <script>
 	$(document).ready(function() {
+		
 		<!-- 지금 뜨고 있는 클래스 TOP 5 -->
 		$.getJSON( "${contextPath}/cardJson", function( data ) {
 			let refInt = 0;

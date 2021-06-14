@@ -58,16 +58,12 @@ public class ClassTokController {
 	public List<CardDTO> getLectureSortedByEnroll() throws Exception {
 		List<CardDTO> list = cardService.getCardListSortedByEnroll();
 
-		System.out.println("리턴 행 갯수(ASC) : " + list.size());
-
 		return list;
 	}
 
 	@GetMapping(value = "cardJsonSortedByDeadline", produces = "application/json; charset=UTF-8")
 	public List<CardDTO> getLectureSortedByDeadline() throws Exception {
 		List<CardDTO> list = cardService.getCardListSortedByDeadline();
-
-		System.out.println("리턴 행 갯수(DESC) : " + list.size());
 
 		return list;
 	}
@@ -81,7 +77,6 @@ public class ClassTokController {
 		} else {
 			list = cardService.getCardListWithKeyword(keyword);
 		}
-//		System.out.println("리턴 행 갯수 : " + list.size());
 
 		session.setAttribute("numberOfReturnRows", list.size());
 		return list;
@@ -98,7 +93,8 @@ public class ClassTokController {
 			@RequestParam(required = true) String email, @RequestParam(required = true) String phone,
 			@RequestParam(required = true) String nickname, @RequestParam(required = true) String introduce,
 			@RequestParam("image") MultipartFile file) throws Exception {
-		/* 파일 경로 */
+		
+		/* Local File Path */
 		String path = "C:/online/resources/instructor";
 		File folder = new File(path);
 		if (!folder.exists()) {
@@ -108,19 +104,11 @@ public class ClassTokController {
 				e.printStackTrace();
 			}
 		}
-		/* 이미지 업로드 */
+		/* Image Upload */
 		String image = file.getOriginalFilename();
 		if (!file.getOriginalFilename().isEmpty()) {
 			file.transferTo(new File(path, image));
 		}
-
-		System.out.println("id : " + id);
-		System.out.println("name : " + name);
-		System.out.println("email : " + email);
-		System.out.println("phone : " + phone);
-		System.out.println("nickname : " + nickname);
-		System.out.println("introduce : " + introduce);
-		System.out.println("image : " + image);
 
 		InstructorDTO instructorDTO = new InstructorDTO();
 		instructorDTO.setMember_id(id);
@@ -219,7 +207,6 @@ public class ClassTokController {
 		mav.addObject("keyword", keyword);
 		mav.setViewName("search");
 		return mav;
-//		return new ModelAndView("search");
 	}
 
 	@RequestMapping(value = "/search", method = { RequestMethod.POST, RequestMethod.GET })
@@ -228,7 +215,6 @@ public class ClassTokController {
 		mav.addObject("keyword", "all");
 		mav.setViewName("search");
 		return mav;
-//		return new ModelAndView("search");
 	}
 
 	@GetMapping(value = "earlybird")

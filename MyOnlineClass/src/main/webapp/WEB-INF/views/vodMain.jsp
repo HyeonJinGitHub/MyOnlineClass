@@ -12,9 +12,7 @@
 
 <%@include file="header5.jsp" %>
  
-<%--
-	String id = (String)session.getAttribute("id");
---%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -385,10 +383,10 @@
 	<div class="video__wrap">
 		
 		
-		<!-- poster="${pageContext.request.contextPath}/lectureThumbnail?name=${lecture.name}&thumbnail=${lecture.thumbnail}" -->
+		
 		<div class="video__contents">
 			<div class="video__box">
-				<!-- <p class="video__tit"></p> -->
+				
 				<div class="video__inner-box">
 					
    					<video 
@@ -401,10 +399,8 @@
 							poster="${pageContext.request.contextPath}/lectureThumbnail?name=sample&thumbnail=ClassPang.jpg"
 							data-setup="{'techOrder':['html5','flash','flvjs']}">
 						<source src="sample/video/sample_video.mp4" type="video/mp4">
-						<!-- /{lecture_name}/video/{video_name:.+} -->
+						
 					</video>
- 					<!-- poster="ThumnailDownload/${lecture.name}/${lecture.thumbnail}" -->
- 					<!--  poster="${pageContext.request.contextPath}/lectureThumbnail?name=동영상 업로드 방법&thumbnail=ClassPang.jpg"-->
  					
 					
 				</div>
@@ -443,8 +439,7 @@
 	 					
 	 					
  					 </c:if>
- 					 <!-- <input type="text" id="lecture_id" name="lecture_id" style= "display:none" /> -->
- 					 <!-- <input type="text" id="lecture_id" name="lecture_id" value="${lecture.id}"/> -->
+ 					 
  					 
  					 
  					 

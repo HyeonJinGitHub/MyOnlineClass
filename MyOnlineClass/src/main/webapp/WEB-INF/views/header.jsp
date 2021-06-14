@@ -30,29 +30,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
-<!-- <script>
-	function confirm(title, msg, type) {
-		swal({
-			title : title,
-			text : msg,
-			icon : type,
-			buttons: {
-			    yes: "예",
-			    no: "아니오"
-			  },
-		})
-		.then((value) => {
-			switch(value) {
-			case "예":
-				return true;
-			case "아니오":
-				return false;
-			}
-			 
-		});
-	}
-</script> -->
-
 <!-- 다중 Autocomplete -->
 <script type="text/javascript">
    $(function() {
@@ -380,10 +357,6 @@ var alert = function(title, msg, type) {
       </div>
    </nav>
    
-   <!-- Bootstrap core JavaScript -->
-   <%--    <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script> --%>
-   <%--    <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
-
    <!-- Bootstrap core CSS -->
    <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    

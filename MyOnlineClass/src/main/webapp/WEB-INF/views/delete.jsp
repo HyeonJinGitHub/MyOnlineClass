@@ -247,7 +247,6 @@ body {
 		}
 	</script>
 	<!--  Bootstrap core JavaScript-->
-	<%-- 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script> --%>
 	<script
 		src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 </body>

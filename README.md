@@ -35,7 +35,7 @@
 
 
 
-![19_프로젝트일정](C:\Users\Administrator\Desktop\클래스팡\19_프로젝트일정.JPG)
+![19_프로젝트일정](./ReadmeIMG/19_프로젝트일정.JPG)
 
 
 
